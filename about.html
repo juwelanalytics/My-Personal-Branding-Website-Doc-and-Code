@@ -41,63 +41,118 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-    <!-- NAVIGATION HEADER -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-brandDark/80 border-b border-brandBorder">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 text-xl font-extrabold tracking-wider text-white group">
-                <img src="juwel-profile.png" alt="Juwel Analytics Logo" class="w-9 h-9 rounded-full object-cover object-top border border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.3)] group-hover:scale-105 transition-transform">
-                <span>JUWEL<span class="text-brandAccent">ANALYTICS</span></span>
-            </a>
+    <!-- NAVIGATION HEADER WITH RESPONSIVE BLOG DROPDOWN -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-brandDark/80 border-b border-brandBorder">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- BRAND LOGO -->
+        <a href="index.html" class="flex items-center gap-3 text-xl font-extrabold tracking-wider text-white group">
+            <img src="juwel-profile.png" alt="Juwel Analytics Logo" class="w-9 h-9 rounded-full object-cover object-top border border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.3)] group-hover:scale-105 transition-transform">
+            <span>JUWEL<span class="text-brandAccent">ANALYTICS</span></span>
+        </a>
+        
+        <!-- DESKTOP NAV WITH HOVER DROPDOWN -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+            <a href="index.html" class="hover:text-brandAccent transition-colors">Home</a>
+            <a href="about.html" class="hover:text-brandAccent transition-colors">About</a>
+            <a href="services.html" class="hover:text-brandAccent transition-colors">Services</a>
+            <a href="case-study.html" class="hover:text-brandAccent transition-colors">Case Study</a>
             
-            <!-- DESKTOP NAV -->
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
-                <a href="index.html" class="hover:text-brandAccent transition-colors">Home</a>
-                <a href="about.html" class="hover:text-brandAccent transition-colors">About</a>
-                <a href="services.html" class="hover:text-brandAccent transition-colors">Services</a>
-                <a href="case-study.html" class="hover:text-brandAccent transition-colors">Case Study</a>
-                <a href="blog.html" class="hover:text-brandAccent transition-colors">Blog</a>
-                <a href="contact.html" class="hover:text-brandAccent transition-colors">Contact</a>
-            </nav>
-
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="contact.html" class="bg-brandAccent text-brandDark font-bold px-4 py-2 rounded-lg text-sm hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                    Book Audit
+            <!-- BLOG DROPDOWN (DESKTOP) -->
+            <div class="relative group py-5">
+                <a href="blog.html" class="flex items-center gap-1 hover:text-brandAccent transition-colors text-brandAccent font-semibold">
+                    <span>Blog</span>
+                    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </a>
+
+                <!-- DROPDOWN BOX -->
+                <div class="absolute top-full left-0 w-72 bg-brandCard border border-brandBorder rounded-2xl shadow-2xl py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+                    <div class="px-4 py-2 border-b border-brandBorder/60 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                        Marketing Attribution / OCT
+                    </div>
+                    <a href="blog.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors font-bold">
+                        ⚡ All Knowledge Hub (Hub)
+                    </a>
+                    <a href="oct-free-solution.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors">
+                        🟢 Form OCT (Free Method - $0/Mo)
+                    </a>
+                    <a href="oct-paid-solution.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">
+                        💎 Form OCT (Paid Automation)
+                    </a>
+                    <a href="call-oct-free.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors">
+                        📞 Call OCT (Free Inbound Guide)
+                    </a>
+                    <a href="call-oct-paid.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">
+                        ⚡ Call OCT (Paid DNI & Webhooks)
+                    </a>
+                </div>
             </div>
 
-            <!-- MOBILE HAMBURGER BUTTON -->
-            <button id="menu-btn" class="md:hidden text-slate-300 focus:outline-none focus:text-brandAccent p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
+            <a href="contact.html" class="hover:text-brandAccent transition-colors">Contact</a>
+        </nav>
+
+        <!-- DESKTOP CTA -->
+        <div class="hidden md:flex items-center space-x-4">
+            <a href="contact.html?booking=true" class="bg-brandAccent text-brandDark font-bold px-4 py-2 rounded-lg text-sm hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                Book Free Audit
+            </a>
         </div>
 
-        <!-- MOBILE DROPDOWN MENU -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brandCard border-b border-brandBorder px-4 pt-4 pb-6 space-y-3">
-            <a href="index.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Home</a>
-            <a href="about.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">About</a>
-            <a href="services.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Services</a>
-            <a href="case-study.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Case Study</a>
-            <a href="blog.html" class="hover:text-brandAccent transition-colors">Blog</a>
-            <a href="contact.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Contact</a>
-            <div class="pt-2">
-                <a href="contact.html" class="block text-center bg-brandAccent text-brandDark font-bold px-4 py-2.5 rounded-lg text-sm hover:bg-emerald-400 transition-all">
-                    Book Audit
-                </a>
+        <!-- MOBILE HAMBURGER BUTTON -->
+        <button id="menu-btn" class="md:hidden text-slate-300 focus:outline-none focus:text-brandAccent p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </div>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brandCard border-b border-brandBorder px-4 pt-4 pb-6 space-y-3">
+        <a href="index.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Home</a>
+        <a href="about.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">About</a>
+        <a href="services.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Services</a>
+        <a href="case-study.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Case Study</a>
+        
+        <!-- MOBILE ACCORDION / TOGGLE FOR BLOG SUB-CATEGORIES -->
+        <div class="py-1 space-y-2 border-l-2 border-brandAccent pl-3 my-2 bg-slate-900/50 p-3 rounded-xl">
+            <div class="flex items-center justify-between">
+                <a href="blog.html" class="text-brandAccent font-bold text-xs">📝 Blog & OCT Hub</a>
+                <button id="sub-menu-toggle" class="text-xs text-slate-400 underline focus:outline-none">Expand</button>
+            </div>
+            
+            <div id="blog-sub-items" class="space-y-1.5 pt-1">
+                <a href="oct-free-solution.html" class="block text-slate-300 hover:text-brandAccent text-xs py-1">🟢 Form OCT (Free Method)</a>
+                <a href="oct-paid-solution.html" class="block text-slate-300 hover:text-cyan-400 text-xs py-1">💎 Form OCT (Paid Automation)</a>
+                <a href="call-oct-free.html" class="block text-slate-300 hover:text-brandAccent text-xs py-1">📞 Call OCT (Free Method)</a>
+                <a href="call-oct-paid.html" class="block text-slate-300 hover:text-cyan-400 text-xs py-1">⚡ Call OCT (Paid DNI & Webhooks)</a>
             </div>
         </div>
-    </header>
 
-    <!-- MOBILE MENU SCRIPT -->
-    <script>
-        const btn = document.getElementById('menu-btn');
-        const menu = document.getElementById('mobile-menu');
+        <a href="contact.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Contact</a>
+        <div class="pt-2">
+            <a href="contact.html?booking=true" class="block text-center bg-brandAccent text-brandDark font-bold px-4 py-2.5 rounded-lg text-sm">Book Free Audit</a>
+        </div>
+    </div>
+</header>
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+<!-- RESPONSIVE MENU SCRIPT -->
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const subMenuToggle = document.getElementById('sub-menu-toggle');
+    const blogSubItems = document.getElementById('blog-sub-items');
+
+    if(menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-    </script>
+    }
+
+    if(subMenuToggle && blogSubItems) {
+        subMenuToggle.addEventListener('click', () => {
+            blogSubItems.classList.toggle('hidden');
+            subMenuToggle.textContent = blogSubItems.classList.contains('hidden') ? 'Expand' : 'Collapse';
+        });
+    }
+</script>
 
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 space-y-16">
 
