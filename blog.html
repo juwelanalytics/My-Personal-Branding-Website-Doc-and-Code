@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Hub & Tracking Playbooks — Juwel Analytics</title>
-    <meta name="description" content="Explore professional guides, engineering blueprints, and tutorials on Offline Conversion Tracking (OCT), sGTM, Meta CAPI, and conversion data architecture by MD. Juwel Rana.">
+    <meta name="description" content="Production-grade engineering blueprints on Server-Side GTM, Cloudflare Workers, BigQuery SQL pipelines, Meta CAPI, and CRM Offline Conversion Tracking by MD. Juwel Rana.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,14 +31,30 @@
         }
     </script>
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <style>
+        .card-3d {
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .card-3d:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        .thumb-pattern {
+            background-image: radial-gradient(rgba(16, 185, 129, 0.15) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+    </style>
 </head>
 <body class="bg-brandDark text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-black">
 
+    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBX5XPNK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <!-- NAVIGATION HEADER WITH DROPDOWN -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-brandDark/80 border-b border-brandBorder">
+    <!-- CLEAN HEADER (NO DROPDOWN) -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-brandDark/85 border-b border-brandBorder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 text-xl font-extrabold tracking-wider text-white group">
                 <img src="juwel-profile.png" alt="Juwel Analytics Logo" class="w-9 h-9 rounded-full object-cover object-top border border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.3)] group-hover:scale-105 transition-transform">
@@ -50,35 +66,20 @@
                 <a href="about.html" class="hover:text-brandAccent transition-colors">About</a>
                 <a href="services.html" class="hover:text-brandAccent transition-colors">Services</a>
                 <a href="case-study.html" class="hover:text-brandAccent transition-colors">Case Study</a>
-                
-                <!-- BLOG DROPDOWN -->
-                <div class="relative group py-5">
-                    <a href="blog.html" class="flex items-center gap-1 text-brandAccent font-semibold transition-colors">
-                        <span>Blog</span>
-                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </a>
-                    <div class="absolute top-full left-0 w-72 bg-brandCard border border-brandBorder rounded-2xl shadow-2xl py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                        <div class="px-4 py-2 border-b border-brandBorder/60 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                            Marketing Attribution / OCT
-                        </div>
-                        <a href="blog.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors font-bold">⚡ All Knowledge Hub (Hub)</a>
-                        <a href="oct-free-solution.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors">🟢 Form OCT (Free Method - $0/Mo)</a>
-                        <a href="oct-paid-solution.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">💎 Form OCT (Paid Automation)</a>
-                        <a href="call-oct-free.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors">📞 Call OCT (Free Inbound Guide)</a>
-                        <a href="call-oct-paid.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">⚡ Call OCT (Paid DNI & Webhooks)</a>
-                    </div>
-                </div>
-
+                <a href="blog.html" class="text-brandAccent font-semibold">Blog</a>
                 <a href="contact.html" class="hover:text-brandAccent transition-colors">Contact</a>
             </nav>
 
-            <div class="hidden md:flex items-center space-x-4">
+            <div class="hidden md:flex items-center space-x-3">
                 <a href="contact.html?booking=true" class="bg-brandAccent text-brandDark font-bold px-4 py-2 rounded-lg text-sm hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                    Book Free Audit
+                    Free Audit
+                </a>
+                <a href="contact.html?booking=true" class="bg-slate-800 text-slate-200 font-bold px-4 py-2 rounded-lg text-sm border border-slate-700 hover:bg-slate-700 transition-all">
+                    Booking
                 </a>
             </div>
 
-            <button id="menu-btn" class="md:hidden text-slate-300 focus:outline-none focus:text-brandAccent p-2">
+            <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden text-slate-300 focus:outline-none focus:text-brandAccent p-2">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
@@ -89,21 +90,11 @@
             <a href="about.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">About</a>
             <a href="services.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Services</a>
             <a href="case-study.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Case Study</a>
-            <div class="py-1 space-y-2 border-l-2 border-brandAccent pl-3 my-2 bg-slate-900/50 p-3 rounded-xl">
-                <div class="flex items-center justify-between">
-                    <a href="blog.html" class="text-brandAccent font-bold text-xs">📝 Blog & OCT Hub</a>
-                    <button id="sub-menu-toggle" class="text-xs text-slate-400 underline focus:outline-none">Expand</button>
-                </div>
-                <div id="blog-sub-items" class="space-y-1.5 pt-1">
-                    <a href="oct-free-solution.html" class="block text-slate-300 hover:text-brandAccent text-xs py-1">🟢 Form OCT (Free Method)</a>
-                    <a href="oct-paid-solution.html" class="block text-slate-300 hover:text-cyan-400 text-xs py-1">💎 Form OCT (Paid Automation)</a>
-                    <a href="call-oct-free.html" class="block text-slate-300 hover:text-brandAccent text-xs py-1">📞 Call OCT (Free Method)</a>
-                    <a href="call-oct-paid.html" class="block text-slate-300 hover:text-cyan-400 text-xs py-1">⚡ Call OCT (Paid DNI & Webhooks)</a>
-                </div>
-            </div>
+            <a href="blog.html" class="block text-brandAccent font-semibold text-sm py-1">Blog</a>
             <a href="contact.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Contact</a>
-            <div class="pt-2">
-                <a href="contact.html?booking=true" class="block text-center bg-brandAccent text-brandDark font-bold px-4 py-2.5 rounded-lg text-sm">Book Free Audit</a>
+            <div class="pt-2 flex gap-2">
+                <a href="contact.html?booking=true" class="flex-1 text-center bg-brandAccent text-brandDark font-bold py-2 rounded-lg text-xs">Free Audit</a>
+                <a href="contact.html?booking=true" class="flex-1 text-center bg-slate-800 text-slate-200 font-bold py-2 rounded-lg text-xs">Booking</a>
             </div>
         </div>
     </header>
@@ -111,184 +102,407 @@
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const subMenuToggle = document.getElementById('sub-menu-toggle');
-        const blogSubItems = document.getElementById('blog-sub-items');
-
-        if(menuBtn && mobileMenu) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        if(subMenuToggle && blogSubItems) {
-            subMenuToggle.addEventListener('click', () => {
-                blogSubItems.classList.toggle('hidden');
-                subMenuToggle.textContent = blogSubItems.classList.contains('hidden') ? 'Expand' : 'Collapse';
-            });
+        if(menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         }
     </script>
 
-    <!-- MAIN BLOG & SIDEBAR LAYOUT -->
+    <!-- MAIN LAYOUT CONTAINER -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-        
-        <!-- PAGE TITLE HEADER -->
-        <div class="mb-10 text-center sm:text-left space-y-2 border-b border-brandBorder pb-6">
-            <span class="text-xs font-mono text-brandAccent uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                MARKETING ATTRIBUTION & OFFLINE CONVERSION TRACKING (OCT)
-            </span>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight pt-2">
-                Mastering Form & Call OCT Playbooks
-            </h1>
-            <p class="text-slate-400 text-sm max-w-2xl">
-                Complete engineering guides for Form Lead OCT and Inbound Call Offline Tracking designed for high-performance B2B and service brands.
-            </p>
-        </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            <!-- LEFT COLUMN: BLOG POST CARDS (8 COLS) -->
+
+            <!-- LEFT COLUMN: 2-COLUMN CARDS GRID (8 COLS) -->
             <div class="lg:col-span-8 space-y-6">
                 
-                <!-- CARD 1 -->
-                <article class="bg-brandCard border border-brandBorder rounded-2xl p-6 hover:border-emerald-500/40 transition-all shadow-xl group flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between text-xs font-mono">
-                            <span class="bg-emerald-500/10 text-brandAccent px-2.5 py-1 rounded-lg border border-emerald-500/20">🟢 FORM LEAD • FREE METHOD</span>
-                            <span class="text-slate-400">November 6, 2026</span>
-                        </div>
-                        <h2 class="text-xl sm:text-2xl font-bold text-white group-hover:text-brandAccent transition-colors">
-                            <a href="oct-free-solution.html">Zero-Cost Form Offline Conversion Tracking (OCT) with Google Sheets & GTM</a>
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Capture GCLID, FBCLID, and first-party PII into Google Sheets and sync closed leads back to Google Ads and Meta at $0/month.
-                        </p>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-brandBorder/60 flex items-center justify-between text-xs">
-                        <a href="oct-free-solution.html" class="text-brandAccent font-bold hover:underline">Read Free Form Guide →</a>
-                        <span class="text-slate-500 font-mono">12 Min Read</span>
-                    </div>
-                </article>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-                <!-- CARD 2 -->
-                <article class="bg-brandCard border border-brandBorder rounded-2xl p-6 hover:border-cyan-500/40 transition-all shadow-xl group flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between text-xs font-mono">
-                            <span class="bg-cyan-500/10 text-cyan-400 px-2.5 py-1 rounded-lg border border-cyan-500/20">💎 FORM LEAD • PAID AUTOMATION</span>
-                            <span class="text-slate-400">November 6, 2026</span>
+                    <!-- CARD 1 -->
+                    <article class="card-3d bg-brandCard border border-brandBorder rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="h-44 bg-gradient-to-br from-slate-900 via-[#0d1f22] to-slate-900 thumb-pattern border-b border-brandBorder p-5 flex flex-col items-center justify-center text-center relative">
+                                <span class="text-[10px] font-mono text-brandAccent uppercase tracking-wider mb-1">Zero-Cost Server Infra</span>
+                                <h3 class="text-white font-extrabold text-sm sm:text-base leading-snug">Cloudflare Workers & sGTM Deployment ($0/Mo)</h3>
+                                <div class="mt-3 flex items-center justify-center gap-1.5 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-orange-500/40 text-[9px] font-semibold text-orange-300">Cloudflare</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-blue-500/40 text-[9px] font-semibold text-blue-300">sGTM</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-emerald-500/40 text-[9px] font-semibold text-emerald-300">Safari ITP</span>
+                                </div>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[11px] font-mono text-slate-400">November 6, 2026</span>
+                                <h2 class="text-base font-bold text-white hover:text-brandAccent transition-colors">
+                                    <a href="oct-free-solution.html">Cloudflare Edge Routing vs Paid Stape Server Hosting</a>
+                                </h2>
+                                <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Routing server-side GTM payloads through custom edge workers eliminates monthly fees while bypassing ad blockers completely.
+                                </p>
+                            </div>
                         </div>
-                        <h2 class="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                            <a href="oct-paid-solution.html">Automated Paid Form OCT: HubSpot, GoHighLevel, Webhooks & sGTM</a>
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Enterprise real-time pipeline sync for high-volume B2B lead generation teams using server-side tracking and CRM triggers.
-                        </p>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-brandBorder/60 flex items-center justify-between text-xs">
-                        <a href="oct-paid-solution.html" class="text-cyan-400 font-bold hover:underline">Read Paid Form Guide →</a>
-                        <span class="text-slate-500 font-mono">14 Min Read</span>
-                    </div>
-                </article>
-
-                <!-- CARD 3 -->
-                <article class="bg-brandCard border border-brandBorder rounded-2xl p-6 hover:border-emerald-500/40 transition-all shadow-xl group flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between text-xs font-mono">
-                            <span class="bg-emerald-500/10 text-brandAccent px-2.5 py-1 rounded-lg border border-emerald-500/20">📞 CALL TRACKING • FREE METHOD</span>
-                            <span class="text-slate-400">November 1, 2026</span>
+                        <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-brandBorder/60 text-xs">
+                            <a href="oct-free-solution.html" class="text-brandAccent font-bold hover:underline">Read More →</a>
+                            <span class="font-mono text-slate-500">10 Min Read</span>
                         </div>
-                        <h2 class="text-xl sm:text-2xl font-bold text-white group-hover:text-brandAccent transition-colors">
-                            <a href="call-oct-free.html">Zero-Cost Inbound Call Offline Tracking for Local Services & B2B ($0/Mo Blueprint)</a>
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            How to log phone call inquiries manually or via basic call-log sheets and upload offline call conversions to Google Ads.
-                        </p>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-brandBorder/60 flex items-center justify-between text-xs">
-                        <a href="call-oct-free.html" class="text-brandAccent font-bold hover:underline">Read Free Call Guide →</a>
-                        <span class="text-slate-500 font-mono">10 Min Read</span>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- CARD 4 -->
-                <article class="bg-brandCard border border-brandBorder rounded-2xl p-6 hover:border-cyan-500/40 transition-all shadow-xl group flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between text-xs font-mono">
-                            <span class="bg-cyan-500/10 text-cyan-400 px-2.5 py-1 rounded-lg border border-cyan-500/20">⚡ CALL TRACKING • PAID AUTOMATION</span>
-                            <span class="text-slate-400">October 29, 2026</span>
+                    <!-- CARD 2 -->
+                    <article class="card-3d bg-brandCard border border-brandBorder rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="h-44 bg-gradient-to-br from-slate-900 via-[#13221d] to-slate-900 thumb-pattern border-b border-brandBorder p-5 flex flex-col items-center justify-center text-center relative">
+                                <span class="text-[10px] font-mono text-brandAccent uppercase tracking-wider mb-1">CRM Pipeline OCT</span>
+                                <h3 class="text-white font-extrabold text-sm sm:text-base leading-snug">GoHighLevel & HubSpot CRM Lead Tracking</h3>
+                                <div class="mt-3 flex items-center justify-center gap-1.5 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-indigo-500/40 text-[9px] font-semibold text-indigo-300">GoHighLevel</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-orange-500/40 text-[9px] font-semibold text-orange-300">HubSpot</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-emerald-500/40 text-[9px] font-semibold text-emerald-300">Webhooks</span>
+                                </div>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[11px] font-mono text-slate-400">November 6, 2026</span>
+                                <h2 class="text-base font-bold text-white hover:text-brandAccent transition-colors">
+                                    <a href="oct-paid-solution.html">Offline Conversion Tracking from Your CRM or Google Sheet</a>
+                                </h2>
+                                <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Offline conversion tracking means capturing the Google Click ID (GCLID) and syncing closed-won revenue back to ad networks.
+                                </p>
+                            </div>
                         </div>
-                        <h2 class="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                            <a href="call-oct-paid.html">Automated Call Tracking Architecture: CallRail, Twilio, Webhooks & Real-Time Ad Sync</a>
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Dynamic number insertion (DNI), caller ID stitching, and real-time ad platform conversion uploads.
-                        </p>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-brandBorder/60 flex items-center justify-between text-xs">
-                        <a href="call-oct-paid.html" class="text-cyan-400 font-bold hover:underline">Read Paid Call Guide →</a>
-                        <span class="text-slate-500 font-mono">12 Min Read</span>
-                    </div>
-                </article>
+                        <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-brandBorder/60 text-xs">
+                            <a href="oct-paid-solution.html" class="text-brandAccent font-bold hover:underline">Read More →</a>
+                            <span class="font-mono text-slate-500">12 Min Read</span>
+                        </div>
+                    </article>
 
+                    <!-- CARD 3 -->
+                    <article class="card-3d bg-brandCard border border-brandBorder rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="h-44 bg-gradient-to-br from-slate-900 via-[#111b2e] to-slate-900 thumb-pattern border-b border-brandBorder p-5 flex flex-col items-center justify-center text-center relative">
+                                <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-wider mb-1">Signal Recovery</span>
+                                <h3 class="text-white font-extrabold text-sm sm:text-base leading-snug">Google Tag Gateway vs Server-Side Tracking</h3>
+                                <div class="mt-3 flex items-center justify-center gap-1.5 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-blue-500/40 text-[9px] font-semibold text-blue-300">sGTM</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-sky-500/40 text-[9px] font-semibold text-sky-300">Meta CAPI</span>
+                                </div>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[11px] font-mono text-slate-400">November 5, 2026</span>
+                                <h2 class="text-base font-bold text-white hover:text-brandAccent transition-colors">
+                                    <a href="oct-free-solution.html">Google Tag Gateway vs Server-Side Tracking Architecture</a>
+                                </h2>
+                                <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Google tag gateway serves as an intermediate proxy, whereas full sGTM gives you complete container control on your own cloud.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-brandBorder/60 text-xs">
+                            <a href="oct-free-solution.html" class="text-brandAccent font-bold hover:underline">Read More →</a>
+                            <span class="font-mono text-slate-500">9 Min Read</span>
+                        </div>
+                    </article>
+
+                    <!-- CARD 4 -->
+                    <article class="card-3d bg-brandCard border border-brandBorder rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="h-44 bg-gradient-to-br from-slate-900 via-[#1c182b] to-slate-900 thumb-pattern border-b border-brandBorder p-5 flex flex-col items-center justify-center text-center relative">
+                                <span class="text-[10px] font-mono text-purple-300 uppercase tracking-wider mb-1">Embeds & Lead Capture</span>
+                                <h3 class="text-white font-extrabold text-sm sm:text-base leading-snug">GoHighLevel Form, Survey & Calendar Tracking</h3>
+                                <div class="mt-3 flex items-center justify-center gap-1.5 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-indigo-500/40 text-[9px] font-semibold text-indigo-300">GoHighLevel</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-yellow-500/40 text-[9px] font-semibold text-yellow-300">iFrame JS</span>
+                                </div>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[11px] font-mono text-slate-400">November 1, 2026</span>
+                                <h2 class="text-base font-bold text-white hover:text-brandAccent transition-colors">
+                                    <a href="oct-paid-solution.html">GoHighLevel Iframe Form, Survey & Calendar Tracking Guide</a>
+                                </h2>
+                                <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: GoHighLevel (GHL) embed forms strip UTM parameters unless you use custom parent-to-iframe postMessage scripting.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-brandBorder/60 text-xs">
+                            <a href="oct-paid-solution.html" class="text-brandAccent font-bold hover:underline">Read More →</a>
+                            <span class="font-mono text-slate-500">11 Min Read</span>
+                        </div>
+                    </article>
+
+                    <!-- CARD 5 -->
+                    <article class="card-3d bg-brandCard border border-brandBorder rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="h-44 bg-gradient-to-br from-slate-900 via-[#101c33] to-slate-900 thumb-pattern border-b border-brandBorder p-5 flex flex-col items-center justify-center text-center relative">
+                                <span class="text-[10px] font-mono text-sky-400 uppercase tracking-wider mb-1">Data Warehousing</span>
+                                <h3 class="text-white font-extrabold text-sm sm:text-base leading-snug">Server-Side Tracking & Marketing Attribution</h3>
+                                <div class="mt-3 flex items-center justify-center gap-1.5 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-blue-500/40 text-[9px] font-semibold text-blue-300">BigQuery SQL</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-teal-500/40 text-[9px] font-semibold text-teal-300">Triple Whale</span>
+                                </div>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[11px] font-mono text-slate-400">October 29, 2026</span>
+                                <h2 class="text-base font-bold text-white hover:text-brandAccent transition-colors">
+                                    <a href="case-study.html">Data Is the Hub: Server-Side Tracking & Marketing Attribution</a>
+                                </h2>
+                                <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Server-side tracking sends website events through your own cloud container to restore visibility and data ownership.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-brandBorder/60 text-xs">
+                            <a href="case-study.html" class="text-brandAccent font-bold hover:underline">Read More →</a>
+                            <span class="font-mono text-slate-500">14 Min Read</span>
+                        </div>
+                    </article>
+
+                    <!-- CARD 6 -->
+                    <article class="card-3d bg-brandCard border border-brandBorder rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="h-44 bg-gradient-to-br from-slate-900 via-[#0e2026] to-slate-900 thumb-pattern border-b border-brandBorder p-5 flex flex-col items-center justify-center text-center relative">
+                                <span class="text-[10px] font-mono text-brandAccent uppercase tracking-wider mb-1">Conversion Architecture</span>
+                                <h3 class="text-white font-extrabold text-sm sm:text-base leading-snug">Web Analytics & Conversion Tracking Specialist</h3>
+                                <div class="mt-3 flex items-center justify-center gap-1.5 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-orange-500/40 text-[9px] font-semibold text-orange-300">GA4</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-950 border border-emerald-500/40 text-[9px] font-semibold text-emerald-300">GTM</span>
+                                </div>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[11px] font-mono text-slate-400">October 26, 2026</span>
+                                <h2 class="text-base font-bold text-white hover:text-brandAccent transition-colors">
+                                    <a href="services.html">Web Analytics & Conversion Tracking Specialist Blueprint</a>
+                                </h2>
+                                <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: A professional data architect builds robust tracking stacks so ad budgets are optimized on 100% accurate first-party data.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-brandBorder/60 text-xs">
+                            <a href="services.html" class="text-brandAccent font-bold hover:underline">Read More →</a>
+                            <span class="font-mono text-slate-500">10 Min Read</span>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- PAGINATION -->
+                <div class="flex items-center justify-center gap-4 pt-4">
+                    <span class="text-xs text-slate-500 font-mono cursor-not-allowed">‹ Previous</span>
+                    <span class="text-xs font-mono text-brandAccent bg-emerald-500/10 px-3 py-1 rounded border border-emerald-500/30">1</span>
+                    <a href="#" class="text-xs text-slate-300 hover:text-brandAccent font-mono transition-colors">Next ›</a>
+                </div>
             </div>
 
-            <!-- RIGHT COLUMN: PROFESSIONAL AUTHOR SIDEBAR (4 COLS) -->
-            <aside class="lg:col-span-4 space-y-6">
-                
-                <!-- AUTHOR CARD -->
-                <div class="bg-brandCard border border-brandBorder rounded-2xl p-6 text-center space-y-4 shadow-xl relative overflow-hidden">
-                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
-                    
-                    <div class="relative w-24 h-24 mx-auto rounded-full p-1 bg-gradient-to-tr from-emerald-500 to-cyan-500 shadow-lg">
-                        <img src="juwel-profile.png" alt="MD. Juwel Rana" class="w-full h-full object-cover object-top rounded-full">
-                    </div>
+            <!-- RIGHT COLUMN: SIDEBAR (4 COLS) -->
+            <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
 
-                    <div class="space-y-1">
-                        <h3 class="text-lg font-bold text-white">MD. Juwel Rana</h3>
-                        <p class="text-xs font-mono text-brandAccent">First-Party Data Architect • Conversion Tracking Specialist</p>
-                    </div>
-
-                    <p class="text-slate-300 text-xs leading-relaxed">
-                        Specializing in Google Analytics 4, Server-Side GTM, Meta CAPI, Cloudflare Workers, and CRM Attribution Pipelines.
-                    </p>
-
-                    <!-- SOCIAL ICONS -->
-                    <div class="flex items-center justify-center gap-2.5 pt-2">
-                        <a href="https://www.facebook.com/juwelanalytics" target="_blank" title="Facebook" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.75V8z"/></svg></a>
-                        <a href="https://x.com/juwelanalytics" target="_blank" title="Twitter / X" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                        <a href="https://wa.link/h16xqx" target="_blank" title="WhatsApp" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
-                        <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" title="LinkedIn" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                <!-- 1. SEARCH BAR WIDGET -->
+                <div class="bg-brandCard border border-brandBorder rounded-2xl p-4 shadow-xl">
+                    <div class="relative flex items-center">
+                        <input 
+                            type="text" 
+                            id="blog-search" 
+                            placeholder="Search sGTM, BigQuery, GHL..." 
+                            class="w-full bg-slate-950 border border-brandBorder focus:border-brandAccent rounded-xl pl-4 pr-11 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none transition-colors"
+                        >
+                        <button type="button" aria-label="Search" class="absolute right-1.5 bg-brandAccent text-brandDark p-2 rounded-lg hover:bg-emerald-400 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </button>
                     </div>
                 </div>
 
-                <!-- QUICK AUDIT / GTM TOOLBOX WIDGET -->
+                <!-- 2. AUTHOR PROFILE CARD (EXACTLY MATCHING REFERENCE) -->
+                <div class="bg-brandCard border border-brandBorder rounded-2xl p-6 text-center space-y-4 shadow-xl relative overflow-hidden">
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/15 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <!-- Profile Image -->
+                    <div class="relative w-24 h-24 mx-auto rounded-2xl p-1 bg-gradient-to-tr from-emerald-500 to-cyan-400 shadow-[0_0_20px_rgba(16,185,129,0.25)]">
+                        <img src="juwel-profile.png" alt="MD. Juwel Rana" class="w-full h-full object-cover object-top rounded-xl">
+                    </div>
+
+                    <!-- Name & Title -->
+                    <div class="space-y-1">
+                        <h3 class="text-lg font-extrabold text-white tracking-wide">MD. Juwel Rana</h3>
+                        <p class="text-xs font-semibold text-brandAccent leading-relaxed">
+                            First-Party Data Architect | sGTM, BigQuery SQL & CRM Attribution
+                        </p>
+                    </div>
+
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Helping E-commerce & B2B Lead Gen businesses take full ownership of their data with resilient server-side infrastructures.
+                    </p>
+
+                    <!-- Social Icons -->
+                    <div class="flex items-center justify-center gap-2.5 pt-2 border-t border-brandBorder/70">
+                        <a href="https://www.facebook.com/analyticsfixer" target="_blank" rel="noopener noreferrer" title="Facebook" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.75V8z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/analyticsfixer" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="https://x.com/juwelanalytics" target="_blank" rel="noopener noreferrer" title="Twitter" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="p-2 bg-slate-900 border border-brandBorder rounded-xl text-slate-400 hover:text-brandAccent hover:border-emerald-500/50 transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. INTERACTIVE GTM CODE GENERATOR WIDGET (MATCHING REFERENCE) -->
                 <div class="bg-brandCard border border-brandBorder rounded-2xl p-6 space-y-4 shadow-xl">
-                    <h4 class="text-white font-bold text-sm tracking-wide">⚡ Free Tracking Resource</h4>
-                    <p class="text-slate-400 text-xs">Get instant access to custom GTM event listeners and data layer templates.</p>
-                    <a href="contact.html?booking=true" class="block text-center bg-brandAccent text-brandDark font-bold py-2.5 rounded-xl text-xs hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                        Get Custom GTM Code →
-                    </a>
+                    <div class="text-center space-y-1">
+                        <span class="text-[10px] font-mono text-brandAccent uppercase tracking-wider">Free GTM Listener Code</span>
+                        <h4 class="text-white font-bold text-sm">Get Started With Your Tracking</h4>
+                    </div>
+
+                    <select id="listener-select" class="w-full bg-slate-950 border border-brandBorder focus:border-brandAccent rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none">
+                        <option value="ghl">GoHighLevel Form IFrame Listener</option>
+                        <option value="utm">UTM & GCLID Cookie Saver</option>
+                        <option value="ajax">AJAX Form Submit Listener</option>
+                    </select>
+
+                    <button onclick="showSnippet()" class="w-full bg-brandAccent text-brandDark font-bold py-2.5 rounded-xl text-xs hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                        Get a Code
+                    </button>
+
+                    <div id="snippet-box" class="hidden space-y-2 pt-2">
+                        <div class="flex items-center justify-between text-[11px] text-slate-400">
+                            <span>GTM Custom HTML:</span>
+                            <button onclick="copySnippet()" class="text-brandAccent font-semibold hover:underline">Copy Code</button>
+                        </div>
+                        <pre id="snippet-code" class="bg-slate-950 border border-brandBorder rounded-xl p-3 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-40"></pre>
+                    </div>
                 </div>
 
             </aside>
-
         </div>
+
     </main>
 
-    <!-- PROFESSIONAL FOOTER -->
-    <footer class="bg-brandCard border-t border-brandBorder py-12 px-4 sm:px-6 lg:px-8 mt-20">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="text-center md:text-left space-y-2">
-                <a href="index.html" class="text-lg font-bold text-white tracking-wider">
-                    JUWEL<span class="text-brandAccent">ANALYTICS</span>
+    <!-- PROFESSIONAL FOOTER (MATCHING REFERENCE STRUCTURE) -->
+    <footer class="bg-brandCard border-t border-brandBorder pt-14 pb-10 px-4 sm:px-6 lg:px-8 mt-16">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-brandBorder/80">
+            
+            <!-- COL 1 -->
+            <div class="space-y-4">
+                <a href="index.html" class="flex items-center gap-2.5 text-lg font-extrabold text-white tracking-wider">
+                    <img src="juwel-profile.png" alt="Juwel Analytics" class="w-8 h-8 rounded-full object-cover object-top border border-emerald-500/50">
+                    <span>JUWEL<span class="text-brandAccent">ANALYTICS</span></span>
                 </a>
-                <p class="text-xs text-slate-400">
-                    &copy; 2026 MD. Juwel Rana. First-Party Data Architect. All rights reserved.
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    First-Party Data Architect specializing in zero-cost Cloudflare sGTM, Meta/TikTok CAPI, BigQuery SQL pipelines, and CRM Offline Conversion Tracking.
                 </p>
             </div>
-            <div class="flex items-center flex-wrap justify-center gap-3">
-                <a href="contact.html" title="Contact" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
-                <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" title="LinkedIn" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                <a href="https://x.com/juwelanalytics" target="_blank" title="Twitter / X" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                <a href="https://www.facebook.com/juwelanalytics" target="_blank" title="Facebook" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.75V8z"/></svg></a>
-                <a href="https://wa.link/h16xqx" target="_blank" title="WhatsApp" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
+
+            <!-- COL 2 -->
+            <div class="space-y-3">
+                <h4 class="text-white font-bold text-sm tracking-wide">Resources & Tools</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="oct-free-solution.html" class="hover:text-brandAccent transition-colors">› Free GTM Event Listener</a></li>
+                    <li><a href="oct-paid-solution.html" class="hover:text-brandAccent transition-colors">› Free Tracking Consultant</a></li>
+                    <li><a href="services.html" class="hover:text-brandAccent transition-colors">› Free Marketing Tools</a></li>
+                    <li><a href="contact.html?booking=true" class="hover:text-brandAccent transition-colors">› Free Tracking Audit</a></li>
+                    <li><a href="services.html" class="hover:text-brandAccent transition-colors">› All Services Price</a></li>
+                </ul>
             </div>
+
+            <!-- COL 3 -->
+            <div class="space-y-3">
+                <h4 class="text-white font-bold text-sm tracking-wide">KNOW MORE</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li class="flex items-center gap-2"><span>📞</span> <a href="https://wa.link/h16xqx" target="_blank" class="hover:text-brandAccent">+880 1537-703672</a></li>
+                    <li class="flex items-center gap-2"><span>✉️</span> <a href="mailto:digitrackerbd@gmail.com" class="hover:text-brandAccent">digitrackerbd@gmail.com</a></li>
+                    <li class="flex items-start gap-2"><span>📍</span> <span>Rajshahi, Bangladesh</span></li>
+                </ul>
+            </div>
+
+            <!-- COL 4: LOCATION MAP -->
+            <div class="space-y-3">
+                <h4 class="text-white font-bold text-sm tracking-wide">Location</h4>
+                <div class="rounded-xl overflow-hidden border border-brandBorder h-32 bg-slate-900">
+                    <iframe 
+                        title="Rajshahi Map"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=88.5500%2C24.3400%2C88.6500%2C24.4000&layer=mapnik&marker=24.3745%2C88.6042" 
+                        class="w-full h-full border-0 opacity-85 hover:opacity-100 transition-opacity" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+            <p>&copy; 2026 MD. Juwel Rana — Juwel Analytics. All rights reserved.</p>
+            <p class="font-mono text-[11px] text-slate-400">First-Party Data Architect | sGTM & BigQuery Specialist</p>
         </div>
     </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Live Search Filter
+        const searchInput = document.getElementById('blog-search');
+        const articles = document.querySelectorAll('main article');
+        if(searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                articles.forEach(art => {
+                    const text = art.innerText.toLowerCase();
+                    art.style.display = text.includes(term) ? 'flex' : 'none';
+                });
+            });
+        }
+
+        // Code Snippet Generator Script
+        const snippets = {
+            ghl: `<script>
+window.addEventListener('message', function(event) {
+  if (event.data && (event.data.type === 'hsFormCallback' || String(event.data).includes('set-sticky-contacts'))) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'event': 'ghl_iframe_lead_submitted' });
+  }
+});
+<\/script>`,
+            utm: `<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  ['gclid', 'fbclid', 'utm_source', 'utm_medium'].forEach(function(key) {
+    var val = params.get(key);
+    if (val) document.cookie = '_ja_' + key + '=' + encodeURIComponent(val) + '; path=/; max-age=63072000; SameSite=Lax';
+  });
+})();
+<\/script>`,
+            ajax: `<script>
+(function() {
+  var orig = window.fetch;
+  window.fetch = function() {
+    var args = arguments;
+    return orig.apply(this, args).then(function(res) {
+      if (res.ok && args[1] && args[1].method === 'POST') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'event': 'ajax_form_success' });
+      }
+      return res;
+    });
+  };
+})();
+<\/script>`
+        };
+
+        function showSnippet() {
+            const select = document.getElementById('listener-select');
+            const box = document.getElementById('snippet-box');
+            const codePre = document.getElementById('snippet-code');
+            if(select && box && codePre) {
+                codePre.innerText = snippets[select.value];
+                box.classList.remove('hidden');
+            }
+        }
+
+        function copySnippet() {
+            const codeText = document.getElementById('snippet-code').innerText;
+            navigator.clipboard.writeText(codeText);
+            alert('GTM Snippet copied to clipboard successfully!');
+        }
+    </script>
 
 </body>
 </html>
