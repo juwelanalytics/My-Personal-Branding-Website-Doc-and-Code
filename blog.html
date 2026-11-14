@@ -430,7 +430,7 @@
                     </div>
                 </div>
 
-                <!-- 3. CODE REQUEST WIDGET -->
+                <!-- 3. CODE REQUEST WIDGET (WITH EXPANDED PROFESSIONAL SELECT DROPDOWN) -->
                 <div class="bg-white border border-gray-200 rounded-3xl p-6 space-y-4 shadow-md">
                     <div class="text-center space-y-1">
                         <span class="text-xs font-semibold text-slate-500">Free GTM Listener Code</span>
@@ -449,10 +449,122 @@
                             <option value="GA4 E-commerce">GA4 E-commerce Schema</option>
                         </select>
 
-                        <select id="form-select" class="w-full bg-white border border-gray-200 focus:border-purple-500 rounded-2xl px-4 py-3 text-xs text-slate-800 focus:outline-none">
-                            <option value="GoHighLevel Form">GoHighLevel Form</option>
-                            <option value="HubSpot Form">HubSpot Form</option>
-                            <option value="Calendly Booking">Calendly Booking</option>
+                        <!-- FULL LIST DROPDOWN AS REQUESTED -->
+                        <select id="form-select" class="w-full bg-white border border-gray-200 focus:border-purple-500 rounded-2xl px-4 py-3 text-xs text-slate-800 focus:outline-none shadow-sm cursor-pointer">
+                            <optgroup label="Popular CRM & Forms">
+                                <option value="GoHighLevel Form" selected>GoHighLevel Form</option>
+                                <option value="GoHighLevel Booking">GoHighLevel Booking</option>
+                                <option value="HubSpot Form">HubSpot Form</option>
+                                <option value="HubSpot Booking">HubSpot Booking</option>
+                                <option value="HubSpot Chat">HubSpot Chat</option>
+                                <option value="Zoho Sales IQ">Zoho Sales IQ</option>
+                                <option value="iFrame Form">iFrame Form</option>
+                                <option value="Pipedrive Form">Pipedrive Form</option>
+                                <option value="Klaviyo Form">Klaviyo Form</option>
+                                <option value="Typeform">Typeform</option>
+                                <option value="Calendly Form">Calendly Form</option>
+                            </optgroup>
+                            <optgroup label="WordPress & CMS Forms">
+                                <option value="Contact Form 7">Contact Form 7</option>
+                                <option value="Elementor Form">Elementor Form</option>
+                                <option value="Mailchimp For WP Form">Mailchimp For WP Form</option>
+                                <option value="FB Chat Bot">FB Chat Bot</option>
+                                <option value="Fluent Form">Fluent Form</option>
+                                <option value="Forminator Form">Forminator Form</option>
+                                <option value="Gravity Form">Gravity Form</option>
+                                <option value="Jet Form">Jet Form</option>
+                                <option value="Jot Form">Jot Form</option>
+                                <option value="Ninja Form">Ninja Form</option>
+                                <option value="Vagaro Form">Vagaro Form</option>
+                                <option value="Vimeo Video">Vimeo Video</option>
+                                <option value="WP Forms">WP Forms</option>
+                                <option value="BigQuery UTM Info">BigQuery UTM Info</option>
+                            </optgroup>
+                            <optgroup label="E-Commerce & Chat Widgets">
+                                <option value="Shopify Data Layer">Shopify Data Layer</option>
+                                <option value="Poptin Popup">Poptin Popup</option>
+                                <option value="Smartsupp Chat">Smartsupp Chat</option>
+                                <option value="Optin Monster">Optin Monster</option>
+                                <option value="Zopim Chat">Zopim Chat</option>
+                                <option value="Crisp Chat">Crisp Chat</option>
+                                <option value="Pure Chat">Pure Chat</option>
+                                <option value="ConvertKit Form">ConvertKit Form</option>
+                                <option value="Wistia Videos">Wistia Videos</option>
+                                <option value="Vidyard Video">Vidyard Video</option>
+                                <option value="Live Chat Widget">Live Chat Widget</option>
+                                <option value="Intercom">Intercom</option>
+                                <option value="Drip Form">Drip Form</option>
+                                <option value="Webflow Form">Webflow Form</option>
+                                <option value="Jivo Chat">Jivo Chat</option>
+                                <option value="Marketo Form">Marketo Form</option>
+                                <option value="ConvertFlow">ConvertFlow</option>
+                                <option value="Podia">Podia</option>
+                                <option value="HelpCrunch Chat">HelpCrunch Chat</option>
+                                <option value="Userlike Chat">Userlike Chat</option>
+                                <option value="Gist">Gist</option>
+                                <option value="Tawk.to Chat">Tawk.to Chat</option>
+                                <option value="Olark Chat">Olark Chat</option>
+                                <option value="Drift Chat">Drift Chat</option>
+                                <option value="Disqus">Disqus</option>
+                                <option value="HappyFox Chat">HappyFox Chat</option>
+                                <option value="Barns2 QuickView Pro">Barns2 QuickView Pro</option>
+                                <option value="Amelia Appointment Booking">Amelia Appointment Booking</option>
+                                <option value="Amelia Event Registration">Amelia Event Registration</option>
+                                <option value="Barns2 Restaurant Ordering">Barns2 Restaurant Ordering</option>
+                                <option value="Chaport Chat">Chaport Chat</option>
+                                <option value="Wisepops">Wisepops</option>
+                                <option value="HelpScout">HelpScout</option>
+                                <option value="Tidio Chat">Tidio Chat</option>
+                                <option value="GetSiteControl">GetSiteControl</option>
+                                <option value="ChatBot">ChatBot</option>
+                                <option value="WebEngage">WebEngage</option>
+                                <option value="OnWeb Chat">OnWeb Chat</option>
+                                <option value="Social Intents">Social Intents</option>
+                                <option value="SnapEngage">SnapEngage</option>
+                                <option value="Elementor Popup">Elementor Popup</option>
+                                <option value="Formidable Form">Formidable Form</option>
+                                <option value="Chatlio">Chatlio</option>
+                                <option value="Unbounce Form">Unbounce Form</option>
+                                <option value="Customerly">Customerly</option>
+                                <option value="Freshchat">Freshchat</option>
+                                <option value="Cognito Form">Cognito Form</option>
+                                <option value="Tally Form">Tally Form</option>
+                                <option value="PaperForm">PaperForm</option>
+                                <option value="Instapage Form">Instapage Form</option>
+                                <option value="Salesmate">Salesmate</option>
+                                <option value="MessageBird">MessageBird</option>
+                                <option value="Omnisend">Omnisend</option>
+                                <option value="Artibot AI">Artibot AI</option>
+                                <option value="Kustomer">Kustomer</option>
+                                <option value="Support Board">Support Board</option>
+                                <option value="ChatStack">ChatStack</option>
+                                <option value="OnSched">OnSched</option>
+                                <option value="WSForm">WSForm</option>
+                                <option value="GetFeedback">GetFeedback</option>
+                                <option value="Saber Feedback">Saber Feedback</option>
+                                <option value="Userpilot">Userpilot</option>
+                                <option value="Comm100">Comm100</option>
+                                <option value="RingCentral">RingCentral</option>
+                                <option value="TeamSupport Chat">TeamSupport Chat</option>
+                                <option value="Chatflow">Chatflow</option>
+                                <option value="UserLane">UserLane</option>
+                                <option value="Medallia">Medallia</option>
+                                <option value="Forminator">Forminator</option>
+                                <option value="Survicate">Survicate</option>
+                                <option value="CharityEngine">CharityEngine</option>
+                                <option value="Text">Text</option>
+                                <option value="SurveyCompo">SurveyCompo</option>
+                                <option value="Iterate">Iterate</option>
+                                <option value="Reve Chat">Reve Chat</option>
+                                <option value="Qualaroo">Qualaroo</option>
+                                <option value="Zendesk">Zendesk</option>
+                                <option value="SendBird">SendBird</option>
+                                <option value="FormStack">FormStack</option>
+                                <option value="Sirvoy">Sirvoy</option>
+                                <option value="Chili Piper">Chili Piper</option>
+                                <option value="FOMO">FOMO</option>
+                                <option value="HubSpot Form">HubSpot Form</option>
+                            </optgroup>
                         </select>
 
                         <button onclick="submitCodeRequest()" class="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3 rounded-2xl text-xs transition-all shadow-md">
@@ -565,11 +677,12 @@
 
         function submitCodeRequest() {
             const email = document.getElementById('user-email').value;
+            const selectedForm = document.getElementById('form-select').value;
             if(!email) {
                 alert('Please enter your email address first.');
                 return;
             }
-            alert('Thank you! Your GTM code request has been received. We will send it to ' + email);
+            alert('Thank you! Your request for ' + selectedForm + ' code has been received. We will send it to ' + email);
         }
     </script>
 
