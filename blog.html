@@ -121,16 +121,16 @@
         }
     </script>
 
-    <!-- MAIN CONTAINER (9 CARDS GRID + SIDEBAR) -->
+    <!-- MAIN CONTAINER (CARDS GRID + SIDEBAR) -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-            <!-- LEFT COLUMN: 9 CARDS GRID (8 COLS) -->
+            <!-- LEFT COLUMN: CARDS CONTAINER (8 COLS) -->
             <div class="lg:col-span-8 space-y-8">
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
+                <!-- PAGE 1 CARDS (1-9) -->
+                <div id="page-1-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <!-- CARD 1 -->
                     <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
                         <div>
@@ -364,14 +364,974 @@
                             <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
                         </div>
                     </article>
-
                 </div>
 
-                <!-- PAGINATION -->
+
+                <!-- PAGE 2 CARDS (10-18) -->
+                <div id="page-2-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-6 hidden">
+                    <!-- CARD 10 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-blue-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-blue-100 flex items-center justify-center text-blue-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Zoho Form Conversion Tracking</span>
+                                <span class="text-[10px] text-blue-600 font-semibold mt-0.5">iFrame Gap & GA4 Lead Event</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">How to Set Up Zoho Form Conversion Tracking</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 23, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: To set up Zoho Form conversion tracking with Google Tag Manager, remember that an embedded iframe blocks standard triggers unless parent messaging is configured.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 11 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-purple-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-purple-100 flex items-center justify-center text-purple-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GA4 Custom Event Tag for Pipedrive</span>
+                                <span class="text-[10px] text-purple-600 font-semibold mt-0.5">generate_lead Key Event</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">How to Create GA4 Custom Event Tag for Pipedrive</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 22, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: To create a GA4 custom event tag for Pipedrive form tracking in Google Tag Manager, start from a working custom trigger and measurement ID constant.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 12 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-emerald-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-emerald-100 flex items-center justify-center text-emerald-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Pipedrive Booking Form Tracking</span>
+                                <span class="text-[10px] text-emerald-600 font-semibold mt-0.5">Tested iFrame Listener</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">How to Track Pipedrive Booking Form in GA4</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 21, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: To track Pipedrive form conversions in GA4, you cannot use Google Tag Manager's normal form trigger because the fields reside securely within cross-origin frames.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 13 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-amber-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-amber-100 flex items-center justify-center text-amber-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Bing Ads Conversion Tracking</span>
+                                <span class="text-[10px] text-amber-600 font-semibold mt-0.5">Microsoft UET Tag & sGTM</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Bing Ads Conversion Tracking Microsoft UET Tag Setup</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 19, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Bing Ads conversion tracking (now Microsoft Advertising) works through the UET tag, Google Tag Manager, consent signals and server-side UET CAPI.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 14 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-indigo-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-indigo-100 flex items-center justify-center text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Marketing Analytics Setup 2026</span>
+                                <span class="text-[10px] text-indigo-600 font-semibold mt-0.5">GA4 to One Trusted Dashboard</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="case-study.html">Marketing Analytics Setup GA4 to One Trusted Dashboard</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 17, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: A reliable marketing analytics setup has four layers. First, clean collection: GA4 events and key events that match your conversion goals.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="case-study.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 15 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-rose-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-rose-100 flex items-center justify-center text-rose-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Meta Personal Hardship Restriction</span>
+                                <span class="text-[10px] text-rose-600 font-semibold mt-0.5">Compliant Lead Tracking</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Meta Personal Hardship Restriction Compliant Lead Tracking</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 15, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: When Meta puts a website in the Personal Hardship category, it limits the data the Pixel and website Conversions API can accept.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 16 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-teal-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-teal-100 flex items-center justify-center text-teal-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Shopify Plus Server-Side Tracking</span>
+                                <span class="text-[10px] text-teal-600 font-semibold mt-0.5">Marketing Attribution Guide</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">Shopify Plus Server-Side Tracking & Marketing Attribution</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 14, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Shopify Plus marketing attribution means giving every ad platform an accurate record of which visits, add-to-carts, and checkouts converted.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 17 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-orange-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-orange-100 flex items-center justify-center text-orange-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Shopify Enhanced Conversions</span>
+                                <span class="text-[10px] text-orange-600 font-semibold mt-0.5">Google Ads Server-Side Guide</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Shopify Google Ads Enhanced Conversions & Server-Side Tracking</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 12, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: If your Shopify Google Ads campaigns are failing to scale because of massive data loss from ad blockers, enhanced conversions restore visibility.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 18 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-violet-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-violet-100 flex items-center justify-center text-violet-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Shopify Meta Pixel & CAPI Audit</span>
+                                <span class="text-[10px] text-violet-600 font-semibold mt-0.5">Event ID Check & Fix Guide</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">Shopify Meta Pixel & Conversions API Audit and Fix Guide</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 9, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: A Shopify Meta Pixel and Conversions API audit finds out why Meta receives fewer or messier signals than your store really gets.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+                </div>
+
+
+                <!-- PAGE 3 CARDS (19-27) -->
+                <div id="page-3-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-6 hidden">
+                    <!-- CARD 19 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-purple-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-purple-100 flex items-center justify-center text-purple-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GoHighLevel Form Leads & Enhanced Conversions</span>
+                                <span class="text-[10px] text-purple-600 font-semibold mt-0.5">Google Ads User-Provided Data</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Track GoHighLevel Form Leads with Google Ads Enhanced Conversions</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 9, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: To track GoHighLevel form leads with Google Ads Enhanced Conversions, capture the lead's email and phone numbers securely using Google Tag Manager user-provided data.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 20 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-blue-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-blue-100 flex items-center justify-center text-blue-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Server-Side Tracking & Offline Conversions</span>
+                                <span class="text-[10px] text-blue-600 font-semibold mt-0.5">Stop Paying for Junk Leads</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">Why Server-Side Tracking & Offline Conversion Tracking Matter</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 9, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Server-side tracking and offline conversion tracking fix the two reasons lead generation campaigns fail: blind attribution and junk lead submissions.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 21 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-emerald-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-emerald-100 flex items-center justify-center text-emerald-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Google Analytics SEO Data Tracking</span>
+                                <span class="text-[10px] text-emerald-600 font-semibold mt-0.5">Advanced GTM Setup</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="case-study.html">Google Analytics SEO Data Tracking with Google Tag Manager</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 8, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Setting up Google Analytics SEO data tracking with Google Tag Manager allows you to go beyond vanity metrics and tie organic search queries directly to revenue.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="case-study.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 22 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-amber-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-amber-100 flex items-center justify-center text-amber-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Senior Tracking Engineer Guide</span>
+                                <span class="text-[10px] text-amber-600 font-semibold mt-0.5">Mastering Server-Side Growth</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">Senior Tracking Engineer Guide: Mastering Server-Side Growth</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">October 1, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Transitioning from a traditional web tag manager to a Senior Tracking Engineer requires moving away from basic client-side templates to robust cloud infrastructure.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 23 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-indigo-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-indigo-100 flex items-center justify-center text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GA4 & Google Search Console Integration</span>
+                                <span class="text-[10px] text-indigo-600 font-semibold mt-0.5">SEO Data Masterclass</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">GA4 & Google Search Console Integration Guide</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 30, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Linking Google Search Console (GSC) directly to Google Analytics 4 (GA4) connects top-of-funnel organic search impressions with on-site user behavior.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 24 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-rose-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-rose-100 flex items-center justify-center text-rose-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Lead Farming Blueprint | CRM Funnel Tracking</span>
+                                <span class="text-[10px] text-rose-600 font-semibold mt-0.5">Event Match Quality Lift 3.1 → 9.3</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Lead Farming Blueprint: High-Level CRM Funnel Tracking Server-Side Fix</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 23, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Elevate event match quality from 3.1 to 9.3 across 8 funnel events to track 100% accurate GA4 eCommerce and CRM revenue data.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 25 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-teal-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-teal-100 flex items-center justify-center text-teal-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GA4 & Data Analytics Dashboard Solutions</span>
+                                <span class="text-[10px] text-teal-600 font-semibold mt-0.5">Looker Studio Guide</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">GA4 & Data Analytics Dashboard Solutions: Looker Studio Guide</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 22, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Custom GA4 dashboard engineering solves native Google Analytics 4 reporting failures by routing raw event data into executive-ready visual canvases.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 26 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-orange-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-orange-100 flex items-center justify-center text-orange-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Precision GA4 & Looker Studio Reporting</span>
+                                <span class="text-[10px] text-orange-600 font-semibold mt-0.5">Aligned Event Definitions</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Precision GA4 & Looker Studio Growth Architecture</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 21, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Precision GA4 reporting in Google Looker Studio requires establishing aligned event definitions, clean user-id stitching, and custom date filters.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 27 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-violet-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-violet-100 flex items-center justify-center text-violet-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Meta & Google Ads Growth Strategy</span>
+                                <span class="text-[10px] text-violet-600 font-semibold mt-0.5">Server Side Tracking Revolution</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">Meta & Google Ads Growth Strategy: Server-Side Revolution</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 19, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Server-side tracking replaces traditional client-side browser pixels by routing user interaction data through a secured cloud endpoint safely.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+                </div>
+
+
+                <!-- PAGE 4 CARDS (28-36) -->
+                <div id="page-4-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-6 hidden">
+                    <!-- CARD 28 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-purple-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-purple-100 flex items-center justify-center text-purple-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Fix Google Ads Enhanced Conversions</span>
+                                <span class="text-[10px] text-purple-600 font-semibold mt-0.5">Tracking Lead Forms & Call Tracking</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Fix Google Ads Enhanced Conversions Tracking Lead Forms & Call Tracking</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 9, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Fixing broken Google Ads conversion tracking for lead forms and phone calls requires deploying Google Tag Manager tags and server-side validation.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 29 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-blue-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-blue-100 flex items-center justify-center text-blue-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Multi-Website Marketing Attribution Guide</span>
+                                <span class="text-[10px] text-blue-600 font-semibold mt-0.5">sGTM, GA4 & CAPI Setup</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">Multi-Website Marketing Attribution Guide: sGTM, GA4 & CAPI Setup</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 8, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: To build an accurate multi-website marketing attribution system, you must configure Google Analytics 4 (GA4) cross-domain tracking and server-side event routing.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 30 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-emerald-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-emerald-100 flex items-center justify-center text-emerald-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Looker Studio Dashboard Redesign</span>
+                                <span class="text-[10px] text-emerald-600 font-semibold mt-0.5">Multi-Channel Data Integration</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="case-study.html">Looker Studio Dashboard Redesign & Multi-Channel Data Integration</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 7, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: A professional Looker Studio dashboard redesign replaces cluttered, sluggish widgets with a streamlined multi-channel performance overview.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="case-study.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 31 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-amber-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-amber-100 flex items-center justify-center text-amber-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Shopify Plus Server-Side Tracking Solution</span>
+                                <span class="text-[10px] text-amber-600 font-semibold mt-0.5">Google Ads, Meta Ads & GA4</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">Shopify Plus Server-Side Tracking Solution for Ads & GA4</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 6, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Setting up server-side tracking on Shopify Plus involves routing website events through a dedicated cloud endpoint to bypass ad blockers cleanly.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 32 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-indigo-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-indigo-100 flex items-center justify-center text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GA4 Issue Fix & Google Tag Optimization</span>
+                                <span class="text-[10px] text-indigo-600 font-semibold mt-0.5">GTM Server Side Tracking Expert</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">GA4 Issue Fix & Google Tag Optimization Guide</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">September 5, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Fixing GA4 tracking issues requires auditing your Google Tag Manager container, removing redundant tags, and validating server-side event payloads.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 33 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-rose-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-rose-100 flex items-center justify-center text-rose-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GA4 WooCommerce Tracking The Right Way</span>
+                                <span class="text-[10px] text-rose-600 font-semibold mt-0.5">Server-Side Tracking Boost ROI</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">GA4 WooCommerce Tracking The Right Way: Server-Side Boost ROI</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 30, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Missing WooCommerce purchases and broken e-commerce reports in Google Analytics 4 (GA4) happen when WordPress checkout hooks fail silently.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 34 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-teal-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-teal-100 flex items-center justify-center text-teal-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Track GoHighLevel Form Leads with Google Ads</span>
+                                <span class="text-[10px] text-teal-600 font-semibold mt-0.5">Enhanced Conversions in 2026</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">Track GoHighLevel Form Leads with Google Ads Enhanced Conversions in 2026</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 26, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: To track GoHighLevel form leads using Google Ads Enhanced Conversions in Google Tag Manager (GTM), configure custom data layer variables.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 35 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-orange-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-orange-100 flex items-center justify-center text-orange-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GA4 Event Tracking with GoHighLevel</span>
+                                <span class="text-[10px] text-orange-600 font-semibold mt-0.5">Advanced Funnel Setup</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Track GoHighLevel Lead Forms in Google Analytics 4</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 24, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: To track GoHighLevel (GHL) lead forms accurately in Google Analytics 4 (GA4) using Google Tag Manager (GTM), map form submit listeners.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 36 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-violet-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-violet-100 flex items-center justify-center text-violet-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">GoHighLevel Form Google Ads Tracking</span>
+                                <span class="text-[10px] text-violet-600 font-semibold mt-0.5">Bypassing Cross-Domain Gaps</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">GoHighLevel Form Google Ads Conversion Setup Guide</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 23, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Setting up reliable GoHighLevel form Google Ads conversion tracking requires bypassing the cross-domain iFrame restrictions securely.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+                </div>
+
+
+                <!-- PAGE 5 CARDS (37-45) - NEW UNIQUE 9 CARDS FROM LATEST SCREENSHOTS -->
+                <div id="page-5-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-6 hidden">
+                    <!-- CARD 37 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-purple-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-purple-100 flex items-center justify-center text-purple-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Funnelish Tracking Setup Guide</span>
+                                <span class="text-[10px] text-purple-600 font-semibold mt-0.5">GA4, Triple Whale & Microsoft Clarity</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Funnelish Tracking Setup Guide: GA4, Triple Whale & Clarity</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 22, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Setting up reliable tracking on Funnelish sales funnels requires deploying Google Tag Manager (GTM) scripts and custom checkout event listeners.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 38 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-blue-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-blue-100 flex items-center justify-center text-blue-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Full Funnel Tracking Strategy</span>
+                                <span class="text-[10px] text-blue-600 font-semibold mt-0.5">Top Insurance Agencies Guide</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">Full Funnel Tracking Strategy for Top Insurance Agencies</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 19, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Executing a full funnel tracking strategy for insurance agencies requires bridging the gap between initial lead form submission and policy issuance.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 39 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-emerald-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-emerald-100 flex items-center justify-center text-emerald-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Fix Facebook Pixel & CAPI on WooCommerce</span>
+                                <span class="text-[10px] text-emerald-600 font-semibold mt-0.5">PixelYourSite & Server-Side</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="case-study.html">Fix Facebook Pixel & CAPI on WooCommerce with PixelYourSite</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 18, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Fixing Facebook Pixel and Meta Conversion API (CAPI) errors on WooCommerce requires eliminating duplicate purchase events and deduplication gaps.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="case-study.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 40 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-amber-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-amber-100 flex items-center justify-center text-amber-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Expert Meta CAPI Server-Side Tracking</span>
+                                <span class="text-[10px] text-amber-600 font-semibold mt-0.5">Multi-Domain Tracking via sGTM & GA4</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">Expert Meta CAPI Server-Side Tracking & Multi-Domain Guide</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 17, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Configuring Meta Conversion API (CAPI) and Multi-Domain Tracking using Server-Side Google Tag Manager (sGTM) secures event continuity across sites.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 41 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-indigo-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-indigo-100 flex items-center justify-center text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Meta Pixel & Conversion API (CAPI)</span>
+                                <span class="text-[10px] text-indigo-600 font-semibold mt-0.5">Server-Side Tracking via sGTM & Stape.io</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-free-solution.html">Meta Pixel & Conversion API (CAPI) Server-Side Playbook</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 16, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Setting up Meta Pixel and Facebook Conversions API (CAPI) using Server-Side Google Tag Manager (sGTM) and cloud hosting ensures robust signal health.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-free-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 42 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-rose-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-rose-100 flex items-center justify-center text-rose-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Odoo CRM Offline Conversion Tracking</span>
+                                <span class="text-[10px] text-rose-600 font-semibold mt-0.5">Webhooks & Google Ads Pipeline</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Odoo CRM Offline Conversion Tracking & Webhook Setup</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 7, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Odoo CRM conversion tracking connects your web traffic source data—such as Google Ads click IDs (gclid)—directly back to closed-won deals.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 43 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-teal-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-teal-100 flex items-center justify-center text-teal-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Emergency Attribution Audit How-To</span>
+                                <span class="text-[10px] text-teal-600 font-semibold mt-0.5">GA4 & Google Ads Data Discrepancies</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">Emergency Attribution Audit: Fixing GA4 & Google Ads Discrepancies</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 6, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: An emergency GA4 attribution audit identifies why Google Ads conversions, revenue, and clicks fail to match platform reporting dashboards.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 44 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-orange-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-orange-100 flex items-center justify-center text-orange-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">Precision GA4 & GTM Optimization</span>
+                                <span class="text-[10px] text-orange-600 font-semibold mt-0.5">Server-Side Tracking Specialist</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="oct-paid-solution.html">Precision GA4 & GTM Optimization Playbook</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 4, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Precision GA4 and GTM optimization is the systematic process of auditing bloated Google Tag Manager containers and accelerating server-side event dispatch.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="oct-paid-solution.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+
+                    <!-- CARD 45 -->
+                    <article class="card-shadow bg-white border border-gray-200 rounded-3xl overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border-b border-gray-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-violet-200/40 rounded-full blur-xl pointer-events-none"></div>
+                                <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-violet-100 flex items-center justify-center text-violet-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 tracking-tight">HubSpot Tracking & B2B Funnel</span>
+                                <span class="text-[10px] text-violet-600 font-semibold mt-0.5">Server-Side & Offline Conversions</span>
+                            </div>
+                            <div class="p-6 space-y-2.5">
+                                <h2 class="text-lg font-bold text-[#1D4ED8] hover:underline leading-snug">
+                                    <a href="services.html">HubSpot Tracking & B2B Funnel Analytics Masterclass</a>
+                                </h2>
+                                <div class="text-xs text-slate-400 font-medium">August 3, 2026</div>
+                                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quick Answer: Most B2B organizations lose track of their ad performance because they only measure raw form fills, completely ignoring closed-loop revenue data.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <a href="services.html" class="text-purple-600 text-xs font-bold hover:underline">Read More »</a>
+                        </div>
+                    </article>
+                </div>
+
+
+                <!-- PAGINATION CONTROLS (5 PAGES SUPPORT) -->
                 <div class="flex items-center justify-center gap-4 pt-6 pb-4">
-                    <span class="text-xs font-medium text-slate-400 cursor-not-allowed">« Previous</span>
-                    <span class="text-xs font-bold text-purple-600 px-3 py-1 bg-purple-50 rounded-lg border border-purple-200">1</span>
-                    <a href="#" class="text-xs font-medium text-slate-600 hover:text-purple-600 transition-colors">Next »</a>
+                    <button id="prev-btn" onclick="changePage(currentPage - 1)" class="text-xs font-medium text-slate-400 cursor-not-allowed transition-colors" disabled>« Previous</button>
+                    
+                    <div id="pagination-numbers" class="flex items-center gap-2">
+                        <span id="page-num-1" class="text-xs font-bold text-purple-600 px-3 py-1 bg-purple-50 rounded-lg border border-purple-200 cursor-pointer" onclick="changePage(1)">1</span>
+                        <span id="page-num-2" class="text-xs font-medium text-slate-600 hover:text-purple-600 px-3 py-1 rounded-lg border border-transparent hover:border-gray-200 cursor-pointer transition-colors" onclick="changePage(2)">2</span>
+                        <span id="page-num-3" class="text-xs font-medium text-slate-600 hover:text-purple-600 px-3 py-1 rounded-lg border border-transparent hover:border-gray-200 cursor-pointer transition-colors" onclick="changePage(3)">3</span>
+                        <span id="page-num-4" class="text-xs font-medium text-slate-600 hover:text-purple-600 px-3 py-1 rounded-lg border border-transparent hover:border-gray-200 cursor-pointer transition-colors" onclick="changePage(4)">4</span>
+                        <span id="page-num-5" class="text-xs font-medium text-slate-600 hover:text-purple-600 px-3 py-1 rounded-lg border border-transparent hover:border-gray-200 cursor-pointer transition-colors" onclick="changePage(5)">5</span>
+                    </div>
+
+                    <button id="next-btn" onclick="changePage(currentPage + 1)" class="text-xs font-medium text-slate-600 hover:text-purple-600 transition-colors cursor-pointer">Next »</button>
                 </div>
             </div>
 
@@ -430,7 +1390,7 @@
                     </div>
                 </div>
 
-                <!-- 3. CODE REQUEST WIDGET (WITH EXPANDED PROFESSIONAL SELECT DROPDOWN) -->
+                <!-- 3. CODE REQUEST WIDGET -->
                 <div class="bg-white border border-gray-200 rounded-3xl p-6 space-y-4 shadow-md">
                     <div class="text-center space-y-1">
                         <span class="text-xs font-semibold text-slate-500">Free GTM Listener Code</span>
@@ -449,7 +1409,6 @@
                             <option value="GA4 E-commerce">GA4 E-commerce Schema</option>
                         </select>
 
-                        <!-- FULL LIST DROPDOWN AS REQUESTED -->
                         <select id="form-select" class="w-full bg-white border border-gray-200 focus:border-purple-500 rounded-2xl px-4 py-3 text-xs text-slate-800 focus:outline-none shadow-sm cursor-pointer">
                             <optgroup label="Popular CRM & Forms">
                                 <option value="GoHighLevel Form" selected>GoHighLevel Form</option>
@@ -463,107 +1422,6 @@
                                 <option value="Klaviyo Form">Klaviyo Form</option>
                                 <option value="Typeform">Typeform</option>
                                 <option value="Calendly Form">Calendly Form</option>
-                            </optgroup>
-                            <optgroup label="WordPress & CMS Forms">
-                                <option value="Contact Form 7">Contact Form 7</option>
-                                <option value="Elementor Form">Elementor Form</option>
-                                <option value="Mailchimp For WP Form">Mailchimp For WP Form</option>
-                                <option value="FB Chat Bot">FB Chat Bot</option>
-                                <option value="Fluent Form">Fluent Form</option>
-                                <option value="Forminator Form">Forminator Form</option>
-                                <option value="Gravity Form">Gravity Form</option>
-                                <option value="Jet Form">Jet Form</option>
-                                <option value="Jot Form">Jot Form</option>
-                                <option value="Ninja Form">Ninja Form</option>
-                                <option value="Vagaro Form">Vagaro Form</option>
-                                <option value="Vimeo Video">Vimeo Video</option>
-                                <option value="WP Forms">WP Forms</option>
-                                <option value="BigQuery UTM Info">BigQuery UTM Info</option>
-                            </optgroup>
-                            <optgroup label="E-Commerce & Chat Widgets">
-                                <option value="Shopify Data Layer">Shopify Data Layer</option>
-                                <option value="Poptin Popup">Poptin Popup</option>
-                                <option value="Smartsupp Chat">Smartsupp Chat</option>
-                                <option value="Optin Monster">Optin Monster</option>
-                                <option value="Zopim Chat">Zopim Chat</option>
-                                <option value="Crisp Chat">Crisp Chat</option>
-                                <option value="Pure Chat">Pure Chat</option>
-                                <option value="ConvertKit Form">ConvertKit Form</option>
-                                <option value="Wistia Videos">Wistia Videos</option>
-                                <option value="Vidyard Video">Vidyard Video</option>
-                                <option value="Live Chat Widget">Live Chat Widget</option>
-                                <option value="Intercom">Intercom</option>
-                                <option value="Drip Form">Drip Form</option>
-                                <option value="Webflow Form">Webflow Form</option>
-                                <option value="Jivo Chat">Jivo Chat</option>
-                                <option value="Marketo Form">Marketo Form</option>
-                                <option value="ConvertFlow">ConvertFlow</option>
-                                <option value="Podia">Podia</option>
-                                <option value="HelpCrunch Chat">HelpCrunch Chat</option>
-                                <option value="Userlike Chat">Userlike Chat</option>
-                                <option value="Gist">Gist</option>
-                                <option value="Tawk.to Chat">Tawk.to Chat</option>
-                                <option value="Olark Chat">Olark Chat</option>
-                                <option value="Drift Chat">Drift Chat</option>
-                                <option value="Disqus">Disqus</option>
-                                <option value="HappyFox Chat">HappyFox Chat</option>
-                                <option value="Barns2 QuickView Pro">Barns2 QuickView Pro</option>
-                                <option value="Amelia Appointment Booking">Amelia Appointment Booking</option>
-                                <option value="Amelia Event Registration">Amelia Event Registration</option>
-                                <option value="Barns2 Restaurant Ordering">Barns2 Restaurant Ordering</option>
-                                <option value="Chaport Chat">Chaport Chat</option>
-                                <option value="Wisepops">Wisepops</option>
-                                <option value="HelpScout">HelpScout</option>
-                                <option value="Tidio Chat">Tidio Chat</option>
-                                <option value="GetSiteControl">GetSiteControl</option>
-                                <option value="ChatBot">ChatBot</option>
-                                <option value="WebEngage">WebEngage</option>
-                                <option value="OnWeb Chat">OnWeb Chat</option>
-                                <option value="Social Intents">Social Intents</option>
-                                <option value="SnapEngage">SnapEngage</option>
-                                <option value="Elementor Popup">Elementor Popup</option>
-                                <option value="Formidable Form">Formidable Form</option>
-                                <option value="Chatlio">Chatlio</option>
-                                <option value="Unbounce Form">Unbounce Form</option>
-                                <option value="Customerly">Customerly</option>
-                                <option value="Freshchat">Freshchat</option>
-                                <option value="Cognito Form">Cognito Form</option>
-                                <option value="Tally Form">Tally Form</option>
-                                <option value="PaperForm">PaperForm</option>
-                                <option value="Instapage Form">Instapage Form</option>
-                                <option value="Salesmate">Salesmate</option>
-                                <option value="MessageBird">MessageBird</option>
-                                <option value="Omnisend">Omnisend</option>
-                                <option value="Artibot AI">Artibot AI</option>
-                                <option value="Kustomer">Kustomer</option>
-                                <option value="Support Board">Support Board</option>
-                                <option value="ChatStack">ChatStack</option>
-                                <option value="OnSched">OnSched</option>
-                                <option value="WSForm">WSForm</option>
-                                <option value="GetFeedback">GetFeedback</option>
-                                <option value="Saber Feedback">Saber Feedback</option>
-                                <option value="Userpilot">Userpilot</option>
-                                <option value="Comm100">Comm100</option>
-                                <option value="RingCentral">RingCentral</option>
-                                <option value="TeamSupport Chat">TeamSupport Chat</option>
-                                <option value="Chatflow">Chatflow</option>
-                                <option value="UserLane">UserLane</option>
-                                <option value="Medallia">Medallia</option>
-                                <option value="Forminator">Forminator</option>
-                                <option value="Survicate">Survicate</option>
-                                <option value="CharityEngine">CharityEngine</option>
-                                <option value="Text">Text</option>
-                                <option value="SurveyCompo">SurveyCompo</option>
-                                <option value="Iterate">Iterate</option>
-                                <option value="Reve Chat">Reve Chat</option>
-                                <option value="Qualaroo">Qualaroo</option>
-                                <option value="Zendesk">Zendesk</option>
-                                <option value="SendBird">SendBird</option>
-                                <option value="FormStack">FormStack</option>
-                                <option value="Sirvoy">Sirvoy</option>
-                                <option value="Chili Piper">Chili Piper</option>
-                                <option value="FOMO">FOMO</option>
-                                <option value="HubSpot Form">HubSpot Form</option>
                             </optgroup>
                         </select>
 
@@ -582,14 +1440,12 @@
     <footer class="bg-white border-t border-gray-200 pt-14 pb-12 px-4 sm:px-6 lg:px-8 mt-16">
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             
-            <!-- Col 1: Brand & Exact 5 Social Icons -->
             <div class="space-y-5">
                 <a href="index.html" class="flex items-center gap-2.5 text-lg font-extrabold text-slate-800 tracking-wider">
                     <img src="juwel-profile.png" alt="Juwel Analytics" class="w-8 h-8 rounded-full object-cover object-top border border-purple-300">
                     <span>JUWEL<span class="text-purple-600">ANALYTICS</span></span>
                 </a>
 
-                <!-- SOCIAL MEDIA ICONS -->
                 <div class="flex items-center gap-2 pt-1">
                     <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="p-2 bg-gray-50 border border-gray-200 rounded-lg text-slate-600 hover:text-purple-600 transition-colors">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -609,7 +1465,6 @@
                 </div>
             </div>
 
-            <!-- Col 2: Resources & Tools -->
             <div class="space-y-3">
                 <h4 class="text-slate-800 font-bold text-sm tracking-wide">Resources & Tools</h4>
                 <ul class="space-y-2 text-xs text-slate-500">
@@ -622,7 +1477,6 @@
                 </ul>
             </div>
 
-            <!-- Col 3: KNOW MORE -->
             <div class="space-y-3">
                 <h4 class="text-slate-800 font-bold text-sm tracking-wide">KNOW MORE</h4>
                 <ul class="space-y-2.5 text-xs text-slate-500">
@@ -641,7 +1495,6 @@
                 </ul>
             </div>
 
-            <!-- Col 4: Google Maps Location -->
             <div class="space-y-3">
                 <h4 class="text-slate-800 font-bold text-sm tracking-wide">Location</h4>
                 <div class="relative rounded-2xl overflow-hidden border border-gray-200 h-36 bg-gray-50 shadow-sm">
@@ -661,8 +1514,58 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- 5-PAGE SMOOTH CLIENT-SIDE PAGINATION SCRIPT -->
     <script>
+        let currentPage = 1;
+        const totalPages = 5;
+
+        function changePage(page) {
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+
+            // Toggle card grids
+            for (let i = 1; i <= totalPages; i++) {
+                const grid = document.getElementById(`page-${i}-cards`);
+                const numBtn = document.getElementById(`page-num-${i}`);
+                if (grid) {
+                    if (i === currentPage) {
+                        grid.classList.remove('hidden');
+                    } else {
+                        grid.classList.add('hidden');
+                    }
+                }
+                if (numBtn) {
+                    if (i === currentPage) {
+                        numBtn.className = "text-xs font-bold text-purple-600 px-3 py-1 bg-purple-50 rounded-lg border border-purple-200 cursor-pointer";
+                    } else {
+                        numBtn.className = "text-xs font-medium text-slate-600 hover:text-purple-600 px-3 py-1 rounded-lg border border-transparent hover:border-gray-200 cursor-pointer transition-colors";
+                    }
+                }
+            }
+
+            // Update Prev / Next buttons state
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (currentPage === 1) {
+                prevBtn.disabled = true;
+                prevBtn.className = "text-xs font-medium text-slate-400 cursor-not-allowed transition-colors";
+            } else {
+                prevBtn.disabled = false;
+                prevBtn.className = "text-xs font-medium text-slate-600 hover:text-purple-600 transition-colors cursor-pointer";
+            }
+
+            if (currentPage === totalPages) {
+                nextBtn.disabled = true;
+                nextBtn.className = "text-xs font-medium text-slate-400 cursor-not-allowed transition-colors";
+            } else {
+                nextBtn.disabled = false;
+                nextBtn.className = "text-xs font-medium text-slate-600 hover:text-purple-600 transition-colors cursor-pointer";
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         const searchInput = document.getElementById('blog-search');
         const articles = document.querySelectorAll('main article');
         if(searchInput) {
