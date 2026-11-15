@@ -2602,12 +2602,12 @@
         </div>
     </footer>
 
-    <!-- 5-PAGE SMOOTH CLIENT-SIDE PAGINATION SCRIPT -->
+   <!-- 10-PAGE DYNAMIC URL & SMOOTH PAGINATION SCRIPT -->
     <script>
         let currentPage = 1;
         const totalPages = 10;
 
-        function changePage(page) {
+        function changePage(page, pushHistory = true) {
             if (page < 1 || page > totalPages) return;
             currentPage = page;
 
@@ -2651,8 +2651,35 @@
                 nextBtn.className = "text-xs font-medium text-slate-600 hover:text-purple-600 transition-colors cursor-pointer";
             }
 
+            // ডাইনামিক URL আপডেট করার অংশ (যেমন: /blog/page/2/ থেকে /blog/page/10/)
+            if (pushHistory) {
+                const newPath = currentPage === 1 ? 'blog.html' : `/blog/page/${currentPage}/`;
+                window.history.pushState({ page: currentPage }, '', newPath);
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // ব্র라우জার ব্যাক/ফরোয়ার্ড বাটন হ্যান্ডেল করার জন্য
+        window.addEventListener('popstate', (event) => {
+            const path = window.location.pathname;
+            const match = path.match(/\/page\/(\d+)\//);
+            let targetPage = 1;
+            if (match && match[1]) {
+                targetPage = parseInt(match[1], 10);
+            }
+            changePage(targetPage, false);
+        });
+
+        // পেজ লোড হওয়ার সময় URL চেক করে সঠিক পেজ দেখানোর জন্য
+        window.addEventListener('DOMContentLoaded', () => {
+            const path = window.location.pathname;
+            const match = path.match(/\/page\/(\d+)\//);
+            if (match && match[1]) {
+                const initialPage = parseInt(match[1], 10);
+                changePage(initialPage, false);
+            }
+        });
 
         const searchInput = document.getElementById('blog-search');
         const articles = document.querySelectorAll('main article');
@@ -2676,6 +2703,5 @@
             alert('Thank you! Your request for ' + selectedForm + ' code has been received. We will send it to ' + email);
         }
     </script>
-
 </body>
 </html>
