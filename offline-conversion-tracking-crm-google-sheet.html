@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TBX5XPNK');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Conversion Tracking with CRM or Google Sheet — Juwel Analytics</title>
+    <meta name="description" content="Learn how to set up offline conversion tracking in Google Ads using Google Tag Manager, GCLID persistence, CRM pipelines, and Google Sheets data manager imports.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 font-sans antialiased selection:bg-purple-500 selection:text-white">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="juwel-profile.png" alt="MD. Juwel Rana" class="w-10 h-10 rounded-full object-cover object-top border border-purple-400 shadow-md">
+                <span class="font-serif italic text-lg font-bold text-slate-700 tracking-wide">MD. Juwel Rana</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="index.html" class="hover:text-purple-600 transition-colors">Home</a>
+                <a href="about.html" class="hover:text-purple-600 transition-colors">About</a>
+                <a href="services.html" class="hover:text-purple-600 transition-colors">Services</a>
+                <a href="case-study.html" class="hover:text-purple-600 transition-colors">Case Study</a>
+                <a href="blog.html" class="text-purple-600 font-semibold">Blog</a>
+                <a href="contact.html" class="hover:text-purple-600 transition-colors">Contact</a>
+            </nav>
+            <div class="hidden md:flex items-center space-x-3">
+                <a href="contact.html?booking=true" class="bg-[#9333EA] hover:bg-[#7E22CE] text-white font-medium px-5 py-2.5 rounded-xl text-sm transition-all shadow-md">Free Audit</a>
+                <a href="contact.html?booking=true" class="bg-[#A855F7] hover:bg-[#9333EA] text-white font-medium px-5 py-2.5 rounded-xl text-sm transition-all shadow-md">Booking</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT GRID -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT ARTICLE CONTENT (8 COLS) -->
+            <article class="lg:col-span-8 bg-white border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+                
+                <!-- Breadcrumb -->
+                <nav class="text-xs text-slate-500 flex items-center gap-2">
+                    <a href="index.html" class="hover:text-purple-600">Home</a>
+                    <span>›</span>
+                    <a href="blog.html" class="hover:text-purple-600">Blog</a>
+                    <span>›</span>
+                    <span class="text-slate-700 font-medium">Offline Conversion Tracking</span>
+                </nav>
+
+                <!-- Title & Meta -->
+                <header class="space-y-4 border-b border-gray-100 pb-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="bg-purple-50 text-purple-700 text-[11px] font-bold px-3 py-1 rounded-full border border-purple-200">Google Ads Tracking</span>
+                        <span class="bg-blue-50 text-blue-700 text-[11px] font-bold px-3 py-1 rounded-full border border-blue-200">CRM & Google Sheets</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+                        Offline Conversion Tracking with CRM or Google Sheet: Complete GTM & GCLID Guide[cite: 30]
+                    </h1>
+                    <div class="flex items-center gap-4 text-xs text-slate-500">
+                        <span>By <strong class="text-slate-700">MD. Juwel Rana</strong></span>
+                        <span>•</span>
+                        <time datetime="2026-11-16">November 16, 2026</time>
+                        <span>•</span>
+                        <span>7 min read</span>
+                    </div>
+                </header>
+
+                <!-- Hero Banner Graphic -->
+                <div class="rounded-2xl bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border border-purple-100 p-8 text-center space-y-3">
+                    <div class="inline-flex items-center justify-center w-14 h-14 bg-white rounded-2xl shadow-md border border-purple-100 text-purple-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"/></svg>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">GCLID Capture, CRM Pipelines & Automated Sheet Imports</h2>
+                    <p class="text-xs text-slate-600 max-w-lg mx-auto">Feed real closed-won revenue back into Google Ads Smart Bidding to optimize campaigns for high-value clients.</p>
+                </div>
+
+                <!-- Quick Answer Box -->
+                <div class="bg-purple-50/70 border-l-4 border-purple-600 p-5 rounded-r-2xl space-y-2">
+                    <h3 class="text-sm font-bold text-purple-900">Quick Answer</h3>
+                    <p class="text-sm text-slate-700 leading-relaxed">
+                        Offline conversion tracking with a CRM or Google Sheet works by saving every lead with its unique Google Click ID (`gclid`) and importing revenue data back to Google Ads upon deal closure[cite: 30]. This empowers Smart Bidding to optimize for true business value[cite: 30].
+                    </p>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-2.5">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">Table of Contents</h3>
+                    <ul class="space-y-1.5 text-xs font-medium text-blue-700">
+                        <li><a href="#why-it-matters" class="hover:underline">1. Why Your Ads Get Leads, But Google Ads Never Sees Sales</a>[cite: 30]</li>
+                        <li><a href="#comparison" class="hover:underline">2. Browser Conversions vs. Offline Conversion Import</a>[cite: 30]</li>
+                        <li><a href="#implementation" class="hover:underline">3. Step-by-Step Implementation & GTM Setup</a>[cite: 30]</li>
+                        <li><a href="#troubleshooting" class="hover:underline">4. Troubleshooting Common Mistakes & Errors</a>[cite: 31]</li>
+                        <li><a href="#faq" class="hover:underline">5. Frequently Asked Questions</a>[cite: 31]</li>
+                    </ul>
+                </div>
+
+                <!-- Main Body Content -->
+                <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
+                    <section id="why-it-matters" class="space-y-3">
+                        <h2 class="text-xl font-bold text-slate-900">1. Why Your Ads Get Leads, But Google Ads Never Sees Sales</h2>
+                        <p>Standard conversion setups track form submissions or phone calls instantly on the website. However, most leads do not convert into paying customers on the spot. Sales cycles take days, weeks, or months inside CRMs like HubSpot, Salesforce, or GoHighLevel[cite: 31]. Without passing offline status updates back to Google Ads, ad algorithms remain blind to lead quality[cite: 30].</p>
+                    </section>
+
+                    <section id="comparison" class="space-y-3">
+                        <h2 class="text-xl font-bold text-slate-900">2. Browser Conversions vs. Offline Conversion Import</h2>
+                        <div class="overflow-x-auto border border-gray-200 rounded-2xl">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead class="bg-slate-50 border-b border-gray-200 text-slate-800 font-bold">
+                                    <tr>
+                                        <th class="p-3.5">Tracking Method</th>
+                                        <th class="p-3.5">Data Accuracy</th>
+                                        <th class="p-3.5">Revenue Tracking</th>
+                                        <th class="p-3.5">CRM Connected</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100">
+                                    <tr>
+                                        <td class="p-3.5 font-medium">Standard Thank-You Page Form</td>
+                                        <td class="p-3.5">~75%</td>
+                                        <td class="p-3.5">No (Leads Only)</td>
+                                        <td class="p-3.5">No</td>
+                                    </tr>
+                                    <tr class="bg-purple-50/40">
+                                        <td class="p-3.5 font-bold text-purple-900">Offline Conversion Import (GCLID)</td>
+                                        <td class="p-3.5 font-bold text-emerald-700">~98% - 100%</td>
+                                        <td class="p-3.5 font-bold">Yes (Full Value)</td>
+                                        <td class="p-3.5 font-bold">Yes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="implementation" class="space-y-4">
+                        <h2 class="text-xl font-bold text-slate-900">3. Step-by-Step Implementation & GTM Setup</h2>
+                        
+                        <h3 class="text-base font-bold text-slate-800">Phase 1 & 2: Auto-Tagging & Hidden Form Fields</h3>
+                        <p>Verify that auto-tagging is active in Google Ads[cite: 30]. Add hidden input fields to your web forms so they can dynamically capture visitor parameters[cite: 30, 31].</p>
+
+                        <h3 class="text-base font-bold text-slate-800">Phase 3: GCLID Capture Tag in GTM</h3>
+                        <p>Deploy a Custom HTML tag in Google Tag Manager to parse click identifiers and populate form fields[cite: 30, 31]:</p>
+                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-2xl text-xs overflow-x-auto font-mono"><code>(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const gclid = urlParams.get('gclid') || urlParams.get('gbraid') || urlParams.get('wbraid');
+  if (gclid) {
+    document.cookie = "gclid=" + gclid + "; max-age=" + 60*60*24*90 + "; path=/; secure; samesite=lax";
+  }
+  setTimeout(() => {
+    const fields = document.querySelectorAll('input[name*="gclid"], input[id*="gclid"]');
+    fields.forEach(field => {
+      if (!field.value && gclid) field.value = gclid;
+    });
+  }, 1000);
+})();</code></pre>
+
+                        <h3 class="text-base font-bold text-slate-800">Phase 5, 6 & 7: Google Sheet & Data Manager Import</h3>
+                        <p>Store click identifiers in your CRM contact properties. When a deal closes, send a row to a Google Sheet containing <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">Google Click ID</code>, <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">Conversion Name</code>, <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">Conversion Time</code>, and value, then link it to Google Ads Data Manager for daily automated imports[cite: 30, 31].</p>
+                    </section>
+
+                    <section id="troubleshooting" class="space-y-3">
+                        <h2 class="text-xl font-bold text-slate-900">4. Troubleshooting Common Mistakes & Errors</h2>
+                        <ul class="list-disc pl-5 space-y-2 text-xs">
+                            <li><strong>Blank GCLID in CRM:</strong> Ensure form field names match script parameters and verify that cookie consent blocks are not preventing storage[cite: 31].</li>
+                            <li><strong>Timezone Discrepancies:</strong> Always include an explicit GMT offset or timezone ID in your conversion timestamps to prevent Google Ads from rejecting rows[cite: 31].</li>
+                            <li><strong>90-Day Expiry Limit:</strong> Remember that GCLIDs expire after 90 days. For long sales cycles, import earlier milestone stages or use Enhanced Conversions[cite: 31].</li>
+                        </ul>
+                    </section>
+
+                    <!-- FAQ Accordion Section -->
+                    <section id="faq" class="space-y-3 pt-4 border-t border-gray-100">
+                        <h2 class="text-xl font-bold text-slate-900">5. Frequently Asked Questions</h2>
+                        <div class="space-y-2.5">
+                            <details class="group border border-gray-200 rounded-2xl p-4 bg-slate-50/50">
+                                <summary class="font-bold text-slate-800 cursor-pointer list-none flex justify-between items-center text-xs sm:text-sm">
+                                    What is offline conversion tracking?[cite: 31]
+                                    <span class="text-purple-600 font-bold">+</span>
+                                </summary>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed">Offline conversion tracking lets you import sales and conversions that happen outside your website (such as in a CRM or offline sales call) back into Google Ads, linking them directly to the original ad click[cite: 30, 31].</p>
+                            </details>
+                            <details class="group border border-gray-200 rounded-2xl p-4 bg-slate-50/50">
+                                <summary class="font-bold text-slate-800 cursor-pointer list-none flex justify-between items-center text-xs sm:text-sm">
+                                    How long is a GCLID valid for import?[cite: 31]
+                                    <span class="text-purple-600 font-bold">+</span>
+                                </summary>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed">Google retains click identifiers for import up to 90 days from the date of the click[cite: 31].</p>
+                            </details>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Bottom CTA Box -->
+                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="space-y-1 text-center sm:text-left">
+                        <h3 class="font-bold text-base">Need Help Setting Up CRM & Offline Tracking?</h3>
+                        <p class="text-xs text-purple-100">Get a robust GCLID capture, CRM pipeline, and automated Google Sheet import architecture built right.</p>
+                    </div>
+                    <a href="contact.html?booking=true" class="bg-white text-purple-700 hover:bg-purple-50 font-bold px-5 py-2.5 rounded-xl text-xs whitespace-nowrap shadow-md transition-all">
+                        Book Free Audit »
+                    </a>
+                </div>
+
+            </article>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+                <div class="bg-white border border-gray-200 rounded-3xl p-6 text-center space-y-4 shadow-md">
+                    <div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-purple-200">
+                        <img src="juwel-profile.png" alt="MD. Juwel Rana" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="text-lg font-extrabold text-[#1D4ED8]">MD. Juwel Rana</h3>
+                        <p class="text-xs font-semibold text-slate-600">First-Party Data Architect | sGTM, BigQuery SQL & CRM Attribution</p>
+                    </div>
+                    <a href="contact.html?booking=true" class="block w-full bg-[#9333EA] hover:bg-[#7E22CE] text-white font-bold py-2.5 rounded-2xl text-xs transition-all">
+                        Schedule Free Consultation
+                    </a>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+</body>
+</html>
