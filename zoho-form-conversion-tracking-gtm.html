@@ -16,17 +16,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="favicon.png">
-
-    <!-- Custom Styling for Exact Blog Card Vibe -->
-    <style>
-        .thumb-pattern {
-            background-image: radial-gradient(rgba(139, 92, 246, 0.15) 1.5px, transparent 1.5px);
-            background-size: 16px 16px;
-        }
-        .icon-3d {
-            filter: drop-shadow(0 10px 15px rgba(139, 92, 246, 0.25));
-        }
-    </style>
 </head>
 <body class="bg-[#F8FAFC] text-slate-800 font-sans antialiased selection:bg-purple-500 selection:text-white">
 
@@ -68,40 +57,38 @@
                     <span class="text-slate-700 font-medium">Zoho Form Tracking</span>
                 </nav>
 
-                <!-- Title & Meta Header -->
-                <header class="space-y-6 border-b border-gray-100 pb-6">
-                    
-                    <!-- 🌟 EXACT MATCH BLOG CARD THUMBNAIL BANNER STRUCTURE -->
-                    <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border border-gray-200 rounded-3xl p-5 flex flex-col items-center justify-center text-center relative overflow-hidden shadow-sm">
-                        <div class="absolute right-6 -bottom-6 w-28 h-28 bg-blue-200/40 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-blue-100 flex items-center justify-center text-blue-600">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        </div>
-                        <span class="text-xs font-bold text-slate-800 tracking-tight">Zoho Form Conversion Tracking</span>
-                        <span class="text-[10px] text-blue-600 font-semibold mt-0.5">Iframe Gap & GA4 Lead Event</span>
-                    </div>
-
+                <!-- Title & Meta -->
+                <header class="space-y-4 border-b border-gray-100 pb-6">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="bg-purple-50 text-purple-700 text-[11px] font-bold px-3 py-1 rounded-full border border-purple-200">Zoho Forms</span>
                         <span class="bg-blue-50 text-blue-700 text-[11px] font-bold px-3 py-1 rounded-full border border-blue-200">GTM & GA4 Tracking</span>
                     </div>
                     <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
-                        How to Set Up Zoho Form Conversion Tracking with Google Tag Manager
+                        How to Set Up Zoho Form Conversion Tracking with Google Tag Manager (2026 Guide)[cite: 20]
                     </h1>
                     <div class="flex items-center gap-4 text-xs text-slate-500">
                         <span>By <strong class="text-slate-700">MD. Juwel Rana</strong></span>
                         <span>•</span>
-                        <time datetime="2026-10-23">October 23, 2026</time>
+                        <time datetime="2025-10-23">October 23, 2025</time>
                         <span>•</span>
                         <span>7 min read</span>
                     </div>
                 </header>
 
+                <!-- Hero Banner Graphic -->
+                <div class="rounded-2xl bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border border-purple-100 p-8 text-center space-y-3">
+                    <div class="inline-flex items-center justify-center w-14 h-14 bg-white rounded-2xl shadow-md border border-purple-100 text-purple-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">Fix the Iframe Tracking Gap and Route Leads to GA4 & Ads</h2>
+                    <p class="text-xs text-slate-600 max-w-lg mx-auto">Configure parent window redirects and custom GTM data layer events to capture 100% of Zoho form submissions.</p>
+                </div>
+
                 <!-- Quick Answer Box -->
                 <div class="bg-purple-50/70 border-l-4 border-purple-600 p-5 rounded-r-2xl space-y-2">
                     <h3 class="text-sm font-bold text-purple-900">Quick Answer</h3>
                     <p class="text-sm text-slate-700 leading-relaxed">
-                        To set up Zoho form conversion tracking with Google Tag Manager, remember that an embedded iframe blocks standard triggers unless parent messaging is configured.
+                        Embedded Zoho Forms load inside an external iframe that standard GTM triggers cannot inspect[cite: 21]. By redirecting successful submissions to a dedicated thank-you page in the parent window, a GTM tag can reliably push a `zoho_form_submit` event[cite: 21].
                     </p>
                 </div>
 
@@ -109,11 +96,11 @@
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-2.5">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">Table of Contents</h3>
                     <ul class="space-y-1.5 text-xs font-medium text-blue-700">
-                        <li><a href="#overview" class="hover:underline">1. Why GTM Cannot See Embedded Zoho Forms</a></li>
-                        <li><a href="#comparison" class="hover:underline">2. Zoho Built-In GTM vs. Parent Window Redirect</a></li>
-                        <li><a href="#implementation" class="hover:underline">3. Step-by-Step Implementation Guide</a></li>
-                        <li><a href="#troubleshooting" class="hover:underline">4. Troubleshooting Common Configuration Mistakes</a></li>
-                        <li><a href="#faq" class="hover:underline">5. Frequently Asked Questions</a></li>
+                        <li><a href="#overview" class="hover:underline">1. Why GTM Cannot See Embedded Zoho Forms</a>[cite: 21]</li>
+                        <li><a href="#comparison" class="hover:underline">2. Zoho Built-In GTM vs. Parent Window Redirect</a>[cite: 21]</li>
+                        <li><a href="#implementation" class="hover:underline">3. Step-by-Step Implementation Guide</a>[cite: 21]</li>
+                        <li><a href="#troubleshooting" class="hover:underline">4. Troubleshooting Common Configuration Mistakes</a>[cite: 21]</li>
+                        <li><a href="#faq" class="hover:underline">5. Frequently Asked Questions</a>[cite: 21]</li>
                     </ul>
                 </div>
 
@@ -121,7 +108,7 @@
                 <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
                     <section id="overview" class="space-y-3">
                         <h2 class="text-xl font-bold text-slate-900">1. Why GTM Cannot See Embedded Zoho Forms</h2>
-                        <p>Zoho forms render inside cross-origin iframes. Standard tag manager form submission triggers rely on document object models of the parent host page, which are blocked from traversing external iframe boundaries. As a result, successful leads fail to register as conversions.</p>
+                        <p>Zoho forms render inside cross-origin iframes. Standard tag manager form submission triggers rely on document object models of the parent host page, which are blocked from traversing external iframe boundaries[cite: 21]. As a result, successful leads fail to register as conversions[cite: 21].</p>
                     </section>
 
                     <section id="comparison" class="space-y-3">
@@ -138,13 +125,13 @@
                                 <tbody class="divide-y divide-gray-100">
                                     <tr>
                                         <td class="p-3.5 font-medium">Zoho Built-In GTM</td>
-                                        <td class="p-3.5 text-red-600">No (Runs inside iframe)</td>
-                                        <td class="p-3.5">Drops parameters / Broken sessions</td>
+                                        <td class="p-3.5 text-red-600">No (Runs inside iframe)[cite: 21]</td>
+                                        <td class="p-3.5">Drops parameters / Broken sessions[cite: 21]</td>
                                     </tr>
                                     <tr class="bg-purple-50/40">
                                         <td class="p-3.5 font-bold text-purple-900">Parent Window Thank-You Redirect</td>
-                                        <td class="p-3.5 font-bold text-emerald-700">Yes</td>
-                                        <td class="p-3.5 font-bold text-emerald-700">Fully Maintained</td>
+                                        <td class="p-3.5 font-bold text-emerald-700">Yes[cite: 21]</td>
+                                        <td class="p-3.5 font-bold text-emerald-700">Fully Maintained[cite: 21]</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -155,10 +142,10 @@
                         <h2 class="text-xl font-bold text-slate-900">3. Step-by-Step Implementation Guide</h2>
                         
                         <h3 class="text-base font-bold text-slate-800">Phase 1 & 2: Thank-You Page & Parent Window Redirect</h3>
-                        <p>Build a thank-you page on your site. Configure Zoho Form messages and redirects to push submissions to your thank-you URL with a marker (<code class="bg-slate-100 px-1 py-0.5 rounded text-purple-700 font-mono text-xs">?zf_source=zoho_form</code>), making sure to select **Parent Window**.</p>
+                        <p>Build a thank-you page on your site[cite: 21]. Configure Zoho Form messages and redirects to push submissions to your thank-you URL with a marker (`?zf_source=zoho_form`), making sure to select **Parent Window**[cite: 21].</p>
 
                         <h3 class="text-base font-bold text-slate-800">Phase 3 & 4: GTM Custom HTML Tracker</h3>
-                        <p>Deploy a Custom HTML tag on your thank-you page that validates query markers and utilizes session storage to prevent duplicate lead fires:</p>
+                        <p>Deploy a Custom HTML tag on your thank-you page that validates query markers and utilizes session storage to prevent duplicate lead fires[cite: 21]:</p>
                         <pre class="bg-slate-900 text-slate-100 p-4 rounded-2xl text-xs overflow-x-auto font-mono"><code>(function() {
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('zf_source') === 'zoho_form') {
@@ -177,9 +164,9 @@
                     <section id="troubleshooting" class="space-y-3">
                         <h2 class="text-xl font-bold text-slate-900">4. Troubleshooting Common Configuration Mistakes</h2>
                         <ul class="list-disc pl-5 space-y-2 text-xs">
-                            <li><strong>Thank-You Page Opens Inside Iframe:</strong> Ensure the redirect setting is explicitly configured to open in the **Parent Window** rather than the same window.</li>
-                            <li><strong>Missing Data Layer Events:</strong> Verify that the thank-you URL includes the exact query marker and that your GTM trigger path matches.</li>
-                            <li><strong>GA4 Referral Leakage:</strong> Add <code class="bg-slate-100 px-1 py-0.5 rounded">zohopublic.com</code> to your GA4 unwanted referrals list to preserve original campaign attribution.</li>
+                            <li><strong>Thank-You Page Opens Inside Iframe:</strong> Ensure the redirect setting is explicitly configured to open in the **Parent Window** rather than the same window[cite: 21].</li>
+                            <li><strong>Missing Data Layer Events:</strong> Verify that the thank-you URL includes the exact query marker and that your GTM trigger path matches[cite: 21].</li>
+                            <li><strong>GA4 Referral Leakage:</strong> Add `zohopublic.com` to your GA4 unwanted referrals list to preserve original campaign attribution[cite: 21].</li>
                         </ul>
                     </section>
 
@@ -189,17 +176,17 @@
                         <div class="space-y-2.5">
                             <details class="group border border-gray-200 rounded-2xl p-4 bg-slate-50/50">
                                 <summary class="font-bold text-slate-800 cursor-pointer list-none flex justify-between items-center text-xs sm:text-sm">
-                                    Why doesn't Google Tag Manager track my Zoho form?
+                                    Why doesn't Google Tag Manager track my Zoho form?[cite: 21]
                                     <span class="text-purple-600 font-bold">+</span>
                                 </summary>
-                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed">Standard GTM form triggers cannot penetrate cross-origin iframes where Zoho forms are hosted, and iframe postMessages only report height resizing instead of submission data.</p>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed">Standard GTM form triggers cannot penetrate cross-origin iframes where Zoho forms are hosted, and iframe postMessages only report height resizing instead of submission data[cite: 21].</p>
                             </details>
                             <details class="group border border-gray-200 rounded-2xl p-4 bg-slate-50/50">
                                 <summary class="font-bold text-slate-800 cursor-pointer list-none flex justify-between items-center text-xs sm:text-sm">
-                                    What does Parent Window mean in Zoho's redirect setting?
+                                    What does Parent Window mean in Zoho's redirect setting?[cite: 21]
                                     <span class="text-purple-600 font-bold">+</span>
                                 </summary>
-                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed">It instructs the browser to open the thank-you page across the entire browser tab window rather than squeezing the redirection inside the small embedded iframe box.</p>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed">It instructs the browser to open the thank-you page across the entire browser tab window rather than squeezing the redirection inside the small embedded iframe box[cite: 21].</p>
                             </details>
                         </div>
                     </section>
