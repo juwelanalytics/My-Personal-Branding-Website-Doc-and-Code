@@ -17,11 +17,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- Custom Thumb Pattern Style for Card Match Vibe -->
+    <!-- Custom Styling for Exact Blog Card Vibe -->
     <style>
         .thumb-pattern {
             background-image: radial-gradient(rgba(139, 92, 246, 0.15) 1.5px, transparent 1.5px);
             background-size: 16px 16px;
+        }
+        .icon-3d {
+            filter: drop-shadow(0 10px 15px rgba(139, 92, 246, 0.25));
         }
     </style>
 </head>
@@ -68,10 +71,10 @@
                 <!-- Title & Meta Header -->
                 <header class="space-y-6 border-b border-gray-100 pb-6">
                     
-                    <!-- 🌟 Matching Card Thumb Banner Style -->
+                    <!-- 🌟 EXACT MATCH BLOG CARD THUMBNAIL BANNER STRUCTURE -->
                     <div class="h-48 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 thumb-pattern border border-gray-200 rounded-3xl p-5 flex flex-col items-center justify-center text-center relative overflow-hidden shadow-sm">
                         <div class="absolute right-6 -bottom-6 w-28 h-28 bg-blue-200/40 rounded-full blur-xl pointer-events-none"></div>
-                        <div class="mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-blue-100 flex items-center justify-center text-blue-600">
+                        <div class="icon-3d mb-2 w-12 h-12 bg-white rounded-2xl shadow-md border border-blue-100 flex items-center justify-center text-blue-600">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         </div>
                         <span class="text-xs font-bold text-slate-800 tracking-tight">Zoho Form Conversion Tracking</span>
@@ -83,12 +86,12 @@
                         <span class="bg-blue-50 text-blue-700 text-[11px] font-bold px-3 py-1 rounded-full border border-blue-200">GTM & GA4 Tracking</span>
                     </div>
                     <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
-                        How to Set Up Zoho Form Conversion Tracking with Google Tag Manager (2026 Guide)
+                        How to Set Up Zoho Form Conversion Tracking with Google Tag Manager
                     </h1>
                     <div class="flex items-center gap-4 text-xs text-slate-500">
                         <span>By <strong class="text-slate-700">MD. Juwel Rana</strong></span>
                         <span>•</span>
-                        <time datetime="2025-10-23">October 23, 2025</time>
+                        <time datetime="2026-10-23">October 23, 2026</time>
                         <span>•</span>
                         <span>7 min read</span>
                     </div>
@@ -98,7 +101,7 @@
                 <div class="bg-purple-50/70 border-l-4 border-purple-600 p-5 rounded-r-2xl space-y-2">
                     <h3 class="text-sm font-bold text-purple-900">Quick Answer</h3>
                     <p class="text-sm text-slate-700 leading-relaxed">
-                        Embedded Zoho Forms load inside an external iframe that standard GTM triggers cannot inspect. By redirecting successful submissions to a dedicated thank-you page in the parent window, a GTM tag can reliably push a `zoho_form_submit` event.
+                        To set up Zoho form conversion tracking with Google Tag Manager, remember that an embedded iframe blocks standard triggers unless parent messaging is configured.
                     </p>
                 </div>
 
@@ -152,7 +155,7 @@
                         <h2 class="text-xl font-bold text-slate-900">3. Step-by-Step Implementation Guide</h2>
                         
                         <h3 class="text-base font-bold text-slate-800">Phase 1 & 2: Thank-You Page & Parent Window Redirect</h3>
-                        <p>Build a thank-you page on your site. Configure Zoho Form messages and redirects to push submissions to your thank-you URL with a marker (`?zf_source=zoho_form`), making sure to select **Parent Window**.</p>
+                        <p>Build a thank-you page on your site. Configure Zoho Form messages and redirects to push submissions to your thank-you URL with a marker (<code class="bg-slate-100 px-1 py-0.5 rounded text-purple-700 font-mono text-xs">?zf_source=zoho_form</code>), making sure to select **Parent Window**.</p>
 
                         <h3 class="text-base font-bold text-slate-800">Phase 3 & 4: GTM Custom HTML Tracker</h3>
                         <p>Deploy a Custom HTML tag on your thank-you page that validates query markers and utilizes session storage to prevent duplicate lead fires:</p>
@@ -176,7 +179,7 @@
                         <ul class="list-disc pl-5 space-y-2 text-xs">
                             <li><strong>Thank-You Page Opens Inside Iframe:</strong> Ensure the redirect setting is explicitly configured to open in the **Parent Window** rather than the same window.</li>
                             <li><strong>Missing Data Layer Events:</strong> Verify that the thank-you URL includes the exact query marker and that your GTM trigger path matches.</li>
-                            <li><strong>GA4 Referral Leakage:</strong> Add `zohopublic.com` to your GA4 unwanted referrals list to preserve original campaign attribution.</li>
+                            <li><strong>GA4 Referral Leakage:</strong> Add <code class="bg-slate-100 px-1 py-0.5 rounded">zohopublic.com</code> to your GA4 unwanted referrals list to preserve original campaign attribution.</li>
                         </ul>
                     </section>
 
