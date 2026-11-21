@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real Setups | Production First-Party Data Architectures | juwelanalytics.com</title>
-  <meta name="description" content="Production architecture breakdowns by MD. Juwel Rana at juwelanalytics.com: Zero-cost Cloudflare Workers sGTM, GHL/HubSpot CRM offline conversion pipelines, Meta CAPI, and BigQuery SQL." />
+  <title>Real Setups & Technical Breakdowns | First-Party Data Blog | juwelanalytics.com</title>
+  <meta name="description" content="Technical breakdowns and first-party tracking case blueprints by MD. Juwel Rana: Cloudflare Workers sGTM, GHL/HubSpot iFrame click-ID capture, Google Ads & Meta OCT, Consent Mode v2, and BigQuery SQL." />
   <link rel="canonical" href="https://juwelanalytics.com/setups.html" />
   <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -12,16 +12,32 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="juwelanalytics.com" />
   <meta property="og:url" content="https://juwelanalytics.com/setups.html" />
-  <meta property="og:title" content="Real Setups | Production First-Party Data Architectures | juwelanalytics.com" />
-  <meta property="og:description" content="Detailed technical breakdowns of zero-cost sGTM, CRM offline conversion pipelines, cross-frame persistence, and BigQuery BI setups." />
+  <meta property="og:title" content="Real Setups & Technical Breakdowns | First-Party Data Blog | juwelanalytics.com" />
+  <meta property="og:description" content="Detailed technical breakdowns of zero-cost Cloudflare Workers sGTM, CRM offline conversion pipelines, cross-frame persistence, and BigQuery SQL BI setups." />
   <meta property="og:image" content="https://juwelanalytics.com/juwel-profile.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://juwelanalytics.com/setups.html" />
-  <meta name="twitter:title" content="Real Setups | Production First-Party Data Architectures | juwelanalytics.com" />
-  <meta name="twitter:description" content="Detailed technical breakdowns of zero-cost sGTM, CRM offline conversion pipelines, cross-frame persistence, and BigQuery BI setups." />
+  <meta name="twitter:title" content="Real Setups & Technical Breakdowns | First-Party Data Blog | juwelanalytics.com" />
+  <meta name="twitter:description" content="Detailed technical breakdowns of zero-cost Cloudflare Workers sGTM, CRM offline conversion pipelines, cross-frame persistence, and BigQuery SQL BI setups." />
   <meta name="twitter:image" content="https://juwelanalytics.com/juwel-profile.png" />
+
+  <!-- Structured Data for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Real Setups & Technical Breakdowns",
+    "description": "First-party tracking, server-side GTM, CRM offline conversion pipelines, Consent Mode v2, and BigQuery SQL breakdowns by MD. Juwel Rana.",
+    "url": "https://juwelanalytics.com/setups.html",
+    "author": {
+      "@type": "Person",
+      "name": "MD. Juwel Rana",
+      "url": "https://juwelanalytics.com/about.html"
+    }
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -89,178 +105,235 @@
       <div class="max-w-3xl space-y-4">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono text-muted">
           <span class="w-2 h-2 rounded-full bg-verified"></span>
-          <span>PRODUCTION ARCHITECTURE BLUEPRINTS</span>
+          <span>TECHNICAL BREAKDOWNS &amp; PRODUCTION BLUEPRINTS</span>
         </div>
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-[1.15]">
-          Real Setups: Tested, Verified First-Party Systems.
+          Real Setups: Practical First-Party Tracking &amp; Data Breakdowns.
         </h1>
         <p class="text-base sm:text-lg text-muted leading-relaxed">
-          Practical engineering breakdowns showing how data moves from browser edge capture to server-side endpoints, CRMs, ad platforms, and BigQuery warehouses without bloated SaaS overhead.
+          Deep-dive notes and tested architecture patterns on zero-cost Cloudflare Workers sGTM, GHL/HubSpot CRM offline conversions, cross-frame <code class="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-slate-200">gclid</code>/<code class="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-slate-200">fbclid</code> capture, Consent Mode v2, and BigQuery SQL reporting.
         </p>
-        <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono">
-          <a href="#cloudflare-sgtm" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">Setup 01: Cloudflare sGTM</a>
-          <a href="#oct-pipeline" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">Setup 02: CRM and OCT Pipeline</a>
-          <a href="#capi-oct" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">Setup 03: Meta CAPI and Hashing</a>
-          <a href="#bigquery-bi" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">Setup 04: BigQuery and Looker BI</a>
+
+        <!-- Topic Filter Bar -->
+        <div class="pt-3 flex flex-wrap gap-2 text-xs font-mono" role="group" aria-label="Filter technical breakdowns">
+          <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-md bg-brand text-white border border-brand transition-colors cursor-pointer">
+            All Breakdowns
+          </button>
+          <button type="button" data-filter="sgtm" class="filter-btn px-3 py-1.5 rounded-md bg-white text-ink border border-slate-200 hover:border-brand transition-colors cursor-pointer">
+            sGTM &amp; Edge Infra
+          </button>
+          <button type="button" data-filter="oct" class="filter-btn px-3 py-1.5 rounded-md bg-white text-ink border border-slate-200 hover:border-brand transition-colors cursor-pointer">
+            CRM &amp; OCT Pipeline
+          </button>
+          <button type="button" data-filter="capi" class="filter-btn px-3 py-1.5 rounded-md bg-white text-ink border border-slate-200 hover:border-brand transition-colors cursor-pointer">
+            CAPI &amp; Consent v2
+          </button>
+          <button type="button" data-filter="bi" class="filter-btn px-3 py-1.5 rounded-md bg-white text-ink border border-slate-200 hover:border-brand transition-colors cursor-pointer">
+            BigQuery &amp; BI
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ARCHITECTURE BREAKDOWNS -->
+  <!-- BREAKDOWN ARTICLES -->
   <section class="py-16 md:py-20 border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
 
-      <!-- SETUP 01 -->
-      <article id="cloudflare-sgtm" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+      <!-- BREAKDOWN 01 -->
+      <article id="cloudflare-sgtm" data-category="sgtm" class="setup-card scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">SETUP 01 / EDGE ROUTING AND SERVER INFRA</span>
+          <span class="text-xs font-mono font-semibold text-brand">BREAKDOWN 01 / SERVER-SIDE GTM &amp; EDGE ROUTING</span>
           <span class="text-xs font-mono px-2.5 py-0.5 bg-teal-50 text-verified rounded border border-teal-200">$0 Monthly Hosting</span>
         </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">Zero-Cost Server-Side GTM via Cloudflare Workers</h2>
+        <h2 class="text-2xl font-bold text-ink mb-3">Zero-Cost Server-Side GTM via Cloudflare Workers &amp; Custom Transport URLs</h2>
         <p class="text-sm sm:text-base text-muted mb-6">
-          Designed for high-traffic sites and agencies tired of paying recurring monthly fees for managed sGTM hosting while keeping first-party transport endpoints fast and resilient.
+          How to route first-party tracking signals through a custom subdomain and Cloudflare Workers without paying recurring monthly hosting fees or exposing third-party endpoints to ad blockers.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">The Bottleneck</div>
+            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">Problem &amp; Signal Leak</div>
             <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              Third-party tagging scripts are blocked by privacy browsers, Safari ITP shortens cookie lifetimes, and managed sGTM hosting scales up monthly costs with request volume.
+              Browser privacy protections and Safari ITP cap client-side cookie lifetimes, while third-party tag domains get blocked or incur growing monthly sGTM hosting bills.
             </p>
           </div>
           <div class="p-4 rounded-lg bg-blue-50/50 border border-blue-200">
-            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">The Architecture</div>
+            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">Architecture Pattern</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Custom subdomain routing through Cloudflare Workers acting as an edge proxy for sGTM, serving first-party <code class="font-mono text-xs bg-white px-1 rounded">gtag.js</code> and <code class="font-mono text-xs bg-white px-1 rounded">gtm.js</code> with extended first-party cookies.
+              First-party custom transport subdomain backed by Cloudflare Workers edge routing into your server-side GTM container, normalizing event payloads before vendor forwarding.
             </p>
           </div>
           <div class="p-4 rounded-lg bg-teal-50/50 border border-teal-200">
-            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verified Outcome</div>
+            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verification &amp; Outcome</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Near-zero infrastructure cost, sub-50ms edge response times, clean PII scrubbing before vendor dispatch, and higher attributed event recovery.
+              Verified first-party cookie persistence, clean server logs, zero recurring hosting overhead, and stronger downstream conversion signal recovery.
             </p>
           </div>
         </div>
 
-        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto">
-          <div class="text-slate-400 mb-1">// Production Signal Flow</div>
-          <div>Browser (First-Party Subdomain) → Cloudflare Worker Edge Proxy → sGTM Container → GA4 + Meta CAPI + Google Ads</div>
+        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto mb-4">
+          <div class="text-slate-400 mb-1">// Signal Flow</div>
+          <div>Browser (First-Party Subdomain) → Cloudflare Worker Edge → sGTM Container → GA4 + Meta CAPI + Google Ads</div>
         </div>
+
+        <details class="rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+          <summary class="text-xs font-mono font-semibold text-brand cursor-pointer select-none">
+            + Technical Checklist &amp; Edge Cases to Test
+          </summary>
+          <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-muted list-disc pl-5">
+            <li>Verify DNS records, SSL issuance, and custom loader/transport paths return HTTP 200 without CORS errors.</li>
+            <li>Confirm first-party cookies set server-side preserve attributes across page reloads and subdomains.</li>
+            <li>Inspect server-side preview logs to ensure unwanted PII is stripped before outbound vendor requests.</li>
+          </ul>
+        </details>
       </article>
 
-      <!-- SETUP 02 -->
-      <article id="oct-pipeline" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+      <!-- BREAKDOWN 02 -->
+      <article id="oct-pipeline" data-category="oct" class="setup-card scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">SETUP 02 / CRM AND OFFLINE CONVERSION SYNC</span>
+          <span class="text-xs font-mono font-semibold text-brand">BREAKDOWN 02 / CRM &amp; OFFLINE CONVERSION PIPELINES</span>
           <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">GHL / HubSpot / CallRail</span>
         </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">Cross-Frame Click-ID Capture and CRM Offline Conversion Pipeline</h2>
+        <h2 class="text-2xl font-bold text-ink mb-3">Cross-Frame Click-ID Capture &amp; CRM Offline Conversion Sync</h2>
         <p class="text-sm sm:text-base text-muted mb-6">
-          Built for B2B lead-gen and appointment-based funnels where embedded booking widgets or multi-step forms silently drop <code class="font-mono text-xs bg-slate-100 px-1 rounded">gclid</code>, <code class="font-mono text-xs bg-slate-100 px-1 rounded">fbclid</code>, and UTM attribution parameters.
+          How to capture <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">gclid</code>, <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">fbclid</code>, and UTM parameters on landing pages, pass them across embedded booking/form iFrames into GHL or HubSpot, and sync qualified stages back to ad platforms.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">The Bottleneck</div>
+            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">Problem &amp; Signal Leak</div>
             <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              Embedded GHL or HubSpot calendar iFrames isolate storage from the parent landing page, causing ad platforms to lose click attribution when deals close days or weeks later.
+              Embedded scheduling or form iFrames often miss parent-page attribution parameters, and optimizing purely for raw leads sends low-quality signals to Google Ads and Meta.
             </p>
           </div>
           <div class="p-4 rounded-lg bg-blue-50/50 border border-blue-200">
-            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">The Architecture</div>
+            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">Architecture Pattern</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Parent-page GTM capture into <code class="font-mono text-xs bg-white px-1 rounded">localStorage</code> + cross-frame postMessage/URL injection into hidden CRM fields, paired with webhook/Apps Script sync on stage updates.
+              Deterministic <code class="font-mono text-xs bg-white px-1 rounded">localStorage</code> + cookie capture via GTM, cross-frame injection into hidden CRM fields, and webhook/Apps Script stage triggers (<code class="font-mono text-xs bg-white px-1 rounded">Lead → MQL → Closed Won</code>).
             </p>
           </div>
           <div class="p-4 rounded-lg bg-teal-50/50 border border-teal-200">
-            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verified Outcome</div>
+            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verification &amp; Outcome</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Deterministic <code class="font-mono text-xs bg-white px-1 rounded">Lead → Qualified MQL → Closed Won</code> conversion uploads to Google Ads OCT and Meta CAPI without paid Zapier/Make middleware.
+              End-to-end click IDs stored on CRM contacts and deals, enabling verified offline conversion uploads without expensive third-party middleware.
             </p>
           </div>
         </div>
 
-        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto">
-          <div class="text-slate-400 mb-1">// Offline Revenue Loop</div>
-          <div>Landing Page (gclid/fbclid) → Cross-Frame Script → CRM Deal Stage Webhook → Apps Script / Server → Google OCT & Meta CAPI</div>
+        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto mb-4">
+          <div class="text-slate-400 mb-1">// Offline Conversion Loop</div>
+          <div>Ad Click (gclid/fbclid/UTM) → GTM Storage + iFrame Sync → CRM Stage Webhook → Apps Script / API → Google Ads OCT &amp; Meta CAPI</div>
         </div>
+
+        <details class="rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+          <summary class="text-xs font-mono font-semibold text-brand cursor-pointer select-none">
+            + Technical Checklist &amp; Edge Cases to Test
+          </summary>
+          <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-muted list-disc pl-5">
+            <li>Test landing on a paid URL with <code class="font-mono text-xs bg-white px-1 rounded">gclid</code>/<code class="font-mono text-xs bg-white px-1 rounded">fbclid</code>, navigating across pages, and submitting inside an embedded iFrame.</li>
+            <li>Verify CRM custom fields populate before form submission completes and persist when pipeline stages advance.</li>
+            <li>Check timestamp formatting, currency codes, and conversion value mapping before uploading offline events.</li>
+          </ul>
+        </details>
       </article>
 
-      <!-- SETUP 03 -->
-      <article id="capi-oct" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+      <!-- BREAKDOWN 03 -->
+      <article id="capi-oct" data-category="capi" class="setup-card scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">SETUP 03 / DEDUPLICATION AND MATCH QUALITY</span>
-          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">SHA-256 + Consent v2</span>
+          <span class="text-xs font-mono font-semibold text-brand">BREAKDOWN 03 / DEDUPLICATION, HASHING &amp; CONSENT V2</span>
+          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">SHA-256 + DMA Ready</span>
         </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">Dual Browser-Server Deduplication and PII Normalization</h2>
+        <h2 class="text-2xl font-bold text-ink mb-3">Browser-Server Event Deduplication, SHA-256 Hashing &amp; Consent Mode v2</h2>
         <p class="text-sm sm:text-base text-muted mb-6">
-          Ensures browser pixels and server-side Conversion APIs work together cleanly without double-counting conversions or leaking unhashed customer data.
+          How to pair client-side tags with server-side Conversion APIs using shared <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">event_id</code> keys, normalized <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">SHA-256</code> customer parameters, and Cookiebot or OneTrust Consent Mode v2 mapping.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">The Bottleneck</div>
+            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">Problem &amp; Signal Leak</div>
             <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              Mismatched <code class="font-mono text-xs bg-white px-1 rounded">event_id</code> parameters, inconsistent phone/email formatting, and unmapped Consent Mode v2 flags degrade Event Match Quality and ROAS reporting.
+              Duplicate browser + server conversions inflate counts, unnormalized emails/phones lower match rates, and misconfigured consent banners break modeling signals.
             </p>
           </div>
           <div class="p-4 rounded-lg bg-blue-50/50 border border-blue-200">
-            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">The Architecture</div>
+            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">Architecture Pattern</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Shared deterministic <code class="font-mono text-xs bg-white px-1 rounded">event_id</code> generation, E.164 phone and lowercase email trimming prior to <code class="font-mono text-xs bg-white px-1 rounded">SHA-256</code> hashing, and Cookiebot/OneTrust consent state forwarding.
+              Single <code class="font-mono text-xs bg-white px-1 rounded">event_id</code> per interaction across browser and server tags, strict lowercase/trim + E.164 normalization before <code class="font-mono text-xs bg-white px-1 rounded">SHA-256</code> hashing, and CMP-to-Consent Mode v2 state updates.
             </p>
           </div>
           <div class="p-4 rounded-lg bg-teal-50/50 border border-teal-200">
-            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verified Outcome</div>
+            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verification &amp; Outcome</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Zero duplicate conversions in Events Manager, higher Event Match Quality scores, and DMA-compliant consent signals across paid channels.
+              Clean deduplicated events in ad managers, stronger match quality diagnostics, and compliant consent signal handling across regions.
             </p>
           </div>
         </div>
 
-        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto">
-          <div class="text-slate-400 mb-1">// Governance & Deduplication</div>
-          <div>DataLayer Event + Shared event_id → Consent Mode v2 Check → Normalized SHA-256 PII → Deduplicated CAPI / Enhanced Conversions</div>
+        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto mb-4">
+          <div class="text-slate-400 mb-1">// Deduplication &amp; Consent Flow</div>
+          <div>CMP Consent State (v2) → DataLayer + Shared event_id → Normalized SHA-256 User Data → Browser Pixel + Server CAPI/OCT</div>
         </div>
+
+        <details class="rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+          <summary class="text-xs font-mono font-semibold text-brand cursor-pointer select-none">
+            + Technical Checklist &amp; Edge Cases to Test
+          </summary>
+          <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-muted list-disc pl-5">
+            <li>Confirm browser and server hits carry identical <code class="font-mono text-xs bg-white px-1 rounded">event_id</code> and event names for the same conversion.</li>
+            <li>Test default denied and updated granted states for <code class="font-mono text-xs bg-white px-1 rounded">ad_user_data</code> and <code class="font-mono text-xs bg-white px-1 rounded">ad_personalization</code>.</li>
+            <li>Validate that emails and phone numbers are normalized prior to hashing.</li>
+          </ul>
+        </details>
       </article>
 
-      <!-- SETUP 04 -->
-      <article id="bigquery-bi" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+      <!-- BREAKDOWN 04 -->
+      <article id="bigquery-bi" data-category="bi" class="setup-card scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">SETUP 04 / WAREHOUSE MODELING AND EXECUTIVE BI</span>
-          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">BigQuery SQL + Looker</span>
+          <span class="text-xs font-mono font-semibold text-brand">BREAKDOWN 04 / BIGQUERY SQL &amp; EXECUTIVE BI</span>
+          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">BigQuery + Looker Studio</span>
         </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">Unsampled GA4 to BigQuery SQL and Executive BI Reporting</h2>
+        <h2 class="text-2xl font-bold text-ink mb-3">Unsampled GA4 to BigQuery SQL Modeling &amp; Executive Looker BI</h2>
         <p class="text-sm sm:text-base text-muted mb-6">
-          Replaces slow, sampled GA4 interface explorations with custom SQL models combining ad platform spend, CRM pipeline velocity, and backend net revenue.
+          How to query raw GA4 event exports in BigQuery, flatten nested parameters with SQL, reconcile ad spend with CRM/order tables, and publish decision-ready Looker Studio views.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">The Bottleneck</div>
+            <div class="text-xs font-mono font-semibold text-slate-500 uppercase mb-1.5">Problem &amp; Signal Leak</div>
             <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              GA4 UI thresholding hides low-volume campaigns, attribution windows are rigid, and frontend revenue numbers ignore refunds, cancellations, and repeat customer LTV.
+              GA4 UI reports suffer from thresholding and retention caps, while ad platform dashboards do not reflect refunds, net margins, or long-cycle CRM revenue.
             </p>
           </div>
           <div class="p-4 rounded-lg bg-blue-50/50 border border-blue-200">
-            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">The Architecture</div>
+            <div class="text-xs font-mono font-semibold text-brand uppercase mb-1.5">Architecture Pattern</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Daily and streaming raw GA4 export into BigQuery, scheduled SQL views flattening nested <code class="font-mono text-xs bg-white px-1 rounded">event_params</code>, joined with ad spend and backend order/CRM tables.
+              Raw GA4 BigQuery export combined with scheduled SQL views unnesting <code class="font-mono text-xs bg-white px-1 rounded">event_params</code> and <code class="font-mono text-xs bg-white px-1 rounded">user_properties</code>, joined against spend and CRM/order datasets.
             </p>
           </div>
           <div class="p-4 rounded-lg bg-teal-50/50 border border-teal-200">
-            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verified Outcome</div>
+            <div class="text-xs font-mono font-semibold text-verified uppercase mb-1.5">Verification &amp; Outcome</div>
             <p class="text-xs sm:text-sm text-ink leading-relaxed">
-              Fast, executive-ready Looker Studio dashboards showing true CAC, net MER, funnel drop-off rates, and cohort retention without API quota bottlenecks.
+              Auditable SQL metrics for true CAC, net revenue, funnel conversion rates, and customer cohorts inside Looker Studio.
             </p>
           </div>
         </div>
 
-        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto">
-          <div class="text-slate-400 mb-1">// Warehouse Pipeline</div>
-          <div>Raw GA4 Events + Ad Spend + CRM/Backend Orders → BigQuery Scheduled SQL Models → Executive Looker Studio BI</div>
+        <div class="p-4 rounded-lg bg-ink text-slate-200 font-mono text-xs overflow-x-auto mb-4">
+          <div class="text-slate-400 mb-1">// Warehouse &amp; BI Flow</div>
+          <div>Raw GA4 Export + Ad Spend + CRM/Orders → BigQuery Scheduled SQL Views → Executive Looker Studio Dashboards</div>
         </div>
+
+        <details class="rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+          <summary class="text-xs font-mono font-semibold text-brand cursor-pointer select-none">
+            + Technical Checklist &amp; Edge Cases to Test
+          </summary>
+          <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-muted list-disc pl-5">
+            <li>Reconcile BigQuery event counts and transaction IDs against backend orders or CRM deal records.</li>
+            <li>Handle timezone alignment between ad platforms, GA4 export tables, and CRM timestamps.</li>
+            <li>Use partitioned/clustered tables or scheduled views to keep BigQuery query costs low and dashboards fast.</li>
+          </ul>
+        </details>
       </article>
 
     </div>
@@ -270,15 +343,15 @@
   <section class="bg-white py-14 border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
-        <h2 class="text-2xl font-bold text-ink">Need a similar setup built for your stack?</h2>
-        <p class="text-sm text-muted mt-1">Review the audit and implementation workflow or send over your current tools for a quick diagnosis.</p>
+        <h2 class="text-2xl font-bold text-ink">Want one of these architectures tailored to your funnel?</h2>
+        <p class="text-sm text-muted mt-1">Send your current tech stack for a focused diagnosis or review the audit workflow.</p>
       </div>
       <div class="flex flex-wrap items-center gap-3.5">
-        <a href="work-with-me.html" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
-          See Audit and Process →
+        <a href="index.html#contact" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+          Send Your Tech Stack →
         </a>
-        <a href="index.html#contact" class="px-5 py-3 text-sm font-semibold text-ink bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-lg transition-colors">
-          Send Your Tech Stack
+        <a href="work-with-me.html" class="px-5 py-3 text-sm font-semibold text-ink bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-lg transition-colors">
+          See Audit and Process
         </a>
       </div>
     </div>
@@ -295,6 +368,7 @@
         <a href="core-stack.html" class="hover:text-white transition-colors">Core Stack</a>
         <a href="setups.html" class="text-white font-medium">Real Setups</a>
         <a href="work-with-me.html" class="hover:text-white transition-colors">Audit and Process</a>
+        <a href="about.html" class="hover:text-white transition-colors">About</a>
         <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
         <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">YouTube</a>
         <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp</a>
@@ -305,5 +379,32 @@
     </div>
   </footer>
 
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const setupCards = document.querySelectorAll('.setup-card');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-filter');
+
+        filterButtons.forEach((b) => {
+          b.classList.remove('bg-brand', 'text-white', 'border-brand');
+          b.classList.add('bg-white', 'text-ink', 'border-slate-200');
+        });
+
+        btn.classList.remove('bg-white', 'text-ink', 'border-slate-200');
+        btn.classList.add('bg-brand', 'text-white', 'border-brand');
+
+        setupCards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          if (selected === 'all' || category === selected) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
