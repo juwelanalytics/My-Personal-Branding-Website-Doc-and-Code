@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core Stack | First-Party Data Architecture | juwelanalytics.com</title>
+  <meta name="description" content="Explore the core first-party data engineering stack built by MD. Juwel Rana at juwelanalytics.com: Cloudflare Workers sGTM, CRM offline conversion pipelines, Consent Mode v2, and BigQuery SQL." />
+  <link rel="canonical" href="https://juwelanalytics.com/core-stack.html" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="juwelanalytics.com" />
+  <meta property="og:url" content="https://juwelanalytics.com/core-stack.html" />
+  <meta property="og:title" content="Core Stack | First-Party Data Architecture | juwelanalytics.com" />
+  <meta property="og:description" content="End-to-end first-party tracking, server-side routing, CRM offline sync, and BigQuery warehouse architecture by MD. Juwel Rana." />
+  <meta property="og:image" content="https://juwelanalytics.com/juwel-profile.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://juwelanalytics.com/core-stack.html" />
+  <meta name="twitter:title" content="Core Stack | First-Party Data Architecture | juwelanalytics.com" />
+  <meta name="twitter:description" content="End-to-end first-party tracking, server-side routing, CRM offline sync, and BigQuery warehouse architecture by MD. Juwel Rana." />
+  <meta name="twitter:image" content="https://juwelanalytics.com/juwel-profile.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            slateBg: '#F8FAFC',
+            ink: '#0F172A',
+            muted: '#475569',
+            brand: '#1D4ED8',
+            brandHover: '#1E40AF',
+            verified: '#0D9488',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .bg-dot-grid {
+      background-color: #F8FAFC;
+      background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="bg-slateBg text-ink font-sans antialiased selection:bg-blue-100 selection:text-brand">
+
+  <!-- STICKY NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight text-ink">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand"></span>
+        <span>juwelanalytics<span class="text-slate-400 font-normal">.com</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
+        <a href="index.html" class="hover:text-ink transition-colors">Home</a>
+        <a href="core-stack.html" class="text-ink font-semibold">Core Stack</a>
+        <a href="setups.html" class="hover:text-ink transition-colors">Real Setups</a>
+        <a href="work-with-me.html" class="hover:text-ink transition-colors">Audit and Process</a>
+        <a href="index.html#about" class="hover:text-ink transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="https://calendly.com/mdjuwelrana/free" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+          Book a Free Call
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="bg-dot-grid border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono text-muted">
+          <span class="w-2 h-2 rounded-full bg-verified"></span>
+          <span>CORE ENGINEERING DOMAINS</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-[1.15]">
+          Beyond basic pixels: end-to-end first-party data systems.
+        </h1>
+        <p class="text-base sm:text-lg text-muted leading-relaxed">
+          Engineered for B2B agencies, performance teams, and service brands dealing with strict privacy regulations, multi-touch CRM funnels, iFrame drop-offs, and unnecessary SaaS overhead.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+          <a href="#infra" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">01. Zero-Cost sGTM</a>
+          <a href="#crm-oct" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">02. CRM and Offline Sync</a>
+          <a href="#governance" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">03. CDPs and Consent v2</a>
+          <a href="#warehouse" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">04. BigQuery and BI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED 4 PILLARS -->
+  <section class="py-16 md:py-20 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+
+      <!-- Pillar 01 -->
+      <article id="infra" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <span class="text-xs font-mono font-semibold text-brand">01 / INFRASTRUCTURE AND SIGNAL RECOVERY</span>
+          <span class="text-xs font-mono px-2.5 py-0.5 bg-teal-50 text-verified rounded border border-teal-200">$0 Monthly Hosting</span>
+        </div>
+        <h2 class="text-2xl font-bold text-ink mb-3">Server-Side Tracking and Zero-Cost Infra</h2>
+        <p class="text-sm sm:text-base text-muted mb-6">
+          Eliminate recurring monthly server-side hosting bills while recovering conversion signals lost to ad blockers, browser restrictions, and Safari ITP cookie expiration.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Cloudflare Workers sGTM</h3>
+            <p class="text-muted text-xs leading-relaxed">Lightweight edge routing on your own first-party subdomain without monthly Stape or Taggrs recurring fees.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Server Conversion APIs</h3>
+            <p class="text-muted text-xs leading-relaxed">Meta CAPI, Google Ads OCT, and TikTok CAPI configured with strict <code class="font-mono bg-white px-1 rounded">SHA-256</code> PII hashing and event deduplication.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Cookie and Privacy Resilience</h3>
+            <p class="text-muted text-xs leading-relaxed">Custom Transport URLs, HttpOnly first-party cookie extension, and server-side PII masking before third-party dispatch.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Pillar 02 -->
+      <article id="crm-oct" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <span class="text-xs font-mono font-semibold text-brand">02 / REVENUE AND CALL ATTRIBUTION</span>
+          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">Offline Sync</span>
+        </div>
+        <h2 class="text-2xl font-bold text-ink mb-3">CRM and Offline Conversion Pipelines</h2>
+        <p class="text-sm sm:text-base text-muted mb-6">
+          Train ad algorithms on qualified pipeline stages and closed revenue instead of raw, unqualified form submissions.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Full-Funnel CRM and Call Sync</h3>
+            <p class="text-muted text-xs leading-relaxed">Connecting GoHighLevel (GHL), HubSpot, and CallRail for verified offline call and deal attribution.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Stage-Based Conversion Events</h3>
+            <p class="text-muted text-xs leading-relaxed">Automated webhooks and Apps Script pipelines firing <code class="font-mono bg-white px-1 rounded">Lead → MQL → Closed Won</code> back to ad platforms.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Cross-Frame Storage Scripts</h3>
+            <p class="text-muted text-xs leading-relaxed">Deterministic JavaScript persistence for UTMs, <code class="font-mono bg-white px-1 rounded">gclid</code>, and <code class="font-mono bg-white px-1 rounded">fbclid</code> across embedded booking and form iFrames.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Pillar 03 -->
+      <article id="governance" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <span class="text-xs font-mono font-semibold text-brand">03 / GOVERNANCE AND DATA ROUTING</span>
+          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">DMA Compliant</span>
+        </div>
+        <h2 class="text-2xl font-bold text-ink mb-3">Multi-Platform Attribution and CDPs</h2>
+        <p class="text-sm sm:text-base text-muted mb-6">
+          Maintain clean event routing, full regulatory compliance, and single-source-of-truth reconciliation across marketing and analytics platforms.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Attribution Stack Reconciliation</h3>
+            <p class="text-muted text-xs leading-relaxed">Auditing and aligning Triple Whale, RedTrack, and AnyTrack setups against raw backend orders and CRM records.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">CDPs and Sovereign Analytics</h3>
+            <p class="text-muted text-xs leading-relaxed">Twilio Segment CDP event routing and self-hosted Matomo analytics for complete first-party data ownership.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Consent Mode v2 and DMA</h3>
+            <p class="text-muted text-xs leading-relaxed">Granular Cookiebot and OneTrust mapping so privacy consent signals never break conversion modeling accuracy.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Pillar 04 -->
+      <article id="warehouse" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <span class="text-xs font-mono font-semibold text-brand">04 / WAREHOUSE AND EXECUTIVE BI</span>
+          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">SQL + Product</span>
+        </div>
+        <h2 class="text-2xl font-bold text-ink mb-3">Business Intelligence and Product Analytics</h2>
+        <p class="text-sm sm:text-base text-muted mb-6">
+          Move beyond sampled UI dashboards with warehouse-grade SQL modeling, product funnel diagnostics, and executive revenue reporting.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Raw GA4 to BigQuery Pipelines</h3>
+            <p class="text-muted text-xs leading-relaxed">Unsampled event streaming and custom SQL modeling free from GA4 UI thresholding and data retention limits.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Mixpanel Product Analytics</h3>
+            <p class="text-muted text-xs leading-relaxed">Clean event schemas, checkout funnel drop-off diagnostics, and user retention cohort tracking.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h3 class="font-bold text-ink mb-1.5">Executive Looker Studio BI</h3>
+            <p class="text-muted text-xs leading-relaxed">Decision-ready reporting uniting ad spend with AOV, customer cohorts, churn, and return rates.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- NEXT STEP CTA -->
+  <section class="bg-white py-14 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <h2 class="text-2xl font-bold text-ink">Want to see these systems in production?</h2>
+        <p class="text-sm text-muted mt-1">Explore real implementation breakdowns or send your current stack for a tailored review.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3.5">
+        <a href="setups.html" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+          Explore Real Setups →
+        </a>
+        <a href="index.html#contact" class="px-5 py-3 text-sm font-semibold text-ink bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-lg transition-colors">
+          Send Your Tech Stack
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-slate-400 py-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div>
+        <span class="text-white font-semibold">juwelanalytics.com</span> | First-Party Data Architect
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="index.html" class="hover:text-white transition-colors">Home</a>
+        <a href="core-stack.html" class="text-white font-medium">Core Stack</a>
+        <a href="setups.html" class="hover:text-white transition-colors">Real Setups</a>
+        <a href="work-with-me.html" class="hover:text-white transition-colors">Audit and Process</a>
+        <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+        <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">YouTube</a>
+        <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp</a>
+      </div>
+      <div>
+        © 2026 MD. Juwel Rana. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
