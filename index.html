@@ -1,505 +1,505 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TBX5XPNK');</script>
-<!-- End Google Tag Manager -->
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juwel Analytics — First-Party Data Architect</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brandDark: '#0B0F19',
-                        brandCard: '#111827',
-                        brandBorder: '#1E293B',
-                        brandAccent: '#10B981',
-                    }
-                }
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD. Juwel Rana — First-Party Data Architect</title>
+  <meta name="description" content="First-Party Data Architect specializing in zero-cost sGTM on Cloudflare Workers, CRM offline conversion pipelines, CDPs, Consent Mode v2, BigQuery SQL, and BI reporting." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            slateBg: '#F8FAFC',
+            ink: '#0F172A',
+            muted: '#475569',
+            brand: '#1D4ED8',
+            brandHover: '#1E40AF',
+            verified: '#0D9488',
+          }
         }
-    </script>
-    
-<!-- WEBSITE FAVICON / URL BAR LOGO -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    
+      }
+    }
+  </script>
+  <style>
+    .bg-dot-grid {
+      background-color: #F8FAFC;
+      background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
 </head>
-<body class="bg-brandDark text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-black">
+<body class="bg-slateBg text-ink font-sans antialiased selection:bg-blue-100 selection:text-brand">
 
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBX5XPNK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <!-- STICKY NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight text-ink">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand"></span>
+        <span>mdjuwelrana<span class="text-slate-400 font-normal">.com</span></span>
+      </a>
 
-    <!-- NAVIGATION HEADER WITH RESPONSIVE BLOG DROPDOWN -->
-<header class="sticky top-0 z-50 backdrop-blur-md bg-brandDark/80 border-b border-brandBorder">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        
-        <!-- BRAND LOGO -->
-        <a href="index.html" class="flex items-center gap-3 text-xl font-extrabold tracking-wider text-white group">
-            <img src="juwel-profile.png" alt="Juwel Analytics Logo" class="w-9 h-9 rounded-full object-cover object-top border border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.3)] group-hover:scale-105 transition-transform">
-            <span>JUWEL<span class="text-brandAccent">ANALYTICS</span></span>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
+        <a href="index.html#architecture" class="text-ink font-semibold">Core Stack</a>
+        <a href="setups.html" class="hover:text-ink transition-colors">Real Setups</a>
+        <a href="work-with-me.html" class="hover:text-ink transition-colors">Audit &amp; Process</a>
+        <a href="index.html#about" class="hover:text-ink transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="https://calendly.com/mdjuwelrana/free" target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+          Book a Free Call
         </a>
-        
-        <!-- DESKTOP NAV WITH HOVER DROPDOWN -->
-        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-            <a href="index.html" class="hover:text-brandAccent transition-colors">Home</a>
-            <a href="about.html" class="hover:text-brandAccent transition-colors">About</a>
-            <a href="services.html" class="hover:text-brandAccent transition-colors">Services</a>
-            <a href="case-study.html" class="hover:text-brandAccent transition-colors">Case Study</a>
-            
-            <!-- BLOG DROPDOWN (DESKTOP) -->
-            <div class="relative group py-5">
-                <a href="blog.html" class="flex items-center gap-1 hover:text-brandAccent transition-colors text-brandAccent font-semibold">
-                    <span>Blog</span>
-                    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </a>
-
-                <!-- DROPDOWN BOX -->
-                <div class="absolute top-full left-0 w-72 bg-brandCard border border-brandBorder rounded-2xl shadow-2xl py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                    <div class="px-4 py-2 border-b border-brandBorder/60 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                        Marketing Attribution / OCT
-                    </div>
-                    <a href="blog.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors font-bold">
-                        ⚡ All Knowledge Hub (Hub)
-                    </a>
-                    <a href="oct-free-solution.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors">
-                        🟢 Form OCT (Free Method - $0/Mo)
-                    </a>
-                    <a href="oct-paid-solution.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">
-                        💎 Form OCT (Paid Automation)
-                    </a>
-                    <a href="call-oct-free.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-brandAccent transition-colors">
-                        📞 Call OCT (Free Inbound Guide)
-                    </a>
-                    <a href="call-oct-paid.html" class="block px-4 py-2.5 text-xs text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">
-                        ⚡ Call OCT (Paid DNI & Webhooks)
-                    </a>
-                </div>
-            </div>
-
-            <a href="contact.html" class="hover:text-brandAccent transition-colors">Contact</a>
-        </nav>
-
-        <!-- DESKTOP CTA -->
-        <div class="hidden md:flex items-center space-x-4">
-            <a href="contact.html?booking=true" class="bg-brandAccent text-brandDark font-bold px-4 py-2 rounded-lg text-sm hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                Book Free Audit
-            </a>
-        </div>
-
-        <!-- MOBILE HAMBURGER BUTTON -->
-        <button id="menu-btn" class="md:hidden text-slate-300 focus:outline-none focus:text-brandAccent p-2">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        </button>
+      </div>
     </div>
+  </header>
 
-    <!-- MOBILE DROPDOWN MENU -->
-    <div id="mobile-menu" class="hidden md:hidden bg-brandCard border-b border-brandBorder px-4 pt-4 pb-6 space-y-3">
-        <a href="index.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Home</a>
-        <a href="about.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">About</a>
-        <a href="services.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Services</a>
-        <a href="case-study.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Case Study</a>
+  <!-- HERO SECTION -->
+  <section class="bg-dot-grid border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <!-- MOBILE ACCORDION / TOGGLE FOR BLOG SUB-CATEGORIES -->
-        <div class="py-1 space-y-2 border-l-2 border-brandAccent pl-3 my-2 bg-slate-900/50 p-3 rounded-xl">
-            <div class="flex items-center justify-between">
-                <a href="blog.html" class="text-brandAccent font-bold text-xs">📝 Blog & OCT Hub</a>
-                <button id="sub-menu-toggle" class="text-xs text-slate-400 underline focus:outline-none">Expand</button>
-            </div>
-            
-            <div id="blog-sub-items" class="space-y-1.5 pt-1">
-                <a href="oct-free-solution.html" class="block text-slate-300 hover:text-brandAccent text-xs py-1">🟢 Form OCT (Free Method)</a>
-                <a href="oct-paid-solution.html" class="block text-slate-300 hover:text-cyan-400 text-xs py-1">💎 Form OCT (Paid Automation)</a>
-                <a href="call-oct-free.html" class="block text-slate-300 hover:text-brandAccent text-xs py-1">📞 Call OCT (Free Method)</a>
-                <a href="call-oct-paid.html" class="block text-slate-300 hover:text-cyan-400 text-xs py-1">⚡ Call OCT (Paid DNI & Webhooks)</a>
-            </div>
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono text-muted">
+            <span class="w-2 h-2 rounded-full bg-verified"></span>
+            <span>FIRST-PARTY DATA ARCHITECT</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-[1.15]">
+            First-Party Data Architect
+          </h1>
+
+          <p class="text-base sm:text-lg text-muted leading-relaxed">
+            Helping B2B agencies, marketers, and service-based brands fix tracking gaps, signal loss, and attribution issues through clean data analysis and performance reporting. Working across <span class="text-ink font-medium">AI agents, automation, sGTM, GA4, BigQuery SQL, Looker Studio, Meta CAPI, Google Ads OCT, Cloudflare Workers, Apps Script, and CRMs (GHL, HubSpot, CallRail)</span>, my passion is to try, test, and verify—building custom solutions and lightweight systems that solve the common gaps of expensive paid tools with better accuracy and performance.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-3.5">
+            <a href="#contact" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+              Send Your Tech Stack
+            </a>
+            <a href="setups.html" class="px-5 py-3 text-sm font-semibold text-ink bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors">
+              Explore Real Setups →
+            </a>
+          </div>
+
+          <div class="pt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-slate-500">
+            <span>✓ Zero-cost Cloudflare sGTM</span>
+            <span>✓ SHA-256 PII Hashing &amp; DMA Ready</span>
+            <span>✓ Try, test &amp; verify workflow</span>
+          </div>
         </div>
 
-        <a href="contact.html" class="block text-slate-300 hover:text-brandAccent font-medium text-sm py-1">Contact</a>
-        <div class="pt-2">
-            <a href="contact.html?booking=true" class="block text-center bg-brandAccent text-brandDark font-bold px-4 py-2.5 rounded-lg text-sm">Book Free Audit</a>
+        <!-- Right: Technical Pipeline Diagram -->
+        <div class="lg:col-span-5">
+          <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-xs">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+              <span class="text-xs font-mono font-semibold text-slate-500 uppercase">First-Party Architecture</span>
+              <span class="px-2 py-0.5 text-[11px] font-mono bg-teal-50 text-verified border border-teal-200 rounded">Production Flow</span>
+            </div>
+
+            <div class="space-y-3 font-mono text-xs">
+              <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+                <div class="text-[11px] text-slate-400 mb-1">01. EDGE &amp; CLIENT CAPTURE</div>
+                <div class="font-semibold text-ink">Custom Transport URL + iFrame Scripts</div>
+                <div class="text-[11px] text-muted mt-1">gclid • fbclid • Safari ITP Extension • Consent v2</div>
+              </div>
+
+              <div class="flex justify-center text-slate-400">↓</div>
+
+              <div class="p-3.5 rounded-lg bg-blue-50/60 border border-blue-200">
+                <div class="text-[11px] text-brand mb-1">02. SERVER, CDP &amp; AUTOMATION</div>
+                <div class="font-semibold text-ink">Cloudflare Workers sGTM + Segment + Scripts</div>
+                <div class="text-[11px] text-muted mt-1">SHA-256 PII Hashing • Server PII Masking</div>
+              </div>
+
+              <div class="flex justify-center text-slate-400">↓</div>
+
+              <div class="grid grid-cols-2 gap-2.5">
+                <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                  <div class="text-[10px] text-slate-400">OFFLINE &amp; AD APIS</div>
+                  <div class="font-semibold text-ink mt-0.5">Meta/TikTok CAPI &amp; Google OCT</div>
+                </div>
+                <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                  <div class="text-[10px] text-slate-400">WAREHOUSE &amp; BI</div>
+                  <div class="font-semibold text-ink mt-0.5">BigQuery SQL, Mixpanel &amp; Looker</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+      </div>
     </div>
-</header>
+  </section>
 
-<!-- RESPONSIVE MENU SCRIPT -->
-<script>
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const subMenuToggle = document.getElementById('sub-menu-toggle');
-    const blogSubItems = document.getElementById('blog-sub-items');
+  <!-- EXPANDED TECH STACK BAR -->
+  <section class="bg-white border-b border-slate-200 py-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-3">
+        Core Infrastructure, CDPs, Attribution &amp; Analytics Stack
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Cloudflare Workers sGTM</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Meta / TikTok CAPI</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Google Ads OCT</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">GHL / HubSpot / CallRail</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Triple Whale / RedTrack / AnyTrack</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Twilio Segment CDP</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Self-Hosted Matomo</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Consent Mode v2 (Cookiebot / OneTrust)</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Google BigQuery SQL</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Mixpanel</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Looker Studio</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Apps Script &amp; AI Agents</span>
+      </div>
+    </div>
+  </section>
 
-    if(menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
+  <!-- 4 ADVANCED ENGINEERING PILLARS -->
+  <section id="architecture" class="py-16 md:py-24 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-mono font-semibold text-brand uppercase">Core Engineering Domains</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-ink mt-2">
+          Beyond basic pixels: end-to-end first-party data systems.
+        </h2>
+        <p class="text-muted mt-3 text-base">
+          Built for teams dealing with strict privacy regulations, multi-touch CRM funnels, iFrame drop-offs, and high SaaS overhead.
+        </p>
+      </div>
 
-    if(subMenuToggle && blogSubItems) {
-        subMenuToggle.addEventListener('click', () => {
-            blogSubItems.classList.toggle('hidden');
-            subMenuToggle.textContent = blogSubItems.classList.contains('hidden') ? 'Expand' : 'Collapse';
-        });
-    }
-</script>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 space-y-20">
-
-        <!-- HERO SECTION -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- Hero Left Column -->
-            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-brandAccent text-xs font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-brandAccent animate-ping"></span>
-                    <span>FIRST-PARTY DATA ARCHITECT</span>
-                </div>
-
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-                    Stop Losing 30%+ Signal Loss To <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Ad Blockers & ITP</span>
-                </h1>
-
-                <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
-                    Standard client-side tracking is blinding your ad campaigns. Engineer resilient zero-cost server-side infrastructures using Cloudflare Workers and Meta CAPI to restore 100% conversion accuracy.
-                </p>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                    <a href="#audit" class="w-full sm:w-auto bg-brandAccent text-brandDark font-bold px-6 py-3.5 rounded-xl text-center hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]">
-                        Fix Tracking Architecture →
-                    </a>
-                    <a href="#services" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-800 text-slate-200 font-semibold px-6 py-3.5 rounded-xl border border-slate-700 text-center transition-all">
-                        Run Site Check
-                    </a>
-                </div>
-            </div>
-
-            <!-- Hero Right Column (Profile Photo) -->
-            <div class="lg:col-span-5 flex justify-center relative">
-                <div class="absolute w-64 h-64 sm:w-80 sm:h-80 bg-emerald-500/20 blur-3xl rounded-full -z-10 animate-pulse"></div>
-
-                <div class="relative rounded-2xl p-2.5 bg-brandCard/90 border border-brandBorder shadow-2xl backdrop-blur-xl max-w-sm w-full">
-                    <img 
-                        src="juwel-profile.png" 
-                        alt="Juwel Rana - Technical Data Architect" 
-                        class="rounded-xl w-full h-80 sm:h-96 object-cover object-top border border-emerald-500/30 shadow-[0_0_25px_rgba(16,185,129,0.2)]"
-                    />
-
-                    <div class="absolute -bottom-4 left-4 bg-slate-950/90 border border-emerald-500/40 text-brandAccent text-xs px-3.5 py-2 rounded-xl flex items-center gap-2 shadow-xl backdrop-blur-md">
-                        <span class="w-2.5 h-2.5 rounded-full bg-brandAccent animate-pulse"></span>
-                        <span class="font-bold tracking-wide">First-Party Data Architect</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- PROOF METRICS BAR -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-brandCard p-6 rounded-2xl border border-brandBorder shadow-lg text-center">
-            <div class="space-y-1">
-                <div class="text-2xl sm:text-3xl font-black text-brandAccent">30%+</div>
-                <div class="text-xs text-slate-400 font-medium uppercase tracking-wider">Signal Restored</div>
-            </div>
-            <div class="space-y-1 border-l border-brandBorder/60 pl-2">
-                <div class="text-2xl sm:text-3xl font-black text-brandAccent">$0 / Mo</div>
-                <div class="text-xs text-slate-400 font-medium uppercase tracking-wider">Cloudflare Worker</div>
-            </div>
-            <div class="space-y-1 border-l border-brandBorder/60 pl-2">
-                <div class="text-2xl sm:text-3xl font-black text-brandAccent">730 Days</div>
-                <div class="text-xs text-slate-400 font-medium uppercase tracking-wider">1st-Party Cookie</div>
-            </div>
-            <div class="space-y-1 border-l border-brandBorder/60 pl-2">
-                <div class="text-2xl sm:text-3xl font-black text-brandAccent">100% Raw</div>
-                <div class="text-xs text-slate-400 font-medium uppercase tracking-wider">BigQuery SQL Sync</div>
-            </div>
-        </section>
-
-        <!-- CORE SERVICES SECTION -->
-        <section id="services" class="space-y-8">
-            <div class="text-center space-y-2">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white">CORE DATA ARCHITECTURAL SERVICES</h2>
-                <p class="text-slate-400 text-sm">Production-grade tracking frameworks built for maximum attribution accuracy</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-brandCard p-6 rounded-xl border border-brandBorder hover:border-emerald-500/40 transition-all group">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2 group-hover:text-brandAccent transition-colors">
-                        🖥️ Server-Side & Zero-Cost Tracking
-                    </h3>
-                    <ul class="mt-3 space-y-2 text-sm text-slate-400 list-disc list-inside">
-                        <li>Cloudflare Workers sGTM Deployment ($0 hosting)</li>
-                        <li>Meta Conversions API (CAPI) & Google Ads OCT</li>
-                        <li>Safari ITP 1st-party cookie extension via custom DNS</li>
-                    </ul>
-                </div>
-
-                <div class="bg-brandCard p-6 rounded-xl border border-brandBorder hover:border-emerald-500/40 transition-all group">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2 group-hover:text-brandAccent transition-colors">
-                        📊 CRM & Offline Lead Pipelines
-                    </h3>
-                    <ul class="mt-3 space-y-2 text-slate-400 text-sm list-disc list-inside">
-                        <li>HubSpot & GoHighLevel stage sync via Webhooks</li>
-                        <li>Google Sheets + Apps Script automated OCT pipeline</li>
-                        <li>Form & AJAX lead dataLayer custom listeners</li>
-                    </ul>
-                </div>
-
-                <div class="bg-brandCard p-6 rounded-xl border border-brandBorder hover:border-emerald-500/40 transition-all group">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2 group-hover:text-brandAccent transition-colors">
-                        📈 Multi-Platform Attribution
-                    </h3>
-                    <ul class="mt-3 space-y-2 text-slate-400 text-sm list-disc list-inside">
-                        <li>Triple Whale, Northbeam & Hyros tracking setups</li>
-                        <li>Google Consent Mode v2 implementation</li>
-                        <li>Custom Call Tracking Integration (Twilio + Sheets)</li>
-                    </ul>
-                </div>
-
-                <div class="bg-brandCard p-6 rounded-xl border border-brandBorder hover:border-emerald-500/40 transition-all group">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2 group-hover:text-brandAccent transition-colors">
-                        📉 BI & Product Analytics
-                    </h3>
-                    <ul class="mt-3 space-y-2 text-slate-400 text-sm list-disc list-inside">
-                        <li>Raw GA4 data export to BigQuery SQL</li>
-                        <li>E-commerce conversion discrepancy auditing</li>
-                        <li>Custom Looker Studio executive dashboards</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- CLIENT TESTIMONIALS / WALL OF LOVE (SERVICE-FOCUSED 12 REVIEWS SLIDER) -->
-        <section id="testimonials" class="space-y-8 relative">
-            <div class="text-center space-y-2">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-brandAccent text-xs font-semibold">
-                    <span>⭐ WALL OF LOVE & SERVICE PROOF</span>
-                </div>
-                <h2 class="text-2xl sm:text-3xl font-bold text-white">Trusted by Global Agency Owners & B2B Founders</h2>
-                <p class="text-slate-400 text-sm">How Juwel delivered high-end tracking architecture and fixed attribution for service businesses.</p>
-            </div>
-
-            <!-- Slider Wrapper -->
-            <div class="relative overflow-hidden px-2">
-                <div id="reviews-track" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500">
-                    <!-- Dynamic Service-Focused Cards injected via JS -->
-                </div>
-            </div>
-
-            <!-- Slider Controls -->
-            <div class="flex items-center justify-between pt-4 border-t border-brandBorder/60">
-                <div id="pagination-dots" class="flex gap-2"></div>
-                <div class="flex items-center gap-3">
-                    <button onclick="prevSlide()" class="p-3 rounded-xl bg-brandCard border border-brandBorder text-slate-300 hover:text-brandAccent hover:border-emerald-500/50 transition-all">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-                    <button onclick="nextSlide()" class="p-3 rounded-xl bg-brandCard border border-brandBorder text-slate-300 hover:text-brandAccent hover:border-emerald-500/50 transition-all">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- AUDIT & CALENDLY BOOKING SECTION -->
-        <section id="audit" class="bg-brandCard p-8 sm:p-12 rounded-2xl border border-brandBorder space-y-6 text-center max-w-4xl mx-auto my-12">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-brandAccent text-xs font-semibold">
-                <span>⚡ 1-ON-1 TRACKING AUDIT</span>
-            </div>
-            
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
-                Ready To Fix Your First-Party Data Pipeline?
-            </h2>
-            
-            <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
-                Book a direct 15-minute technical audit call to inspect your tracking setup, ad signal loss, and Cloudflare server-side readiness.
-            </p>
-
-            <div class="pt-4">
-                <a href="contact.html?booking=true" class="bg-brandAccent text-brandDark font-bold px-6 py-3 rounded-xl text-sm hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] inline-flex items-center gap-2">
-    📅 Schedule Free Audit On Calendly
-</a>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- PROFESSIONAL FOOTER -->
-<footer class="bg-brandCard border-t border-brandBorder py-12 px-4 sm:px-6 lg:px-8 mt-20">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        <!-- BRAND & COPYRIGHT -->
-        <div class="text-center md:text-left space-y-2">
-            <a href="index.html" class="text-lg font-bold text-white tracking-wider">
-                JUWEL<span class="text-brandAccent">ANALYTICS</span>
-            </a>
-            <p class="text-xs text-slate-400">
-                &copy; 2026 Juwel Rana. First-Party Data Architect. All rights reserved.
-            </p>
+        <!-- Pillar 01 -->
+        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-semibold text-brand">01 / INFRASTRUCTURE &amp; SIGNAL RECOVERY</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 bg-teal-50 text-verified rounded border border-teal-200">$0 Monthly Hosting</span>
+            </div>
+            <h3 class="text-xl font-bold text-ink mb-4">Server-Side Tracking &amp; Zero-Cost Infra</h3>
+            <ul class="space-y-3 text-sm text-muted">
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Cloudflare Workers &amp; sGTM Deployment:</strong> Lightweight edge routing with zero Stape or Taggrs monthly recurring fees.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Server-Side Conversion APIs:</strong> Meta CAPI, Google Ads OCT, and TikTok CAPI configured with strict <code class="font-mono text-xs bg-slate-100 px-1 rounded">SHA-256</code> PII hashing.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Privacy &amp; Cookie Resilience:</strong> Custom Transport URLs, Safari ITP cookie extension, and server-side PII masking before third-party dispatch.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-5 mt-6 border-t border-slate-100">
+            <a href="work-with-me.html#infra" class="text-sm font-semibold text-brand hover:underline">See audit &amp; deployment scope →</a>
+          </div>
         </div>
 
-        <!-- SOCIAL & DIRECT CHANNELS LOGOS -->
-        <div class="flex items-center flex-wrap justify-center gap-3">
-            
-            <!-- Gmail -->
-<a href="contact.html" title="Contact & Inquiries" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl flex items-center justify-center hover:border-brandAccent/50">                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </a>
-
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl flex items-center justify-center hover:border-brandAccent/50">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-
-            <!-- Twitter / X -->
-            <a href="https://x.com/juwelanalytics" target="_blank" rel="noopener noreferrer" title="Twitter / X" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl flex items-center justify-center hover:border-brandAccent/50">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/juwelanalytics" target="_blank" rel="noopener noreferrer" title="Facebook Page" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl flex items-center justify-center hover:border-brandAccent/50">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.75V8z"/></svg>
-            </a>
-
-            <!-- WhatsApp -->
-            <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer" title="WhatsApp Chat" class="text-slate-400 hover:text-brandAccent transition-colors p-2.5 bg-slate-900 border border-brandBorder rounded-xl flex items-center justify-center hover:border-brandAccent/50">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            </a>
-
+        <!-- Pillar 02 -->
+        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-semibold text-brand">02 / REVENUE &amp; CALL ATTRIBUTION</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Offline Sync</span>
+            </div>
+            <h3 class="text-xl font-bold text-ink mb-4">CRM &amp; Offline Conversion Pipelines</h3>
+            <ul class="space-y-3 text-sm text-muted">
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Full-Funnel CRM &amp; Call Integration:</strong> Connecting GoHighLevel (GHL), HubSpot, and CallRail for verified offline call and deal attribution.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Stage-Based Conversion Sync:</strong> Automated webhook and API pipelines firing events from <code class="font-mono text-xs bg-slate-100 px-1 rounded">Lead → MQL → Closed Won</code> back to ad platforms.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Custom iFrame &amp; Storage Scripting:</strong> Cross-frame JavaScript persistence to capture UTMs, <code class="font-mono text-xs bg-slate-100 px-1 rounded">gclid</code>, and <code class="font-mono text-xs bg-slate-100 px-1 rounded">fbclid</code> without parameter loss.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-5 mt-6 border-t border-slate-100">
+            <a href="setups.html#oct-pipeline" class="text-sm font-semibold text-brand hover:underline">View CRM &amp; OCT setup breakdown →</a>
+          </div>
         </div>
 
+        <!-- Pillar 03 -->
+        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-semibold text-brand">03 / GOVERNANCE &amp; DATA ROUTING</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-100 text-slate-700 rounded">DMA Compliant</span>
+            </div>
+            <h3 class="text-xl font-bold text-ink mb-4">Multi-Platform Attribution &amp; CDPs</h3>
+            <ul class="space-y-3 text-sm text-muted">
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Attribution Stack Alignment:</strong> Reconciling and debugging Triple Whale, RedTrack, and AnyTrack setups against raw backend orders.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">CDPs &amp; Sovereign Analytics:</strong> Twilio Segment CDP event routing and self-hosted Matomo analytics for complete first-party data control.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Consent Mode v2 &amp; DMA Compliance:</strong> Granular tag mapping with Cookiebot and OneTrust so consent signals never break conversion modeling.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-5 mt-6 border-t border-slate-100">
+            <a href="work-with-me.html#governance" class="text-sm font-semibold text-brand hover:underline">Check Consent &amp; CDP architecture →</a>
+          </div>
+        </div>
+
+        <!-- Pillar 04 -->
+        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-semibold text-brand">04 / WAREHOUSE &amp; EXECUTIVE BI</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-100 text-slate-700 rounded">SQL + Product</span>
+            </div>
+            <h3 class="text-xl font-bold text-ink mb-4">Business Intelligence &amp; Product Analytics</h3>
+            <ul class="space-y-3 text-sm text-muted">
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Raw GA4 to BigQuery Pipelines:</strong> Unsampled event streaming and custom SQL modeling that bypasses GA4 UI limits and thresholding.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Mixpanel Product &amp; E-Commerce Analytics:</strong> Clean event schemas, checkout funnel drop-off mapping, and user retention cohorts.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-mono mt-0.5">▪</span>
+                <span><strong class="text-ink">Executive Looker Studio Dashboards:</strong> Decision-ready reporting uniting ad spend with AOV, customer cohorts, churn, and return rates.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-5 mt-6 border-t border-slate-100">
+            <a href="setups.html#bigquery-bi" class="text-sm font-semibold text-brand hover:underline">See BigQuery &amp; BI architecture →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
-</footer>
+  </section>
 
-    <!-- SERVICE-FOCUSED TESTIMONIAL SCRIPT WITH AUTOPLAY -->
-    <script>
-        const reviews = [
-            { name: "Sarah Davies", country: "🇺🇸 USA", role: "Agency Director", headline: "Flawless Cloudflare sGTM Setup", text: "Juwel architected our entire server-side tracking infrastructure. His technical precision and zero-cost setup saved our agency thousands." },
-            { name: "David Miller", country: "🇬🇧 UK", role: "B2B SaaS Founder", headline: "Complete Attribution Clarity", text: "Working with Juwel was exceptional. He cleaned up our HubSpot webhooks and synced offline conversion leads seamlessly." },
-            { name: "Alexander Weber", country: "🇩🇪 Germany", role: "Growth Consultant", headline: "Unmatched Technical Authority", text: "Juwel solved our Safari ITP cookie tracking issues in days. His deep architectural knowledge of Meta CAPI is world-class." },
-            { name: "Michael Schmidt", country: "🇨🇦 Canada", role: "Performance Lead", headline: "Precise Data & Zero Server Fees", text: "The custom Apps Script pipeline Juwel built for our client accounts eliminated data discrepancy issues between GA4 and CRM." },
-            { name: "Emma Larsson", country: "🇸🇪 Sweden", role: "Managing Director", headline: "Exceptional Service Architecture", text: "Juwel audited our multi-platform tracking setup with extreme clarity. Highly professional execution from start to finish." },
-            { name: "Lucas Moreau", country: "🇫🇷 France", role: "Digital Agency Owner", headline: "Our Go-To Tracking Partner", text: "Whenever our agency needs complex data pipelines or Consent Mode v2 setups, Juwel is the only architect we trust." },
-            { name: "Liam O'Connor", country: "🇦🇺 Australia", role: "Operations Head", headline: "Solved Our Lead Blind Spots", text: "Juwel’s custom dataLayer form listeners and server-side routing restored complete visibility over our inbound pipeline." },
-            { name: "Katarina Novak", country: "🇦🇹 Austria", role: "Analytics Lead", headline: "World-Class Server Tagging", text: "Brilliant implementation of Cloudflare Workers for sGTM. Juwel delivered robust, production-grade tracking code." },
-            { name: "Mateo Fernandez", country: "🇪🇸 Spain", role: "Tech Solutions Partner", headline: "Deep Expertise in Data Architecture", text: "Juwel's architectural guidance helped us bypass ad-blockers and achieve high event match scores consistently." },
-            { name: "Chloe Dupont", country: "🇨🇭 Switzerland", role: "Client Success Manager", headline: "Reliable & Detail-Oriented", text: "Juwel handled our conversion tracking migration with zero downtime. Exceptional professionalism throughout." },
-            { name: "Soren Jensen", country: "🇩🇰 Denmark", role: "Strategy Director", headline: "Top-Tier Technical Implementation", text: "The cleanest GTM and server container configuration we have experienced. Juwel truly understands first-party data." },
-            { name: "Elena Rostova", country: "🇳🇱 Netherlands", role: "Principal Consultant", headline: "Transformed Our Client Reporting", text: "Juwel optimized our entire tracking stack. Our data integrity and attribution accuracy have never been higher." }
-        ];
+  <!-- CUSTOM SYSTEMS VS PAID TOOLS -->
+  <section class="bg-white py-16 md:py-20 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-2xl mb-10">
+        <span class="text-xs font-mono font-semibold text-brand uppercase">Try, Test &amp; Verify</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-ink mt-2">
+          Custom engineered pipelines vs. bloated SaaS stacks.
+        </h2>
+        <p class="text-muted mt-2 text-base">
+          Paid middleware often introduces latency, black-box matching, and unnecessary monthly costs. I test and verify custom builds that give you full ownership.
+        </p>
+      </div>
 
-        let currentIndex = 0;
-        let autoSlideInterval;
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 sm:p-7 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-mono text-slate-500 uppercase mb-1">Standard Off-the-Shelf Approach</div>
+          <h3 class="text-lg font-bold text-ink mb-4">Paid Hosting &amp; Plug-and-Play Connectors</h3>
+          <ul class="space-y-3 text-sm text-muted">
+            <li class="flex items-start gap-2.5"><span class="text-slate-400 font-mono">✕</span><span>Ongoing monthly bills for sGTM hosting, webhook bridges, and attribution tools.</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-slate-400 font-mono">✕</span><span>Click IDs drop silently inside embedded GHL/HubSpot iFrames or cross-domain redirects.</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-slate-400 font-mono">✕</span><span>GA4 UI sampling and thresholding hide true channel-level conversion paths.</span></li>
+          </ul>
+        </div>
 
-        function getCardsPerView() {
-            if (window.innerWidth >= 1024) return 3;
-            if (window.innerWidth >= 768) return 2;
-            return 1;
-        }
+        <div class="p-6 sm:p-7 rounded-xl bg-blue-50/40 border border-blue-200">
+          <div class="text-xs font-mono text-brand uppercase mb-1">My Custom Architecture</div>
+          <h3 class="text-lg font-bold text-ink mb-4">Lightweight First-Party Systems</h3>
+          <ul class="space-y-3 text-sm text-ink">
+            <li class="flex items-start gap-2.5"><span class="text-verified font-mono font-bold">✓</span><span><strong>Cloudflare Workers + Apps Script:</strong> Enterprise reliability at near-zero infrastructure cost.</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-verified font-mono font-bold">✓</span><span><strong>Custom Cross-Frame Scripts:</strong> Deterministic <code class="font-mono text-xs bg-white px-1 rounded">gclid</code>, <code class="font-mono text-xs bg-white px-1 rounded">fbclid</code> &amp; UTM persistence.</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-verified font-mono font-bold">✓</span><span><strong>Raw BigQuery SQL + Verified CAPI/OCT:</strong> Full transparency and auditability in your own cloud.</span></li>
+          </ul>
+        </div>
+      </div>
 
-        function renderReviews() {
-            const track = document.getElementById('reviews-track');
-            const dotsContainer = document.getElementById('pagination-dots');
-            if (!track || !dotsContainer) return;
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a href="setups.html" class="px-5 py-2.5 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+          Read Real Architecture Breakdowns →
+        </a>
+        <a href="work-with-me.html" class="px-5 py-2.5 text-sm font-semibold text-ink bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors">
+          See How an Audit Works
+        </a>
+      </div>
+    </div>
+  </section>
 
-            track.innerHTML = '';
-            dotsContainer.innerHTML = '';
+  <!-- ABOUT & DIRECT CONTACT -->
+  <section id="about" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <div class="flex items-center gap-4">
+            <img src="juwel-profile.png" alt="MD. Juwel Rana — First-Party Data Architect"
+                 class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-sm bg-slate-200" />
+            <div>
+              <h2 class="text-xl font-bold text-ink">MD. Juwel Rana</h2>
+              <p class="text-sm font-mono text-brand">First-Party Data Architect</p>
+              <a href="https://maps.app.goo.gl/2mWvtShyHri3o78D7" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-xs text-muted hover:text-ink mt-1">
+                <span>📍 Rajshahi, Bangladesh (Global Remote)</span>
+              </a>
+            </div>
+          </div>
 
-            const cardsPerView = getCardsPerView();
-            const maxIndex = Math.max(0, reviews.length - cardsPerView);
-            if (currentIndex > maxIndex) currentIndex = maxIndex;
+          <p class="text-sm text-muted leading-relaxed">
+            I work directly with B2B agencies, performance marketers, and service-based brands to solve complex tracking and attribution problems. My daily obsession is testing edge cases—building zero-cost server-side endpoints, custom iFrame scripts, and SQL pipelines that outperform expensive off-the-shelf setups.
+          </p>
 
-            // Render visible cards
-            for (let i = 0; i < cardsPerView; i++) {
-                const reviewIndex = (currentIndex + i) % reviews.length;
-                const r = reviews[reviewIndex];
-                
-                const card = document.createElement('div');
-                card.className = "bg-brandCard border border-brandBorder p-6 rounded-2xl flex flex-col justify-between hover:border-emerald-500/40 transition-all shadow-xl backdrop-blur-md";
-                card.innerHTML = `
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <div class="flex text-amber-400 text-sm">★★★★★</div>
-                            <span class="text-xs font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">${r.country}</span>
-                        </div>
-                        <h4 class="text-white font-bold text-base tracking-tight">${r.headline}</h4>
-                        <p class="text-slate-300 text-sm leading-relaxed">"${r.text}"</p>
-                    </div>
-                    <div class="pt-5 mt-5 border-t border-brandBorder/80 flex items-center justify-between">
-                        <div>
-                            <div class="text-white font-bold text-sm">${r.name}</div>
-                            <div class="text-slate-400 text-xs">${r.role}</div>
-                        </div>
-                        <span class="text-[10px] font-mono text-brandAccent bg-emerald-500/10 px-2 py-1 rounded-full border border-emerald-500/20">Verified Client</span>
-                    </div>
-                `;
-                track.appendChild(card);
-            }
+          <div class="pt-2 space-y-2.5 text-sm">
+            <div class="text-xs font-mono uppercase text-slate-400">Direct Channels</div>
+            <div class="flex flex-col space-y-2">
+              <a href="https://wa.link/h16xqx" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ink hover:text-brand font-medium">
+                <span class="font-mono text-xs text-verified">WhatsApp:</span> Message directly →
+              </a>
+              <a href="mailto:digitrackerbd@gmail.com" class="inline-flex items-center gap-2 text-ink hover:text-brand font-medium">
+                <span class="font-mono text-xs text-slate-500">Email:</span> digitrackerbd@gmail.com
+              </a>
+              <a href="https://www.linkedin.com/in/mdjuwelrana/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ink hover:text-brand font-medium">
+                <span class="font-mono text-xs text-slate-500">LinkedIn:</span> /in/mdjuwelrana
+              </a>
+              <a href="https://www.youtube.com/@mdjuwelrana" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ink hover:text-brand font-medium">
+                <span class="font-mono text-xs text-slate-500">YouTube:</span> @mdjuwelrana
+              </a>
+            </div>
+          </div>
+        </div>
 
-            // Render Dots
-            const totalDots = maxIndex + 1;
-            for (let d = 0; d < totalDots; d++) {
-                const dot = document.createElement('button');
-                dot.className = `h-2 rounded-full transition-all ${d === currentIndex ? 'w-6 bg-brandAccent' : 'w-2 bg-slate-700 hover:bg-slate-600'}`;
-                dot.onclick = () => {
-                    currentIndex = d;
-                    renderReviews();
-                    resetAutoSlide();
-                };
-                dotsContainer.appendChild(dot);
-            }
-        }
+        <div id="contact" class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 mb-6 border-b border-slate-100">
+            <div>
+              <h3 class="text-xl font-bold text-ink">Send Your Tech Stack</h3>
+              <p class="text-xs text-muted mt-1">Share what tools you use and where conversions or data are dropping.</p>
+            </div>
+            <a href="https://calendly.com/mdjuwelrana/free" target="_blank" rel="noopener" class="text-xs font-mono font-semibold text-brand hover:underline shrink-0">
+              Or book Calendly →
+            </a>
+          </div>
 
-        function nextSlide() {
-            const cardsPerView = getCardsPerView();
-            const maxIndex = Math.max(0, reviews.length - cardsPerView);
-            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-            renderReviews();
-            resetAutoSlide();
-        }
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+            <input type="hidden" name="access_key" value="7ab234f3-43da-406c-866e-33c9473e9283" />
+            <input type="hidden" name="subject" value="New Tracking Inquiry from mdjuwelrana.com" />
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
-        function prevSlide() {
-            const cardsPerView = getCardsPerView();
-            const maxIndex = Math.max(0, reviews.length - cardsPerView);
-            currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-            renderReviews();
-            resetAutoSlide();
-        }
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-xs font-semibold text-ink mb-1.5">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Alex Morgan"
+                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
+              </div>
+              <div>
+                <label for="email" class="block text-xs font-semibold text-ink mb-1.5">Work Email or WhatsApp</label>
+                <input type="text" id="email" name="email" required placeholder="alex@agency.com"
+                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
+              </div>
+            </div>
 
-        // Auto-play functionality
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                const cardsPerView = getCardsPerView();
-                const maxIndex = Math.max(0, reviews.length - cardsPerView);
-                currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-                renderReviews();
-            }, 4000); // Change slide every 4 seconds
-        }
+            <div>
+              <label for="stack" class="block text-xs font-semibold text-ink mb-1.5">Current Stack (e.g., sGTM, GA4, BigQuery, GHL, HubSpot, CallRail)</label>
+              <input type="text" id="stack" name="tech_stack" placeholder="Cloudflare + GTM + GHL + Google Ads + BigQuery"
+                     class="w-full px-3.5 py-2.5 text-sm font-mono bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
+            </div>
 
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
+            <div>
+              <label for="message" class="block text-xs font-semibold text-ink mb-1.5">What tracking, attribution, or reporting gap are you trying to solve?</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Briefly describe the leak or custom pipeline you need..."
+                        class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors"></textarea>
+            </div>
 
-        // Pause autoplay when mouse hovers over the slider container
-        const testimonialSection = document.getElementById('testimonials');
-        if (testimonialSection) {
-            testimonialSection.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-            testimonialSection.addEventListener('mouseleave', () => startAutoSlide());
-        }
+            <div class="pt-1 flex flex-wrap items-center justify-between gap-4">
+              <button type="submit" id="submitBtn"
+                      class="px-6 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
+                Send Message
+              </button>
+              <span class="text-xs text-slate-400">Direct reply within 24 hours</span>
+            </div>
 
-        window.addEventListener('resize', renderReviews);
-        window.addEventListener('DOMContentLoaded', () => {
-            renderReviews();
-            startAutoSlide();
+            <div id="formStatus" class="hidden text-sm font-medium p-3 rounded-lg"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-slate-400 py-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div>
+        <span class="text-white font-semibold">mdjuwelrana.com</span> — First-Party Data Architect
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="setups.html" class="hover:text-white transition-colors">Real Setups</a>
+        <a href="work-with-me.html" class="hover:text-white transition-colors">Audit &amp; Process</a>
+        <a href="https://www.linkedin.com/in/mdjuwelrana/" target="_blank" rel="noopener" class="hover:text-white transition-colors">LinkedIn</a>
+        <a href="https://www.youtube.com/@mdjuwelrana" target="_blank" rel="noopener" class="hover:text-white transition-colors">YouTube</a>
+        <a href="https://wa.link/h16xqx" target="_blank" rel="noopener" class="hover:text-white transition-colors">WhatsApp</a>
+      </div>
+      <div>
+        © 2026 MD. Juwel Rana. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const statusBox = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const formData = new FormData(form);
+      const json = JSON.stringify(Object.fromEntries(formData));
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: json
         });
-    </script>
+        const result = await response.json();
+
+        statusBox.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'bg-teal-50', 'text-verified');
+        if (response.status === 200) {
+          statusBox.classList.add('bg-teal-50', 'text-verified', 'border', 'border-teal-200');
+          statusBox.textContent = 'Thanks! Your details have been sent. I will review your stack and reply soon.';
+          form.reset();
+        } else {
+          statusBox.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+          statusBox.textContent = result.message || 'Something went wrong. Please message on WhatsApp or email directly.';
+        }
+      } catch (error) {
+        statusBox.classList.remove('hidden');
+        statusBox.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+        statusBox.textContent = 'Network error. Feel free to reach out directly via WhatsApp or digitrackerbd@gmail.com.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
+    });
+  </script>
 </body>
 </html>
