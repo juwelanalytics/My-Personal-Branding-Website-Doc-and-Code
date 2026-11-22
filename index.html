@@ -71,6 +71,54 @@
       background-size: 24px 24px;
     }
   </style>
+<!-- STICKY NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight text-ink">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand"></span>
+        <span>juwelanalytics<span class="text-slate-400 font-normal">.com</span></span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
+        <a href="index.html" class="hover:text-ink transition-colors">Home</a>
+        <a href="core-stack.html" class="hover:text-ink transition-colors">Core Stack</a>
+        <a href="setups.html" class="hover:text-ink transition-colors">Real Setups</a>
+        <a href="work-with-me.html" class="hover:text-ink transition-colors">Audit and Process</a>
+        <a href="about.html" class="hover:text-ink transition-colors">About</a>
+      </nav>
+
+      <!-- Right Actions: CTA + Mobile Menu Toggle -->
+      <div class="flex items-center gap-2.5">
+        <a href="https://calendly.com/mdjuwelrana/free" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+          Book a Free Call
+        </a>
+
+        <button type="button" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"
+                class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-200 bg-white text-ink hover:bg-slate-50 transition-colors cursor-pointer">
+          <svg id="menuOpenIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menuCloseIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileNavDrawer" class="hidden md:hidden bg-white border-t border-slate-200">
+      <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-col divide-y divide-slate-100 text-sm font-medium text-muted">
+        <a href="index.html" class="py-2.5 hover:text-ink transition-colors">Home</a>
+        <a href="core-stack.html" class="py-2.5 hover:text-ink transition-colors">Core Stack</a>
+        <a href="setups.html" class="py-2.5 hover:text-ink transition-colors">Real Setups</a>
+        <a href="work-with-me.html" class="py-2.5 hover:text-ink transition-colors">Audit and Process</a>
+        <a href="about.html" class="py-2.5 hover:text-ink transition-colors">About</a>
+      </nav>
+    </div>
+  </header>
+  
 </head>
 <body class="bg-slateBg text-ink font-sans antialiased selection:bg-blue-100 selection:text-brand">
 
@@ -621,6 +669,28 @@
         });
       }
     })();
+
+<script>
+    (function () {
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      const mobileDrawer = document.getElementById('mobileNavDrawer');
+      const openIcon = document.getElementById('menuOpenIcon');
+      const closeIcon = document.getElementById('menuCloseIcon');
+
+      if (!menuBtn || !mobileDrawer) return;
+
+      menuBtn.addEventListener('click', () => {
+        const isOpen = !mobileDrawer.classList.contains('hidden');
+        mobileDrawer.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!isOpen));
+        if (openIcon && closeIcon) {
+          openIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        }
+      });
+    })();
+  </script>
+    
   </script>
 </body>
 </html>
