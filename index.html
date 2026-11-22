@@ -71,54 +71,6 @@
       background-size: 24px 24px;
     }
   </style>
-<!-- STICKY NAVIGATION -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight text-ink">
-        <span class="w-2.5 h-2.5 rounded-full bg-brand"></span>
-        <span>juwelanalytics<span class="text-slate-400 font-normal">.com</span></span>
-      </a>
-
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
-        <a href="index.html" class="hover:text-ink transition-colors">Home</a>
-        <a href="core-stack.html" class="hover:text-ink transition-colors">Core Stack</a>
-        <a href="setups.html" class="hover:text-ink transition-colors">Real Setups</a>
-        <a href="work-with-me.html" class="hover:text-ink transition-colors">Audit and Process</a>
-        <a href="about.html" class="hover:text-ink transition-colors">About</a>
-      </nav>
-
-      <!-- Right Actions: CTA + Mobile Menu Toggle -->
-      <div class="flex items-center gap-2.5">
-        <a href="https://calendly.com/mdjuwelrana/free" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
-          Book a Free Call
-        </a>
-
-        <button type="button" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"
-                class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-200 bg-white text-ink hover:bg-slate-50 transition-colors cursor-pointer">
-          <svg id="menuOpenIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="menuCloseIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobileNavDrawer" class="hidden md:hidden bg-white border-t border-slate-200">
-      <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-col divide-y divide-slate-100 text-sm font-medium text-muted">
-        <a href="index.html" class="py-2.5 hover:text-ink transition-colors">Home</a>
-        <a href="core-stack.html" class="py-2.5 hover:text-ink transition-colors">Core Stack</a>
-        <a href="setups.html" class="py-2.5 hover:text-ink transition-colors">Real Setups</a>
-        <a href="work-with-me.html" class="py-2.5 hover:text-ink transition-colors">Audit and Process</a>
-        <a href="about.html" class="py-2.5 hover:text-ink transition-colors">About</a>
-      </nav>
-    </div>
-  </header>
-  
 </head>
 <body class="bg-slateBg text-ink font-sans antialiased selection:bg-blue-100 selection:text-brand">
 
@@ -138,12 +90,32 @@
         <a href="about.html" class="hover:text-ink transition-colors">About</a>
       </nav>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2.5">
         <a href="https://calendly.com/mdjuwelrana/free" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+           class="inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
           Book a Free Call
         </a>
+
+        <button type="button" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"
+                class="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-200 bg-white text-ink hover:bg-slate-50 transition-colors cursor-pointer">
+          <svg id="menuOpenIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menuCloseIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <div id="mobileNavDrawer" class="hidden md:hidden bg-white border-t border-slate-200">
+      <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-col divide-y divide-slate-100 text-sm font-medium text-muted">
+        <a href="index.html" class="py-2.5 text-ink font-semibold">Home</a>
+        <a href="core-stack.html" class="py-2.5 hover:text-ink transition-colors">Core Stack</a>
+        <a href="setups.html" class="py-2.5 hover:text-ink transition-colors">Real Setups</a>
+        <a href="work-with-me.html" class="py-2.5 hover:text-ink transition-colors">Audit and Process</a>
+        <a href="about.html" class="py-2.5 hover:text-ink transition-colors">About</a>
+      </nav>
     </div>
   </header>
 
@@ -236,18 +208,18 @@
         Core Infrastructure, CDPs, Attribution and Analytics Stack
       </p>
       <div class="flex flex-wrap gap-2">
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Cloudflare Workers sGTM</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Meta / TikTok CAPI</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Google Ads OCT</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">GHL / HubSpot / CallRail</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Triple Whale / RedTrack / AnyTrack</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Twilio Segment CDP</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Self-Hosted Matomo</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Consent Mode v2 (Cookiebot / OneTrust)</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Google BigQuery SQL</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Mixpanel</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Looker Studio</span>
-        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded hover:border-slate-300 transition-colors">Apps Script and AI Agents</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Cloudflare Workers sGTM</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Meta / TikTok CAPI</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Google Ads OCT</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">GHL / HubSpot / CallRail</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Triple Whale / RedTrack / AnyTrack</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Twilio Segment CDP</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Self-Hosted Matomo</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Consent Mode v2 (Cookiebot / OneTrust)</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Google BigQuery SQL</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Mixpanel</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Looker Studio</span>
+        <span class="px-2.5 py-1 text-xs font-mono bg-slate-50 text-slate-700 border border-slate-200 rounded">Apps Script and AI Agents</span>
       </div>
     </div>
   </section>
@@ -267,7 +239,6 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Pillar 01 -->
         <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
@@ -295,7 +266,6 @@
           </div>
         </div>
 
-        <!-- Pillar 02 -->
         <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
@@ -323,7 +293,6 @@
           </div>
         </div>
 
-        <!-- Pillar 03 -->
         <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
@@ -351,7 +320,6 @@
           </div>
         </div>
 
-        <!-- Pillar 04 -->
         <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 hover:border-brand transition-colors flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
@@ -541,7 +509,7 @@
       <div>
         <span class="text-white font-semibold">juwelanalytics.com</span> | First-Party Data Architect
       </div>
-      <div class="flex items-center gap-5">
+      <div class="flex flex-wrap items-center gap-5">
         <a href="index.html" class="text-white font-medium">Home</a>
         <a href="core-stack.html" class="hover:text-white transition-colors">Core Stack</a>
         <a href="setups.html" class="hover:text-white transition-colors">Real Setups</a>
@@ -602,48 +570,65 @@
   </div>
 
   <script>
-    const form = document.getElementById('contactForm');
-    const statusBox = document.getElementById('formStatus');
-    const submitBtn = document.getElementById('submitBtn');
-
-    if (form) {
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-
-        const formData = new FormData(form);
-        const json = JSON.stringify(Object.fromEntries(formData));
-
-        try {
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: json
-          });
-          const result = await response.json();
-
-          statusBox.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'bg-teal-50', 'text-verified');
-          if (response.status === 200) {
-            statusBox.classList.add('bg-teal-50', 'text-verified', 'border', 'border-teal-200');
-            statusBox.textContent = 'Thanks! Your details have been sent. I will review your stack and reply soon.';
-            form.reset();
-          } else {
-            statusBox.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
-            statusBox.textContent = result.message || 'Something went wrong. Please message on WhatsApp or email directly.';
-          }
-        } catch (error) {
-          statusBox.classList.remove('hidden');
-          statusBox.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
-          statusBox.textContent = 'Network error. Feel free to reach out directly via WhatsApp or digitrackerbd@gmail.com.';
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Message';
-        }
-      });
-    }
-
     (function () {
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      const mobileDrawer = document.getElementById('mobileNavDrawer');
+      const openIcon = document.getElementById('menuOpenIcon');
+      const closeIcon = document.getElementById('menuCloseIcon');
+
+      if (menuBtn && mobileDrawer) {
+        menuBtn.addEventListener('click', () => {
+          const isOpen = !mobileDrawer.classList.contains('hidden');
+          mobileDrawer.classList.toggle('hidden');
+          menuBtn.setAttribute('aria-expanded', String(!isOpen));
+          if (openIcon && closeIcon) {
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+          }
+        });
+      }
+
+      const form = document.getElementById('contactForm');
+      const statusBox = document.getElementById('formStatus');
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (form) {
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          const formData = new FormData(form);
+          const json = JSON.stringify(Object.fromEntries(formData));
+
+          try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: json
+            });
+            const result = await response.json();
+
+            statusBox.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'bg-teal-50', 'text-verified');
+            if (response.status === 200) {
+              statusBox.classList.add('bg-teal-50', 'text-verified', 'border', 'border-teal-200');
+              statusBox.textContent = 'Thanks! Your details have been sent. I will review your stack and reply soon.';
+              form.reset();
+            } else {
+              statusBox.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+              statusBox.textContent = result.message || 'Something went wrong. Please message on WhatsApp or email directly.';
+            }
+          } catch (error) {
+            statusBox.classList.remove('hidden');
+            statusBox.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+            statusBox.textContent = 'Network error. Feel free to reach out directly via WhatsApp or digitrackerbd@gmail.com.';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+          }
+        });
+      }
+
       const toggleBtn = document.getElementById('waToggleBtn');
       const closeBtn = document.getElementById('waCloseBtn');
       const chatBox = document.getElementById('waChatBox');
@@ -669,28 +654,6 @@
         });
       }
     })();
-
-<script>
-    (function () {
-      const menuBtn = document.getElementById('mobileMenuBtn');
-      const mobileDrawer = document.getElementById('mobileNavDrawer');
-      const openIcon = document.getElementById('menuOpenIcon');
-      const closeIcon = document.getElementById('menuCloseIcon');
-
-      if (!menuBtn || !mobileDrawer) return;
-
-      menuBtn.addEventListener('click', () => {
-        const isOpen = !mobileDrawer.classList.contains('hidden');
-        mobileDrawer.classList.toggle('hidden');
-        menuBtn.setAttribute('aria-expanded', String(!isOpen));
-        if (openIcon && closeIcon) {
-          openIcon.classList.toggle('hidden');
-          closeIcon.classList.toggle('hidden');
-        }
-      });
-    })();
-  </script>
-    
   </script>
 </body>
 </html>
