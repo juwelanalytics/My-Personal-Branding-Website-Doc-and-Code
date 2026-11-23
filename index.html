@@ -87,16 +87,16 @@
 
       <!-- Desktop Navigation (Center) -->
       <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
-        <a href="index.html" class="hover:text-ink transition-colors">Home</a>
+        <a href="index.html" class="text-ink font-semibold">Home</a>
         <a href="core-stack.html" class="hover:text-ink transition-colors">Core Stack</a>
         <a href="setups.html" class="hover:text-ink transition-colors">Real Setups</a>
         <a href="work-with-me.html" class="hover:text-ink transition-colors">Audit and Process</a>
         <a href="about.html" class="hover:text-ink transition-colors">About</a>
       </nav>
 
-      <!-- Right Actions: Single Free Audit CTA + Mobile Menu Toggle -->
+      <!-- Right Actions: Single Free Audit CTA (Opens In-Page Step-by-Step Form) + Mobile Menu Toggle -->
       <div class="flex items-center gap-2 shrink-0">
-        <a href="https://calendly.com/juwelanalytics/free-audit" target="_blank" rel="noopener noreferrer"
+        <a href="#free-audit/step-1" data-open-audit-modal
            class="inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors whitespace-nowrap shrink-0">
           Free Audit
         </a>
@@ -116,7 +116,7 @@
     <!-- Mobile Dropdown Menu -->
     <div id="mobileNavDrawer" class="hidden md:hidden bg-white border-t border-slate-200">
       <nav class="max-w-6xl mx-auto px-4 py-2 flex flex-col divide-y divide-slate-100 text-sm font-medium text-muted">
-        <a href="index.html" class="py-2.5 hover:text-ink transition-colors">Home</a>
+        <a href="index.html" class="py-2.5 text-ink font-semibold">Home</a>
         <a href="core-stack.html" class="py-2.5 hover:text-ink transition-colors">Core Stack</a>
         <a href="setups.html" class="py-2.5 hover:text-ink transition-colors">Real Setups</a>
         <a href="work-with-me.html" class="py-2.5 hover:text-ink transition-colors">Audit and Process</a>
@@ -149,8 +149,8 @@
           </p>
 
           <div class="pt-2 flex flex-wrap items-center gap-3.5">
-            <a href="#contact" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors shadow-xs">
-              Send Your Tech Stack
+            <a href="#free-audit/step-1" data-open-audit-modal class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors shadow-xs">
+              Start Free Audit
             </a>
             <a href="setups.html" class="px-5 py-3 text-sm font-semibold text-ink bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors">
               Explore Real Setups →
@@ -458,8 +458,8 @@
               <h3 class="text-xl font-bold text-ink">Send Your Tech Stack</h3>
               <p class="text-xs text-muted mt-1">Share what tools you use and where conversions or data are dropping.</p>
             </div>
-            <a href="https://calendly.com/mdjuwelrana/free" target="_blank" rel="noopener noreferrer" class="text-xs font-mono font-semibold text-brand hover:underline shrink-0">
-              Or book Calendly →
+            <a href="#free-audit/step-1" data-open-audit-modal class="text-xs font-mono font-semibold text-brand hover:underline shrink-0">
+              Or start step-by-step audit →
             </a>
           </div>
 
@@ -531,6 +531,115 @@
     </div>
   </footer>
 
+  <!-- IN-PAGE STEP-BY-STEP FREE AUDIT MODAL (WITH URI ROUTING & THANK YOU) -->
+  <div id="auditModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
+    <div class="w-full max-w-lg rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden">
+      <!-- Top Bar -->
+      <div class="bg-ink text-white px-5 py-4 flex items-center justify-between">
+        <div>
+          <div id="auditStepBadge" class="text-[11px] font-mono text-teal-400 uppercase tracking-wider">STEP 01 OF 02 • STACK &amp; GOAL</div>
+          <h3 id="auditModalTitle" class="text-base sm:text-lg font-bold mt-0.5">Request Your Free Tracking Audit</h3>
+        </div>
+        <button type="button" id="closeAuditModal" aria-label="Close modal" class="text-slate-400 hover:text-white text-2xl leading-none px-1.5 cursor-pointer">&times;</button>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full h-1.5 bg-slate-100">
+        <div id="auditProgressBar" class="h-full bg-brand transition-all duration-300" style="width: 50%;"></div>
+      </div>
+
+      <div class="p-5 sm:p-6">
+        <form id="auditStepForm" class="space-y-4">
+          <input type="hidden" name="access_key" value="7ab234f3-43da-406c-866e-33c9473e9283" />
+          <input type="hidden" name="subject" value="New Free Audit Request (Step-by-Step) - juwelanalytics.com" />
+
+          <!-- STEP 1 -->
+          <div id="auditStep1" class="space-y-4">
+            <div>
+              <label for="auditWebsite" class="block text-xs font-semibold text-ink mb-1.5">Website or Funnel URL *</label>
+              <input type="url" id="auditWebsite" name="website" required placeholder="https://yourwebsite.com"
+                     class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
+            </div>
+
+            <div>
+              <label for="auditFocus" class="block text-xs font-semibold text-ink mb-1.5">Primary Bottleneck *</label>
+              <select id="auditFocus" name="bottleneck" required
+                      class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white">
+                <option value="">Select your main tracking issue...</option>
+                <option value="Zero-Cost Cloudflare sGTM">Zero-Cost Cloudflare Workers sGTM Setup</option>
+                <option value="CRM & iFrame Click-ID OCT">CRM &amp; iFrame Click-ID / Offline Conversion Sync</option>
+                <option value="Meta / Google / TikTok CAPI">Meta / Google / TikTok CAPI &amp; Deduplication</option>
+                <option value="Consent Mode v2 & BigQuery">Consent Mode v2 &amp; BigQuery / Looker BI</option>
+              </select>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+              <button type="button" id="auditNextBtn"
+                      class="px-5 py-2.5 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
+                Continue to Step 2 →
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div id="auditStep2" class="hidden space-y-4">
+            <div>
+              <label for="auditName" class="block text-xs font-semibold text-ink mb-1.5">Your Name *</label>
+              <input type="text" id="auditName" name="name" required placeholder="Alex Morgan"
+                     class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
+            </div>
+
+            <div>
+              <label for="auditContact" class="block text-xs font-semibold text-ink mb-1.5">Work Email or WhatsApp *</label>
+              <input type="text" id="auditContact" name="contact" required placeholder="alex@company.com or +1..."
+                     class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
+            </div>
+
+            <div>
+              <label for="auditNotes" class="block text-xs font-semibold text-ink mb-1.5">Current Tools / Notes (Optional)</label>
+              <textarea id="auditNotes" name="notes" rows="2" placeholder="e.g., GTM, GA4, GHL, HubSpot, Google Ads..."
+                        class="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white resize-none"></textarea>
+            </div>
+
+            <div class="pt-2 flex items-center justify-between gap-3">
+              <button type="button" id="auditBackBtn"
+                      class="px-4 py-2.5 text-xs sm:text-sm font-semibold text-muted hover:text-ink border border-slate-200 rounded-lg transition-colors cursor-pointer">
+                ← Back
+              </button>
+              <button type="submit" id="auditSubmitBtn"
+                      class="px-5 py-2.5 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
+                Submit &amp; Unlock Audit →
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- THANK YOU VIEW -->
+        <div id="auditThankYou" class="hidden text-center py-4 space-y-4">
+          <div class="w-12 h-12 rounded-full bg-teal-50 text-verified border border-teal-200 flex items-center justify-center mx-auto text-xl font-bold">
+            ✓
+          </div>
+          <div class="space-y-1.5">
+            <h4 class="text-xl font-bold text-ink">Thank You! Your Audit Request is Received.</h4>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+              I will review your stack and send a custom breakdown within 24 hours. Want to pick a live call slot right now?
+            </p>
+          </div>
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
+            <a href="https://calendly.com/juwelanalytics/free-audit" target="_blank" rel="noopener noreferrer"
+               class="w-full sm:w-auto px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
+              Pick a Calendly Time Slot →
+            </a>
+            <button type="button" id="auditDoneCloseBtn"
+                    class="w-full sm:w-auto px-4 py-2.5 text-xs sm:text-sm font-semibold text-ink bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer">
+              Back to Website
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FLOATING WHATSAPP CHAT WIDGET -->
   <div id="waWidgetRoot" class="fixed bottom-5 right-5 z-50 font-sans">
     <div id="waChatBox" class="hidden mb-3 w-80 sm:w-96 rounded-2xl bg-white border border-slate-200 shadow-xl overflow-hidden">
@@ -577,6 +686,7 @@
 
   <script>
     (function () {
+      // 1. Mobile Navigation Drawer
       const menuBtn = document.getElementById('mobileMenuBtn');
       const mobileDrawer = document.getElementById('mobileNavDrawer');
       const openIcon = document.getElementById('menuOpenIcon');
@@ -594,6 +704,7 @@
         });
       }
 
+      // 2. Main Contact Form Submission
       const form = document.getElementById('contactForm');
       const statusBox = document.getElementById('formStatus');
       const submitBtn = document.getElementById('submitBtn');
@@ -635,8 +746,122 @@
         });
       }
 
+      // 3. Step-by-Step Free Audit Modal with Dynamic URI Routing
+      const modal = document.getElementById('auditModal');
+      const openTriggers = document.querySelectorAll('[data-open-audit-modal]');
+      const closeBtn = document.getElementById('closeAuditModal');
+      const doneCloseBtn = document.getElementById('auditDoneCloseBtn');
+
+      const step1 = document.getElementById('auditStep1');
+      const step2 = document.getElementById('auditStep2');
+      const thankYou = document.getElementById('auditThankYou');
+      const auditForm = document.getElementById('auditStepForm');
+
+      const nextBtn = document.getElementById('auditNextBtn');
+      const backBtn = document.getElementById('auditBackBtn');
+      const auditSubmitBtn = document.getElementById('auditSubmitBtn');
+      const badge = document.getElementById('auditStepBadge');
+      const progressBar = document.getElementById('auditProgressBar');
+
+      function setRoute(hashPath) {
+        if (window.location.hash !== hashPath) {
+          history.pushState(null, '', hashPath);
+        }
+      }
+
+      function showStep(step) {
+        if (!modal || !auditForm) return;
+        modal.classList.remove('hidden');
+        step1.classList.add('hidden');
+        step2.classList.add('hidden');
+        thankYou.classList.add('hidden');
+        auditForm.classList.remove('hidden');
+
+        if (step === 1) {
+          step1.classList.remove('hidden');
+          badge.textContent = 'STEP 01 OF 02 • STACK & GOAL';
+          progressBar.style.width = '50%';
+          setRoute('#free-audit/step-1');
+        } else if (step === 2) {
+          step2.classList.remove('hidden');
+          badge.textContent = 'STEP 02 OF 02 • CONTACT DETAILS';
+          progressBar.style.width = '85%';
+          setRoute('#free-audit/step-2');
+        } else if (step === 'thank-you') {
+          auditForm.classList.add('hidden');
+          thankYou.classList.remove('hidden');
+          badge.textContent = 'COMPLETED • AUDIT CONFIRMED';
+          progressBar.style.width = '100%';
+          setRoute('#free-audit/thank-you');
+        }
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.add('hidden');
+        history.pushState(null, '', window.location.pathname + window.location.search);
+      }
+
+      openTriggers.forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          showStep(1);
+        });
+      });
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          const websiteInput = document.getElementById('auditWebsite');
+          const focusInput = document.getElementById('auditFocus');
+          if (!websiteInput.checkValidity()) { websiteInput.reportValidity(); return; }
+          if (!focusInput.checkValidity()) { focusInput.reportValidity(); return; }
+          showStep(2);
+        });
+      }
+
+      if (backBtn) backBtn.addEventListener('click', () => showStep(1));
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (doneCloseBtn) doneCloseBtn.addEventListener('click', closeModal);
+
+      if (auditForm) {
+        auditForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          auditSubmitBtn.disabled = true;
+          auditSubmitBtn.textContent = 'Submitting...';
+
+          try {
+            const payload = JSON.stringify(Object.fromEntries(new FormData(auditForm)));
+            await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: payload
+            });
+          } catch (err) {
+            // Fallback to thank-you state
+          } finally {
+            auditSubmitBtn.disabled = false;
+            auditSubmitBtn.textContent = 'Submit & Unlock Audit →';
+            auditForm.reset();
+            showStep('thank-you');
+          }
+        });
+      }
+
+      function syncFromHash() {
+        if (!modal) return;
+        const h = window.location.hash;
+        if (h === '#free-audit/step-1') showStep(1);
+        else if (h === '#free-audit/step-2') showStep(2);
+        else if (h === '#free-audit/thank-you') showStep('thank-you');
+        else modal.classList.add('hidden');
+      }
+
+      window.addEventListener('hashchange', syncFromHash);
+      syncFromHash();
+
+      // 4. Floating WhatsApp Chat Widget
       const toggleBtn = document.getElementById('waToggleBtn');
-      const closeBtn = document.getElementById('waCloseBtn');
+      const closeWaBtn = document.getElementById('waCloseBtn');
       const chatBox = document.getElementById('waChatBox');
       const popupForm = document.getElementById('waPopupForm');
       const msgInput = document.getElementById('waCustomMessage');
@@ -645,7 +870,7 @@
 
       if (!toggleBtn || !chatBox) return;
       toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
-      if (closeBtn) closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
+      if (closeWaBtn) closeWaBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
       presets.forEach((btn) => {
         btn.addEventListener('click', () => {
           const text = btn.getAttribute('data-wa-preset') || '';
