@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core Stack | First-Party Data Architecture | juwelanalytics.com</title>
-  <meta name="description" content="Explore the core first-party data engineering stack built by MD. Juwel Rana at juwelanalytics.com: Cloudflare Workers sGTM, CRM offline conversion pipelines, Consent Mode v2, and BigQuery SQL." />
+  <title>Core Stack | MD. Juwel Rana | juwelanalytics.com</title>
+  <meta name="description" content="Explore the first-party tracking, server-side GTM on Cloudflare Workers, CRM offline conversion, CDP, Consent Mode v2, BigQuery SQL, and BI stack built by MD. Juwel Rana." />
   <link rel="canonical" href="https://juwelanalytics.com/core-stack.html" />
   <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -12,15 +12,15 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="juwelanalytics.com" />
   <meta property="og:url" content="https://juwelanalytics.com/core-stack.html" />
-  <meta property="og:title" content="Core Stack | First-Party Data Architecture | juwelanalytics.com" />
-  <meta property="og:description" content="End-to-end first-party tracking, server-side routing, CRM offline sync, and BigQuery warehouse architecture by MD. Juwel Rana." />
+  <meta property="og:title" content="Core Stack | MD. Juwel Rana | juwelanalytics.com" />
+  <meta property="og:description" content="Explore the first-party tracking, server-side GTM on Cloudflare Workers, CRM offline conversion, CDP, Consent Mode v2, BigQuery SQL, and BI stack built by MD. Juwel Rana." />
   <meta property="og:image" content="https://juwelanalytics.com/juwel-profile.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://juwelanalytics.com/core-stack.html" />
-  <meta name="twitter:title" content="Core Stack | First-Party Data Architecture | juwelanalytics.com" />
-  <meta name="twitter:description" content="End-to-end first-party tracking, server-side routing, CRM offline sync, and BigQuery warehouse architecture by MD. Juwel Rana." />
+  <meta name="twitter:title" content="Core Stack | MD. Juwel Rana | juwelanalytics.com" />
+  <meta name="twitter:description" content="Explore the first-party tracking, server-side GTM on Cloudflare Workers, CRM offline conversion, CDP, Consent Mode v2, BigQuery SQL, and BI stack built by MD. Juwel Rana." />
   <meta name="twitter:image" content="https://juwelanalytics.com/juwel-profile.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,9 +60,9 @@
 
   <!-- STICKY NAVIGATION -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-3.5 sm:px-6 h-16 flex items-center justify-between gap-2">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
       <!-- Brand Logo (Left) -->
-      <a href="index.html" class="group flex items-center gap-2 sm:gap-2.5 text-base sm:text-xl font-bold tracking-tight shrink-0 whitespace-nowrap">
+      <a href="index.html" class="group flex items-center gap-2 sm:gap-2.5 text-sm sm:text-xl font-bold tracking-tight shrink-0 whitespace-nowrap">
         <span class="inline-flex items-center justify-center w-7 h-6 sm:w-8 sm:h-7 rounded-md bg-slate-50 border border-slate-200 p-0.5 shadow-2xs group-hover:border-brand transition-colors overflow-hidden shrink-0">
           <img src="favicon.png" alt="JuwelAnalytics Logo" class="w-full h-full object-contain rounded-[4px]" />
         </span>
@@ -72,25 +72,30 @@
       <!-- Desktop Navigation (Center) -->
       <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
         <a href="index.html" class="hover:text-ink transition-colors">Home</a>
-        <a href="core-stack.html" class="hover:text-ink transition-colors">Core Stack</a>
+        <a href="core-stack.html" class="text-ink font-semibold">Core Stack</a>
         <a href="setups.html" class="hover:text-ink transition-colors">Real Setups</a>
         <a href="work-with-me.html" class="hover:text-ink transition-colors">Audit and Process</a>
         <a href="about.html" class="hover:text-ink transition-colors">About</a>
       </nav>
 
-      <!-- Right Actions: Single Free Audit CTA + Mobile Menu Toggle -->
-      <div class="flex items-center gap-2 shrink-0">
-        <a href="https://calendly.com/juwelanalytics/free-audit" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors whitespace-nowrap shrink-0">
+      <!-- Right Actions: Free Audit + Book a Call + Mobile Menu Toggle -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <a href="#contact" data-action="free-audit"
+           class="inline-flex items-center justify-center px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors whitespace-nowrap shrink-0">
           Free Audit
         </a>
 
+        <a href="#booking/step-1" data-action="booking"
+           class="inline-flex items-center justify-center px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] sm:text-sm font-semibold text-ink bg-white hover:bg-slate-50 border border-slate-300 hover:border-brand rounded-lg transition-colors whitespace-nowrap shrink-0">
+          Book a Call
+        </a>
+
         <button type="button" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"
-                class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-200 bg-white text-ink hover:bg-slate-50 transition-colors cursor-pointer shrink-0">
-          <svg id="menuOpenIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                class="md:hidden inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-slate-200 bg-white text-ink hover:bg-slate-50 transition-colors cursor-pointer shrink-0">
+          <svg id="menuOpenIcon" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg id="menuCloseIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <svg id="menuCloseIcon" class="w-4 h-4 sm:w-5 sm:h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -101,160 +106,294 @@
     <div id="mobileNavDrawer" class="hidden md:hidden bg-white border-t border-slate-200">
       <nav class="max-w-6xl mx-auto px-4 py-2 flex flex-col divide-y divide-slate-100 text-sm font-medium text-muted">
         <a href="index.html" class="py-2.5 hover:text-ink transition-colors">Home</a>
-        <a href="core-stack.html" class="py-2.5 hover:text-ink transition-colors">Core Stack</a>
+        <a href="core-stack.html" class="py-2.5 text-ink font-semibold">Core Stack</a>
         <a href="setups.html" class="py-2.5 hover:text-ink transition-colors">Real Setups</a>
         <a href="work-with-me.html" class="py-2.5 hover:text-ink transition-colors">Audit and Process</a>
         <a href="about.html" class="py-2.5 hover:text-ink transition-colors">About</a>
       </nav>
     </div>
   </header>
-  </header>
 
-  <!-- PAGE HERO -->
+  <!-- PAGE HEADER -->
   <section class="bg-dot-grid border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14 md:py-20">
-      <div class="max-w-3xl space-y-4">
+      <div class="max-w-3xl space-y-5">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono text-muted">
           <span class="w-2 h-2 rounded-full bg-verified"></span>
-          <span>CORE ENGINEERING DOMAINS</span>
+          <span>TECHNICAL STACK &amp; ARCHITECTURE</span>
         </div>
+
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-[1.15]">
-          Beyond basic pixels: end-to-end first-party data systems.
+          Core First-Party Data Stack
         </h1>
+
         <p class="text-base sm:text-lg text-muted leading-relaxed">
-          <strong class="text-ink font-semibold">Every business has unique services, situations, and goals</strong>—yet paid SaaS tools force you into <span class="text-ink font-semibold">rigid logic that leaves tracking gaps</span>. Without <span class="text-brand font-semibold">core-concept experience</span>, off-the-shelf tools never truly fit. I <span class="text-verified font-semibold">try, test, and verify zero-cost custom systems</span> for <strong class="text-ink font-semibold">B2B agencies, marketers, and service-based brands</strong>, fixing tracking, attribution, and data analysis so you can <span class="text-brand font-semibold">make data-driven decisions and scale</span>.
+          Every stack is chosen around <strong class="text-ink font-semibold">signal accuracy, data ownership, and low recurring overhead</strong>. Instead of locking your business into expensive black-box connectors, I combine edge workers, deterministic scripts, CRM pipelines, and SQL warehouses that fit how your funnel actually works.
         </p>
-        <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono">
-          <a href="#infra" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">01. Zero-Cost sGTM</a>
-          <a href="#crm-oct" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">02. CRM and Offline Sync</a>
-          <a href="#governance" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">03. CDPs and Consent v2</a>
-          <a href="#warehouse" class="px-3 py-1.5 bg-white border border-slate-200 rounded-md hover:border-brand text-ink transition-colors">04. BigQuery and BI</a>
+
+        <div class="pt-2 flex flex-wrap items-center gap-3.5">
+          <a href="#contact" data-action="free-audit" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors shadow-xs">
+            Audit
+          </a>
+          <a href="#booking/step-1" data-action="booking" class="px-5 py-3 text-sm font-semibold text-ink bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors">
+            Schedule
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DETAILED 4 PILLARS -->
-  <section class="py-16 md:py-20 border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+  <!-- STACK LAYERS -->
+  <section class="py-16 md:py-24 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
 
-      <article id="infra" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">01 / INFRASTRUCTURE AND SIGNAL RECOVERY</span>
-          <span class="text-xs font-mono px-2.5 py-0.5 bg-teal-50 text-verified rounded border border-teal-200">$0 Monthly Hosting</span>
+      <!-- Layer 1: Edge & Server-Side Tracking -->
+      <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-mono font-semibold text-brand uppercase">Layer 01 • Edge &amp; Server-Side Tracking</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-ink mt-1">Cloudflare Workers sGTM &amp; Conversion APIs</h2>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-teal-50 text-verified border border-teal-200">Zero-Cost Edge Option</span>
         </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">Server-Side Tracking and Zero-Cost Infra</h2>
-        <p class="text-sm sm:text-base text-muted mb-6">
-          Eliminate recurring monthly server-side hosting bills while recovering conversion signals lost to ad blockers, browser restrictions, and Safari ITP cookie expiration.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Cloudflare Workers sGTM</h3>
-            <p class="text-muted text-xs leading-relaxed">Lightweight edge routing on your own first-party subdomain without monthly Stape or Taggrs recurring fees.</p>
-          </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Server Conversion APIs</h3>
-            <p class="text-muted text-xs leading-relaxed">Meta CAPI, Google Ads OCT, and TikTok CAPI configured with strict <code class="font-mono bg-white px-1 rounded">SHA-256</code> PII hashing and event deduplication.</p>
-          </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Cookie and Privacy Resilience</h3>
-            <p class="text-muted text-xs leading-relaxed">Custom Transport URLs, HttpOnly first-party cookie extension, and server-side PII masking before third-party dispatch.</p>
-          </div>
-        </div>
-      </article>
 
-      <article id="crm-oct" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">02 / REVENUE AND CALL ATTRIBUTION</span>
-          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">Offline Sync</span>
-        </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">CRM and Offline Conversion Pipelines</h2>
-        <p class="text-sm sm:text-base text-muted mb-6">
-          Train ad algorithms on qualified pipeline stages and closed revenue instead of raw, unqualified form submissions.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Full-Funnel CRM and Call Sync</h3>
-            <p class="text-muted text-xs leading-relaxed">Connecting GoHighLevel (GHL), HubSpot, and CallRail for verified offline call and deal attribution.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-muted">
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Cloudflare Workers sGTM</h3>
+            <p class="leading-relaxed">Deploy first-party tagging endpoints at the edge with custom domains, removing recurring monthly sGTM server hosting fees while keeping low latency.</p>
           </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Stage-Based Conversion Events</h3>
-            <p class="text-muted text-xs leading-relaxed">Automated webhooks and Apps Script pipelines firing <code class="font-mono bg-white px-1 rounded">Lead → MQL → Closed Won</code> back to ad platforms.</p>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Meta, TikTok &amp; Google OCT</h3>
+            <p class="leading-relaxed">Send server-side events and offline conversion updates with normalized, <code class="font-mono text-xs bg-slate-100 px-1 rounded">SHA-256</code> hashed customer parameters and deduplication keys.</p>
           </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Cross-Frame Storage Scripts</h3>
-            <p class="text-muted text-xs leading-relaxed">Deterministic JavaScript persistence for UTMs, <code class="font-mono bg-white px-1 rounded">gclid</code>, and <code class="font-mono bg-white px-1 rounded">fbclid</code> across embedded booking and form iFrames.</p>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Cookie &amp; PII Hardening</h3>
+            <p class="leading-relaxed">Extend first-party cookie lifespan against browser ITP limits, mask sensitive payloads server-side, and enforce clean event schemas.</p>
           </div>
         </div>
-      </article>
 
-      <article id="governance" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">03 / GOVERNANCE AND DATA ROUTING</span>
-          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">DMA Compliant</span>
+        <div class="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
+          <span class="text-xs font-mono text-slate-400">Tools: Cloudflare Workers, sGTM, Meta CAPI, TikTok CAPI, Google Ads OCT</span>
+          <a href="work-with-me.html#infra" class="text-sm font-semibold text-brand hover:underline">See Infra &amp; Audit Process →</a>
         </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">Multi-Platform Attribution and CDPs</h2>
-        <p class="text-sm sm:text-base text-muted mb-6">
-          Maintain clean event routing, full regulatory compliance, and single-source-of-truth reconciliation across marketing and analytics platforms.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Attribution Stack Reconciliation</h3>
-            <p class="text-muted text-xs leading-relaxed">Auditing and aligning Triple Whale, RedTrack, and AnyTrack setups against raw backend orders and CRM records.</p>
-          </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">CDPs and Sovereign Analytics</h3>
-            <p class="text-muted text-xs leading-relaxed">Twilio Segment CDP event routing and self-hosted Matomo analytics for complete first-party data ownership.</p>
-          </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Consent Mode v2 and DMA</h3>
-            <p class="text-muted text-xs leading-relaxed">Granular Cookiebot and OneTrust mapping so privacy consent signals never break conversion modeling accuracy.</p>
-          </div>
-        </div>
-      </article>
+      </div>
 
-      <article id="warehouse" class="scroll-mt-24 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span class="text-xs font-mono font-semibold text-brand">04 / WAREHOUSE AND EXECUTIVE BI</span>
-          <span class="text-xs font-mono px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded">SQL + Product</span>
+      <!-- Layer 2: CRM & Offline Attribution -->
+      <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-mono font-semibold text-brand uppercase">Layer 02 • CRM &amp; Offline Attribution</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-ink mt-1">GHL, HubSpot, CallRail &amp; iFrame Persistence</h2>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700">Lead → Deal Sync</span>
         </div>
-        <h2 class="text-2xl font-bold text-ink mb-3">Business Intelligence and Product Analytics</h2>
-        <p class="text-sm sm:text-base text-muted mb-6">
-          Move beyond sampled UI dashboards with warehouse-grade SQL modeling, product funnel diagnostics, and executive revenue reporting.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Raw GA4 to BigQuery Pipelines</h3>
-            <p class="text-muted text-xs leading-relaxed">Unsampled event streaming and custom SQL modeling free from GA4 UI thresholding and data retention limits.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-muted">
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">CRM Pipeline Attribution</h3>
+            <p class="leading-relaxed">Capture <code class="font-mono text-xs bg-slate-100 px-1 rounded">gclid</code>, <code class="font-mono text-xs bg-slate-100 px-1 rounded">fbclid</code>, UTM parameters, and landing context at lead capture inside GoHighLevel or HubSpot.</p>
           </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Mixpanel Product Analytics</h3>
-            <p class="text-muted text-xs leading-relaxed">Clean event schemas, checkout funnel drop-off diagnostics, and user retention cohort tracking.</p>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Stage-Based Offline Events</h3>
+            <p class="leading-relaxed">Trigger clean server events as leads advance to qualified opportunities, booked calls, or closed revenue—not just raw form fills.</p>
           </div>
-          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-            <h3 class="font-bold text-ink mb-1.5">Executive Looker Studio BI</h3>
-            <p class="text-muted text-xs leading-relaxed">Decision-ready reporting uniting ad spend with AOV, customer cohorts, churn, and return rates.</p>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Cross-Frame &amp; Call Tracking</h3>
+            <p class="leading-relaxed">Preserve attribution across embedded booking widgets, multi-step funnels, and CallRail phone conversions without silent parameter loss.</p>
           </div>
         </div>
-      </article>
+
+        <div class="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
+          <span class="text-xs font-mono text-slate-400">Tools: GoHighLevel, HubSpot, CallRail, Custom JS, Webhooks</span>
+          <a href="setups.html#oct-pipeline" class="text-sm font-semibold text-brand hover:underline">View Real OCT &amp; CRM Setups →</a>
+        </div>
+      </div>
+
+      <!-- Layer 3: CDP, Attribution & Consent -->
+      <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-mono font-semibold text-brand uppercase">Layer 03 • Governance, CDPs &amp; Attribution</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-ink mt-1">Segment, Matomo, Attribution Tools &amp; Consent v2</h2>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700">Consent Mode v2 Ready</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-muted">
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Twilio Segment &amp; Matomo</h3>
+            <p class="leading-relaxed">Route structured events across destinations through Segment CDP or maintain self-hosted Matomo for strict first-party ownership.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Attribution Stack Alignment</h3>
+            <p class="leading-relaxed">Reconcile Triple Whale, RedTrack, or AnyTrack reporting against real checkout and CRM numbers so spend decisions are grounded in truth.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Consent Mode v2 &amp; CMPs</h3>
+            <p class="leading-relaxed">Configure Cookiebot or OneTrust with Google Consent Mode v2 signals so privacy compliance and behavioral modeling work together.</p>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
+          <span class="text-xs font-mono text-slate-400">Tools: Twilio Segment, Matomo, Triple Whale, RedTrack, AnyTrack, Cookiebot, OneTrust</span>
+          <a href="work-with-me.html#governance" class="text-sm font-semibold text-brand hover:underline">Read Governance &amp; Audit Guide →</a>
+        </div>
+      </div>
+
+      <!-- Layer 4: Warehouse, Product Analytics & BI -->
+      <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-mono font-semibold text-brand uppercase">Layer 04 • Warehouse, Product &amp; BI Reporting</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-ink mt-1">GA4, BigQuery SQL, Mixpanel &amp; Looker Studio</h2>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700">Unsampled SQL</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-muted">
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">BigQuery SQL Modeling</h3>
+            <p class="leading-relaxed">Query raw GA4 export tables and combine ad cost, CRM stages, and revenue in BigQuery without UI thresholding or sampling limits.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Mixpanel Funnel &amp; Retention</h3>
+            <p class="leading-relaxed">Track product and funnel actions with clean event naming, conversion drop-off analysis, and user/account cohort retention.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-bold text-ink">Looker Studio &amp; Apps Script</h3>
+            <p class="leading-relaxed">Deliver clear executive dashboards plus lightweight Google Apps Script automations and AI-assisted workflows for daily operations.</p>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
+          <span class="text-xs font-mono text-slate-400">Tools: GA4, BigQuery SQL, Mixpanel, Looker Studio, Google Apps Script</span>
+          <a href="setups.html#bigquery-bi" class="text-sm font-semibold text-brand hover:underline">Explore Warehouse &amp; BI Setups →</a>
+        </div>
+      </div>
 
     </div>
   </section>
 
-  <!-- NEXT STEP CTA -->
-  <section class="bg-white py-14 border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-      <div>
-        <h2 class="text-2xl font-bold text-ink">Want to see these systems in production?</h2>
-        <p class="text-sm text-muted mt-1">Explore real implementation breakdowns or send your current stack for a tailored review.</p>
-      </div>
-      <div class="flex flex-wrap items-center gap-3.5">
-        <a href="setups.html" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors">
-          Explore Real Setups →
-        </a>
-        <a href="index.html#contact" class="px-5 py-3 text-sm font-semibold text-ink bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-lg transition-colors">
-          Send Your Tech Stack
-        </a>
+  <!-- ABOUT & CONTACT FORM -->
+  <section id="contact" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+        <div class="lg:col-span-5 space-y-6">
+          <div class="flex items-center gap-4">
+            <img src="juwel-profile.png" alt="MD. Juwel Rana | First-Party Data Architect"
+                 class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-sm bg-slate-200" />
+            <div>
+              <h2 class="text-xl font-bold text-ink">MD. Juwel Rana</h2>
+              <p class="text-sm font-mono text-brand">First-Party Data Architect</p>
+              <a href="https://maps.app.goo.gl/2mWvtShyHri3o78D7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-muted hover:text-ink mt-1">
+                <span>📍 Rajshahi, Bangladesh (Global Remote)</span>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-sm text-muted leading-relaxed">
+            Not sure which parts of your stack are leaking conversions or inflating SaaS costs? Share your current setup and I will point out practical improvements.
+          </p>
+
+          <div class="pt-2 space-y-3 text-sm">
+            <div class="text-xs font-mono uppercase text-slate-400">Direct Channels</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5">
+              <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
+                <span><span class="font-mono text-xs text-verified font-semibold">WhatsApp:</span> <span class="text-ink font-medium">Message directly</span></span>
+                <span class="text-slate-400 text-xs">→</span>
+              </a>
+              <a href="mailto:digitrackerbd@gmail.com"
+                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
+                <span><span class="font-mono text-xs text-slate-500 font-semibold">Email:</span> <span class="text-ink font-medium">digitrackerbd@gmail.com</span></span>
+                <span class="text-slate-400 text-xs">→</span>
+              </a>
+              <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
+                <span><span class="font-mono text-xs text-slate-500 font-semibold">LinkedIn:</span> <span class="text-ink font-medium">/in/juwelanalytics</span></span>
+                <span class="text-slate-400 text-xs">→</span>
+              </a>
+              <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
+                <span><span class="font-mono text-xs text-slate-500 font-semibold">YouTube:</span> <span class="text-ink font-medium">@analyticsfixer</span></span>
+                <span class="text-slate-400 text-xs">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 mb-6 border-b border-slate-100">
+            <div>
+              <h3 class="text-xl font-bold text-ink">Free Audit &amp; Tech Stack Form</h3>
+              <p class="text-xs text-muted mt-1">Share what tools you use and where conversions or data are dropping.</p>
+            </div>
+            <a href="#booking/step-1" data-action="booking" class="text-xs font-mono font-semibold text-brand hover:underline shrink-0">
+              Prefer a scheduled slot? Book a Call →
+            </a>
+          </div>
+
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+            <input type="hidden" name="access_key" value="7ab234f3-43da-406c-866e-33c9473e9283" />
+            <input type="hidden" name="subject" value="New Free Audit / Stack Inquiry (Core Stack) - juwelanalytics.com" />
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-xs font-semibold text-ink mb-1.5">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Alex Morgan"
+                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
+              </div>
+              <div>
+                <label for="email" class="block text-xs font-semibold text-ink mb-1.5">Work Email or WhatsApp</label>
+                <input type="text" id="email" name="email" required placeholder="alex@agency.com"
+                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
+              </div>
+            </div>
+
+            <div>
+              <label for="stack" class="block text-xs font-semibold text-ink mb-1.5">Current Stack (e.g., sGTM, GA4, BigQuery, GHL, HubSpot, CallRail)</label>
+              <input type="text" id="stack" name="tech_stack" placeholder="Cloudflare + GTM + GHL + Google Ads + BigQuery"
+                     class="w-full px-3.5 py-2.5 text-sm font-mono bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
+            </div>
+
+            <div>
+              <label for="message" class="block text-xs font-semibold text-ink mb-1.5">What tracking, attribution, or reporting gap are you trying to solve?</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Briefly describe the leak or custom pipeline you need..."
+                        class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors"></textarea>
+            </div>
+
+            <div class="pt-1 flex flex-wrap items-center justify-between gap-4">
+              <button type="submit" id="submitBtn"
+                      class="px-6 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
+                Send Message
+              </button>
+              <span class="text-xs text-slate-400">Direct reply within 24 hours</span>
+            </div>
+
+            <div id="formStatus" class="hidden text-sm font-medium p-3 rounded-lg"></div>
+          </form>
+
+          <!-- CONTACT FORM THANK YOU SECTION (#contact/thank-you) -->
+          <div id="contactThankYou" class="hidden p-5 sm:p-6 rounded-xl bg-teal-50/70 border border-teal-200 space-y-3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-full bg-verified text-white text-xs font-bold flex items-center justify-center shrink-0">✓</span>
+              <h4 class="text-base sm:text-lg font-bold text-ink">Thank You! Your Audit &amp; Stack Details Are Received.</h4>
+            </div>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+              Thanks for sharing your details. I will review your current stack and tracking bottlenecks and reply within 24 hours.
+            </p>
+            <div class="pt-1">
+              <button type="button" id="resetContactThankYouBtn"
+                      class="text-xs font-mono font-semibold text-brand hover:underline cursor-pointer">
+                ← Send another message
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -280,6 +419,141 @@
       </div>
     </div>
   </footer>
+
+  <!-- CUSTOM CALENDLY-STYLE BOOKING MODAL (#booking/step-1 -> #booking/step-2 -> #booking/thank-you) -->
+  <div id="bookingModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+    <div class="w-full max-w-xl rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden">
+      <div class="bg-ink text-white px-5 py-4 flex items-center justify-between">
+        <div>
+          <div id="bookingStepBadge" class="text-[11px] font-mono text-teal-400 uppercase tracking-wider">STEP 01 OF 02 • DATE &amp; TIME</div>
+          <h3 id="bookingModalTitle" class="text-base sm:text-lg font-bold mt-0.5">Book a Discovery &amp; Tracking Call</h3>
+        </div>
+        <button type="button" id="closeBookingModal" aria-label="Close booking modal" class="text-slate-400 hover:text-white text-2xl leading-none px-1.5 cursor-pointer">&times;</button>
+      </div>
+
+      <div class="w-full h-1.5 bg-slate-100">
+        <div id="bookingProgressBar" class="h-full bg-brand transition-all duration-300" style="width: 50%;"></div>
+      </div>
+
+      <div class="p-5 sm:p-6">
+        <form id="bookingStepForm" class="space-y-4">
+          <input type="hidden" name="access_key" value="7ab234f3-43da-406c-866e-33c9473e9283" />
+          <input type="hidden" name="subject" value="New Custom Booking Request (Dhaka Time Included) - juwelanalytics.com" />
+          <input type="hidden" id="bookingClientTimezone" name="client_timezone" value="" />
+          <input type="hidden" id="bookingClientTimeFormatted" name="client_selected_time" value="" />
+          <input type="hidden" id="bookingDhakaTimeFormatted" name="your_time_asia_dhaka" value="" />
+
+          <!-- BOOKING STEP 1 -->
+          <div id="bookingStep1" class="space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5">
+              <span class="font-mono text-muted">Detected Client TZ:</span>
+              <span id="detectedTzLabel" class="font-mono font-semibold text-brand">Detecting...</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="bookingDate" class="block text-xs font-semibold text-ink mb-1.5">Select Date *</label>
+                <input type="date" id="bookingDate" name="booking_date" required
+                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
+              </div>
+
+              <div>
+                <label for="bookingTopic" class="block text-xs font-semibold text-ink mb-1.5">Session Focus *</label>
+                <select id="bookingTopic" name="session_focus" required
+                        class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white">
+                  <option value="">Choose focus area...</option>
+                  <option value="Cloudflare Workers sGTM Audit">Cloudflare Workers sGTM Audit</option>
+                  <option value="CRM & iFrame OCT / CAPI">CRM &amp; iFrame OCT / CAPI Pipeline</option>
+                  <option value="Consent Mode v2 & BigQuery">Consent Mode v2 &amp; BigQuery / BI</option>
+                  <option value="Full Tracking Stack Review">Full Tracking Stack Review</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-ink mb-1.5">Available Time Slots (Client Local Time) *</label>
+              <div id="bookingSlotsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+              <input type="hidden" id="bookingSlotHour" name="slot_hour_dhaka_base" value="" />
+              <p id="dhakaPreviewText" class="text-[11px] font-mono text-muted mt-2">
+                Select a date and time slot to preview client time and Dhaka (GMT+6) time.
+              </p>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+              <button type="button" id="bookingNextBtn"
+                      class="px-5 py-2.5 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
+                Continue to Details →
+              </button>
+            </div>
+          </div>
+
+          <!-- BOOKING STEP 2 -->
+          <div id="bookingStep2" class="hidden space-y-4">
+            <div class="p-3 rounded-lg bg-blue-50/70 border border-blue-200 text-xs font-mono text-ink">
+              <div><span class="text-muted">SELECTED SLOT:</span> <span id="summarySelectedSlot" class="font-semibold text-brand"></span></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="bookingName" class="block text-xs font-semibold text-ink mb-1.5">Your Name *</label>
+                <input type="text" id="bookingName" name="name" required placeholder="Alex Morgan"
+                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
+              </div>
+
+              <div>
+                <label for="bookingContact" class="block text-xs font-semibold text-ink mb-1.5">Work Email or WhatsApp *</label>
+                <input type="text" id="bookingContact" name="contact" required placeholder="alex@company.com"
+                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
+              </div>
+            </div>
+
+            <div>
+              <label for="bookingWebsite" class="block text-xs font-semibold text-ink mb-1.5">Website / Funnel URL *</label>
+              <input type="url" id="bookingWebsite" name="website" required placeholder="https://yourwebsite.com"
+                     class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
+            </div>
+
+            <div>
+              <label for="bookingNotes" class="block text-xs font-semibold text-ink mb-1.5">Current Stack / Context (Optional)</label>
+              <textarea id="bookingNotes" name="notes" rows="2" placeholder="sGTM, GHL, HubSpot, GA4, BigQuery..."
+                        class="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white resize-none"></textarea>
+            </div>
+
+            <div class="pt-2 flex items-center justify-between gap-3">
+              <button type="button" id="bookingBackBtn"
+                      class="px-4 py-2.5 text-xs sm:text-sm font-semibold text-muted hover:text-ink border border-slate-200 rounded-lg transition-colors cursor-pointer">
+                ← Back
+              </button>
+              <button type="submit" id="bookingSubmitBtn"
+                      class="px-5 py-2.5 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
+                Confirm Booking →
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- BOOKING THANK YOU VIEW -->
+        <div id="bookingThankYou" class="hidden text-center py-4 space-y-4">
+          <div class="w-12 h-12 rounded-full bg-teal-50 text-verified border border-teal-200 flex items-center justify-center mx-auto text-xl font-bold">
+            ✓
+          </div>
+          <div class="space-y-1.5">
+            <h4 class="text-xl font-bold text-ink">Thank You! Your Call Request is Confirmed.</h4>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+              Your booking details have been sent. I will confirm the exact meeting link via email or WhatsApp shortly.
+            </p>
+          </div>
+          <div id="bookingConfirmBox" class="text-left bg-slate-50 border border-slate-200 rounded-lg p-3.5 text-xs font-mono text-slate-600 space-y-1"></div>
+          <div class="pt-2 flex items-center justify-center">
+            <button type="button" id="bookingDoneCloseBtn"
+                    class="px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-ink hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
+              Back to Website
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- FLOATING WHATSAPP CHAT WIDGET -->
   <div id="waWidgetRoot" class="fixed bottom-5 right-5 z-50 font-sans">
@@ -327,6 +601,7 @@
 
   <script>
     (function () {
+      // 1. Mobile Navigation Drawer
       const menuBtn = document.getElementById('mobileMenuBtn');
       const mobileDrawer = document.getElementById('mobileNavDrawer');
       const openIcon = document.getElementById('menuOpenIcon');
@@ -344,8 +619,318 @@
         });
       }
 
+      // 2. Contact Form & Thank You Flow (#contact / #contact/thank-you)
+      const cSection = document.getElementById('contact');
+      const cForm = document.getElementById('contactForm');
+      const cStatus = document.getElementById('formStatus');
+      const cSubmitBtn = document.getElementById('submitBtn');
+      const cThankYou = document.getElementById('contactThankYou');
+      const cResetBtn = document.getElementById('resetContactThankYouBtn');
+
+      function showContactThankYou(updateUrl = true) {
+        if (!cForm || !cThankYou) return;
+        cForm.classList.add('hidden');
+        if (cStatus) cStatus.classList.add('hidden');
+        cThankYou.classList.remove('hidden');
+        if (updateUrl && window.location.hash !== '#contact/thank-you') {
+          history.pushState(null, '', '#contact/thank-you');
+        }
+      }
+
+      function showContactFormState(updateUrl = false) {
+        if (!cForm || !cThankYou) return;
+        cThankYou.classList.add('hidden');
+        cForm.classList.remove('hidden');
+        if (updateUrl && window.location.hash === '#contact/thank-you') {
+          history.pushState(null, '', '#contact');
+        }
+      }
+
+      function focusContactForm() {
+        showContactFormState(false);
+        if (cSection) {
+          cSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const firstInput = cSection.querySelector('input[name="name"]');
+          if (firstInput) {
+            setTimeout(() => firstInput.focus({ preventScroll: true }), 450);
+          }
+        }
+      }
+
+      if (cForm) {
+        cForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          cSubmitBtn.disabled = true;
+          cSubmitBtn.textContent = 'Sending...';
+
+          const payload = JSON.stringify(Object.fromEntries(new FormData(cForm)));
+
+          try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: payload
+            });
+            const result = await response.json();
+
+            if (response.status === 200) {
+              cForm.reset();
+              showContactThankYou(true);
+            } else if (cStatus) {
+              cStatus.classList.remove('hidden', 'bg-teal-50', 'text-verified', 'border-teal-200');
+              cStatus.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+              cStatus.textContent = result.message || 'Something went wrong. Please message on WhatsApp or email directly.';
+            }
+          } catch (error) {
+            if (cStatus) {
+              cStatus.classList.remove('hidden', 'bg-teal-50', 'text-verified', 'border-teal-200');
+              cStatus.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+              cStatus.textContent = 'Network error. Feel free to reach out directly via WhatsApp or digitrackerbd@gmail.com.';
+            }
+          } finally {
+            cSubmitBtn.disabled = false;
+            cSubmitBtn.textContent = 'Send Message';
+          }
+        });
+      }
+
+      if (cResetBtn) {
+        cResetBtn.addEventListener('click', () => showContactFormState(true));
+      }
+
+      // 3. Calendly-Style Custom Booking Modal (#booking/step-1 -> #booking/step-2 -> #booking/thank-you)
+      const bModal = document.getElementById('bookingModal');
+      const bCloseBtn = document.getElementById('closeBookingModal');
+      const bDoneCloseBtn = document.getElementById('bookingDoneCloseBtn');
+      const bStep1 = document.getElementById('bookingStep1');
+      const bStep2 = document.getElementById('bookingStep2');
+      const bThankYou = document.getElementById('bookingThankYou');
+      const bForm = document.getElementById('bookingStepForm');
+      const bNextBtn = document.getElementById('bookingNextBtn');
+      const bBackBtn = document.getElementById('bookingBackBtn');
+      const bSubmitBtn = document.getElementById('bookingSubmitBtn');
+      const bBadge = document.getElementById('bookingStepBadge');
+      const bProgress = document.getElementById('bookingProgressBar');
+
+      const dateInput = document.getElementById('bookingDate');
+      const slotsGrid = document.getElementById('bookingSlotsGrid');
+      const slotHourInput = document.getElementById('bookingSlotHour');
+      const detectedTzLabel = document.getElementById('detectedTzLabel');
+      const dhakaPreviewText = document.getElementById('dhakaPreviewText');
+      const tzClientInput = document.getElementById('bookingClientTimezone');
+      const timeClientInput = document.getElementById('bookingClientTimeFormatted');
+      const timeDhakaInput = document.getElementById('bookingDhakaTimeFormatted');
+      const summarySelectedSlot = document.getElementById('summarySelectedSlot');
+      const confirmBox = document.getElementById('bookingConfirmBox');
+
+      const clientTz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+      const OWNER_TZ = 'Asia/Dhaka';
+      if (detectedTzLabel) detectedTzLabel.textContent = clientTz;
+      if (tzClientInput) tzClientInput.value = clientTz;
+
+      const tomorrow = new Date(Date.now() + 86400000);
+      if (dateInput && !dateInput.value) {
+        dateInput.value = tomorrow.toISOString().split('T')[0];
+      }
+
+      function setRoute(hashPath) {
+        if (window.location.hash !== hashPath) {
+          history.pushState(null, '', hashPath);
+        }
+      }
+
+      function closeBookingModal(clearHash = true) {
+        if (bModal) bModal.classList.add('hidden');
+        if (clearHash) {
+          history.pushState(null, '', window.location.pathname + window.location.search);
+        }
+      }
+
+      function getAvailableDhakaHours(dateStr) {
+        const day = dateStr ? new Date(dateStr + 'T12:00:00').getDay() : 1;
+        if (day === 0 || day === 6) return [15, 18, 21];
+        return [14, 16, 18, 20, 22];
+      }
+
+      function formatInZone(dateObj, timeZone) {
+        return new Intl.DateTimeFormat('en-US', {
+          timeZone,
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        }).format(dateObj);
+      }
+
+      function dhakaWallTimeToUtc(dateStr, hour24) {
+        const [y, m, d] = dateStr.split('-').map(Number);
+        return new Date(Date.UTC(y, m - 1, d, hour24 - 6, 0, 0));
+      }
+
+      function renderSlots() {
+        if (!dateInput || !dateInput.value || !slotsGrid) return;
+        const hours = getAvailableDhakaHours(dateInput.value);
+        slotsGrid.innerHTML = '';
+        slotHourInput.value = '';
+        timeClientInput.value = '';
+        timeDhakaInput.value = '';
+        dhakaPreviewText.textContent = 'Select a slot above to calculate client time and Dhaka (GMT+6) time.';
+
+        hours.forEach((hr) => {
+          const utcDate = dhakaWallTimeToUtc(dateInput.value, hr);
+          const clientShortTime = new Intl.DateTimeFormat('en-US', {
+            timeZone: clientTz,
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+          }).format(utcDate);
+
+          const clientFull = formatInZone(utcDate, clientTz);
+          const dhakaFull = formatInZone(utcDate, OWNER_TZ);
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'px-3 py-2 text-xs font-mono rounded-lg border border-slate-200 bg-slate-50 hover:border-brand text-ink transition-colors cursor-pointer text-center';
+          btn.textContent = clientShortTime;
+
+          btn.addEventListener('click', () => {
+            slotsGrid.querySelectorAll('button').forEach((b) => {
+              b.classList.remove('bg-brand', 'text-white', 'border-brand', 'font-semibold');
+              b.classList.add('bg-slate-50', 'text-ink', 'border-slate-200');
+            });
+            btn.classList.remove('bg-slate-50', 'text-ink', 'border-slate-200');
+            btn.classList.add('bg-brand', 'text-white', 'border-brand', 'font-semibold');
+
+            slotHourInput.value = String(hr);
+            timeClientInput.value = `${clientFull} (${clientTz})`;
+            timeDhakaInput.value = `${dhakaFull} (Asia/Dhaka / GMT+6)`;
+            dhakaPreviewText.textContent = `Client: ${clientFull} (${clientTz}) → Your Time: ${dhakaFull} (Asia/Dhaka)`;
+          });
+
+          slotsGrid.appendChild(btn);
+        });
+      }
+
+      function showBookingStep(step) {
+        if (!bModal || !bForm) return;
+        bModal.classList.remove('hidden');
+        bStep1.classList.add('hidden');
+        bStep2.classList.add('hidden');
+        bThankYou.classList.add('hidden');
+        bForm.classList.remove('hidden');
+
+        if (step === 1) {
+          bStep1.classList.remove('hidden');
+          bBadge.textContent = 'STEP 01 OF 02 • DATE & TIME';
+          bProgress.style.width = '50%';
+          renderSlots();
+          setRoute('#booking/step-1');
+        } else if (step === 2) {
+          bStep2.classList.remove('hidden');
+          bBadge.textContent = 'STEP 02 OF 02 • YOUR DETAILS';
+          bProgress.style.width = '85%';
+          if (summarySelectedSlot) summarySelectedSlot.textContent = timeClientInput.value;
+          setRoute('#booking/step-2');
+        } else if (step === 'thank-you') {
+          bForm.classList.add('hidden');
+          bThankYou.classList.remove('hidden');
+          bBadge.textContent = 'COMPLETED • BOOKING SENT';
+          bProgress.style.width = '100%';
+          setRoute('#booking/thank-you');
+        }
+      }
+
+      // Button Action Bindings
+      document.querySelectorAll('[data-action="free-audit"]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (bModal) bModal.classList.add('hidden');
+          focusContactForm();
+        });
+      });
+
+      document.querySelectorAll('[data-action="booking"]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          showBookingStep(1);
+        });
+      });
+
+      if (dateInput) dateInput.addEventListener('change', renderSlots);
+      if (bBackBtn) bBackBtn.addEventListener('click', () => showBookingStep(1));
+      if (bCloseBtn) bCloseBtn.addEventListener('click', () => closeBookingModal(true));
+      if (bDoneCloseBtn) bDoneCloseBtn.addEventListener('click', () => closeBookingModal(true));
+
+      if (bNextBtn) {
+        bNextBtn.addEventListener('click', () => {
+          const topicEl = document.getElementById('bookingTopic');
+          if (!dateInput.checkValidity()) { dateInput.reportValidity(); return; }
+          if (!topicEl.checkValidity()) { topicEl.reportValidity(); return; }
+          if (!slotHourInput.value || !timeDhakaInput.value) {
+            dhakaPreviewText.textContent = 'Please select an available time slot first.';
+            return;
+          }
+          showBookingStep(2);
+        });
+      }
+
+      if (bForm) {
+        bForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          bSubmitBtn.disabled = true;
+          bSubmitBtn.textContent = 'Confirming...';
+
+          const clientTimeVal = timeClientInput.value;
+          const dhakaTimeVal = timeDhakaInput.value;
+          const topicVal = document.getElementById('bookingTopic').value;
+
+          try {
+            const payload = JSON.stringify(Object.fromEntries(new FormData(bForm)));
+            await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: payload
+            });
+          } catch (err) {
+            // Proceed to thank-you state
+          } finally {
+            if (confirmBox) {
+              confirmBox.innerHTML =
+                `<div><span class="text-slate-400">FOCUS:</span> <span class="text-ink font-medium">${topicVal}</span></div>` +
+                `<div><span class="text-slate-400">CLIENT TIME:</span> <span class="text-ink font-medium">${clientTimeVal}</span></div>` +
+                `<div><span class="text-slate-400">DHAKA TIME:</span> <span class="text-brand font-medium">${dhakaTimeVal}</span></div>`;
+            }
+            bSubmitBtn.disabled = false;
+            bSubmitBtn.textContent = 'Confirm Booking →';
+            bForm.reset();
+            if (dateInput) dateInput.value = tomorrow.toISOString().split('T')[0];
+            showBookingStep('thank-you');
+          }
+        });
+      }
+
+      function syncFromHash() {
+        const h = window.location.hash;
+        if (h === '#booking/step-1') showBookingStep(1);
+        else if (h === '#booking/step-2') showBookingStep(2);
+        else if (h === '#booking/thank-you') showBookingStep('thank-you');
+        else if (bModal) bModal.classList.add('hidden');
+
+        if (h === '#contact/thank-you') {
+          showContactThankYou(false);
+        }
+      }
+
+      window.addEventListener('hashchange', syncFromHash);
+      window.addEventListener('popstate', syncFromHash);
+      syncFromHash();
+
+      // 4. Floating WhatsApp Chat Widget
       const toggleBtn = document.getElementById('waToggleBtn');
-      const closeBtn = document.getElementById('waCloseBtn');
+      const closeWaBtn = document.getElementById('waCloseBtn');
       const chatBox = document.getElementById('waChatBox');
       const popupForm = document.getElementById('waPopupForm');
       const msgInput = document.getElementById('waCustomMessage');
@@ -354,7 +939,7 @@
 
       if (!toggleBtn || !chatBox) return;
       toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
-      if (closeBtn) closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
+      if (closeWaBtn) closeWaBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
       presets.forEach((btn) => {
         btn.addEventListener('click', () => {
           const text = btn.getAttribute('data-wa-preset') || '';
