@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MD. Juwel — Tracking Attribution, sGTM, CRM OCT &amp; Data Analysis</title>
-  <meta name="description" content="Custom marketing tracking attribution and data analysis by MD. Juwel: zero-cost Cloudflare sGTM, GA4 recommended event schemas, Meta CAPI EMQ, Google Ads SHA-256 OCT, GoHighLevel, HubSpot, Zoho, Pipedrive, Consent Mode v2, BigQuery SQL, Looker Studio, and AI automation." />
+  <meta name="description" content="Technical blog and documentation by MD. Juwel on marketing tracking attribution, Cloudflare sGTM, GA4 recommended schemas, Meta CAPI, Google Ads SHA-256 OCT, GoHighLevel, HubSpot, Zoho, Pipedrive, Consent Mode v2, BigQuery SQL, Looker Studio, and AI automation." />
   <meta name="author" content="MD. Juwel" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://mdjuwel.com/" />
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple%20touch%20icon.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MD. Juwel" />
   <meta property="og:title" content="MD. Juwel — Marketing Attribution &amp; Data Analysis" />
-  <meta property="og:description" content="Practical guides and custom first-party tracking architectures for B2B agencies, marketers, and service brands without paid SaaS lock-in." />
+  <meta property="og:description" content="Practical technical guides and verified custom architectures for B2B agencies, marketers, and service brands without paid SaaS lock-in." />
   <meta property="og:url" content="https://mdjuwel.com/" />
 
   <script type="application/ld+json">
@@ -77,25 +77,30 @@
   </script>
 
   <style>
-    .nav-item.active {
+    .nav-link.active {
       color: #059669;
       font-weight: 600;
     }
-    .dark .nav-item.active {
+    .dark .nav-link.active {
       color: #34d399;
     }
   </style>
 </head>
 <body class="bg-[#FAFAFA] text-slate-800 dark:bg-[#0D1117] dark:text-slate-200 antialiased transition-colors duration-150">
 
+  <!-- Top Editorial Dispatch Strip (Simo-style top status bar) -->
+  <div class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#161B22] text-[11px] font-mono text-slate-500 dark:text-slate-400">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
+      <span class="truncate">2026 Field Notes: First-Party sGTM, CRM Offline Conversions &amp; BigQuery Attribution</span>
+      <button onclick="showSection('about')" class="text-emerald-700 dark:text-emerald-400 hover:underline shrink-0">Stack &amp; Contact</button>
+    </div>
+  </div>
+
   <!-- Mobile Header -->
   <header class="lg:hidden sticky top-0 z-30 bg-white/95 dark:bg-[#161B22]/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <img src="MD%20Juwel%20Rana%20Profile%20Picture.jpg" alt="MD. Juwel" class="w-9 h-9 rounded-full object-cover border border-slate-300 dark:border-slate-700" />
-      <div>
-        <a href="#top" onclick="showSection('home')" class="text-base font-bold text-slate-900 dark:text-white block leading-tight">MD. Juwel</a>
-        <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Attribution &amp; Data Analysis</span>
-      </div>
+      <img src="MD%20Juwel%20Rana%20Profile%20Picture.jpg" alt="MD. Juwel" class="w-8 h-8 rounded-full object-cover border border-slate-300 dark:border-slate-700" />
+      <a href="#top" onclick="showSection('home'); resetAll();" class="text-base font-bold text-slate-900 dark:text-white">MD. Juwel</a>
     </div>
     <div class="flex items-center gap-2">
       <button id="themeToggleMobile" aria-label="Toggle theme" class="p-2 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
@@ -108,12 +113,130 @@
     </div>
   </header>
 
-  <!-- Simo Ahava-Style Two-Column Blog Structure -->
-  <div id="top" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-    <div class="lg:grid lg:grid-cols-12 lg:gap-10 items-start">
+  <!-- Two-Column Technical Blog Layout -->
+  <div id="top" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
 
-      <!-- LEFT SIDEBAR (Search, Identity + Portrait, Navigation, Categories, Tags, Links) -->
-      <aside id="sidebar" class="hidden lg:block lg:col-span-4 xl:col-span-3 lg:sticky lg:top-8 space-y-6 mb-8 lg:mb-0">
+      <!-- MAIN BLOG STREAM (Left 8 cols on desktop, pure editorial article flow) -->
+      <main class="lg:col-span-8 min-w-0">
+
+        <!-- HOME STREAM VIEW -->
+        <div id="homeSection">
+
+          <!-- Filter Bar (hidden unless filtered) -->
+          <div id="filterBanner" class="hidden items-center justify-between bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 rounded px-4 py-2 mb-6 text-xs font-mono">
+            <span id="filterStatusText"></span>
+            <button onclick="resetAll()" class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">Reset</button>
+          </div>
+
+          <!-- Chronological Articles & Tracking Tips -->
+          <div id="postStream" class="divide-y divide-slate-200 dark:divide-slate-800">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Blog Archive Pagination Footer -->
+          <div class="mt-8 pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <button onclick="showSection('about')" class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">OLDER POSTS &amp; STACK &gt;</button>
+            <span>page 1 of 1 (<span id="shownCount">0</span> posts)</span>
+          </div>
+
+        </div>
+
+        <!-- TOOLS SECTION -->
+        <div id="toolsSection" class="hidden space-y-6">
+          <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Utilities</h1>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Client-side helpers for SHA-256 hashing and attribution QA links.</p>
+            </div>
+            <button onclick="showSection('home')" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 hover:underline">&larr; Back to blog</button>
+          </div>
+
+          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded p-5 space-y-3">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">SHA-256 Normalizer (Google Ads Enhanced / Meta CAPI)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <select id="shaType" onchange="runSha256()" class="px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]">
+                <option value="email">Email (trim + lowercase)</option>
+                <option value="phone">Phone (digits only)</option>
+                <option value="text">Text / Name / City</option>
+              </select>
+              <input id="shaInput" oninput="runSha256()" type="text" placeholder="Enter email, phone, or text..." class="sm:col-span-2 px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+            </div>
+            <div class="bg-slate-50 dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 rounded p-3 text-xs font-mono space-y-1">
+              <div><span class="text-slate-500">Normalized:</span> <span id="shaNorm">—</span></div>
+              <div class="break-all"><span class="text-slate-500">SHA-256:</span> <span id="shaHex" class="text-emerald-700 dark:text-emerald-400">—</span></div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded p-5 space-y-3">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">UTM &amp; Click-ID (gclid, fbclid) QA URL Builder</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+              <input id="uBase" oninput="buildUrl()" value="https://mdjuwel.com/" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uSource" oninput="buildUrl()" value="google" placeholder="utm_source" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uMedium" oninput="buildUrl()" value="cpc" placeholder="utm_medium" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uCampaign" oninput="buildUrl()" value="oct_test" placeholder="utm_campaign" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uGclid" oninput="buildUrl()" value="test_gclid_123" placeholder="gclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uFbclid" oninput="buildUrl()" value="test_fbclid_456" placeholder="fbclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+            </div>
+            <div class="bg-slate-50 dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 rounded p-3 flex items-center justify-between gap-2">
+              <code id="uOut" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 break-all">https://mdjuwel.com/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=oct_test&amp;gclid=test_gclid_123&amp;fbclid=test_fbclid_456</code>
+              <button onclick="copyEl('uOut', this)" class="px-2.5 py-1 text-xs font-mono rounded border border-slate-300 dark:border-slate-700 shrink-0">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT & FULL SKILL ARCHITECTURE SECTION -->
+        <div id="aboutSection" class="hidden space-y-6">
+          <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <img src="MD%20Juwel%20Rana%20Profile%20Picture.jpg" alt="MD. Juwel" class="w-14 h-14 rounded-full object-cover border border-slate-300 dark:border-slate-700" />
+              <div>
+                <h1 class="text-2xl font-bold text-slate-900 dark:text-white">MD. Juwel</h1>
+                <p class="text-xs font-mono text-emerald-700 dark:text-emerald-400">Marketing Tracking Attribution &amp; Data Analysis Specialist</p>
+              </div>
+            </div>
+            <button onclick="showSection('home')" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 hover:underline">&larr; Back to blog</button>
+          </div>
+
+          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded p-6 space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+            <p>
+              I help <strong>B2B agencies, marketers, and service-based brands</strong> solve marketing tracking attribution problems and analyze data to make data-driven decisions for maximum business scale and growth.
+            </p>
+            <p>
+              I always test and verify custom solutions because paid SaaS tools often bring recurring monthly costs, feature limitations, third-party control, situation-based logic gaps, and robotic mismatch errors.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs pt-1">
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">Tracking Attribution &amp; sGTM</h2>
+                <p>Zero-cost Cloudflare sGTM, GA4 recommended events &amp; parameter schemas, Meta Pixel + CAPI (high EMQ), Google Ads Enhanced Conversions &amp; SHA-256 hashing, ad channels, and AI agents &amp; automation.</p>
+              </div>
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">CRM Offline Conversion Tracking</h2>
+                <p>GoHighLevel, HubSpot, Zoho, Pipedrive, and other CRMs for Meta &amp; Google Ads OCT via Zapier, n8n, or free custom builds using Webhook, JavaScript, sGTM, and Google Apps Script.</p>
+              </div>
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">Data Audit &amp; Consent Mode v2</h2>
+                <p>Reconciling ad dashboards vs. backend, CRM &amp; GA4; DataLayer &amp; GTM mismatch fixes; attribution gap audits; Google Consent Mode v2 (GDPR/CCPA) with Cookiebot, CookieYes, and OneTrust.</p>
+              </div>
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">Parameters, SQL, BI &amp; Platforms</h2>
+                <p><code>gclid</code>, <code>fbclid</code>, <code>_ga</code>, UTMs, iframe, cross-domain, CallRail, AI automation; BigQuery SQL, Looker Studio, Segment CDP, Matomo, Mixpanel, RedTrack, AnyTrack, and Triple Whale.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-10 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <span>2026 MD. Juwel. All Rights Reserved.</span>
+          <span class="font-mono">https://mdjuwel.com/</span>
+        </footer>
+
+      </main>
+
+      <!-- RIGHT SIDEBAR (Search, Author + Portrait, Nav, Categories, Tags, Notes, Links) -->
+      <aside id="sidebar" class="hidden lg:block lg:col-span-4 lg:sticky lg:top-8 space-y-6 mt-10 lg:mt-0">
 
         <!-- Search Box -->
         <div class="relative">
@@ -130,25 +253,25 @@
           <button id="clearSearch" class="hidden absolute right-2.5 top-2 text-xs text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">&times;</button>
         </div>
 
-        <!-- Author Identity Block with Portrait -->
+        <!-- Author Block -->
         <div class="border-b border-slate-200 dark:border-slate-800 pb-5">
           <div class="flex items-start justify-between gap-2">
             <div class="flex items-center gap-3">
               <img
                 src="MD%20Juwel%20Rana%20Profile%20Picture.jpg"
-                alt="MD. Juwel — Marketing Attribution & Data Analysis Specialist"
-                class="w-12 h-12 rounded-full object-cover border border-slate-300 dark:border-slate-700 shrink-0"
+                alt="MD. Juwel — Tracking Attribution & Data Analysis"
+                class="w-11 h-11 rounded-full object-cover border border-slate-300 dark:border-slate-700 shrink-0"
               />
               <div>
-                <a href="#top" onclick="showSection('home'); resetAll();" class="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400">
+                <a href="#top" onclick="showSection('home'); resetAll();" class="text-lg font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400">
                   MD. Juwel
                 </a>
-                <p class="text-[11px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 leading-tight mt-0.5">
-                  Attribution &amp; Data Specialist
+                <p class="text-[11px] font-mono text-emerald-700 dark:text-emerald-400">
+                  Attribution &amp; Data Analysis
                 </p>
               </div>
             </div>
-            <button id="themeToggleDesktop" aria-label="Toggle light/dark mode" title="Toggle theme" class="hidden lg:inline-flex p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button id="themeToggleDesktop" aria-label="Toggle theme" title="Toggle light/dark mode" class="hidden lg:inline-flex p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
               <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
               <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             </button>
@@ -158,14 +281,14 @@
           </p>
         </div>
 
-        <!-- Primary Blog Navigation -->
-        <nav aria-label="Blog Navigation" class="border-b border-slate-200 dark:border-slate-800 pb-5">
+        <!-- Sidebar Navigation -->
+        <nav aria-label="Blog sections" class="border-b border-slate-200 dark:border-slate-800 pb-5">
           <ul class="space-y-1.5 text-sm">
-            <li><button onclick="showSection('home'); resetAll();" class="nav-item active w-full text-left py-1 hover:text-emerald-600 dark:hover:text-emerald-400">Home</button></li>
-            <li><button onclick="showSection('home'); document.getElementById('categoriesBox').scrollIntoView({behavior:'smooth'});" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Categories</button></li>
-            <li><button onclick="showSection('home'); filterType('Tips');" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Tracking Tips</button></li>
-            <li><button onclick="showSection('tools');" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Tools (SHA-256 &amp; URL)</button></li>
-            <li><button onclick="showSection('about');" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">About &amp; Full Stack</button></li>
+            <li><button onclick="showSection('home'); resetAll();" class="nav-link active w-full text-left py-0.5 hover:text-emerald-600 dark:hover:text-emerald-400">Home</button></li>
+            <li><button onclick="showSection('home'); document.getElementById('categoriesBox').scrollIntoView({behavior:'smooth'});" class="nav-link w-full text-left py-0.5 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Categories</button></li>
+            <li><button onclick="showSection('home'); filterType('Tips');" class="nav-link w-full text-left py-0.5 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Tracking Tips</button></li>
+            <li><button onclick="showSection('tools');" class="nav-link w-full text-left py-0.5 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Tools</button></li>
+            <li><button onclick="showSection('about');" class="nav-link w-full text-left py-0.5 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">About</button></li>
           </ul>
         </nav>
 
@@ -199,9 +322,21 @@
           </div>
         </div>
 
-        <!-- Direct Channels & Contact -->
+        <!-- Field Dispatch Box -->
+        <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded p-4 space-y-2.5">
+          <h2 class="text-xs font-mono uppercase tracking-wider text-slate-900 dark:text-white font-semibold">Attribution Notes</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Get practical notes on zero-cost sGTM, CRM offline conversions, BigQuery SQL, and tracking audits.
+          </p>
+          <form onsubmit="handleNoteSubmit(event)" class="flex gap-1.5">
+            <input id="noteEmail" type="email" required placeholder="you@agency.com" class="min-w-0 flex-1 px-2.5 py-1.5 text-xs rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+            <button type="submit" class="px-3 py-1.5 text-xs font-mono rounded bg-emerald-600 hover:bg-emerald-700 text-white shrink-0">Join</button>
+          </form>
+          <p id="noteMsg" class="hidden text-[11px] font-mono text-emerald-700 dark:text-emerald-400"></p>
+        </div>
+
+        <!-- Links & Contact -->
         <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
-          <h2 class="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Connect</h2>
           <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="block hover:text-emerald-600 dark:hover:text-emerald-400 font-mono">YouTube (@analyticsfixer)</a>
           <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" class="block hover:text-emerald-600 dark:hover:text-emerald-400 font-mono">LinkedIn (/in/juwelanalytics)</a>
           <a href="https://x.com/juwelanalytics" target="_blank" rel="noopener noreferrer" class="block hover:text-emerald-600 dark:hover:text-emerald-400 font-mono">X (@juwelanalytics)</a>
@@ -212,168 +347,12 @@
 
       </aside>
 
-      <!-- RIGHT COLUMN (Main Feed, Tools, About) -->
-      <main class="lg:col-span-8 xl:col-span-9 min-w-0">
-
-        <!-- HOME FEED VIEW -->
-        <div id="homeSection" class="space-y-8">
-
-          <!-- Top Highlight Strip -->
-          <section aria-label="Featured Skill Guides" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <article onclick="openPost('cloudflare-sgtm-ga4-capi')" class="cursor-pointer group bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 hover:border-emerald-600 rounded p-4 transition">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">sGTM • GA4 • CAPI • SHA-256</span>
-              <h3 class="mt-1.5 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 leading-snug">
-                ZERO-COST CLOUDFLARE SGTM &amp; ERROR-FREE GA4 / CAPI SCHEMA
-              </h3>
-            </article>
-
-            <article onclick="openPost('crm-oct-ghl-hubspot-zoho')" class="cursor-pointer group bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 hover:border-emerald-600 rounded p-4 transition">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">GHL • HubSpot • Zoho • Pipedrive</span>
-              <h3 class="mt-1.5 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 leading-snug">
-                CRM OFFLINE CONVERSIONS VIA WEBHOOK, JS, SGTM &amp; APPS SCRIPT
-              </h3>
-            </article>
-
-            <article onclick="openPost('discrepancy-consent-bigquery-ai')" class="cursor-pointer group bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 hover:border-emerald-600 rounded p-4 transition">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Audit • Consent v2 • BigQuery • AI</span>
-              <h3 class="mt-1.5 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 leading-snug">
-                FIXING DATA MISMATCHES, CONSENT MODE V2 &amp; SQL ATTRIBUTION
-              </h3>
-            </article>
-          </section>
-
-          <!-- Filter Status Banner -->
-          <div id="filterBanner" class="hidden items-center justify-between bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 rounded px-4 py-2 text-xs font-mono">
-            <span id="filterStatusText"></span>
-            <button onclick="resetAll()" class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">Reset</button>
-          </div>
-
-          <!-- Chronological Articles & Tracking Tips Stream -->
-          <section id="postStream" class="divide-y divide-slate-200 dark:divide-slate-800">
-            <!-- Injected via JS -->
-          </section>
-
-          <!-- Pagination Footer -->
-          <div class="pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
-            <span>Showing <strong id="shownCount" class="text-slate-800 dark:text-slate-200">0</strong> guides &amp; tips</span>
-            <div class="flex items-center gap-4">
-              <span>Page 1 of 1</span>
-              <button onclick="showSection('about')" class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">FULL SKILL STACK &gt;</button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- TOOLS SECTION -->
-        <div id="toolsSection" class="hidden space-y-6">
-          <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
-            <div>
-              <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Free Tracking Utilities</h1>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Local browser tools for SHA-256 hashing and attribution QA URLs.</p>
-            </div>
-            <button onclick="showSection('home')" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 hover:underline">&larr; Back to Blog</button>
-          </div>
-
-          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-lg p-5 space-y-3">
-            <h2 class="text-base font-bold text-slate-900 dark:text-white">SHA-256 Normalizer (Google Ads Enhanced / Meta CAPI)</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <select id="shaType" onchange="runSha256()" class="px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]">
-                <option value="email">Email (trim + lowercase)</option>
-                <option value="phone">Phone (digits only)</option>
-                <option value="text">Text / Name / City</option>
-              </select>
-              <input id="shaInput" oninput="runSha256()" type="text" placeholder="Enter email, phone, or text..." class="sm:col-span-2 px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
-            </div>
-            <div class="bg-slate-50 dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 rounded p-3 text-xs font-mono space-y-1">
-              <div><span class="text-slate-500">Normalized:</span> <span id="shaNorm">—</span></div>
-              <div class="break-all"><span class="text-slate-500">SHA-256:</span> <span id="shaHex" class="text-emerald-700 dark:text-emerald-400">—</span></div>
-            </div>
-          </div>
-
-          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-lg p-5 space-y-3">
-            <h2 class="text-base font-bold text-slate-900 dark:text-white">UTM &amp; Click-ID (`gclid`, `fbclid`) QA URL Builder</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-              <input id="uBase" oninput="buildUrl()" value="https://mdjuwel.com/" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
-              <input id="uSource" oninput="buildUrl()" value="google" placeholder="utm_source" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
-              <input id="uMedium" oninput="buildUrl()" value="cpc" placeholder="utm_medium" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
-              <input id="uCampaign" oninput="buildUrl()" value="oct_test" placeholder="utm_campaign" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
-              <input id="uGclid" oninput="buildUrl()" value="test_gclid_123" placeholder="gclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
-              <input id="uFbclid" oninput="buildUrl()" value="test_fbclid_456" placeholder="fbclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
-            </div>
-            <div class="bg-slate-50 dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 rounded p-3 flex items-center justify-between gap-2">
-              <code id="uOut" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 break-all">https://mdjuwel.com/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=oct_test&amp;gclid=test_gclid_123&amp;fbclid=test_fbclid_456</code>
-              <button onclick="copyEl('uOut', this)" class="px-2.5 py-1 text-xs font-mono rounded border border-slate-300 dark:border-slate-700 shrink-0">Copy</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- ABOUT & FULL SKILL ARCHITECTURE SECTION -->
-        <div id="aboutSection" class="hidden space-y-6">
-          <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-              <img src="MD%20Juwel%20Rana%20Profile%20Picture.jpg" alt="MD. Juwel" class="w-16 h-16 rounded-full object-cover border border-slate-300 dark:border-slate-700" />
-              <div>
-                <h1 class="text-2xl font-bold text-slate-900 dark:text-white">MD. Juwel</h1>
-                <p class="text-xs font-mono text-emerald-700 dark:text-emerald-400">Marketing Tracking Attribution &amp; Data Analysis Specialist</p>
-              </div>
-            </div>
-            <button onclick="showSection('home')" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 hover:underline">&larr; Back to Blog</button>
-          </div>
-
-          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-lg p-6 space-y-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-            <p>
-              I help <strong>B2B agencies, marketers, and service-based brands</strong> solve marketing tracking attribution problems and analyze data to make data-driven decisions for maximum business scale and growth.
-            </p>
-            <p>
-              I always test and verify custom solutions because paid SaaS tools often bring recurring monthly costs, feature limitations, third-party control, situation-based logic gaps, and robotic mismatch errors.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
-                <h2 class="font-bold text-slate-900 dark:text-white">Marketing / Tracking Attribution</h2>
-                <p>Zero-cost Cloudflare server-side tracking via Google Tag Manager (sGTM), GA4 recommended events &amp; error-free parameter schemas, Meta Pixel + Conversions API (max Event Match Quality), Google Ads Enhanced Conversions &amp; SHA-256 user data hashing, other ad channels, and AI agents &amp; automation.</p>
-              </div>
-
-              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
-                <h2 class="font-bold text-slate-900 dark:text-white">CRM Offline Conversion Tracking (OCT)</h2>
-                <p>GoHighLevel, HubSpot, Zoho, Pipedrive, and other CRMs for Meta &amp; Google Ads OCT via Zapier, n8n, or free custom builds using Webhook, JavaScript, sGTM, and Google Apps Script.</p>
-              </div>
-
-              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
-                <h2 class="font-bold text-slate-900 dark:text-white">Data Discrepancy, Audit &amp; Consent</h2>
-                <p>Meta &amp; Google Ads dashboards vs. website backend, CRM &amp; GA4; DataLayer &amp; GTM mismatch fixes; tracking attribution gap audits; Google Consent Mode v2, GDPR &amp; CCPA rules with Cookiebot, CookieYes, and OneTrust.</p>
-              </div>
-
-              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
-                <h2 class="font-bold text-slate-900 dark:text-white">Parameters, SQL, BI &amp; Platforms</h2>
-                <p><code>gclid</code>, <code>fbclid</code>, <code>_ga</code>, UTM &amp; marketing parameters, iframe, cross-domain, CallRail, AI agents &amp; automation; BigQuery SQL, Looker Studio, Segment CDP, Matomo, Mixpanel, RedTrack, AnyTrack, and Triple Whale.</p>
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-              <a href="mailto:digitrackerbd@gmail.com" class="text-emerald-700 dark:text-emerald-400 hover:underline">digitrackerbd@gmail.com</a>
-              <div class="flex gap-4">
-                <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">YouTube</a>
-                <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">LinkedIn</a>
-                <a href="https://x.com/juwelanalytics" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">X</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="mt-12 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
-          <span>2026 MD. Juwel. All Rights Reserved.</span>
-          <span class="font-mono">https://mdjuwel.com/</span>
-        </footer>
-
-      </main>
     </div>
   </div>
 
   <!-- Article Modal -->
   <div id="postModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 overflow-y-auto p-4 sm:p-8">
-    <div class="max-w-3xl mx-auto bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden shadow-xl">
+    <div class="max-w-3xl mx-auto bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-700 rounded overflow-hidden shadow-xl">
       <div class="px-5 py-3.5 bg-slate-50 dark:bg-[#0D1117] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
         <span id="modalMeta" class="text-xs font-mono text-emerald-700 dark:text-emerald-400"></span>
         <button onclick="closePost()" class="text-xs font-mono px-2.5 py-1 rounded border border-slate-300 dark:border-slate-700">Close [ESC]</button>
@@ -390,12 +369,13 @@
         title: "Zero-Cost Cloudflare sGTM for GA4 Recommended Schemas, Meta CAPI & SHA-256",
         date: "November 22, 2026",
         category: "sGTM & Ad Tracking",
-        comments: 0,
-        summary: "Avoid recurring SaaS server fees and 3rd-party logic limits by routing first-party tracking through Cloudflare Workers + sGTM. Covers clean GA4 recommended event parameter schemas, Meta Conversions API Event Match Quality (EMQ), and SHA-256 hashed user data for Google Ads Enhanced Conversions.",
+        comments: 12,
+        diagram: `Browser -> First-Party sGTM (Cloudflare) -> GA4 Schema | Meta CAPI (EMQ) | Google Ads (SHA-256)`,
+        summary: "Avoid recurring SaaS server fees and 3rd-party logic limits by routing first-party tracking through Cloudflare + sGTM. Covers clean GA4 recommended event parameter schemas, Meta Conversions API Event Match Quality (EMQ), and SHA-256 hashed user data for Google Ads Enhanced Conversions.",
         body: `
           <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Zero-Cost Cloudflare sGTM for GA4, Meta CAPI &amp; SHA-256 User Data</h1>
           <p>Paid tracking SaaS tools and managed containers add monthly overhead and third-party constraints. A tested custom setup on Cloudflare + sGTM gives full control over event schemas, deduplication keys, and hashed customer parameters (<code>em</code>, <code>ph</code>, <code>fn</code>, <code>ln</code>).</p>
-          <pre class="p-4 rounded bg-slate-900 text-emerald-300 font-mono text-xs overflow-x-auto">Client Browser --&gt; First-Party Endpoint (Cloudflare Worker + sGTM)
+          <pre class="p-4 rounded bg-slate-900 text-emerald-300 font-mono text-xs overflow-x-auto">Client Browser --&gt; First-Party Endpoint (Cloudflare + sGTM)
   |--&gt; GA4 (Recommended Events + Validated Parameter Schema)
   |--&gt; Meta Pixel + CAPI (event_id Deduplication + High EMQ)
   +--&gt; Google Ads (Enhanced Conversions + SHA-256 Hashing)</pre>
@@ -408,7 +388,8 @@
         title: "CRM Offline Conversion Tracking (GoHighLevel, HubSpot, Zoho, Pipedrive) via Webhook, JS & Apps Script",
         date: "November 14, 2026",
         category: "CRM & Offline OCT",
-        comments: 0,
+        comments: 8,
+        diagram: `Lead Capture (gclid, fbclid, _ga, UTM) -> CRM Stage Change -> Webhook / JS / sGTM / Apps Script -> Meta & Google Ads OCT`,
         summary: "Send qualified lead and closed-won stage updates back to Meta and Google Ads OCT without paying per-task Zapier/n8n fees when a custom build fits better. Combines first-party capture of gclid, fbclid, _ga, and UTMs with webhooks, JavaScript, sGTM, and Google Apps Script.",
         body: `
           <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Custom CRM Offline Conversion Tracking for Meta &amp; Google Ads</h1>
@@ -426,7 +407,8 @@
         title: "Fixing Meta, Google Ads, GA4 & CRM Data Mismatches + Consent Mode v2 & BigQuery SQL",
         date: "November 05, 2026",
         category: "Data Discrepancy",
-        comments: 0,
+        comments: 6,
+        diagram: `Ad Dashboards vs. Backend / CRM / GA4 -> DataLayer & Consent v2 Audit -> BigQuery SQL & Looker Studio`,
         summary: "Step-by-step audit workflow to find and fix DataLayer and GTM mismatches across ad dashboards, backend, CRM, and GA4—including Google Consent Mode v2 (GDPR/CCPA with Cookiebot, CookieYes, OneTrust), cross-domain/iframe/CallRail parameters, BigQuery SQL, Looker Studio, CDP/attribution tools, and AI agents.",
         body: `
           <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Attribution Gap Audits, Consent Mode v2 &amp; BigQuery / BI Analysis</h1>
@@ -440,7 +422,8 @@
         title: "Tracking Tips: Persisting gclid, fbclid, _ga & UTMs Across Iframes and Cross-Domain Steps",
         date: "October 26, 2026",
         category: "Data Discrepancy",
-        comments: 0,
+        comments: 3,
+        diagram: `Landing URL (gclid, fbclid, _ga, UTM) -> First-Party Store -> Iframe / Cross-Domain / CallRail Handoff`,
         summary: "Quick fix for losing gclid, fbclid, _ga, or UTM parameters when leads move through cross-domain funnels, iframes, or call tracking like CallRail.",
         body: `
           <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Tips: Preserving gclid, fbclid, _ga &amp; UTMs Across Iframes</h1>
@@ -453,7 +436,8 @@
         title: "Tracking Tips: Rules-Based Consent Mode v2 (GDPR / CCPA) with Cookiebot, CookieYes & OneTrust",
         date: "October 15, 2026",
         category: "Consent Mode v2",
-        comments: 0,
+        comments: 4,
+        diagram: `Default Consent (denied) -> CMP Banner (Cookiebot / CookieYes / OneTrust) -> Consent Update -> Tag Dispatch`,
         summary: "Verify that default consent states fire before tags load and update accurately when users interact with Cookiebot, CookieYes, or OneTrust banners.",
         body: `
           <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Tips: Consent Mode v2 Verification</h1>
@@ -466,7 +450,8 @@
         title: "Tracking Tips: Querying GA4 + CRM Attribution in BigQuery SQL & Looker Studio with AI Agents",
         date: "October 02, 2026",
         category: "SQL, BI & AI Agents",
-        comments: 0,
+        comments: 5,
+        diagram: `Raw GA4 Events + Offline CRM Outcomes -> BigQuery SQL -> Looker Studio & Automated AI Summaries`,
         summary: "Practical SQL patterns for joining event parameters with offline CRM outcomes for Looker Studio dashboards and automated AI reporting workflows.",
         body: `
           <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Tips: BigQuery SQL &amp; Looker Studio Attribution</h1>
@@ -498,7 +483,7 @@
         banner.classList.remove("hidden");
         banner.classList.add("flex");
         document.getElementById("filterStatusText").textContent =
-          `Active filter: Category=${activeCat} | Type=${activeKind}${q ? ` | Search="${activeQuery}"` : ""}`;
+          `Filter: Category=${activeCat} | Type=${activeKind}${q ? ` | Query="${activeQuery}"` : ""}`;
       } else {
         banner.classList.add("hidden");
         banner.classList.remove("flex");
@@ -506,21 +491,24 @@
 
       const stream = document.getElementById("postStream");
       if (!list.length) {
-        stream.innerHTML = `<div class="py-10 text-center text-sm text-slate-500">No matching guides found. <button onclick="resetAll()" class="text-emerald-700 underline ml-1">Reset</button></div>`;
+        stream.innerHTML = `<div class="py-10 text-center text-sm text-slate-500">No matching posts found. <button onclick="resetAll()" class="text-emerald-700 underline ml-1">Reset</button></div>`;
         return;
       }
 
       stream.innerHTML = list.map(p => `
-        <article class="py-7 first:pt-2 group">
+        <article class="py-8 first:pt-1 group">
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
             <a href="#${p.id}" onclick="event.preventDefault(); openPost('${p.id}')">${p.title}</a>
           </h2>
-          <p class="mt-1 text-xs font-mono text-slate-500 dark:text-slate-400">
+          <p class="mt-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
             ${p.date} in <button onclick="setCategory('${p.category}')" class="text-emerald-700 dark:text-emerald-400 hover:underline">${p.category}</button>
             ${p.kind === "Tips" ? " &bull; Tracking Tips" : ""} &bull; ${p.comments} Comments
           </p>
           <p class="mt-3 text-sm sm:text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">${p.summary}</p>
-          <a href="#${p.id}" onclick="event.preventDefault(); openPost('${p.id}')" class="mt-3 inline-block text-xs font-mono font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
+          <div class="mt-3 px-3 py-2 rounded bg-slate-100/80 dark:bg-[#161B22] border-l-2 border-emerald-600 text-[11px] font-mono text-slate-600 dark:text-slate-400 overflow-x-auto">
+            ${p.diagram}
+          </div>
+          <a href="#${p.id}" onclick="event.preventDefault(); openPost('${p.id}')" class="mt-3.5 inline-block text-xs font-mono font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
             Continue reading &rarr;
           </a>
         </article>
@@ -605,6 +593,15 @@
     document.getElementById("mobileMenuBtn").addEventListener("click", () => {
       document.getElementById("sidebar").classList.toggle("hidden");
     });
+
+    function handleNoteSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById("noteEmail").value.trim();
+      const msg = document.getElementById("noteMsg");
+      msg.textContent = `Saved ${email} for attribution notes.`;
+      msg.classList.remove("hidden");
+      e.target.reset();
+    }
 
     function copyEmail(btn) {
       navigator.clipboard.writeText("digitrackerbd@gmail.com");
