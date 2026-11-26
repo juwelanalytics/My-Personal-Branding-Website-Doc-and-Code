@@ -3,903 +3,653 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MD. Juwel Rana | First-Party Data Architect | juwelanalytics.com</title>
-  <meta name="description" content="MD. Juwel Rana is a First-Party Data Architect specializing in server-side tracking, CRM offline conversions, iFrame attribution, BigQuery SQL, Mixpanel, and Looker Studio." />
-  <link rel="canonical" href="https://juwelanalytics.com/" />
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <title>MD. Juwel — Tracking Attribution, sGTM, CRM OCT &amp; Data Analysis</title>
+  <meta name="description" content="Custom marketing tracking attribution and data analysis by MD. Juwel: zero-cost Cloudflare sGTM, GA4 recommended event schemas, Meta CAPI EMQ, Google Ads SHA-256 OCT, GoHighLevel, HubSpot, Zoho, Pipedrive, Consent Mode v2, BigQuery SQL, Looker Studio, and AI automation." />
+  <meta name="author" content="MD. Juwel" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mdjuwel.com/" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="juwelanalytics.com" />
-  <meta property="og:url" content="https://juwelanalytics.com/" />
-  <meta property="og:title" content="MD. Juwel Rana | First-Party Data Architect | juwelanalytics.com" />
-  <meta property="og:description" content="MD. Juwel Rana is a First-Party Data Architect specializing in server-side tracking, CRM offline conversions, iFrame attribution, BigQuery SQL, Mixpanel, and Looker Studio." />
-  <meta property="og:image" content="https://juwelanalytics.com/juwel-profile.png" />
+  <meta property="og:site_name" content="MD. Juwel" />
+  <meta property="og:title" content="MD. Juwel — Marketing Attribution &amp; Data Analysis" />
+  <meta property="og:description" content="Practical guides and custom first-party tracking architectures for B2B agencies, marketers, and service brands without paid SaaS lock-in." />
+  <meta property="og:url" content="https://mdjuwel.com/" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://juwelanalytics.com/" />
-  <meta name="twitter:title" content="MD. Juwel Rana | First-Party Data Architect | juwelanalytics.com" />
-  <meta name="twitter:description" content="MD. Juwel Rana is a First-Party Data Architect specializing in server-side tracking, CRM offline conversions, iFrame attribution, BigQuery SQL, Mixpanel, and Looker Studio." />
-  <meta name="twitter:image" content="https://juwelanalytics.com/juwel-profile.png" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mdjuwel.com/#website",
+        "url": "https://mdjuwel.com/",
+        "name": "MD. Juwel",
+        "description": "Technical blog and documentation on marketing tracking attribution, server-side GTM, CRM offline conversions, consent mode, and data analysis.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mdjuwel.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mdjuwel.com/#person",
+        "name": "MD. Juwel",
+        "jobTitle": "Marketing Tracking Attribution & Data Analysis Specialist",
+        "url": "https://mdjuwel.com/",
+        "email": "mailto:digitrackerbd@gmail.com",
+        "sameAs": [
+          "https://www.youtube.com/@analyticsfixer",
+          "https://www.linkedin.com/in/juwelanalytics/",
+          "https://x.com/juwelanalytics"
+        ]
+      }
+    ]
+  }
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            slateBg: '#F8FAFC',
-            ink: '#0F172A',
-            muted: '#475569',
-            brand: '#1D4ED8',
-            brandHover: '#1E40AF',
-            verified: '#0D9488',
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'SFMono-Regular', 'monospace'],
           }
         }
       }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
     }
   </script>
+
   <style>
-    .bg-dot-grid {
-      background-color: #F8FAFC;
-      background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
-      background-size: 24px 24px;
+    .nav-item.active {
+      color: #059669;
+      font-weight: 600;
+    }
+    .dark .nav-item.active {
+      color: #34d399;
     }
   </style>
 </head>
-<body class="bg-slateBg text-ink font-sans antialiased selection:bg-blue-100 selection:text-brand">
+<body class="bg-[#FAFAFA] text-slate-800 dark:bg-[#0D1117] dark:text-slate-200 antialiased transition-colors duration-150">
 
-  <!-- STICKY NAVIGATION -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
-      <!-- Brand Logo (Left) -->
-      <a href="index.html" class="group flex items-center gap-2 sm:gap-2.5 text-sm sm:text-xl font-bold tracking-tight shrink-0 whitespace-nowrap">
-        <span class="inline-flex items-center justify-center w-7 h-6 sm:w-8 sm:h-7 rounded-md bg-slate-50 border border-slate-200 p-0.5 shadow-2xs group-hover:border-brand transition-colors overflow-hidden shrink-0">
-          <img src="favicon.png" alt="JuwelAnalytics Logo" class="w-full h-full object-contain rounded-[4px]" />
-        </span>
-        <span class="text-ink">Juwel<span class="text-brand">Analytics</span></span>
-      </a>
-
-      <!-- Desktop Navigation (Center) -->
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
-        <a href="index.html" class="text-ink font-semibold">Home</a>
-        <a href="core-stack.html" class="hover:text-ink transition-colors">Core Stack</a>
-        <a href="setups.html" class="hover:text-ink transition-colors">Real Setups</a>
-        <a href="work-with-me.html" class="hover:text-ink transition-colors">Audit and Process</a>
-        <a href="about.html" class="hover:text-ink transition-colors">About</a>
-      </nav>
-
-      <!-- Right Actions: Free Audit + Book a Call + Mobile Menu Toggle -->
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        <a href="#contact" data-action="free-audit"
-           class="inline-flex items-center justify-center px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors whitespace-nowrap shrink-0">
-          Free Audit
-        </a>
-
-        <a href="#booking/step-1" data-action="booking"
-           class="inline-flex items-center justify-center px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] sm:text-sm font-semibold text-ink bg-white hover:bg-slate-50 border border-slate-300 hover:border-brand rounded-lg transition-colors whitespace-nowrap shrink-0">
-          Book a Call
-        </a>
-
-        <button type="button" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"
-                class="md:hidden inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-slate-200 bg-white text-ink hover:bg-slate-50 transition-colors cursor-pointer shrink-0">
-          <svg id="menuOpenIcon" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="menuCloseIcon" class="w-4 h-4 sm:w-5 sm:h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+  <!-- Mobile Header -->
+  <header class="lg:hidden sticky top-0 z-30 bg-white/95 dark:bg-[#161B22]/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img src="REPLACE_WITH_PORTRAIT_URL" alt="MD. Juwel" class="w-9 h-9 rounded-full object-cover border border-slate-300 dark:border-slate-700" />
+      <div>
+        <a href="#top" onclick="showSection('home')" class="text-base font-bold text-slate-900 dark:text-white block leading-tight">MD. Juwel</a>
+        <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Attribution &amp; Data Analysis</span>
       </div>
     </div>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobileNavDrawer" class="hidden md:hidden bg-white border-t border-slate-200">
-      <nav class="max-w-6xl mx-auto px-4 py-2 flex flex-col divide-y divide-slate-100 text-sm font-medium text-muted">
-        <a href="index.html" class="py-2.5 text-ink font-semibold">Home</a>
-        <a href="core-stack.html" class="py-2.5 hover:text-ink transition-colors">Core Stack</a>
-        <a href="setups.html" class="py-2.5 hover:text-ink transition-colors">Real Setups</a>
-        <a href="work-with-me.html" class="py-2.5 hover:text-ink transition-colors">Audit and Process</a>
-        <a href="about.html" class="py-2.5 hover:text-ink transition-colors">About</a>
-      </nav>
+    <div class="flex items-center gap-2">
+      <button id="themeToggleMobile" aria-label="Toggle theme" class="p-2 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
+      <button id="mobileMenuBtn" aria-label="Toggle menu" class="p-2 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="bg-dot-grid border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-8 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono text-muted">
-            <span class="w-2 h-2 rounded-full bg-verified"></span>
-            <span>FIRST-PARTY DATA ARCHITECT • sGTM • CRM ATTRIBUTION • BIGQUERY SQL</span>
-          </div>
+  <!-- Simo Ahava-Style Two-Column Blog Structure -->
+  <div id="top" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-10 items-start">
 
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-[1.15]">
-            Stop Guessing. Scale Your Business with Maximum Accurate Data to make a data-driven decision for your highest business growth.
-          </h1>
+      <!-- LEFT SIDEBAR (Search, Identity + Portrait, Navigation, Categories, Tags, Links) -->
+      <aside id="sidebar" class="hidden lg:block lg:col-span-4 xl:col-span-3 lg:sticky lg:top-8 space-y-6 mb-8 lg:mb-0">
 
-          <p class="text-base sm:text-lg text-muted leading-relaxed max-w-2xl">
-            I engineer resilient first-party tracking pipelines, server-side GTM setups, CRM offline conversion syncs, and <strong class="text-ink font-semibold">BigQuery SQL, Mixpanel, and Looker Studio</strong> reporting so you know which channels and funnel stages actually drive revenue.
-          </p>
-
-          <div class="pt-2 flex flex-wrap items-center gap-3.5">
-            <a href="#contact" data-action="free-audit" class="px-5 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors shadow-xs">
-              Audit
-            </a>
-            <a href="#booking/step-1" data-action="booking" class="px-5 py-3 text-sm font-semibold text-ink bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors">
-              Schedule
-            </a>
-          </div>
+        <!-- Search Box (Top of Left Column like Reference) -->
+        <div class="relative">
+          <label for="searchBox" class="sr-only">Search blog</label>
+          <input
+            id="searchBox"
+            type="text"
+            placeholder="Search blog..."
+            class="w-full pl-9 pr-8 py-2 text-sm bg-white dark:bg-[#161B22] border border-slate-300 dark:border-slate-700 rounded text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-emerald-600"
+          />
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
+          </svg>
+          <button id="clearSearch" class="hidden absolute right-2.5 top-2 text-xs text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">&times;</button>
         </div>
 
-        <div class="lg:col-span-4">
-          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-4">
-            <div class="flex items-center gap-3.5">
-              <img src="juwel-profile.png" alt="MD. Juwel Rana | First-Party Data Architect"
-                   class="w-16 h-16 rounded-full object-cover border border-slate-200 bg-slate-100 shrink-0" />
+        <!-- Author Identity Block with Edited Natural Portrait -->
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-5">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <img
+                src="REPLACE_WITH_PORTRAIT_URL"
+                alt="MD. Juwel — Marketing Attribution & Data Analysis Specialist"
+                class="w-12 h-12 rounded-full object-cover border border-slate-300 dark:border-slate-700 shrink-0"
+              />
               <div>
-                <div class="font-bold text-ink text-base">MD. Juwel Rana</div>
-                <div class="text-xs font-mono text-brand">First-Party Data Architect</div>
-                <div class="text-xs text-muted mt-0.5">Rajshahi, BD • Global Remote</div>
+                <a href="#top" onclick="showSection('home'); resetAll();" class="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400">
+                  MD. Juwel
+                </a>
+                <p class="text-[11px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 leading-tight mt-0.5">
+                  Attribution &amp; Data Specialist
+                </p>
               </div>
             </div>
-            <p class="text-xs sm:text-sm text-muted leading-relaxed border-t border-slate-100 pt-3.5">
-              Built around practical ownership: server-side GTM via Cloudflare Workers or paid hosting, clean CRM/iFrame click-ID persistence, and verified reporting.
-            </p>
-            <div class="flex flex-wrap gap-3 text-xs font-semibold pt-1">
-              <a href="core-stack.html" class="text-brand hover:underline">Core Stack →</a>
-              <a href="setups.html" class="text-brand hover:underline">Real Setups →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CORE PILLARS OVERVIEW -->
-  <section class="py-16 md:py-24 border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
-      <div class="max-w-2xl">
-        <span class="text-xs font-mono font-semibold text-brand uppercase">Core Capabilities</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-ink mt-2">
-          Reliable data capture, attribution alignment, and decision-ready reporting.
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
-          <div class="text-xs font-mono font-semibold text-brand uppercase mb-2">01 • Server-Side &amp; First-Party</div>
-          <h3 class="text-lg font-bold text-ink mb-2">sGTM, Consent Mode v2 &amp; iFrame Persistence</h3>
-          <p class="text-sm text-muted leading-relaxed mb-4">
-            Deploy first-party tracking via Cloudflare Workers or paid sGTM hosting, keep click IDs intact across iFrames and funnels, and wire Consent Mode v2 cleanly.
-          </p>
-          <a href="setups.html#iframe-sgtm" class="text-sm font-semibold text-brand hover:underline">View sGTM Setup →</a>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
-          <div class="text-xs font-mono font-semibold text-brand uppercase mb-2">02 • CRM &amp; Offline Conversions</div>
-          <h3 class="text-lg font-bold text-ink mb-2">Qualified Leads &amp; Revenue Back to Ads</h3>
-          <p class="text-sm text-muted leading-relaxed mb-4">
-            Connect GHL, HubSpot, CallRail, and conversion pipelines to Google Ads OCT and Meta CAPI so ad optimization reflects real sales stages rather than raw form fills.
-          </p>
-          <a href="setups.html#oct-pipeline" class="text-sm font-semibold text-brand hover:underline">View CRM &amp; OCT Setup →</a>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
-          <div class="text-xs font-mono font-semibold text-brand uppercase mb-2">03 • Warehouse &amp; BI Reporting</div>
-          <h3 class="text-lg font-bold text-ink mb-2">BigQuery SQL, Mixpanel &amp; Looker Studio</h3>
-          <p class="text-sm text-muted leading-relaxed mb-4">
-            Turn raw GA4 and event streams into clean SQL tables, step funnels, and custom Looker Studio or performance reports built for real business decisions.
-          </p>
-          <a href="setups.html#bigquery-bi" class="text-sm font-semibold text-brand hover:underline">View BigQuery &amp; BI Setup →</a>
-        </div>
-      </div>
-
-      <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h3 class="text-base font-bold text-ink">See How Each Layer Fits Together</h3>
-          <p class="text-xs sm:text-sm text-muted mt-1">Browse the full technical stack, real-world setup architectures, or step-by-step audit process.</p>
-        </div>
-        <div class="flex flex-wrap items-center gap-4 text-sm font-semibold">
-          <a href="core-stack.html" class="text-brand hover:underline">Core Stack →</a>
-          <a href="setups.html" class="text-brand hover:underline">Real Setups →</a>
-          <a href="work-with-me.html" class="text-brand hover:underline">Audit and Process →</a>
-          <a href="about.html" class="text-brand hover:underline">About →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT & CONTACT FORM -->
-  <section id="contact" class="py-16 md:py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
-        <div class="lg:col-span-5 space-y-6">
-          <div class="flex items-center gap-4">
-            <img src="juwel-profile.png" alt="MD. Juwel Rana | First-Party Data Architect"
-                 class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-sm bg-slate-200" />
-            <div>
-              <h2 class="text-xl font-bold text-ink">MD. Juwel Rana</h2>
-              <p class="text-sm font-mono text-brand">First-Party Data Architect</p>
-              <a href="https://maps.app.goo.gl/2mWvtShyHri3o78D7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-muted hover:text-ink mt-1">
-                <span>📍 Rajshahi, Bangladesh (Global Remote)</span>
-              </a>
-            </div>
-          </div>
-
-          <p class="text-sm text-muted leading-relaxed">
-            Want a quick look at where your tracking or attribution is losing signal? Share your current tools and bottlenecks below or message directly.
-          </p>
-
-          <div class="pt-2 space-y-3 text-sm">
-            <div class="text-xs font-mono uppercase text-slate-400">Direct Channels</div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5">
-              <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer"
-                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
-                <span><span class="font-mono text-xs text-verified font-semibold">WhatsApp:</span> <span class="text-ink font-medium">Message directly</span></span>
-                <span class="text-slate-400 text-xs">→</span>
-              </a>
-              <a href="mailto:digitrackerbd@gmail.com"
-                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
-                <span><span class="font-mono text-xs text-slate-500 font-semibold">Email:</span> <span class="text-ink font-medium">digitrackerbd@gmail.com</span></span>
-                <span class="text-slate-400 text-xs">→</span>
-              </a>
-              <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer"
-                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
-                <span><span class="font-mono text-xs text-slate-500 font-semibold">LinkedIn:</span> <span class="text-ink font-medium">/in/juwelanalytics</span></span>
-                <span class="text-slate-400 text-xs">→</span>
-              </a>
-              <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer"
-                 class="flex items-center justify-between px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg hover:border-brand transition-colors">
-                <span><span class="font-mono text-xs text-slate-500 font-semibold">YouTube:</span> <span class="text-ink font-medium">@analyticsfixer</span></span>
-                <span class="text-slate-400 text-xs">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- CONTACT FORM -->
-        <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 mb-6 border-b border-slate-100">
-            <div>
-              <h3 class="text-xl font-bold text-ink">Free Audit &amp; Tech Stack Form</h3>
-              <p class="text-xs text-muted mt-1">Share what tools you use and where conversions or data are dropping.</p>
-            </div>
-            <a href="#booking/step-1" data-action="booking" class="text-xs font-mono font-semibold text-brand hover:underline shrink-0">
-              Prefer a scheduled slot? Book a Call →
-            </a>
-          </div>
-
-          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-            <input type="hidden" name="access_key" value="7ab234f3-43da-406c-866e-33c9473e9283" />
-            <input type="hidden" name="subject" value="New Free Audit / Inquiry (Home) - juwelanalytics.com" />
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="name" class="block text-xs font-semibold text-ink mb-1.5">Your Name</label>
-                <input type="text" id="name" name="name" required placeholder="Alex Morgan"
-                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
-              </div>
-              <div>
-                <label for="email" class="block text-xs font-semibold text-ink mb-1.5">Work Email or WhatsApp</label>
-                <input type="text" id="email" name="email" required placeholder="alex@agency.com"
-                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
-              </div>
-            </div>
-
-            <div>
-              <label for="stack" class="block text-xs font-semibold text-ink mb-1.5">Current Stack (e.g., sGTM, GA4, BigQuery, GHL, HubSpot, CallRail)</label>
-              <input type="text" id="stack" name="tech_stack" placeholder="Cloudflare + GTM + GHL + Google Ads + BigQuery"
-                     class="w-full px-3.5 py-2.5 text-sm font-mono bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors" />
-            </div>
-
-            <div>
-              <label for="message" class="block text-xs font-semibold text-ink mb-1.5">What tracking, attribution, or reporting gap are you trying to solve?</label>
-              <textarea id="message" name="message" rows="4" required placeholder="Briefly describe the leak or custom pipeline you need..."
-                        class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white transition-colors"></textarea>
-            </div>
-
-            <div class="pt-1 flex flex-wrap items-center justify-between gap-4">
-              <button type="submit" id="submitBtn"
-                      class="px-6 py-3 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
-                Send Message
-              </button>
-              <span class="text-xs text-slate-400">Direct reply within 24 hours</span>
-            </div>
-
-            <div id="formStatus" class="hidden text-sm font-medium p-3 rounded-lg"></div>
-          </form>
-
-          <!-- CONTACT FORM THANK YOU SECTION (#contact/thank-you) -->
-          <div id="contactThankYou" class="hidden p-5 sm:p-6 rounded-xl bg-teal-50/70 border border-teal-200 space-y-3">
-            <div class="flex items-center gap-2.5">
-              <span class="w-7 h-7 rounded-full bg-verified text-white text-xs font-bold flex items-center justify-center shrink-0">✓</span>
-              <h4 class="text-base sm:text-lg font-bold text-ink">Thank You! Your Audit &amp; Stack Details Are Received.</h4>
-            </div>
-            <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              Thanks for sharing your details. I will review your current stack and tracking bottlenecks and reply within 24 hours.
-            </p>
-            <div class="pt-1">
-              <button type="button" id="resetContactThankYouBtn"
-                      class="text-xs font-mono font-semibold text-brand hover:underline cursor-pointer">
-                ← Send another message
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-ink text-slate-400 py-10 border-t border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-      <div>
-        <span class="text-white font-semibold">juwelanalytics.com</span> | First-Party Data Architect
-      </div>
-      <div class="flex flex-wrap items-center gap-5">
-        <a href="index.html" class="text-white font-medium">Home</a>
-        <a href="core-stack.html" class="hover:text-white transition-colors">Core Stack</a>
-        <a href="setups.html" class="hover:text-white transition-colors">Real Setups</a>
-        <a href="work-with-me.html" class="hover:text-white transition-colors">Audit and Process</a>
-        <a href="about.html" class="hover:text-white transition-colors">About</a>
-        <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
-        <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">YouTube</a>
-        <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp</a>
-      </div>
-      <div>
-        © 2026 MD. Juwel Rana. All rights reserved.
-      </div>
-    </div>
-  </footer>
-
-  <!-- CUSTOM CALENDLY-STYLE BOOKING MODAL (#booking/step-1 -> #booking/step-2 -> #booking/thank-you) -->
-  <div id="bookingModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
-    <div class="w-full max-w-xl rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden">
-      <div class="bg-ink text-white px-5 py-4 flex items-center justify-between">
-        <div>
-          <div id="bookingStepBadge" class="text-[11px] font-mono text-teal-400 uppercase tracking-wider">STEP 01 OF 02 • DATE &amp; TIME</div>
-          <h3 id="bookingModalTitle" class="text-base sm:text-lg font-bold mt-0.5">Book a Discovery &amp; Tracking Call</h3>
-        </div>
-        <button type="button" id="closeBookingModal" aria-label="Close booking modal" class="text-slate-400 hover:text-white text-2xl leading-none px-1.5 cursor-pointer">&times;</button>
-      </div>
-
-      <div class="w-full h-1.5 bg-slate-100">
-        <div id="bookingProgressBar" class="h-full bg-brand transition-all duration-300" style="width: 50%;"></div>
-      </div>
-
-      <div class="p-5 sm:p-6">
-        <form id="bookingStepForm" class="space-y-4">
-          <input type="hidden" name="access_key" value="7ab234f3-43da-406c-866e-33c9473e9283" />
-          <input type="hidden" name="subject" value="New Custom Booking Request (Dhaka Time Included) - juwelanalytics.com" />
-          <input type="hidden" id="bookingClientTimezone" name="client_timezone" value="" />
-          <input type="hidden" id="bookingClientTimeFormatted" name="client_selected_time" value="" />
-          <input type="hidden" id="bookingDhakaTimeFormatted" name="your_time_asia_dhaka" value="" />
-
-          <!-- BOOKING STEP 1 -->
-          <div id="bookingStep1" class="space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 text-xs bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5">
-              <span class="font-mono text-muted">Detected Client TZ:</span>
-              <span id="detectedTzLabel" class="font-mono font-semibold text-brand">Detecting...</span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="bookingDate" class="block text-xs font-semibold text-ink mb-1.5">Select Date *</label>
-                <input type="date" id="bookingDate" name="booking_date" required
-                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
-              </div>
-
-              <div>
-                <label for="bookingTopic" class="block text-xs font-semibold text-ink mb-1.5">Session Focus *</label>
-                <select id="bookingTopic" name="session_focus" required
-                        class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white">
-                  <option value="">Choose focus area...</option>
-                  <option value="Cloudflare Workers sGTM Audit">Cloudflare Workers sGTM Audit</option>
-                  <option value="CRM & iFrame OCT / CAPI">CRM &amp; iFrame OCT / CAPI Pipeline</option>
-                  <option value="Consent Mode v2 & BigQuery">Consent Mode v2 &amp; BigQuery / BI</option>
-                  <option value="Full Tracking Stack Review">Full Tracking Stack Review</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-ink mb-1.5">Available Time Slots (Client Local Time) *</label>
-              <div id="bookingSlotsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
-              <input type="hidden" id="bookingSlotHour" name="slot_hour_dhaka_base" value="" />
-              <p id="dhakaPreviewText" class="text-[11px] font-mono text-muted mt-2">
-                Select a date and time slot to preview client time and Dhaka (GMT+6) time.
-              </p>
-            </div>
-
-            <div class="pt-2 flex justify-end">
-              <button type="button" id="bookingNextBtn"
-                      class="px-5 py-2.5 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
-                Continue to Details →
-              </button>
-            </div>
-          </div>
-
-          <!-- BOOKING STEP 2 -->
-          <div id="bookingStep2" class="hidden space-y-4">
-            <div class="p-3 rounded-lg bg-blue-50/70 border border-blue-200 text-xs font-mono text-ink">
-              <div><span class="text-muted">SELECTED SLOT:</span> <span id="summarySelectedSlot" class="font-semibold text-brand"></span></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="bookingName" class="block text-xs font-semibold text-ink mb-1.5">Your Name *</label>
-                <input type="text" id="bookingName" name="name" required placeholder="Alex Morgan"
-                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
-              </div>
-
-              <div>
-                <label for="bookingContact" class="block text-xs font-semibold text-ink mb-1.5">Work Email or WhatsApp *</label>
-                <input type="text" id="bookingContact" name="contact" required placeholder="alex@company.com"
-                       class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
-              </div>
-            </div>
-
-            <div>
-              <label for="bookingWebsite" class="block text-xs font-semibold text-ink mb-1.5">Website / Funnel URL *</label>
-              <input type="url" id="bookingWebsite" name="website" required placeholder="https://yourwebsite.com"
-                     class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white" />
-            </div>
-
-            <div>
-              <label for="bookingNotes" class="block text-xs font-semibold text-ink mb-1.5">Current Stack / Context (Optional)</label>
-              <textarea id="bookingNotes" name="notes" rows="2" placeholder="sGTM, GHL, HubSpot, GA4, BigQuery..."
-                        class="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand focus:bg-white resize-none"></textarea>
-            </div>
-
-            <div class="pt-2 flex items-center justify-between gap-3">
-              <button type="button" id="bookingBackBtn"
-                      class="px-4 py-2.5 text-xs sm:text-sm font-semibold text-muted hover:text-ink border border-slate-200 rounded-lg transition-colors cursor-pointer">
-                ← Back
-              </button>
-              <button type="submit" id="bookingSubmitBtn"
-                      class="px-5 py-2.5 text-sm font-semibold text-white bg-brand hover:bg-brandHover rounded-lg transition-colors cursor-pointer">
-                Confirm Booking →
-              </button>
-            </div>
-          </div>
-        </form>
-
-        <!-- BOOKING THANK YOU VIEW -->
-        <div id="bookingThankYou" class="hidden text-center py-4 space-y-4">
-          <div class="w-12 h-12 rounded-full bg-teal-50 text-verified border border-teal-200 flex items-center justify-center mx-auto text-xl font-bold">
-            ✓
-          </div>
-          <div class="space-y-1.5">
-            <h4 class="text-xl font-bold text-ink">Thank You! Your Call Request is Confirmed.</h4>
-            <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              Your booking details have been sent. I will confirm the exact meeting link via email or WhatsApp shortly.
-            </p>
-          </div>
-          <div id="bookingConfirmBox" class="text-left bg-slate-50 border border-slate-200 rounded-lg p-3.5 text-xs font-mono text-slate-600 space-y-1"></div>
-          <div class="pt-2 flex items-center justify-center">
-            <button type="button" id="bookingDoneCloseBtn"
-                    class="px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-ink hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
-              Back to Website
+            <button id="themeToggleDesktop" aria-label="Toggle light/dark mode" title="Toggle theme" class="hidden lg:inline-flex p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+              <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             </button>
           </div>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+            Helping B2B agencies, marketers &amp; service brands solve tracking attribution &amp; data analysis problems with custom, verified solutions.
+          </p>
         </div>
-      </div>
+
+        <!-- Primary Blog Navigation (Classic Vertical List) -->
+        <nav aria-label="Blog Navigation" class="border-b border-slate-200 dark:border-slate-800 pb-5">
+          <ul class="space-y-1.5 text-sm">
+            <li><button onclick="showSection('home'); resetAll();" class="nav-item active w-full text-left py-1 hover:text-emerald-600 dark:hover:text-emerald-400">Home</button></li>
+            <li><button onclick="showSection('home'); document.getElementById('categoriesBox').scrollIntoView({behavior:'smooth'});" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Categories</button></li>
+            <li><button onclick="showSection('home'); filterType('Tips');" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Tracking Tips</button></li>
+            <li><button onclick="showSection('tools');" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">Tools (SHA-256 &amp; URL)</button></li>
+            <li><button onclick="showSection('about');" class="nav-item w-full text-left py-1 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">About &amp; Full Stack</button></li>
+          </ul>
+        </nav>
+
+        <!-- Categories -->
+        <div id="categoriesBox" class="border-b border-slate-200 dark:border-slate-800 pb-5">
+          <h2 class="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">Categories</h2>
+          <div class="flex flex-wrap gap-1.5">
+            <button data-cat="All" class="cat-pill px-2.5 py-1 text-xs rounded border border-emerald-600 bg-emerald-600 text-white font-medium">All</button>
+            <button data-cat="sGTM & Ad Tracking" class="cat-pill px-2.5 py-1 text-xs rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#161B22] text-slate-700 dark:text-slate-300 hover:border-emerald-500">sGTM &amp; Ads</button>
+            <button data-cat="CRM & Offline OCT" class="cat-pill px-2.5 py-1 text-xs rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#161B22] text-slate-700 dark:text-slate-300 hover:border-emerald-500">CRM &amp; OCT</button>
+            <button data-cat="Data Discrepancy" class="cat-pill px-2.5 py-1 text-xs rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#161B22] text-slate-700 dark:text-slate-300 hover:border-emerald-500">Data Audit</button>
+            <button data-cat="Consent Mode v2" class="cat-pill px-2.5 py-1 text-xs rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#161B22] text-slate-700 dark:text-slate-300 hover:border-emerald-500">Consent v2</button>
+            <button data-cat="SQL, BI & AI Agents" class="cat-pill px-2.5 py-1 text-xs rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#161B22] text-slate-700 dark:text-slate-300 hover:border-emerald-500">BigQuery &amp; AI</button>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-5">
+          <h2 class="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">Tags</h2>
+          <div class="flex flex-wrap gap-x-2 gap-y-1 text-xs font-mono text-slate-500 dark:text-slate-400">
+            <button onclick="filterQuery('Cloudflare')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#Cloudflare</button>
+            <button onclick="filterQuery('GA4')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#GA4</button>
+            <button onclick="filterQuery('CAPI')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#CAPI</button>
+            <button onclick="filterQuery('SHA-256')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#SHA-256</button>
+            <button onclick="filterQuery('GoHighLevel')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#GoHighLevel</button>
+            <button onclick="filterQuery('HubSpot')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#HubSpot</button>
+            <button onclick="filterQuery('Apps Script')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#AppsScript</button>
+            <button onclick="filterQuery('gclid')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#gclid</button>
+            <button onclick="filterQuery('BigQuery')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#BigQuery</button>
+            <button onclick="filterQuery('AI Agent')" class="hover:text-emerald-600 dark:hover:text-emerald-400">#AIAgent</button>
+          </div>
+        </div>
+
+        <!-- Direct Channels & Contact -->
+        <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+          <h2 class="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Connect</h2>
+          <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="block hover:text-emerald-600 dark:hover:text-emerald-400 font-mono">YouTube (@analyticsfixer)</a>
+          <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" class="block hover:text-emerald-600 dark:hover:text-emerald-400 font-mono">LinkedIn (/in/juwelanalytics)</a>
+          <a href="https://x.com/juwelanalytics" target="_blank" rel="noopener noreferrer" class="block hover:text-emerald-600 dark:hover:text-emerald-400 font-mono">X (@juwelanalytics)</a>
+          <button onclick="copyEmail(this)" class="block text-left font-mono text-emerald-700 dark:text-emerald-400 hover:underline pt-1">
+            digitrackerbd@gmail.com <span class="text-[10px] text-slate-400">[copy]</span>
+          </button>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT COLUMN (Main Feed, Tools, About) -->
+      <main class="lg:col-span-8 xl:col-span-9 min-w-0">
+
+        <!-- HOME FEED VIEW -->
+        <div id="homeSection" class="space-y-8">
+
+          <!-- Top Highlight Strip (3 Compact Uppercase Feature Boxes like Reference) -->
+          <section aria-label="Featured Skill Guides" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <article onclick="openPost('cloudflare-sgtm-ga4-capi')" class="cursor-pointer group bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 hover:border-emerald-600 rounded p-4 transition">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">sGTM • GA4 • CAPI • SHA-256</span>
+              <h3 class="mt-1.5 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 leading-snug">
+                ZERO-COST CLOUDFLARE SGTM &amp; ERROR-FREE GA4 / CAPI SCHEMA
+              </h3>
+            </article>
+
+            <article onclick="openPost('crm-oct-ghl-hubspot-zoho')" class="cursor-pointer group bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 hover:border-emerald-600 rounded p-4 transition">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">GHL • HubSpot • Zoho • Pipedrive</span>
+              <h3 class="mt-1.5 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 leading-snug">
+                CRM OFFLINE CONVERSIONS VIA WEBHOOK, JS, SGTM &amp; APPS SCRIPT
+              </h3>
+            </article>
+
+            <article onclick="openPost('discrepancy-consent-bigquery-ai')" class="cursor-pointer group bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 hover:border-emerald-600 rounded p-4 transition">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Audit • Consent v2 • BigQuery • AI</span>
+              <h3 class="mt-1.5 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 leading-snug">
+                FIXING DATA MISMATCHES, CONSENT MODE V2 &amp; SQL ATTRIBUTION
+              </h3>
+            </article>
+          </section>
+
+          <!-- Filter Status Banner -->
+          <div id="filterBanner" class="hidden items-center justify-between bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 rounded px-4 py-2 text-xs font-mono">
+            <span id="filterStatusText"></span>
+            <button onclick="resetAll()" class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">Reset</button>
+          </div>
+
+          <!-- Chronological Articles & Tracking Tips Stream -->
+          <section id="postStream" class="divide-y divide-slate-200 dark:divide-slate-800">
+            <!-- Injected via JS -->
+          </section>
+
+          <!-- Pagination Footer (Matching Reference Style) -->
+          <div class="pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>Showing <strong id="shownCount" class="text-slate-800 dark:text-slate-200">0</strong> guides &amp; tips</span>
+            <div class="flex items-center gap-4">
+              <span>Page 1 of 1</span>
+              <button onclick="showSection('about')" class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">FULL SKILL STACK &gt;</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TOOLS SECTION (Free Client-Side Utilities) -->
+        <div id="toolsSection" class="hidden space-y-6">
+          <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Free Tracking Utilities</h1>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Local browser tools for SHA-256 hashing and attribution QA URLs.</p>
+            </div>
+            <button onclick="showSection('home')" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 hover:underline">&larr; Back to Blog</button>
+          </div>
+
+          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-lg p-5 space-y-3">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">SHA-256 Normalizer (Google Ads Enhanced / Meta CAPI)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <select id="shaType" onchange="runSha256()" class="px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]">
+                <option value="email">Email (trim + lowercase)</option>
+                <option value="phone">Phone (digits only)</option>
+                <option value="text">Text / Name / City</option>
+              </select>
+              <input id="shaInput" oninput="runSha256()" type="text" placeholder="Enter email, phone, or text..." class="sm:col-span-2 px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+            </div>
+            <div class="bg-slate-50 dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 rounded p-3 text-xs font-mono space-y-1">
+              <div><span class="text-slate-500">Normalized:</span> <span id="shaNorm">—</span></div>
+              <div class="break-all"><span class="text-slate-500">SHA-256:</span> <span id="shaHex" class="text-emerald-700 dark:text-emerald-400">—</span></div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-lg p-5 space-y-3">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">UTM &amp; Click-ID (`gclid`, `fbclid`) QA URL Builder</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+              <input id="uBase" oninput="buildUrl()" value="https://mdjuwel.com/" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uSource" oninput="buildUrl()" value="google" placeholder="utm_source" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uMedium" oninput="buildUrl()" value="cpc" placeholder="utm_medium" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uCampaign" oninput="buildUrl()" value="oct_test" placeholder="utm_campaign" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uGclid" oninput="buildUrl()" value="test_gclid_123" placeholder="gclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+              <input id="uFbclid" oninput="buildUrl()" value="test_fbclid_456" placeholder="fbclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0D1117]" />
+            </div>
+            <div class="bg-slate-50 dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 rounded p-3 flex items-center justify-between gap-2">
+              <code id="uOut" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 break-all">https://mdjuwel.com/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=oct_test&amp;gclid=test_gclid_123&amp;fbclid=test_fbclid_456</code>
+              <button onclick="copyEl('uOut', this)" class="px-2.5 py-1 text-xs font-mono rounded border border-slate-300 dark:border-slate-700 shrink-0">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT & FULL SKILL ARCHITECTURE SECTION -->
+        <div id="aboutSection" class="hidden space-y-6">
+          <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <img src="REPLACE_WITH_PORTRAIT_URL" alt="MD. Juwel" class="w-16 h-16 rounded-full object-cover border border-slate-300 dark:border-slate-700" />
+              <div>
+                <h1 class="text-2xl font-bold text-slate-900 dark:text-white">MD. Juwel</h1>
+                <p class="text-xs font-mono text-emerald-700 dark:text-emerald-400">Marketing Tracking Attribution &amp; Data Analysis Specialist</p>
+              </div>
+            </div>
+            <button onclick="showSection('home')" class="text-xs font-mono text-emerald-700 dark:text-emerald-400 hover:underline">&larr; Back to Blog</button>
+          </div>
+
+          <div class="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-lg p-6 space-y-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+            <p>
+              I help <strong>B2B agencies, marketers, and service-based brands</strong> solve marketing tracking attribution problems and analyze data to make data-driven decisions for maximum business scale and growth.
+            </p>
+            <p>
+              I always test and verify custom solutions because paid SaaS tools often bring recurring monthly costs, feature limitations, third-party control, situation-based logic gaps, and robotic mismatch errors.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">Marketing / Tracking Attribution</h2>
+                <p>Zero-cost Cloudflare server-side tracking via Google Tag Manager (sGTM), GA4 recommended events &amp; error-free parameter schemas, Meta Pixel + Conversions API (max Event Match Quality), Google Ads Enhanced Conversions &amp; SHA-256 user data hashing, other ad channels, and AI agents &amp; automation.</p>
+              </div>
+
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">CRM Offline Conversion Tracking (OCT)</h2>
+                <p>GoHighLevel, HubSpot, Zoho, Pipedrive, and other CRMs for Meta &amp; Google Ads OCT via Zapier, n8n, or free custom builds using Webhook, JavaScript, sGTM, and Google Apps Script.</p>
+              </div>
+
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">Data Discrepancy, Audit &amp; Consent</h2>
+                <p>Meta &amp; Google Ads dashboards vs. website backend, CRM &amp; GA4; DataLayer &amp; GTM mismatch fixes; tracking attribution gap audits; Google Consent Mode v2, GDPR &amp; CCPA rules with Cookiebot, CookieYes, and OneTrust.</p>
+              </div>
+
+              <div class="p-4 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1117] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white">Parameters, SQL, BI &amp; Platforms</h2>
+                <p><code>gclid</code>, <code>fbclid</code>, <code>_ga</code>, UTM &amp; marketing parameters, iframe, cross-domain, CallRail, AI agents &amp; automation; BigQuery SQL, Looker Studio, Segment CDP, Matomo, Mixpanel, RedTrack, AnyTrack, and Triple Whale.</p>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <a href="mailto:digitrackerbd@gmail.com" class="text-emerald-700 dark:text-emerald-400 hover:underline">digitrackerbd@gmail.com</a>
+              <div class="flex gap-4">
+                <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">YouTube</a>
+                <a href="https://www.linkedin.com/in/juwelanalytics/" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">LinkedIn</a>
+                <a href="https://x.com/juwelanalytics" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">X</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer (Matching Reference Layout) -->
+        <footer class="mt-12 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <span>2026 MD. Juwel. All Rights Reserved.</span>
+          <span class="font-mono">https://mdjuwel.com/</span>
+        </footer>
+
+      </main>
     </div>
   </div>
 
-  <!-- FLOATING WHATSAPP CHAT WIDGET -->
-  <div id="waWidgetRoot" class="fixed bottom-5 right-5 z-50 font-sans">
-    <div id="waChatBox" class="hidden mb-3 w-80 sm:w-96 rounded-2xl bg-white border border-slate-200 shadow-xl overflow-hidden">
-      <div class="bg-ink text-white px-4 py-3.5 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="relative">
-            <img src="juwel-profile.png" alt="MD. Juwel Rana" class="w-10 h-10 rounded-full object-cover border border-slate-600 bg-slate-700" />
-            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-ink"></span>
-          </div>
-          <div>
-            <div class="text-sm font-bold leading-tight">MD. Juwel Rana</div>
-            <div class="text-[11px] font-mono text-slate-300">First-Party Data Architect • Online</div>
-          </div>
-        </div>
-        <button type="button" id="waCloseBtn" aria-label="Close WhatsApp chat box" class="text-slate-400 hover:text-white text-lg leading-none px-1.5 py-1 rounded cursor-pointer">&times;</button>
+  <!-- Article Modal -->
+  <div id="postModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 overflow-y-auto p-4 sm:p-8">
+    <div class="max-w-3xl mx-auto bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden shadow-xl">
+      <div class="px-5 py-3.5 bg-slate-50 dark:bg-[#0D1117] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <span id="modalMeta" class="text-xs font-mono text-emerald-700 dark:text-emerald-400"></span>
+        <button onclick="closePost()" class="text-xs font-mono px-2.5 py-1 rounded border border-slate-300 dark:border-slate-700">Close [ESC]</button>
       </div>
-      <div class="p-4 bg-slate-50 space-y-3">
-        <div class="bg-white border border-slate-200 rounded-xl rounded-tl-none p-3 text-xs sm:text-sm text-ink shadow-2xs leading-relaxed">
-          Hi there! Have a question about <span class="font-mono text-xs bg-slate-100 px-1 rounded">sGTM</span>, <span class="font-mono text-xs bg-slate-100 px-1 rounded">CRM OCT</span>, iFrame click-ID tracking, or <span class="font-mono text-xs bg-slate-100 px-1 rounded">BigQuery</span>? Send a quick note below.
-        </div>
-        <div class="flex flex-wrap gap-1.5">
-          <button type="button" data-wa-preset="Hi Juwel, I want to set up zero-cost Cloudflare Workers sGTM." class="wa-preset text-[11px] font-mono px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand text-ink transition-colors cursor-pointer">Zero-Cost sGTM</button>
-          <button type="button" data-wa-preset="Hi Juwel, I need help with CRM Offline Conversion Tracking & iFrame click-IDs." class="wa-preset text-[11px] font-mono px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand text-ink transition-colors cursor-pointer">CRM &amp; OCT</button>
-          <button type="button" data-wa-preset="Hi Juwel, I'd like a tracking & attribution audit for my stack." class="wa-preset text-[11px] font-mono px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand text-ink transition-colors cursor-pointer">Tracking Audit</button>
-        </div>
-        <form id="waPopupForm" class="space-y-2.5 pt-1">
-          <textarea id="waCustomMessage" rows="2" placeholder="Write your message or current stack..." class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-brand resize-none"></textarea>
-          <div class="flex items-center justify-between gap-2">
-            <a href="https://wa.link/h16xqx" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-muted hover:text-brand underline">Open WhatsApp App &rarr;</a>
-            <button type="submit" class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors cursor-pointer">
-              <span>Start Chat</span><span>&rarr;</span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <button type="button" id="waToggleBtn" aria-label="Chat on WhatsApp" class="group inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all cursor-pointer">
-        <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.04 0C5.46 0 .1 5.36.1 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.28-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.94-5.36 11.94-11.94 0-3.19-1.24-6.19-3.53-8.4zm-8.48 18.33h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.85 9.85 0 0 1-1.51-5.22c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.89-9.89 9.89zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.07 2.9 1.22 3.1c.15.2 2.11 3.22 5.11 4.52.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/></svg>
-        <span class="text-sm font-semibold pr-0.5">WhatsApp</span>
-      </button>
+      <div id="modalContent" class="p-6 sm:p-8 space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300"></div>
     </div>
   </div>
 
   <script>
-    (function () {
-      // 1. Mobile Navigation Drawer
-      const menuBtn = document.getElementById('mobileMenuBtn');
-      const mobileDrawer = document.getElementById('mobileNavDrawer');
-      const openIcon = document.getElementById('menuOpenIcon');
-      const closeIcon = document.getElementById('menuCloseIcon');
-
-      if (menuBtn && mobileDrawer) {
-        menuBtn.addEventListener('click', () => {
-          const isOpen = !mobileDrawer.classList.contains('hidden');
-          mobileDrawer.classList.toggle('hidden');
-          menuBtn.setAttribute('aria-expanded', String(!isOpen));
-          if (openIcon && closeIcon) {
-            openIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-          }
-        });
+    const blogPosts = [
+      {
+        id: "cloudflare-sgtm-ga4-capi",
+        kind: "Guide",
+        title: "Zero-Cost Cloudflare sGTM for GA4 Recommended Schemas, Meta CAPI & SHA-256",
+        date: "November 22, 2026",
+        category: "sGTM & Ad Tracking",
+        comments: 0,
+        summary: "Avoid recurring SaaS server fees and 3rd-party logic limits by routing first-party tracking through Cloudflare Workers + sGTM. Covers clean GA4 recommended event parameter schemas, Meta Conversions API Event Match Quality (EMQ), and SHA-256 hashed user data for Google Ads Enhanced Conversions.",
+        body: `
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Zero-Cost Cloudflare sGTM for GA4, Meta CAPI &amp; SHA-256 User Data</h1>
+          <p>Paid tracking SaaS tools and managed containers add monthly overhead and third-party constraints. A tested custom setup on Cloudflare + sGTM gives full control over event schemas, deduplication keys, and hashed customer parameters (<code>em</code>, <code>ph</code>, <code>fn</code>, <code>ln</code>).</p>
+          <pre class="p-4 rounded bg-slate-900 text-emerald-300 font-mono text-xs overflow-x-auto">Client Browser --&gt; First-Party Endpoint (Cloudflare Worker + sGTM)
+  |--&gt; GA4 (Recommended Events + Validated Parameter Schema)
+  |--&gt; Meta Pixel + CAPI (event_id Deduplication + High EMQ)
+  +--&gt; Google Ads (Enhanced Conversions + SHA-256 Hashing)</pre>
+          <p>Always verify normalized lowercase trimming before SHA-256 hashing so match rates stay consistent across browser and server payloads.</p>
+        `
+      },
+      {
+        id: "crm-oct-ghl-hubspot-zoho",
+        kind: "Guide",
+        title: "CRM Offline Conversion Tracking (GoHighLevel, HubSpot, Zoho, Pipedrive) via Webhook, JS & Apps Script",
+        date: "November 14, 2026",
+        category: "CRM & Offline OCT",
+        comments: 0,
+        summary: "Send qualified lead and closed-won stage updates back to Meta and Google Ads OCT without paying per-task Zapier/n8n fees when a custom build fits better. Combines first-party capture of gclid, fbclid, _ga, and UTMs with webhooks, JavaScript, sGTM, and Google Apps Script.",
+        body: `
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Custom CRM Offline Conversion Tracking for Meta &amp; Google Ads</h1>
+          <p>Whether you use GoHighLevel, HubSpot, Zoho, Pipedrive, or another CRM, capturing <code>gclid</code>, <code>fbclid</code>, <code>_ga</code>, and UTM values at lead capture—and sending stage updates via Webhook, JavaScript, sGTM, or Apps Script (or Zapier/n8n where appropriate)—prevents attribution blind spots.</p>
+          <pre class="p-4 rounded bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto">function hashLowerSha256(str) {
+  const clean = String(str || "").trim().toLowerCase();
+  const raw = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, clean);
+  return raw.map(b =&gt; (b &lt; 0 ? b + 256 : b).toString(16).padStart(2, "0")).join("");
+}</pre>
+        `
+      },
+      {
+        id: "discrepancy-consent-bigquery-ai",
+        kind: "Guide",
+        title: "Fixing Meta, Google Ads, GA4 & CRM Data Mismatches + Consent Mode v2 & BigQuery SQL",
+        date: "November 05, 2026",
+        category: "Data Discrepancy",
+        comments: 0,
+        summary: "Step-by-step audit workflow to find and fix DataLayer and GTM mismatches across ad dashboards, backend, CRM, and GA4—including Google Consent Mode v2 (GDPR/CCPA with Cookiebot, CookieYes, OneTrust), cross-domain/iframe/CallRail parameters, BigQuery SQL, Looker Studio, CDP/attribution tools, and AI agents.",
+        body: `
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Attribution Gap Audits, Consent Mode v2 &amp; BigQuery / BI Analysis</h1>
+          <p>Data mismatches usually stem from broken DataLayer timing, iframe/cross-domain parameter loss (including CallRail or embedded forms), Consent Mode v2 misconfiguration, or unverified third-party connectors.</p>
+          <p>Combining clean event logs with BigQuery SQL, Looker Studio, CDPs (Segment), analytics/attribution platforms (Matomo, Mixpanel, RedTrack, AnyTrack, Triple Whale), and AI automation helps B2B agencies and service brands scale on verified numbers.</p>
+        `
+      },
+      {
+        id: "tip-iframe-click-ids",
+        kind: "Tips",
+        title: "Tracking Tips: Persisting gclid, fbclid, _ga & UTMs Across Iframes and Cross-Domain Steps",
+        date: "October 26, 2026",
+        category: "Data Discrepancy",
+        comments: 0,
+        summary: "Quick fix for losing gclid, fbclid, _ga, or UTM parameters when leads move through cross-domain funnels, iframes, or call tracking like CallRail.",
+        body: `
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Tips: Preserving gclid, fbclid, _ga &amp; UTMs Across Iframes</h1>
+          <p>Persist incoming <code>gclid</code>, <code>fbclid</code>, <code>_ga</code>, and UTM values in first-party storage on entry, pass them into hidden form fields or <code>postMessage</code> payloads for iframes, and keep cross-domain linking aligned.</p>
+        `
+      },
+      {
+        id: "tip-consent-mode-v2",
+        kind: "Tips",
+        title: "Tracking Tips: Rules-Based Consent Mode v2 (GDPR / CCPA) with Cookiebot, CookieYes & OneTrust",
+        date: "October 15, 2026",
+        category: "Consent Mode v2",
+        comments: 0,
+        summary: "Verify that default consent states fire before tags load and update accurately when users interact with Cookiebot, CookieYes, or OneTrust banners.",
+        body: `
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Tips: Consent Mode v2 Verification</h1>
+          <p>Always set default consent states before GTM initializes and test both denied and granted paths across GDPR and CCPA regions.</p>
+        `
+      },
+      {
+        id: "tip-bigquery-looker-ai",
+        kind: "Tips",
+        title: "Tracking Tips: Querying GA4 + CRM Attribution in BigQuery SQL & Looker Studio with AI Agents",
+        date: "October 02, 2026",
+        category: "SQL, BI & AI Agents",
+        comments: 0,
+        summary: "Practical SQL patterns for joining event parameters with offline CRM outcomes for Looker Studio dashboards and automated AI reporting workflows.",
+        body: `
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Tips: BigQuery SQL &amp; Looker Studio Attribution</h1>
+          <p>Export raw GA4 events to BigQuery so you can validate parameter schemas, reconcile ad platform vs. CRM numbers, and build automated reporting workflows without manual spreadsheet errors.</p>
+        `
       }
+    ];
 
-      // 2. Contact Form & Thank You Flow (#contact / #contact/thank-you)
-      const cSection = document.getElementById('contact');
-      const cForm = document.getElementById('contactForm');
-      const cStatus = document.getElementById('formStatus');
-      const cSubmitBtn = document.getElementById('submitBtn');
-      const cThankYou = document.getElementById('contactThankYou');
-      const cResetBtn = document.getElementById('resetContactThankYouBtn');
+    let activeCat = "All";
+    let activeKind = "All";
+    let activeQuery = "";
 
-      function showContactThankYou(updateUrl = true) {
-        if (!cForm || !cThankYou) return;
-        cForm.classList.add('hidden');
-        if (cStatus) cStatus.classList.add('hidden');
-        cThankYou.classList.remove('hidden');
-        if (updateUrl && window.location.hash !== '#contact/thank-you') {
-          history.pushState(null, '', '#contact/thank-you');
-        }
-      }
-
-      function showContactFormState(updateUrl = false) {
-        if (!cForm || !cThankYou) return;
-        cThankYou.classList.add('hidden');
-        cForm.classList.remove('hidden');
-        if (updateUrl && window.location.hash === '#contact/thank-you') {
-          history.pushState(null, '', '#contact');
-        }
-      }
-
-      function focusContactForm() {
-        showContactFormState(false);
-        if (cSection) {
-          cSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          const firstInput = cSection.querySelector('input[name="name"]');
-          if (firstInput) {
-            setTimeout(() => firstInput.focus({ preventScroll: true }), 450);
-          }
-        }
-      }
-
-      if (cForm) {
-        cForm.addEventListener('submit', async function (e) {
-          e.preventDefault();
-          cSubmitBtn.disabled = true;
-          cSubmitBtn.textContent = 'Sending...';
-
-          const payload = JSON.stringify(Object.fromEntries(new FormData(cForm)));
-
-          try {
-            const response = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-              body: payload
-            });
-            const result = await response.json();
-
-            if (response.status === 200) {
-              cForm.reset();
-              showContactThankYou(true);
-            } else if (cStatus) {
-              cStatus.classList.remove('hidden', 'bg-teal-50', 'text-verified', 'border-teal-200');
-              cStatus.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
-              cStatus.textContent = result.message || 'Something went wrong. Please message on WhatsApp or email directly.';
-            }
-          } catch (error) {
-            if (cStatus) {
-              cStatus.classList.remove('hidden', 'bg-teal-50', 'text-verified', 'border-teal-200');
-              cStatus.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
-              cStatus.textContent = 'Network error. Feel free to reach out directly via WhatsApp or digitrackerbd@gmail.com.';
-            }
-          } finally {
-            cSubmitBtn.disabled = false;
-            cSubmitBtn.textContent = 'Send Message';
-          }
-        });
-      }
-
-      if (cResetBtn) {
-        cResetBtn.addEventListener('click', () => showContactFormState(true));
-      }
-
-      // 3. Calendly-Style Custom Booking Modal (#booking/step-1 -> #booking/step-2 -> #booking/thank-you)
-      const bModal = document.getElementById('bookingModal');
-      const bCloseBtn = document.getElementById('closeBookingModal');
-      const bDoneCloseBtn = document.getElementById('bookingDoneCloseBtn');
-      const bStep1 = document.getElementById('bookingStep1');
-      const bStep2 = document.getElementById('bookingStep2');
-      const bThankYou = document.getElementById('bookingThankYou');
-      const bForm = document.getElementById('bookingStepForm');
-      const bNextBtn = document.getElementById('bookingNextBtn');
-      const bBackBtn = document.getElementById('bookingBackBtn');
-      const bSubmitBtn = document.getElementById('bookingSubmitBtn');
-      const bBadge = document.getElementById('bookingStepBadge');
-      const bProgress = document.getElementById('bookingProgressBar');
-
-      const dateInput = document.getElementById('bookingDate');
-      const slotsGrid = document.getElementById('bookingSlotsGrid');
-      const slotHourInput = document.getElementById('bookingSlotHour');
-      const detectedTzLabel = document.getElementById('detectedTzLabel');
-      const dhakaPreviewText = document.getElementById('dhakaPreviewText');
-      const tzClientInput = document.getElementById('bookingClientTimezone');
-      const timeClientInput = document.getElementById('bookingClientTimeFormatted');
-      const timeDhakaInput = document.getElementById('bookingDhakaTimeFormatted');
-      const summarySelectedSlot = document.getElementById('summarySelectedSlot');
-      const confirmBox = document.getElementById('bookingConfirmBox');
-
-      const clientTz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-      const OWNER_TZ = 'Asia/Dhaka';
-      if (detectedTzLabel) detectedTzLabel.textContent = clientTz;
-      if (tzClientInput) tzClientInput.value = clientTz;
-
-      const tomorrow = new Date(Date.now() + 86400000);
-      if (dateInput && !dateInput.value) {
-        dateInput.value = tomorrow.toISOString().split('T')[0];
-      }
-
-      function setRoute(hashPath) {
-        if (window.location.hash !== hashPath) {
-          history.pushState(null, '', hashPath);
-        }
-      }
-
-      function closeBookingModal(clearHash = true) {
-        if (bModal) bModal.classList.add('hidden');
-        if (clearHash) {
-          history.pushState(null, '', window.location.pathname + window.location.search);
-        }
-      }
-
-      function getAvailableDhakaHours(dateStr) {
-        const day = dateStr ? new Date(dateStr + 'T12:00:00').getDay() : 1;
-        if (day === 0 || day === 6) return [15, 18, 21];
-        return [14, 16, 18, 20, 22];
-      }
-
-      function formatInZone(dateObj, timeZone) {
-        return new Intl.DateTimeFormat('en-US', {
-          timeZone,
-          weekday: 'short',
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric',
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true
-        }).format(dateObj);
-      }
-
-      function dhakaWallTimeToUtc(dateStr, hour24) {
-        const [y, m, d] = dateStr.split('-').map(Number);
-        return new Date(Date.UTC(y, m - 1, d, hour24 - 6, 0, 0));
-      }
-
-      function renderSlots() {
-        if (!dateInput || !dateInput.value || !slotsGrid) return;
-        const hours = getAvailableDhakaHours(dateInput.value);
-        slotsGrid.innerHTML = '';
-        slotHourInput.value = '';
-        timeClientInput.value = '';
-        timeDhakaInput.value = '';
-        dhakaPreviewText.textContent = 'Select a slot above to calculate client time and Dhaka (GMT+6) time.';
-
-        hours.forEach((hr) => {
-          const utcDate = dhakaWallTimeToUtc(dateInput.value, hr);
-          const clientShortTime = new Intl.DateTimeFormat('en-US', {
-            timeZone: clientTz,
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
-          }).format(utcDate);
-
-          const clientFull = formatInZone(utcDate, clientTz);
-          const dhakaFull = formatInZone(utcDate, OWNER_TZ);
-
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'px-3 py-2 text-xs font-mono rounded-lg border border-slate-200 bg-slate-50 hover:border-brand text-ink transition-colors cursor-pointer text-center';
-          btn.textContent = clientShortTime;
-
-          btn.addEventListener('click', () => {
-            slotsGrid.querySelectorAll('button').forEach((b) => {
-              b.classList.remove('bg-brand', 'text-white', 'border-brand', 'font-semibold');
-              b.classList.add('bg-slate-50', 'text-ink', 'border-slate-200');
-            });
-            btn.classList.remove('bg-slate-50', 'text-ink', 'border-slate-200');
-            btn.classList.add('bg-brand', 'text-white', 'border-brand', 'font-semibold');
-
-            slotHourInput.value = String(hr);
-            timeClientInput.value = `${clientFull} (${clientTz})`;
-            timeDhakaInput.value = `${dhakaFull} (Asia/Dhaka / GMT+6)`;
-            dhakaPreviewText.textContent = `Client: ${clientFull} (${clientTz}) → Your Time: ${dhakaFull} (Asia/Dhaka)`;
-          });
-
-          slotsGrid.appendChild(btn);
-        });
-      }
-
-      function showBookingStep(step) {
-        if (!bModal || !bForm) return;
-        bModal.classList.remove('hidden');
-        bStep1.classList.add('hidden');
-        bStep2.classList.add('hidden');
-        bThankYou.classList.add('hidden');
-        bForm.classList.remove('hidden');
-
-        if (step === 1) {
-          bStep1.classList.remove('hidden');
-          bBadge.textContent = 'STEP 01 OF 02 • DATE & TIME';
-          bProgress.style.width = '50%';
-          renderSlots();
-          setRoute('#booking/step-1');
-        } else if (step === 2) {
-          bStep2.classList.remove('hidden');
-          bBadge.textContent = 'STEP 02 OF 02 • YOUR DETAILS';
-          bProgress.style.width = '85%';
-          if (summarySelectedSlot) summarySelectedSlot.textContent = timeClientInput.value;
-          setRoute('#booking/step-2');
-        } else if (step === 'thank-you') {
-          bForm.classList.add('hidden');
-          bThankYou.classList.remove('hidden');
-          bBadge.textContent = 'COMPLETED • BOOKING SENT';
-          bProgress.style.width = '100%';
-          setRoute('#booking/thank-you');
-        }
-      }
-
-      // Button Action Bindings
-      document.querySelectorAll('[data-action="free-audit"]').forEach((el) => {
-        el.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (bModal) bModal.classList.add('hidden');
-          focusContactForm();
-        });
+    function renderStream() {
+      const q = activeQuery.trim().toLowerCase();
+      const list = blogPosts.filter(p => {
+        const catOk = activeCat === "All" || p.category === activeCat;
+        const kindOk = activeKind === "All" || p.kind === activeKind;
+        const qOk = !q ||
+          p.title.toLowerCase().includes(q) ||
+          p.summary.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q);
+        return catOk && kindOk && qOk;
       });
 
-      document.querySelectorAll('[data-action="booking"]').forEach((el) => {
-        el.addEventListener('click', (e) => {
-          e.preventDefault();
-          showBookingStep(1);
-        });
+      document.getElementById("shownCount").textContent = list.length;
+
+      const banner = document.getElementById("filterBanner");
+      if (activeCat !== "All" || activeKind !== "All" || q) {
+        banner.classList.remove("hidden");
+        banner.classList.add("flex");
+        document.getElementById("filterStatusText").textContent =
+          `Active filter: Category=${activeCat} | Type=${activeKind}${q ? ` | Search="${activeQuery}"` : ""}`;
+      } else {
+        banner.classList.add("hidden");
+        banner.classList.remove("flex");
+      }
+
+      const stream = document.getElementById("postStream");
+      if (!list.length) {
+        stream.innerHTML = `<div class="py-10 text-center text-sm text-slate-500">No matching guides found. <button onclick="resetAll()" class="text-emerald-700 underline ml-1">Reset</button></div>`;
+        return;
+      }
+
+      stream.innerHTML = list.map(p => `
+        <article class="py-7 first:pt-2 group">
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
+            <a href="#${p.id}" onclick="event.preventDefault(); openPost('${p.id}')">${p.title}</a>
+          </h2>
+          <p class="mt-1 text-xs font-mono text-slate-500 dark:text-slate-400">
+            ${p.date} in <button onclick="setCategory('${p.category}')" class="text-emerald-700 dark:text-emerald-400 hover:underline">${p.category}</button>
+            ${p.kind === "Tips" ? " &bull; Tracking Tips" : ""} &bull; ${p.comments} Comments
+          </p>
+          <p class="mt-3 text-sm sm:text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">${p.summary}</p>
+          <a href="#${p.id}" onclick="event.preventDefault(); openPost('${p.id}')" class="mt-3 inline-block text-xs font-mono font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
+            Continue reading &rarr;
+          </a>
+        </article>
+      `).join("");
+    }
+
+    function setCategory(cat) {
+      showSection("home");
+      activeCat = cat;
+      document.querySelectorAll(".cat-pill").forEach(btn => {
+        btn.className = btn.dataset.cat === cat
+          ? "cat-pill px-2.5 py-1 text-xs rounded border border-emerald-600 bg-emerald-600 text-white font-medium"
+          : "cat-pill px-2.5 py-1 text-xs rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#161B22] text-slate-700 dark:text-slate-300 hover:border-emerald-500";
       });
+      renderStream();
+    }
 
-      if (dateInput) dateInput.addEventListener('change', renderSlots);
-      if (bBackBtn) bBackBtn.addEventListener('click', () => showBookingStep(1));
-      if (bCloseBtn) bCloseBtn.addEventListener('click', () => closeBookingModal(true));
-      if (bDoneCloseBtn) bDoneCloseBtn.addEventListener('click', () => closeBookingModal(true));
+    function filterType(kind) {
+      activeKind = kind;
+      renderStream();
+    }
 
-      if (bNextBtn) {
-        bNextBtn.addEventListener('click', () => {
-          const topicEl = document.getElementById('bookingTopic');
-          if (!dateInput.checkValidity()) { dateInput.reportValidity(); return; }
-          if (!topicEl.checkValidity()) { topicEl.reportValidity(); return; }
-          if (!slotHourInput.value || !timeDhakaInput.value) {
-            dhakaPreviewText.textContent = 'Please select an available time slot first.';
-            return;
-          }
-          showBookingStep(2);
-        });
+    function filterQuery(term) {
+      showSection("home");
+      activeQuery = term;
+      document.getElementById("searchBox").value = term;
+      document.getElementById("clearSearch").classList.remove("hidden");
+      renderStream();
+    }
+
+    function resetAll() {
+      activeCat = "All";
+      activeKind = "All";
+      activeQuery = "";
+      document.getElementById("searchBox").value = "";
+      document.getElementById("clearSearch").classList.add("hidden");
+      setCategory("All");
+    }
+
+    document.querySelectorAll(".cat-pill").forEach(b => b.addEventListener("click", () => setCategory(b.dataset.cat)));
+    document.getElementById("searchBox").addEventListener("input", e => {
+      showSection("home");
+      activeQuery = e.target.value;
+      document.getElementById("clearSearch").classList.toggle("hidden", !activeQuery);
+      renderStream();
+    });
+    document.getElementById("clearSearch").addEventListener("click", resetAll);
+
+    function showSection(name) {
+      document.getElementById("homeSection").classList.toggle("hidden", name !== "home");
+      document.getElementById("toolsSection").classList.toggle("hidden", name !== "tools");
+      document.getElementById("aboutSection").classList.toggle("hidden", name !== "about");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openPost(id) {
+      const p = blogPosts.find(item => item.id === id);
+      if (!p) return;
+      document.getElementById("modalMeta").textContent = `${p.date} • ${p.category}`;
+      document.getElementById("modalContent").innerHTML = p.body + `
+        <div class="pt-4 mt-4 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
+          By <strong>MD. Juwel</strong> — <a href="mailto:digitrackerbd@gmail.com" class="font-mono text-emerald-700 dark:text-emerald-400 hover:underline">digitrackerbd@gmail.com</a>
+        </div>
+      `;
+      document.getElementById("postModal").classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+    }
+
+    function closePost() {
+      document.getElementById("postModal").classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closePost(); });
+
+    function toggleTheme() {
+      const dark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    }
+    document.getElementById("themeToggleDesktop").addEventListener("click", toggleTheme);
+    document.getElementById("themeToggleMobile").addEventListener("click", toggleTheme);
+    document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+      document.getElementById("sidebar").classList.toggle("hidden");
+    });
+
+    function copyEmail(btn) {
+      navigator.clipboard.writeText("digitrackerbd@gmail.com");
+      const prev = btn.innerHTML;
+      btn.innerHTML = `digitrackerbd@gmail.com <span class="text-[10px] text-emerald-600">[copied]</span>`;
+      setTimeout(() => btn.innerHTML = prev, 1500);
+    }
+
+    function copyEl(id, btn) {
+      navigator.clipboard.writeText(document.getElementById(id).textContent);
+      const prev = btn.textContent;
+      btn.textContent = "Copied";
+      setTimeout(() => btn.textContent = prev, 1500);
+    }
+
+    async function runSha256() {
+      const raw = document.getElementById("shaInput").value;
+      const t = document.getElementById("shaType").value;
+      if (!raw.trim()) {
+        document.getElementById("shaNorm").textContent = "—";
+        document.getElementById("shaHex").textContent = "—";
+        return;
       }
+      let norm = raw.trim().toLowerCase();
+      if (t === "phone") norm = norm.replace(/[^0-9]/g, "");
+      document.getElementById("shaNorm").textContent = norm;
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(norm));
+      document.getElementById("shaHex").textContent = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
 
-      if (bForm) {
-        bForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          bSubmitBtn.disabled = true;
-          bSubmitBtn.textContent = 'Confirming...';
-
-          const clientTimeVal = timeClientInput.value;
-          const dhakaTimeVal = timeDhakaInput.value;
-          const topicVal = document.getElementById('bookingTopic').value;
-
-          try {
-            const payload = JSON.stringify(Object.fromEntries(new FormData(bForm)));
-            await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-              body: payload
-            });
-          } catch (err) {
-            // Proceed to thank-you state
-          } finally {
-            if (confirmBox) {
-              confirmBox.innerHTML =
-                `<div><span class="text-slate-400">FOCUS:</span> <span class="text-ink font-medium">${topicVal}</span></div>` +
-                `<div><span class="text-slate-400">CLIENT TIME:</span> <span class="text-ink font-medium">${clientTimeVal}</span></div>` +
-                `<div><span class="text-slate-400">DHAKA TIME:</span> <span class="text-brand font-medium">${dhakaTimeVal}</span></div>`;
-            }
-            bSubmitBtn.disabled = false;
-            bSubmitBtn.textContent = 'Confirm Booking →';
-            bForm.reset();
-            if (dateInput) dateInput.value = tomorrow.toISOString().split('T')[0];
-            showBookingStep('thank-you');
-          }
-        });
+    function buildUrl() {
+      try {
+        const url = new URL(document.getElementById("uBase").value.trim() || "https://mdjuwel.com/");
+        const pairs = {
+          utm_source: document.getElementById("uSource").value.trim(),
+          utm_medium: document.getElementById("uMedium").value.trim(),
+          utm_campaign: document.getElementById("uCampaign").value.trim(),
+          gclid: document.getElementById("uGclid").value.trim(),
+          fbclid: document.getElementById("uFbclid").value.trim()
+        };
+        Object.entries(pairs).forEach(([k, v]) => { if (v) url.searchParams.set(k, v); });
+        document.getElementById("uOut").textContent = url.toString();
+      } catch {
+        document.getElementById("uOut").textContent = "Invalid URL";
       }
+    }
 
-      function syncFromHash() {
-        const h = window.location.hash;
-        if (h === '#booking/step-1') showBookingStep(1);
-        else if (h === '#booking/step-2') showBookingStep(2);
-        else if (h === '#booking/thank-you') showBookingStep('thank-you');
-        else if (bModal) bModal.classList.add('hidden');
-
-        if (h === '#contact/thank-you') {
-          showContactThankYou(false);
-        }
-      }
-
-      window.addEventListener('hashchange', syncFromHash);
-      window.addEventListener('popstate', syncFromHash);
-      syncFromHash();
-
-      // 4. Floating WhatsApp Chat Widget
-      const toggleBtn = document.getElementById('waToggleBtn');
-      const closeWaBtn = document.getElementById('waCloseBtn');
-      const chatBox = document.getElementById('waChatBox');
-      const popupForm = document.getElementById('waPopupForm');
-      const msgInput = document.getElementById('waCustomMessage');
-      const presets = document.querySelectorAll('.wa-preset');
-      const WHATSAPP_NUMBER = '8801537703672';
-
-      if (!toggleBtn || !chatBox) return;
-      toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
-      if (closeWaBtn) closeWaBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
-      presets.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const text = btn.getAttribute('data-wa-preset') || '';
-          if (msgInput) { msgInput.value = text; msgInput.focus(); }
-        });
-      });
-      if (popupForm) {
-        popupForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const rawText = (msgInput && msgInput.value.trim()) || 'Hi Juwel, I visited juwelanalytics.com and would like to discuss a tracking setup.';
-          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(rawText)}`, '_blank', 'noopener,noreferrer');
-        });
-      }
-    })();
+    renderStream();
   </script>
 </body>
 </html>
