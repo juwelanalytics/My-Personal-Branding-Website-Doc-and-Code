@@ -23,6 +23,10 @@
       .replace(/"/g, "&quot;");
   }
 
+  function hasActiveFilter() {
+    return activeCat !== "All" || activeQuery.trim() !== "" || activeType !== "";
+  }
+
   function renderCard(post) {
     const postUrl = `?post=${encodeURIComponent(post.id)}`;
     const tagsHtml = (post.tags || [])
@@ -45,7 +49,7 @@
             </div>
 
             <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
-              <a href="${postUrl}" class="hover:text-purple-700 dark:hover:text-purple-400 transition">${escapeHtml(post.title)}</a>
+              <a href="${postUrl}" class="hover:text-purple-700 dark:text-purple-400 transition">${escapeHtml(post.title)}</a>
             </h2>
 
             <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -74,36 +78,46 @@
   }
 
   function updateFilterBanner(totalMatched) {
-    const hasFilter = activeCat !== "All" || activeQuery.trim() !== "" || activeType !== "";
-    if (!filterBanner || !filterStatusText) return;
-    if (!hasFilter) {
-      filterBanner.classList.add("hidden");
-      filterBanner.classList.remove("flex");
-      return;
+    const filtered = hasActiveFilter();
+    if (filterBanner && filterStatusText) {
+      if (!filtered) {
+        filterBanner.classList.add("hidden");
+        filterBanner.classList.remove("flex");
+      } else {
+        const parts = [];
+        if (activeCat !== "All") parts.push(`Category: ${activeCat}`);
+        if (activeType) parts.push(`Type: ${activeType}`);
+        if (activeQuery.trim()) parts.push(`Query: "${activeQuery.trim()}"`);
+        filterStatusText.textContent = `${parts.join(" | ")} — ${totalMatched} post(s) matched`;
+        filterBanner.classList.remove("hidden");
+        filterBanner.classList.add("flex");
+      }
     }
-    const parts = [];
-    if (activeCat !== "All") parts.push(`Category: ${activeCat}`);
-    if (activeType) parts.push(`Type: ${activeType}`);
-    if (activeQuery.trim()) parts.push(`Query: "${activeQuery.trim()}"`);
-    filterStatusText.textContent = `${parts.join(" | ")} — ${totalMatched} post(s) matched`;
-    filterBanner.classList.remove("hidden");
-    filterBanner.classList.add("flex");
+
+    const paginationBar = document.querySelector("#homeSection > div.mt-10.pt-5.border-t");
+    if (paginationBar) {
+      paginationBar.classList.toggle("hidden", filtered);
+    }
   }
 
   function renderStream() {
     if (!topSlot || !restSlot) return;
 
-    const isFiltered = activeCat !== "All" || activeQuery.trim() !== "" || activeType !== "";
+    const filteredMode = hasActiveFilter();
     const filtered = getFilteredPosts();
     updateFilterBanner(filtered.length);
 
-    const slice = isFiltered
+    const slice = filteredMode
       ? filtered
       : posts.slice((page - 1) * perPage, page * perPage);
 
     if (!slice.length) {
       topSlot.innerHTML = "";
-      restSlot.innerHTML = `<div class="p-6 rounded-lg border border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">No matching posts found.</div>`;
+      restSlot.innerHTML = `
+        <div class="p-6 rounded-lg border border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">
+          No matching posts found.
+        </div>
+      `;
       return;
     }
 
@@ -120,12 +134,13 @@
       detailView.innerHTML = "";
       return;
     }
+
     const post = posts.find(p => p.id === postId);
     if (!post) {
       detailView.innerHTML = `
         <div class="p-5 rounded-lg border border-slate-200 dark:border-slate-800 space-y-2">
           <p class="text-sm text-slate-600 dark:text-slate-400">Post not found.</p>
-          <a href="." class="text-xs font-mono text-purple-700 dark:text-purple-400 hover:underline">&larr; Back to posts</a>
+          <a href="/" class="text-xs font-mono text-purple-700 dark:text-purple-400 hover:underline">&larr; Back to posts</a>
         </div>
       `;
       detailView.classList.remove("hidden");
@@ -136,7 +151,7 @@
       <article class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-[#161B22]/60 space-y-4">
         <div class="flex items-center justify-between text-xs font-mono text-slate-500">
           <span>${escapeHtml(post.date)} &bull; ${escapeHtml(post.category)}</span>
-          <a href="." class="text-purple-700 dark:text-purple-400 hover:underline">&larr; All posts</a>
+          <a href="/" class="text-purple-700 dark:text-purple-400 hover:underline">&larr; All posts</a>
         </div>
         <div class="space-y-3 text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300">
           ${post.body || `<h1 class="text-2xl font-bold text-slate-900 dark:text-white">${escapeHtml(post.title)}</h1><p>${escapeHtml(post.summary)}</p>`}
