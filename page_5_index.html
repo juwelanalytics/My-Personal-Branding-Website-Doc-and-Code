@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD. Juwel — First-Party Data Architect, sGTM, GA4, Meta CAPI &amp; CRM OCT</title>
+  <meta name="description" content="First-Party Data Architecture, Cloudflare/Stape/GCP sGTM, GA4 schemas, Meta CAPI, Google Ads SHA-256 OCT, GoHighLevel, HubSpot, Zoho, Pipedrive, Consent Mode v2, BigQuery SQL, and Looker Studio." />
+  <meta name="author" content="MD. Juwel Rana" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mdjuwel.com/" />
+  <link rel="icon" type="image/png" sizes="64x64" href="../../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple%20touch%20icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MD. Juwel" />
+  <meta property="og:title" content="MD. Juwel — First-Party Data Architect &amp; Attribution Notes" />
+  <meta property="og:description" content="Practical technical guides and verified custom architectures for B2B agencies, marketers, and service brands without paid SaaS lock-in." />
+  <meta property="og:url" content="https://mdjuwel.com/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mdjuwel.com/#website",
+        "url": "https://mdjuwel.com/",
+        "name": "MD. Juwel",
+        "description": "Technical blog and documentation on first-party data architecture, sGTM, GA4, Meta CAPI, CRM offline conversions, consent mode v2, BigQuery SQL, and Looker Studio.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mdjuwel.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mdjuwel.com/#person",
+        "name": "MD. Juwel Rana",
+        "jobTitle": "First-Party Data Architect",
+        "url": "https://mdjuwel.com/",
+        "image": "https://mdjuwel.com/MD%20Juwel%20Rana%20Profile%20Picture.jpg",
+        "email": "mailto:digitrackerbd@gmail.com",
+        "sameAs": [
+          "https://www.youtube.com/@analyticsfixer",
+          "https://www.linkedin.com/in/analyticsfixer/",
+          "https://www.facebook.com/analyticsfixer"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <style>
+    .simo-left-bg {
+      background:
+        radial-gradient(circle at 50% 22%, rgba(56, 189, 248, 0.24), transparent 52%),
+        radial-gradient(circle at 50% 78%, rgba(30, 64, 175, 0.45), transparent 60%),
+        linear-gradient(180deg, #2b5876 0%, #1b365d 48%, #0f1e36 100%);
+    }
+    .nav-item.active {
+      background-color: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 dark:bg-[#0D1117] dark:text-slate-200 antialiased">
+
+  <!-- Mobile Top Bar -->
+  <header class="lg:hidden sticky top-0 z-30 bg-[#162d4d] text-white px-4 py-3 flex items-center justify-between shadow">
+    <div class="flex items-center gap-3">
+      <img src="../../MD%20Juwel%20Rana%20Profile%20Picture.jpg" alt="MD. Juwel Rana" class="w-8 h-8 rounded-full object-cover ring-2 ring-white/40" />
+      <a href="/" class="font-bold text-base tracking-tight">MD. Juwel</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="themeToggleMobile" type="button" aria-label="Toggle theme" class="p-2 rounded bg-white/10 hover:bg-white/20 text-white">
+        <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
+      <button id="mobileDrawerBtn" type="button" aria-label="Toggle navigation" class="p-2 rounded bg-white/10 hover:bg-white/20 text-white">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="top" class="min-h-screen lg:flex">
+
+    <!-- LEFT SIDEBAR -->
+    <aside id="leftSidebar" class="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 lg:fixed lg:inset-y-0 lg:left-0 z-20 simo-left-bg text-white px-7 py-9 justify-between select-none">
+      <div>
+        <div class="flex flex-col items-center text-center">
+          <img
+            src="../../MD%20Juwel%20Rana%20Profile%20Picture.jpg"
+            alt="MD. Juwel Rana — First-Party Data Architect"
+            class="w-32 h-32 rounded-full object-cover border-4 border-white/85 shadow-lg"
+          />
+          <a href="/" class="mt-4 text-2xl font-bold tracking-tight text-white hover:text-sky-200">
+            MD. Juwel
+          </a>
+          <p class="mt-1 text-xs text-sky-100/85 leading-snug max-w-[230px]">
+            First-Party Data Architect helping agencies, marketers &amp; service brands solve tracking attribution &amp; reporting.
+          </p>
+        </div>
+
+        <nav aria-label="Main navigation" class="mt-8 space-y-1 text-sm">
+          <a href="/" class="nav-item  w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+            <span>Home (Page 1)</span>
+          </a>
+
+          <a href="/page/2/" class="nav-item  w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+            <span>Page 2 (8–14)</span>
+          </a>
+
+          <a href="/page/3/" class="nav-item  w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+            <span>Page 3 (15–21)</span>
+          </a>
+
+          <a href="/page/4/" class="nav-item  w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+            <span>Page 4 (22–28)</span>
+          </a>
+
+          <a href="/page/5/" class="nav-item active w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+            <span>Page 5 (29–35)</span>
+          </a>
+
+          <button type="button" onclick="showSection('about'); setActiveNav(this);" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            <span>About</span>
+          </button>
+
+          <button type="button" onclick="showSection('tools'); setActiveNav(this);" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+            <span>Tools</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-white/15 space-y-2 text-xs text-sky-100/80">
+        <div class="flex items-center justify-between">
+          <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-white underline-offset-2 hover:underline">YouTube (@analyticsfixer)</a>
+          <button id="themeToggleDesktop" type="button" aria-label="Toggle theme" class="p-1.5 rounded bg-white/10 hover:bg-white/20 text-white" title="Toggle light/dark mode">
+            <svg class="w-3.5 h-3.5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="w-3.5 h-3.5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="https://www.linkedin.com/in/analyticsfixer/" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">LinkedIn</a>
+          <span>&bull;</span>
+          <a href="https://www.facebook.com/analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">Facebook</a>
+          <span>&bull;</span>
+          <button type="button" onclick="copyEmail(this)" class="hover:text-white hover:underline font-mono">Email</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT SCROLLABLE CONTENT AREA -->
+    <main id="scrollSection" class="flex-1 lg:ml-72 xl:ml-80 min-w-0">
+
+      <div class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#161B22] px-5 sm:px-8 py-2 text-center text-xs text-slate-600 dark:text-slate-400">
+        <span class="inline-flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-purple-600 inline-block"></span>
+          <span>First-Party Data Architecture, sGTM, GA4, Meta CAPI, CRM OCT, BigQuery SQL &amp; Looker Studio —</span>
+          <button type="button" onclick="showSection('about')" class="text-purple-700 dark:text-purple-400 font-medium hover:underline">View Full Stack</button>
+        </span>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-5 sm:px-8 py-6">
+
+        <!-- Search Bar Row + Quick Menu Button -->
+        <div class="flex items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-800">
+          <div class="relative flex-1">
+            <input
+              id="searchBox"
+              type="text"
+              placeholder="Search blog..."
+              class="w-full py-1.5 pr-8 text-base sm:text-lg bg-transparent text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none"
+            />
+            <button id="clearSearch" type="button" class="hidden absolute right-1 top-1.5 text-sm text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">&times;</button>
+          </div>
+          <button type="button" onclick="togglePanel('catDrawer')" title="Filter categories &amp; tags" class="p-2 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+
+        <!-- Expandable Categories & Tags Filter Bar -->
+        <div id="catDrawer" class="hidden mt-4 p-4 rounded-lg bg-slate-50 dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-mono text-slate-400 mr-1">Categories:</span>
+            <button type="button" data-cat="All" class="cat-pill px-2.5 py-1 text-xs rounded bg-purple-700 text-white font-medium">All</button>
+            <button type="button" data-cat="sGTM & Ad Tracking" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">sGTM &amp; Ads</button>
+            <button type="button" data-cat="CRM & Offline OCT" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">CRM &amp; OCT</button>
+            <button type="button" data-cat="Data Discrepancy" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">Data Audit</button>
+            <button type="button" data-cat="Consent Mode v2" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">Consent v2</button>
+            <button type="button" data-cat="SQL, BI & AI Agents" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">BigQuery &amp; AI</button>
+          </div>
+          <div id="tagDrawer" class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 pt-1 border-t border-slate-200 dark:border-slate-800">
+            <span class="text-slate-400">Tags:</span>
+            <button type="button" onclick="filterQuery('Cloudflare')" class="hover:text-purple-700 dark:hover:text-purple-400">#Cloudflare</button>
+            <button type="button" onclick="filterQuery('GA4')" class="hover:text-purple-700 dark:hover:text-purple-400">#GA4</button>
+            <button type="button" onclick="filterQuery('CAPI')" class="hover:text-purple-700 dark:hover:text-purple-400">#CAPI</button>
+            <button type="button" onclick="filterQuery('SHA-256')" class="hover:text-purple-700 dark:hover:text-purple-400">#SHA-256</button>
+            <button type="button" onclick="filterQuery('GoHighLevel')" class="hover:text-purple-700 dark:hover:text-purple-400">#GoHighLevel</button>
+            <button type="button" onclick="filterQuery('HubSpot')" class="hover:text-purple-700 dark:hover:text-purple-400">#HubSpot</button>
+            <button type="button" onclick="filterQuery('Apps Script')" class="hover:text-purple-700 dark:hover:text-purple-400">#AppsScript</button>
+            <button type="button" onclick="filterQuery('gclid')" class="hover:text-purple-700 dark:hover:text-purple-400">#gclid</button>
+            <button type="button" onclick="filterQuery('BigQuery')" class="hover:text-purple-700 dark:hover:text-purple-400">#BigQuery</button>
+            <button type="button" onclick="filterQuery('Looker Studio')" class="hover:text-purple-700 dark:hover:text-purple-400">#LookerStudio</button>
+          </div>
+        </div>
+
+        <!-- HOME BLOG STREAM -->
+        <div id="homeSection" class="mt-6">
+
+          <div id="filterBanner" class="hidden items-center justify-between bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded px-4 py-2 mb-6 text-xs font-mono">
+            <span id="filterStatusText"></span>
+            <button type="button" onclick="resetAll()" class="text-purple-700 dark:text-purple-400 font-semibold hover:underline">Reset</button>
+          </div>
+
+          <div id="topPostSlot"></div>
+
+          <div id="newsletterBanner" class="my-7 rounded bg-[#7c3aed] text-white px-5 py-4 relative shadow-sm">
+            <button type="button" onclick="document.getElementById('newsletterBanner').classList.add('hidden')" aria-label="Dismiss banner" class="absolute top-3 right-3.5 text-white/80 hover:text-white text-sm font-bold">&times;</button>
+            <div class="text-center pr-4">
+              <div class="font-bold text-sm tracking-wide">Attribution &amp; Tracking Notes</div>
+              <p class="mt-1 text-xs text-purple-100 max-w-xl mx-auto">
+                Click any card or "Continue reading" to reload into its dedicated article details page (?post=...) with code, experiments, caveats, and TechArticle schema.
+              </p>
+              <form onsubmit="handleBannerJoin(event)" class="mt-3 flex flex-col sm:flex-row items-center justify-center gap-2 max-w-md mx-auto">
+                <input id="bannerEmail" type="email" required placeholder="Enter your email for field notes" class="w-full sm:flex-1 px-3 py-1.5 text-xs rounded text-slate-900 bg-white placeholder-slate-400 focus:outline-none" />
+                <button type="submit" class="w-full sm:w-auto px-4 py-1.5 text-xs font-semibold rounded bg-slate-950/30 hover:bg-slate-950/50 border border-white/30">Notify Me</button>
+              </form>
+              <p id="bannerStatus" class="hidden mt-2 text-[11px] font-mono text-purple-100"></p>
+            </div>
+          </div>
+
+          <div id="restPostsSlot" class="space-y-9"></div>
+
+          <div id="paginationBar" class="mt-10 pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <a id="olderPostsLink" href="/" class="text-purple-700 dark:text-purple-400 font-semibold hover:underline">< BACK TO PAGE 1</a>
+            <span id="pageStatusText">page 5 of 5</span>
+          </div>
+
+        </div>
+
+        <!-- TOOLS VIEW -->
+        <div id="toolsSection" class="hidden mt-6 space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tracking Tools</h1>
+            <button type="button" onclick="showSection('home')" class="text-xs font-mono text-purple-700 dark:text-purple-400 hover:underline">&larr; Back to blog</button>
+          </div>
+
+          <div class="p-5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#161B22] space-y-3">
+            <h2 class="font-bold text-slate-900 dark:text-white">SHA-256 Normalizer (Google Ads Enhanced / Meta CAPI)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <select id="shaType" onchange="runSha256()" class="px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]">
+                <option value="email">Email (trim + lowercase)</option>
+                <option value="phone">Phone (digits only)</option>
+                <option value="text">Text / Name / City</option>
+              </select>
+              <input id="shaInput" oninput="runSha256()" type="text" placeholder="Enter value to normalize &amp; hash..." class="sm:col-span-2 px-3 py-2 text-sm rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]" />
+            </div>
+            <div class="p-3 rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 text-xs font-mono space-y-1">
+              <div><span class="text-slate-400">Normalized:</span> <span id="shaNorm">—</span></div>
+              <div class="break-all"><span class="text-slate-400">SHA-256:</span> <span id="shaHex" class="text-purple-700 dark:text-purple-400">—</span></div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#161B22] space-y-3">
+            <h2 class="font-bold text-slate-900 dark:text-white">UTM &amp; Click-ID (gclid, fbclid) QA URL Builder</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+              <input id="uBase" oninput="buildUrl()" value="https://mdjuwel.com/" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]" />
+              <input id="uSource" oninput="buildUrl()" value="google" placeholder="utm_source" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]" />
+              <input id="uMedium" oninput="buildUrl()" value="cpc" placeholder="utm_medium" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]" />
+              <input id="uCampaign" oninput="buildUrl()" value="oct_test" placeholder="utm_campaign" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]" />
+              <input id="uGclid" oninput="buildUrl()" value="test_gclid_123" placeholder="gclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]" />
+              <input id="uFbclid" oninput="buildUrl()" value="test_fbclid_456" placeholder="fbclid" class="px-3 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0D1117]" />
+            </div>
+            <div class="p-3 rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+              <code id="uOut" class="text-xs font-mono text-purple-700 dark:text-purple-400 break-all">https://mdjuwel.com/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=oct_test&amp;gclid=test_gclid_123&amp;fbclid=test_fbclid_456</code>
+              <button type="button" onclick="copyEl('uOut', this)" class="px-2.5 py-1 text-xs font-mono rounded border border-slate-300 dark:border-slate-700 shrink-0">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT & FULL SKILL STACK VIEW -->
+        <div id="aboutSection" class="hidden mt-6 space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <h1 class="text-2xl font-bold text-slate-900 dark:text-white">About MD. Juwel Rana</h1>
+            <button type="button" onclick="showSection('home')" class="text-xs font-mono text-purple-700 dark:text-purple-400 hover:underline">&larr; Back to blog</button>
+          </div>
+
+          <div class="space-y-4 text-sm sm:text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
+            <p>
+              Stop Guessing. Scale Your Business with Maximum Accurate Data to make a data-driven decision for your highest business growth. As a <strong>First-Party Data Architect</strong>, I help B2B agencies, marketers, and service-based brands solve marketing tracking attribution, GA4 custom reporting, and Looker Studio performance reporting.
+            </p>
+            <p>
+              I test and verify custom architectures across Cloudflare Workers, Stape, and Google Cloud sGTM, alongside custom listeners, webhooks, and Google Apps Script pipelines so teams avoid recurring SaaS lock-in and attribution gaps.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs pt-2">
+              <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#161B22] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white text-sm">First-Party Data &amp; sGTM</h2>
+                <p>Server-side GTM across Cloudflare Workers, Stape, and Google Cloud; GA4 recommended events &amp; custom reporting; Meta Pixel + CAPI (high EMQ); Google Ads OCT &amp; SHA-256 hashing.</p>
+              </div>
+              <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#161B22] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white text-sm">CRM Offline Conversion Tracking</h2>
+                <p>GoHighLevel, HubSpot, Zoho, Salesforce, Pipedrive, and CallRail pipelines via Zapier, Make.com, n8n, webhooks, custom JS, sGTM, and Google Apps Script.</p>
+              </div>
+              <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#161B22] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white text-sm">Data Audit &amp; Consent Mode v2</h2>
+                <p>Reconciling ad dashboards vs. CRM and GA4; DataLayer 2.0 &amp; GTM mismatch fixes; Google Consent Mode v2 (GDPR/CCPA) with Cookiebot, CookieYes, and OneTrust.</p>
+              </div>
+              <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#161B22] space-y-1">
+                <h2 class="font-bold text-slate-900 dark:text-white text-sm">BigQuery SQL, BI &amp; Platforms</h2>
+                <p>BigQuery SQL, Looker Studio performance reporting, Twilio Segment, Matomo, Mixpanel, PostHog, RedTrack, AnyTrack, Triple Whale, and AI automation workflows.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Site Footer -->
+        <footer class="mt-12 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <span>2026 MD. Juwel Rana. All Rights Reserved.</span>
+          <span class="font-mono">https://juwelanalytics.pages.dev/</span>
+        </footer>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="../../assets/js/posts.js"></script>
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>
