@@ -1,125 +1,262 @@
-window.POSTS = [
-  {
-    id: "cloudflare-sgtm-ga4-capi",
-    kind: "Guide",
-    title: "First-Party sGTM Architecture for GA4 Schemas, Meta CAPI & SHA-256",
-    date: "November 22, 2026",
-    category: "sGTM & Ad Tracking",
-    tags: ["Cloudflare", "GA4", "CAPI", "SHA-256"],
-    comments: 12,
-    thumbBg: "from-fuchsia-700 via-purple-800 to-indigo-950",
-    thumbBadge: "FIRST-PARTY sGTM",
-    thumbTitle: "GA4 / CAPI / SHA-256",
-    summary: "Route first-party tracking through custom server-side GTM across Cloudflare, Stape, or GCP with clean GA4 recommended event schemas, Meta CAPI deduplication and high EMQ, and SHA-256 hashed customer parameters for Google Ads Enhanced Conversions.",
-    body: `
-      <h1 class="text-2xl font-bold text-slate-900 dark:text-white">First-Party sGTM Architecture for GA4 Schemas, Meta CAPI &amp; SHA-256</h1>
-      <p>Custom server-side GTM setups give full control over event schemas, first-party cookies, deduplication keys, and normalized SHA-256 user parameters (<code>em</code>, <code>ph</code>, <code>fn</code>, <code>ln</code>) without third-party logic lock-in.</p>
-      <pre class="p-4 rounded bg-slate-900 text-purple-200 font-mono text-xs overflow-x-auto">Browser / DataLayer --&gt; First-Party Endpoint (Cloudflare / Stape / GCP sGTM)
-  |--&gt; GA4 (Recommended Events + Custom Parameter Schema)
-  |--&gt; Meta Pixel + CAPI (event_id Deduplication + High EMQ)
-  +--&gt; Google Ads (Enhanced Conversions + SHA-256 Hashing)</pre>
-    `
-  },
-  {
-    id: "crm-oct-ghl-hubspot-zoho",
-    kind: "Tips",
-    title: "#OCTtips: CRM Offline Conversion Tracking via Webhook, JS & Apps Script",
-    date: "November 14, 2026",
-    category: "CRM & Offline OCT",
-    tags: ["GoHighLevel", "HubSpot", "Apps Script", "gclid"],
-    comments: 8,
-    thumbBg: "from-slate-800 via-slate-900 to-zinc-950",
-    thumbBadge: "CRM OCT",
-    thumbTitle: "GHL • HubSpot • Zoho",
-    summary: "Send qualified lead and closed-won stage updates back to Meta and Google Ads OCT from GoHighLevel, HubSpot, Zoho, or Pipedrive using first-party gclid, fbclid, _ga, and UTM capture with webhooks, JavaScript, sGTM, or Google Apps Script.",
-    body: `
-      <h1 class="text-2xl font-bold text-slate-900 dark:text-white">#OCTtips: Custom CRM Offline Conversion Tracking</h1>
-      <p>Capture <code>gclid</code>, <code>fbclid</code>, <code>_ga</code>, and UTM values at form or booking submission, persist them in CRM custom fields, and send stage transitions via webhook, sGTM, or Google Apps Script.</p>
-    `
-  },
-  {
-    id: "discrepancy-consent-bigquery-ai",
-    kind: "Tips",
-    title: "#AuditTips: Fixing Data Mismatches + Consent Mode v2 & BigQuery SQL",
-    date: "November 05, 2026",
-    category: "Data Discrepancy",
-    tags: ["BigQuery", "GA4", "Looker Studio"],
-    comments: 6,
-    thumbBg: "from-sky-800 via-blue-900 to-slate-950",
-    thumbBadge: "DATA AUDIT",
-    thumbTitle: "Consent v2 + SQL",
-    summary: "Audit workflow to reconcile ad platforms, CRM, and GA4—covering DataLayer/GTM mismatches, Google Consent Mode v2 (Cookiebot, CookieYes, OneTrust), BigQuery SQL joins, and Looker Studio performance reporting.",
-    body: `
-      <h1 class="text-2xl font-bold text-slate-900 dark:text-white">#AuditTips: Reconciling Ad Dashboards, CRM &amp; GA4</h1>
-      <p>Diagnose attribution gaps across consent states, event firing order, and CRM stage timestamps, then model clean reporting tables in BigQuery SQL and Looker Studio.</p>
-    `
-  },
-  {
-    id: "tip-iframe-click-ids",
-    kind: "Tips",
-    title: "#TrackingTips: Persisting gclid, fbclid, _ga & UTMs Across Iframes",
-    date: "October 26, 2026",
-    category: "Data Discrepancy",
-    tags: ["gclid", "GA4", "CAPI"],
-    comments: 3,
-    thumbBg: "from-indigo-800 via-violet-900 to-slate-950",
-    thumbBadge: "ATTRIBUTION",
-    thumbTitle: "gclid / fbclid / _ga",
-    summary: "Prevent click IDs and UTM parameters from dropping when visitors move through embedded booking iframes, cross-domain steps, or call tracking flows.",
-    body: `
-      <h1 class="text-2xl font-bold text-slate-900 dark:text-white">#TrackingTips: Persisting Parameters Across Iframes</h1>
-      <p>Read and store first-party attribution parameters on entry and pass them cleanly into embedded widgets, checkout/booking iframes, and hidden CRM inputs.</p>
-    `
-  },
-  {
-    id: "ga4-custom-reporting-looker",
-    kind: "Guide",
-    title: "GA4 Custom Reporting & Looker Studio Executive Dashboards",
-    date: "October 18, 2026",
-    category: "SQL, BI & AI Agents",
-    tags: ["GA4", "Looker Studio", "BigQuery"],
-    comments: 5,
-    thumbBg: "from-emerald-800 via-teal-900 to-slate-950",
-    thumbBadge: "REPORTING",
-    thumbTitle: "GA4 + Looker Studio",
-    summary: "Structure custom dimensions, funnel explorations, and blended Looker Studio views so agencies and service brands track real lead quality and revenue instead of vanity metrics.",
-    body: `
-      <h1 class="text-2xl font-bold text-slate-900 dark:text-white">GA4 Custom Reporting &amp; Looker Studio Executive Dashboards</h1>
-      <p>Align event parameters with custom dimensions and blend ad spend, GA4, and CRM outcomes in Looker Studio for reliable decision-making.</p>
-    `
-  },
-  {
-    id: "consent-mode-v2-cmp-qa",
-    kind: "Guide",
-    title: "Google Consent Mode v2 QA with Cookiebot, CookieYes & OneTrust",
-    date: "October 09, 2026",
-    category: "Consent Mode v2",
-    tags: ["GA4", "Cloudflare", "CAPI"],
-    comments: 4,
-    thumbBg: "from-amber-800 via-orange-900 to-slate-950",
-    thumbBadge: "CONSENT v2",
-    thumbTitle: "GDPR / CCPA QA",
-    summary: "Verify default and update consent signals (ad_storage, analytics_storage, ad_user_data, ad_personalization) so tags respect user choice without breaking attribution.",
-    body: `
-      <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Google Consent Mode v2 QA with CMPs</h1>
-      <p>Test default states before banner interaction and confirm clean state updates across browser and server-side tags.</p>
-    `
-  },
-  {
-    id: "single-sgtm-multi-domain-routing",
-    kind: "Guide",
-    title: "Routing Multiple Regional Domains Through a Single sGTM Container",
-    date: "September 29, 2026",
-    category: "sGTM & Ad Tracking",
-    tags: ["Cloudflare", "GA4", "SHA-256"],
-    comments: 7,
-    thumbBg: "from-cyan-800 via-sky-900 to-slate-950",
-    thumbBadge: "MULTI-DOMAIN",
-    thumbTitle: "page_hostname Routing",
-    summary: "Use lookup tables and hostname-aware routing rules to keep multi-region sites organized on a single server-side container without cross-brand data mixups.",
-    body: `
-      <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Routing Multiple Regional Domains Through a Single sGTM Container</h1>
-      <p>Map measurement IDs, CAPI tokens, and cookie domains dynamically using <code>page_hostname</code> lookup logic.</p>
-    `
-  }
-];
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page 5 — MD. Juwel | First-Party Data Architect &amp; Attribution Notes</title>
+  <meta name="description" content="Page 5 of attribution, server-side GTM, CRM offline conversions, GA4 custom reporting, Consent Mode v2, and BigQuery SQL guides by MD. Juwel Rana." />
+  <meta name="author" content="MD. Juwel Rana" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://juwelanalytics.pages.dev/page/5/" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple%20touch%20icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MD. Juwel" />
+  <meta property="og:title" content="Page 5 — MD. Juwel | First-Party Data Architect &amp; Attribution Notes" />
+  <meta property="og:description" content="Practical technical guides and verified custom architectures for B2B agencies, marketers, and service brands without paid SaaS lock-in." />
+  <meta property="og:url" content="https://juwelanalytics.pages.dev/page/5/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    .simo-left-bg {
+      background:
+        radial-gradient(circle at 50% 22%, rgba(56, 189, 248, 0.24), transparent 52%),
+        radial-gradient(circle at 50% 78%, rgba(30, 64, 175, 0.45), transparent 60%),
+        linear-gradient(180deg, #2b5876 0%, #1b365d 48%, #0f1e36 100%);
+    }
+    .nav-item.active {
+      background-color: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body data-page="5" data-per-page="7" class="bg-white text-slate-800 dark:bg-[#0D1117] dark:text-slate-200 antialiased">
+
+  <!-- Mobile Top Bar -->
+  <header class="lg:hidden sticky top-0 z-30 bg-[#162d4d] text-white px-4 py-3 flex items-center justify-between shadow">
+    <div class="flex items-center gap-3">
+      <img src="/MD%20Juwel%20Rana%20Profile%20Picture.jpg" alt="MD. Juwel" class="w-8 h-8 rounded-full object-cover ring-2 ring-white/40" />
+      <a href="/" class="font-bold text-base tracking-tight">MD. Juwel</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" id="themeToggleMobile" aria-label="Toggle theme" class="p-2 rounded bg-white/10 hover:bg-white/20 text-white">
+        <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
+      <button type="button" id="mobileDrawerBtn" aria-label="Toggle navigation" class="p-2 rounded bg-white/10 hover:bg-white/20 text-white">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="top" class="min-h-screen lg:flex">
+
+    <!-- CLEAN LEFT SIDEBAR -->
+    <aside id="leftSidebar" class="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 lg:fixed lg:inset-y-0 lg:left-0 z-20 simo-left-bg text-white px-7 py-9 justify-between select-none">
+      <div>
+        <div class="flex flex-col items-center text-center">
+          <img
+            src="/MD%20Juwel%20Rana%20Profile%20Picture.jpg"
+            alt="MD. Juwel — First-Party Data Architect"
+            class="w-32 h-32 rounded-full object-cover border-4 border-white/85 shadow-lg"
+          />
+          <a href="/" class="mt-4 text-2xl font-bold tracking-tight text-white hover:text-sky-200">
+            MD. Juwel
+          </a>
+          <p class="mt-1 text-xs text-sky-100/85 leading-snug max-w-[230px]">
+            Helping B2B agencies, marketers &amp; service brands solve tracking attribution &amp; data analysis problems.
+          </p>
+        </div>
+
+        <nav aria-label="Main navigation" class="mt-8 space-y-1 text-sm">
+          <a href="/" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+            <span>Home</span>
+          </a>
+
+          <button type="button" onclick="togglePanel('catDrawer'); setActiveNav(this);" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+            <span>Categories</span>
+          </button>
+
+          <button type="button" onclick="togglePanel('tagDrawer'); setActiveNav(this);" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            <span>Tags</span>
+          </button>
+
+          <button type="button" onclick="filterType('Tips'); setActiveNav(this);" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+            <span>Tracking Tips</span>
+          </button>
+
+          <a href="/#aboutSection" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            <span>About</span>
+          </a>
+
+          <a href="/#toolsSection" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-lg text-white/90 hover:bg-white/10 transition">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+            <span>Tools</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-white/15 space-y-2 text-xs text-sky-100/80">
+        <div class="flex items-center justify-between">
+          <a href="https://www.youtube.com/@analyticsfixer" target="_blank" rel="noopener noreferrer" class="hover:text-white underline-offset-2 hover:underline">YouTube (@analyticsfixer)</a>
+          <button type="button" id="themeToggleDesktop" aria-label="Toggle theme" class="p-1.5 rounded bg-white/10 hover:bg-white/20 text-white" title="Toggle light/dark mode">
+            <svg class="w-3.5 h-3.5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="w-3.5 h-3.5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="https://www.linkedin.com/in/analyticsfixer/" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">LinkedIn</a>
+          <span>&bull;</span>
+          <a href="https://x.com/juwelanalytics" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">X</a>
+          <span>&bull;</span>
+          <button type="button" onclick="copyEmail(this)" class="hover:text-white hover:underline font-mono">Email</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT SCROLLABLE CONTENT AREA -->
+    <main id="scrollSection" class="flex-1 lg:ml-72 xl:ml-80 min-w-0">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8 py-6">
+
+        <!-- Search Bar Row -->
+        <div class="flex items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-800">
+          <div class="relative flex-1">
+            <input
+              id="searchBox"
+              type="text"
+              placeholder="Search blog..."
+              class="w-full py-1.5 pr-8 text-base sm:text-lg bg-transparent text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none"
+            />
+            <button type="button" id="clearSearch" class="hidden absolute right-1 top-1.5 text-sm text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">&times;</button>
+          </div>
+          <button type="button" onclick="togglePanel('catDrawer')" title="Filter categories &amp; tags" class="p-2 rounded text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+
+        <!-- Expandable Categories & Tags Filter Bar -->
+        <div id="catDrawer" class="hidden mt-4 p-4 rounded-lg bg-slate-50 dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-mono text-slate-400 mr-1">Categories:</span>
+            <button type="button" data-cat="All" class="cat-pill px-2.5 py-1 text-xs rounded bg-purple-700 text-white font-medium">All</button>
+            <button type="button" data-cat="sGTM & Ad Tracking" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">sGTM &amp; Ads</button>
+            <button type="button" data-cat="CRM & Offline OCT" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">CRM &amp; OCT</button>
+            <button type="button" data-cat="Data Discrepancy" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">Data Audit</button>
+            <button type="button" data-cat="Consent Mode v2" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">Consent v2</button>
+            <button type="button" data-cat="SQL, BI & AI Agents" class="cat-pill px-2.5 py-1 text-xs rounded bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">BigQuery &amp; AI</button>
+          </div>
+          <div id="tagDrawer" class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 pt-1 border-t border-slate-200 dark:border-slate-800">
+            <span class="text-slate-400">Tags:</span>
+            <button type="button" onclick="filterQuery('Cloudflare')" class="hover:text-purple-700 dark:hover:text-purple-400">#Cloudflare</button>
+            <button type="button" onclick="filterQuery('GA4')" class="hover:text-purple-700 dark:hover:text-purple-400">#GA4</button>
+            <button type="button" onclick="filterQuery('CAPI')" class="hover:text-purple-700 dark:hover:text-purple-400">#CAPI</button>
+            <button type="button" onclick="filterQuery('SHA-256')" class="hover:text-purple-700 dark:hover:text-purple-400">#SHA-256</button>
+            <button type="button" onclick="filterQuery('GoHighLevel')" class="hover:text-purple-700 dark:hover:text-purple-400">#GoHighLevel</button>
+            <button type="button" onclick="filterQuery('HubSpot')" class="hover:text-purple-700 dark:hover:text-purple-400">#HubSpot</button>
+            <button type="button" onclick="filterQuery('Apps Script')" class="hover:text-purple-700 dark:hover:text-purple-400">#AppsScript</button>
+            <button type="button" onclick="filterQuery('gclid')" class="hover:text-purple-700 dark:hover:text-purple-400">#gclid</button>
+            <button type="button" onclick="filterQuery('BigQuery')" class="hover:text-purple-700 dark:hover:text-purple-400">#BigQuery</button>
+            <button type="button" onclick="filterQuery('Looker Studio')" class="hover:text-purple-700 dark:hover:text-purple-400">#LookerStudio</button>
+          </div>
+        </div>
+
+        <div id="homeSection" class="mt-6">
+          <div id="filterBanner" class="hidden items-center justify-between bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded px-4 py-2 mb-6 text-xs font-mono">
+            <span id="filterStatusText"></span>
+            <button type="button" onclick="resetAll()" class="text-purple-700 dark:text-purple-400 font-semibold hover:underline">Reset</button>
+          </div>
+
+          <div id="postDetailView" class="hidden mb-8"></div>
+          <div id="topPostSlot"></div>
+          <div id="restPostsSlot" class="mt-8 space-y-9"></div>
+
+          <!-- Footer Pagination Strip (Screenshot Style) -->
+          <div class="mt-10 pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-2.5">
+              <a href="/page/4/" class="inline-flex items-center gap-1.5 px-4 py-2 rounded border border-slate-300 dark:border-slate-700 text-purple-700 dark:text-purple-400 hover:border-purple-600 hover:bg-purple-50/50 dark:hover:bg-purple-950/20 transition">
+                <span>&lsaquo;</span>
+                <span>NEWER POSTS</span>
+              </a>
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded border border-slate-200 dark:border-slate-700 text-slate-300 dark:text-slate-600 cursor-not-allowed select-none">
+                <span>OLDER POSTS</span>
+                <span>&rsaquo;</span>
+              </span>
+            </div>
+            <span class="text-slate-400 dark:text-slate-500">page 5 of 5</span>
+          </div>
+        </div>
+
+        <footer class="mt-12 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <span>2026 MD. Juwel Rana. All Rights Reserved.</span>
+          <a href="https://juwelanalytics.pages.dev/" target="_blank" rel="noopener noreferrer" class="font-mono hover:underline">https://juwelanalytics.pages.dev/</a>
+        </footer>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="/assets/js/posts.js"></script>
+  <script src="/assets/js/app.js"></script>
+
+  <script>
+    function toggleTheme() {
+      const dark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    }
+    document.getElementById("themeToggleDesktop")?.addEventListener("click", toggleTheme);
+    document.getElementById("themeToggleMobile")?.addEventListener("click", toggleTheme);
+    document.getElementById("mobileDrawerBtn")?.addEventListener("click", () => {
+      const sb = document.getElementById("leftSidebar");
+      sb.classList.toggle("hidden");
+      sb.classList.toggle("fixed");
+      sb.classList.toggle("inset-y-0");
+      sb.classList.toggle("left-0");
+      sb.classList.toggle("w-72");
+    });
+    function togglePanel(id) {
+      document.getElementById(id)?.classList.toggle("hidden");
+    }
+    function setActiveNav(btn) {
+      document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+    }
+    function copyEmail(btn) {
+      navigator.clipboard?.writeText("digitrackerbd@gmail.com");
+      const prev = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(() => btn.textContent = prev, 1400);
+    }
+  </script>
+</body>
+</html>
