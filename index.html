@@ -52,6 +52,16 @@
   }
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -65,16 +75,6 @@
         }
       }
     };
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <script>
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
   </script>
 
   <style>
@@ -97,7 +97,7 @@
   <header class="lg:hidden sticky top-0 z-30 bg-[#162d4d] text-white px-4 py-3 flex items-center justify-between shadow">
     <div class="flex items-center gap-3">
       <img src="/MD%20Juwel%20Rana%20Profile%20Picture.jpg" alt="MD. Juwel" class="w-8 h-8 rounded-full object-cover ring-2 ring-white/40" />
-      <a href="#top" onclick="showSection('home'); resetAll();" class="font-bold text-base tracking-tight">MD. Juwel</a>
+      <a href="/" onclick="showSection('home'); resetAll();" class="font-bold text-base tracking-tight">MD. Juwel</a>
     </div>
     <div class="flex items-center gap-2">
       <button type="button" id="themeToggleMobile" aria-label="Toggle theme" class="p-2 rounded bg-white/10 hover:bg-white/20 text-white">
@@ -112,7 +112,7 @@
 
   <div id="top" class="min-h-screen lg:flex">
 
-    <!-- CLEAN LEFT SIDEBAR -->
+    <!-- LEFT SIDEBAR -->
     <aside id="leftSidebar" class="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 lg:fixed lg:inset-y-0 lg:left-0 z-20 simo-left-bg text-white px-7 py-9 justify-between select-none">
       <div>
         <!-- Circular Profile Portrait & Name -->
@@ -273,7 +273,7 @@
           <!-- Remaining Posts Stream (Cards 2-7 on Page 1) -->
           <div id="restPostsSlot" class="space-y-9"></div>
 
-          <!-- Right Footer Pagination (< NEWER POSTS and OLDER POSTS >) -->
+          <!-- Footer Pagination Strip (Screenshot Style) -->
           <div class="mt-10 pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
             <div class="flex items-center gap-2.5">
               <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded border border-slate-200 dark:border-slate-700 text-slate-300 dark:text-slate-600 cursor-not-allowed select-none">
@@ -470,3 +470,6 @@
   </script>
 </body>
 </html>
+```[cite: 12]
+
+এরপর আপনি কি `/assets/js/posts.js`, `/assets/js/app.js`, অথবা `page/2/index.html` তৈরি করতে চান?
