@@ -25,20 +25,20 @@
       .replace(/"/g, "&quot;");
   }
 
-  function renderCardVisual(post) {
+  function renderCardVisual(post, isDetail = false) {
     const v = post.visual || {};
     const mode = v.mode || (post.kind === "Tips" ? "tip" : "flow");
     const header = escapeHtml(
       v.header ||
         (post.kind === "Tips"
-          ? "#TrackingTips • Field Note"
+          ? "#TrackingTips &bull; Field Note"
           : post.thumbBadge || "LAB ARCHITECTURE")
     );
     const mainBox = escapeHtml(
       v.mainBox || post.thumbTitle || "sGTM / GA4 Pipeline"
     );
     const subCode = escapeHtml(
-      v.subCode || "event_id: matched • 200 OK"
+      v.subCode || "event_id: matched &bull; 200 OK"
     );
     const statusText = escapeHtml(
       v.statusText ||
@@ -51,6 +51,10 @@
     const footerNote = escapeHtml(
       v.footerNote || post.thumbTitle || "First-Party Attribution"
     );
+
+    const sizeClass = isDetail
+      ? "w-full max-w-2xl h-52 sm:h-60 my-5"
+      : "w-full sm:w-64 h-36 sm:h-40 shrink-0";
 
     let badgeClass = "bg-emerald-500/20 text-emerald-300 border-emerald-400/40";
     let accentBorder = "border-sky-400/35";
@@ -74,74 +78,74 @@
 
     if (isLightLab) {
       return `
-        <div class="relative w-full sm:w-64 h-36 sm:h-40 rounded-lg overflow-hidden shrink-0 border border-slate-300/80 dark:border-slate-700 bg-slate-100 shadow-sm flex flex-col justify-between select-none">
-          <div class="bg-[#163a63] text-white px-2.5 py-1.5 flex items-center justify-between gap-1.5">
-            <span class="font-mono text-[9.5px] font-bold tracking-tight truncate">${header}</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0"></span>
+        <div class="relative ${sizeClass} rounded-xl overflow-hidden border border-slate-300/90 dark:border-slate-700 bg-slate-100 shadow-sm flex flex-col justify-between select-none">
+          <div class="bg-[#163a63] text-white px-3.5 py-2 flex items-center justify-between gap-2">
+            <span class="font-mono text-[10.5px] sm:text-xs font-bold tracking-tight truncate">${header}</span>
+            <span class="w-2 h-2 rounded-full bg-rose-400 shrink-0"></span>
           </div>
 
-          <div class="px-2.5 py-1.5 flex-1 flex flex-col justify-center bg-gradient-to-b from-white to-slate-100">
+          <div class="px-4 py-2 flex-1 flex flex-col justify-center bg-gradient-to-b from-white to-slate-100">
             <div class="bg-white border ${
               mode === "problem"
                 ? "border-rose-400 ring-1 ring-rose-300/60"
                 : "border-slate-300"
-            } rounded px-2 py-1.5 shadow-xs">
-              <div class="flex items-center justify-between gap-1 text-[9px] font-mono text-slate-500 border-b border-slate-100 pb-0.5 mb-1">
+            } rounded-lg px-3.5 py-2.5 shadow-xs">
+              <div class="flex items-center justify-between gap-2 text-[10px] sm:text-xs font-mono text-slate-500 border-b border-slate-100 pb-1 mb-1.5">
                 <span class="truncate font-semibold text-slate-700">${mainBox}</span>
-                <span class="px-1 rounded text-[8px] font-bold ${
+                <span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${
                   mode === "problem"
                     ? "bg-rose-100 text-rose-700"
                     : "bg-emerald-100 text-emerald-700"
                 }">${statusText}</span>
               </div>
-              <div class="flex items-center justify-between gap-1">
-                <code class="text-[9.5px] font-mono font-semibold ${
+              <div class="flex items-center justify-between gap-2">
+                <code class="text-[10.5px] sm:text-xs font-mono font-semibold ${
                   mode === "problem" ? "text-rose-600" : "text-slate-800"
                 } truncate">${subCode}</code>
-                <svg class="w-6 h-3.5 shrink-0" viewBox="0 0 28 14" fill="none">
+                <svg class="w-7 h-4 shrink-0" viewBox="0 0 28 14" fill="none">
                   <path d="M26 7H4M4 7L9 2.5M4 7L9 11.5" stroke="${pointerColor}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
             </div>
           </div>
 
-          <div class="bg-white/95 border-t border-slate-200 px-2.5 py-1 flex items-center justify-between gap-1.5">
-            <span class="text-[9.5px] font-semibold text-slate-700 truncate">${footerNote}</span>
-            <span class="text-[8px] font-mono font-bold uppercase px-1.5 py-0.5 rounded bg-slate-900 text-white shrink-0">LAB</span>
+          <div class="bg-white/95 border-t border-slate-200 px-3.5 py-1.5 flex items-center justify-between gap-2">
+            <span class="text-[10.5px] sm:text-xs font-semibold text-slate-700 truncate">${footerNote}</span>
+            <span class="text-[9px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-slate-900 text-white shrink-0">LAB</span>
           </div>
         </div>
       `;
     }
 
     return `
-      <div class="relative w-full sm:w-64 h-36 sm:h-40 rounded-lg bg-gradient-to-br ${escapeHtml(
+      <div class="relative ${sizeClass} rounded-xl bg-gradient-to-br ${escapeHtml(
         post.thumbBg
-      )} p-3 flex flex-col justify-between text-white shrink-0 overflow-hidden shadow-sm border border-white/10 select-none">
-        <div class="flex items-center justify-between gap-1.5">
-          <div class="flex items-center gap-1 min-w-0">
-            <span class="w-1.5 h-1.5 rounded-full bg-rose-400/90 shrink-0"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-300/90 shrink-0"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/90 shrink-0"></span>
-            <span class="ml-1 font-mono text-[9px] tracking-wider uppercase text-white/80 truncate">${header}</span>
+      )} p-4 flex flex-col justify-between text-white overflow-hidden shadow-sm border border-white/10 select-none">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <span class="w-2 h-2 rounded-full bg-rose-400/90 shrink-0"></span>
+            <span class="w-2 h-2 rounded-full bg-amber-300/90 shrink-0"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400/90 shrink-0"></span>
+            <span class="ml-1 font-mono text-[10px] sm:text-[11px] tracking-wider uppercase text-white/85 truncate">${header}</span>
           </div>
-          <span class="font-mono text-[8px] px-1.5 py-0.5 rounded border ${badgeClass} shrink-0">${statusText}</span>
+          <span class="font-mono text-[9px] px-2 py-0.5 rounded border ${badgeClass} shrink-0">${statusText}</span>
         </div>
 
-        <div class="my-auto bg-slate-950/55 border ${accentBorder} rounded-md p-2 space-y-1">
-          <div class="flex items-center justify-between gap-1 text-[9.5px] font-mono text-sky-200">
+        <div class="my-auto bg-slate-950/55 border ${accentBorder} rounded-lg p-3 space-y-1.5">
+          <div class="flex items-center justify-between gap-2 text-[10.5px] sm:text-xs font-mono text-sky-200">
             <span class="truncate font-semibold">${mainBox}</span>
-            <svg class="w-5 h-3 shrink-0" viewBox="0 0 24 12" fill="none">
+            <svg class="w-6 h-3.5 shrink-0" viewBox="0 0 24 12" fill="none">
               <path d="M2 6H20M20 6L15 2M20 6L15 10" stroke="${pointerColor}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="font-mono text-[9px] text-slate-300 bg-black/35 rounded px-1.5 py-0.5 truncate border border-white/5">
+          <div class="font-mono text-[10px] sm:text-[11px] text-slate-300 bg-black/35 rounded px-2 py-1 truncate border border-white/5">
             ${subCode}
           </div>
         </div>
 
-        <div class="flex items-center justify-between gap-2 text-[10.5px] font-semibold text-white/95 leading-tight">
+        <div class="flex items-center justify-between gap-2 text-xs sm:text-sm font-semibold text-white/95 leading-tight">
           <span class="truncate">${footerNote}</span>
-          <span class="font-mono text-[8.5px] text-white/65 shrink-0">sGTM•BI</span>
+          <span class="font-mono text-[9.5px] text-white/70 shrink-0">sGTM &bull; BI</span>
         </div>
       </div>
     `;
@@ -150,12 +154,12 @@
   function renderCardHtml(post, isFirst) {
     return `
       <article class="${
-        isFirst ? "pb-6 border-b border-slate-200/80 dark:border-slate-800" : "pb-7 border-b border-slate-200/80 dark:border-slate-800"
-      } group">
+        isFirst ? "pb-6" : "pb-7"
+      } border-b border-slate-200/80 dark:border-slate-800 group">
         <a href="?post=${encodeURIComponent(post.id)}" data-post-id="${escapeHtml(
       post.id
     )}" class="post-link flex flex-col sm:flex-row gap-5 items-start">
-          ${renderCardVisual(post)}
+          ${renderCardVisual(post, false)}
           <div class="flex-1 min-w-0">
             <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400 dark:text-slate-500 mb-1.5">
               <span>${escapeHtml(post.date)}</span>
@@ -186,6 +190,11 @@
 
   function getPageUrl(pageNum) {
     return pageNum <= 1 ? "/" : `/page/${pageNum}/`;
+  }
+
+  function getPostPermalink(postId) {
+    const base = getPageUrl(currentPage);
+    return `${base}?post=${encodeURIComponent(postId)}`;
   }
 
   function getFilteredPosts() {
@@ -229,7 +238,7 @@
         if (activeCat !== "All") parts.push(`Category: ${activeCat}`);
         if (activeType) parts.push(`Type: ${activeType}`);
         if (activeQuery.trim()) parts.push(`Search: "${activeQuery.trim()}"`);
-        filterStatusText.textContent = `Showing ${filtered.length} matching post(s) across all pages (${parts.join(" • ")})`;
+        filterStatusText.textContent = `Showing ${filtered.length} matching post(s) across all pages (${parts.join(" &bull; ")})`;
       }
     } else {
       if (filterBanner) {
@@ -295,36 +304,48 @@
     const post = posts.find((p) => p.id === postId);
     if (!post || !detailView) return;
 
+    const permalink = getPostPermalink(post.id);
     if (pushState) {
-      const url = new URL(window.location.href);
-      url.searchParams.set("post", post.id);
-      window.history.pushState({ post: post.id }, "", url.toString());
+      window.history.pushState({ post: post.id }, "", permalink);
     }
 
+    document.title = `${post.title} — MD. Juwel`;
     setListHidden(true);
     detailView.classList.remove("hidden");
 
     detailView.innerHTML = `
-      <div class="mb-6">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
         <button id="backToListBtn" type="button" class="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-purple-700 dark:hover:text-purple-400 transition">
           &larr; Back to Page ${currentPage}
         </button>
+        <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500 truncate">${escapeHtml(
+          window.location.origin + permalink
+        )}</span>
       </div>
+
       <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400 dark:text-slate-500 mb-3">
         <span>${escapeHtml(post.date)}</span>
         <span>&bull;</span>
-        <span class="text-purple-700 dark:text-purple-400 font-semibold">${escapeHtml(post.category)}</span>
+        <span class="text-purple-700 dark:text-purple-400 font-semibold">${escapeHtml(
+          post.category
+        )}</span>
         <span>&bull;</span>
         <span>${escapeHtml(post.kind)}</span>
       </div>
-      <div class="prose-content text-slate-700 dark:text-slate-300 leading-relaxed space-y-4 text-[15px]">
+
+      ${renderCardVisual(post, true)}
+
+      <div class="prose-content text-slate-700 dark:text-slate-300 leading-relaxed space-y-4 text-[15px] mt-4">
         ${post.body}
       </div>
+
       <div class="mt-8 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2">
         ${(post.tags || [])
           .map(
             (t) =>
-              `<span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">#${escapeHtml(t)}</span>`
+              `<span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">#${escapeHtml(
+                t
+              )}</span>`
           )
           .join("")}
       </div>
