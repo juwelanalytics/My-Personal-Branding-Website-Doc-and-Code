@@ -3114,8 +3114,628 @@ window.POSTS = [
         </div>
       </div>
     `
+  },
+
+{
+    id: "tracking-qa-checklist-before-launching-campaigns",
+    kind: "Guide",
+    title: "Pre-Launch Tracking QA Checklist Before Scaling Spend",
+    date: "July 14, 2025",
+    category: "Data Discrepancy",
+    tags: ["GA4", "CAPI", "gclid"],
+    comments: 13,
+    thumbBg: "from-slate-900 via-emerald-950 to-slate-950",
+    thumbBadge: "PRE-LAUNCH QA",
+    thumbTitle: "Verify Before Scaling Spend",
+    visual: {
+      mode: "flow",
+      header: "PRE-LAUNCH QA &bull; CAMPAIGN READINESS",
+      mainBox: "Events &bull; Attribution &bull; Deduplication &bull; CRM",
+      subCode: "Catch tracking flaws before budget scales up",
+      statusText: "QA PASSED",
+      footerNote: "Confidence Before Ad Spend"
+    },
+    summary: "Run a practical pre-launch tracking QA checklist across events, attribution parameters, deduplication, and CRM/conversion flows before scaling ad spend.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Pre-Launch Tracking QA Checklist Before Scaling Spend</h1>
+
+      <p>Launching a new campaign or increasing daily ad budget on top of unverified tracking is one of the fastest ways to waste spend or make optimization decisions on skewed data. A missing trigger on a new landing page, a dropped query parameter after a redirect, or a duplicate conversion event can quietly distort results from day one.</p>
+
+      <p>A focused pre-launch QA pass takes far less time than untangling weeks of broken attribution and conflicting reports after spend ramps up. Testing real user journeys from tagged entry to conversion and backend/CRM handoff gives you clear confidence before scaling.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/70 dark:bg-emerald-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Core Pre-Launch QA Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Never scale ad spend blindly after a site, form, or tag change: run an <strong>end-to-end test journey</strong> verifying <strong>tagged URL persistence, event triggers and parameters, deduplication/reload protection, and downstream CRM or order handoff</strong> before going full scale.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Pre-Launch QA Matrix by Area</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">QA Area</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What to Verify</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Fail Condition</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Landing &amp; Parameters</td>
+              <td class="py-2.5 px-3.5">Tagged campaign/click parameters survive redirects and stay intact on landing.</td>
+              <td class="py-2.5 px-3.5">Redirects strip parameters or landing URL fails/loops.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Core Events &amp; Payload</td>
+              <td class="py-2.5 px-3.5">Key views, interactions, leads, and purchases fire with expected parameters/values.</td>
+              <td class="py-2.5 px-3.5">Events missing, firing late, or sending blank/wrong currency or IDs.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Deduplication &amp; Reloads</td>
+              <td class="py-2.5 px-3.5">Single action does not double-fire on reload or across overlapping paths.</td>
+              <td class="py-2.5 px-3.5">Duplicate conversions recorded on refresh or mismatched IDs/names.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">CRM / Backend Handoff</td>
+              <td class="py-2.5 px-3.5">Leads/orders reach CRM/sheets/backend with attribution and clean status rules.</td>
+              <td class="py-2.5 px-3.5">Missing lead fields, lost campaign context, or test data mixed into live flow.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Pre-Launch Walkthrough</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Start with a tagged test URL:</strong> Open the target landing page with sample UTM and click ID parameters in a clean session with preview/debug tools active.</li>
+        <li><strong>Complete a realistic test conversion:</strong> Submit a test form/lead or complete a controlled test checkout just like a real prospect or buyer.</li>
+        <li><strong>Verify event firing, debug arrival, and reload safety:</strong> Confirm tags/events fire once with valid parameters, appear in debug tools, and do not duplicate on reload.</li>
+        <li><strong>Confirm CRM / order / downstream delivery:</strong> Check that the test record arrives cleanly in your CRM, sheet, or order log with expected attribution fields.</li>
+        <li><strong>Clean up test records and monitor early live traffic:</strong> Remove or mark test submissions where appropriate, then watch early live events and conversion counts closely after launch.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Slip Through Launch</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>New landing page built without existing GTM/dataLayer hooks:</strong> A freshly duplicated landing page or template can easily miss custom events or hidden form fields.</li>
+        <li><strong>Mobile vs. desktop differences:</strong> Pop-ups, sticky buttons, payment redirects, or embedded widgets sometimes behave differently on mobile viewports.</li>
+        <li><strong>Publishing tags without testing after a site/plugin update:</strong> Front-end updates can rename form inputs or change DOM behavior without warning.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. When should I run this pre-launch QA checklist?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Run it before launching a new paid campaign, scaling budget significantly, changing landing pages/forms/checkouts, or publishing major tag/server updates.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. What if a minor parameter is missing right before launch?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Judge whether it affects conversion firing, deduplication, attribution, or reporting accuracy—fix critical conversion/attribution issues before scaling spend, and log minor enhancements cleanly.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. How long does a thorough pre-launch QA check usually take?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">For a standard lead or checkout funnel, a disciplined end-to-end check often takes 15 to 30 minutes—saving hours of troubleshooting and wasted ad spend later.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "post-30-gtm-consent-mode-tag-firing-order",
+    kind: "Guide",
+    title: "GTM Consent State & Tag Firing Order Without Race Conditions",
+    date: "June 18, 2025",
+    category: "sGTM & Ad Tracking",
+    tags: ["GA4", "CAPI", "Cloudflare"],
+    comments: 11,
+    thumbBg: "from-emerald-900 via-teal-950 to-slate-950",
+    thumbBadge: "CONSENT & ORDERING",
+    thumbTitle: "Deterministic Firing Sequence",
+    visual: {
+      mode: "flow",
+      header: "CONSENT DEFAULT &rarr; UPDATE &rarr; TAGS",
+      mainBox: "Default State &rarr; User Choice &rarr; Gated Dispatch",
+      subCode: "Eliminate race conditions on page load &amp; clicks",
+      statusText: "DETERMINISTIC",
+      footerNote: "Clean Timing Across Client &amp; Server"
+    },
+    summary: "Prevent race conditions between consent initialization, user consent updates, and analytics/conversion tags in Google Tag Manager.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">GTM Consent State &amp; Tag Firing Order Without Race Conditions</h1>
+
+      <p>Timing bugs in Google Tag Manager are notoriously tricky because they often depend on network speed, script load order, or how quickly a visitor clicks a banner or form. A tag might evaluate a variable before a script sets it, or a consent update might arrive just after an early page-load tag already ran.</p>
+
+      <p>Designing predictable consent initialization and clear tag firing sequences removes guesswork. When default states, consent updates, and dependent tags follow a disciplined order, preview testing and live behavior align much more closely.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/70 dark:bg-emerald-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Core Ordering Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Initialize <strong>default consent states early</strong>, ensure <strong>consent updates and required dataLayer/helper scripts precede dependent tags</strong>, and test both initial page loads and live consent changes in GTM Preview.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Common Timing &amp; Consent Pitfalls</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Timing Scenario</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What Goes Wrong</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Practical Fix</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Late Default Consent</td>
+              <td class="py-2.5 px-3.5">Early tags evaluate before default consent is established.</td>
+              <td class="py-2.5 px-3.5">Set default consent as early as possible before tracking tags fire.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Dependent Tag Too Early</td>
+              <td class="py-2.5 px-3.5">Custom JS variable or helper script is not ready yet when tag fires.</td>
+              <td class="py-2.5 px-3.5">Use appropriate event triggers or tag sequencing/dependencies rather than fragile delays.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Banner Interaction</td>
+              <td class="py-2.5 px-3.5">User updates consent preferences, but subsequent actions do not reflect it cleanly.</td>
+              <td class="py-2.5 px-3.5">Test accepting, declining, and updating choices across reloads and interactions in Preview.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Order Verification</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Inspect the event timeline in GTM Preview:</strong> Review the sequence of initialization, consent, DOM/window events, and custom events on a clean page load.</li>
+        <li><strong>Check consent state &amp; variable values at each step:</strong> Confirm consent flags and custom variables hold expected values at the exact moment tags fire.</li>
+        <li><strong>Test user consent changes &amp; conversions:</strong> Verify behavior both before and after interacting with consent controls, including form/lead/checkout actions.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Relying on arbitrary setTimeout delays:</strong> Fixed timer delays can still fail on slow connections or fast devices—prefer deterministic events and sequencing.</li>
+        <li><strong>Testing only with cached consent:</strong> Always test fresh sessions as well as returning sessions with saved preferences.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How do I spot a race condition quickly during QA?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">If an event works on a second click or slower/faster reload but occasionally misses or sends empty fields on the first try, suspect a timing or readiness race condition and check the Preview event sequence.</p>
+        </div>
+      </div>
+    `
+   },
+
+  {
+    id: "post-31-server-side-meta-capi-event-match-quality",
+    kind: "Guide",
+    title: "Improving Server-Side Event Match Quality Without Over-Sending PII",
+    date: "May 29, 2025",
+    category: "sGTM & Ad Tracking",
+    tags: ["CAPI", "Cloudflare", "GA4"],
+    comments: 13,
+    thumbBg: "from-slate-900 via-indigo-950 to-slate-950",
+    thumbBadge: "MATCH QUALITY & HYGIENE",
+    thumbTitle: "Clean Keys & Deduplication",
+    visual: {
+      mode: "flow",
+      header: "SERVER CAPI &rarr; MATCH &amp; DEDUP HYGIENE",
+      mainBox: "event_name + event_id + Normalized Keys",
+      subCode: "Pair browser &amp; server cleanly with disciplined fields",
+      statusText: "DISCIPLINED",
+      footerNote: "Signal Strength Without Messy Payloads"
+    },
+    summary: "Strengthen server-side conversion matching and browser-to-server deduplication while keeping user identifiers normalized, scoped, and disciplined.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Improving Server-Side Event Match Quality Without Over-Sending PII</h1>
+
+      <p>Server-side conversion tracking helps recover events that get missed in the browser, yet simply dumping every available field into an outgoing payload rarely solves attribution gaps. Inconsistent casing, unnormalized formatting, mismatched event IDs, or sending identifiers when they are not relevant or permitted can weaken signal quality instead of helping it.</p>
+
+      <p>Strong server-side tracking balances three fundamentals: consistent event naming and shared deduplication IDs between browser and server, clean normalization of allowed matching fields, and clear governance around what data leaves your server in the first place.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800/70 bg-indigo-50/70 dark:bg-indigo-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300">Core Match Quality Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Focus first on <strong>shared <code>event_name</code> and <code>event_id</code> alignment</strong> for clean browser/server deduplication, <strong>normalize allowed match fields consistently</strong> (trimming whitespace and standardizing casing/format before hashing), and <strong>send only what is needed and appropriate</strong> for the conversion event.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Server Payload Hygiene Checklist</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Payload Element</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What Breaks It</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Disciplined Practice</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Event Name &amp; Event ID</td>
+              <td class="py-2.5 px-3.5">Browser and server use different event names or different/missing deduplication IDs.</td>
+              <td class="py-2.5 px-3.5">Generate one consistent event ID per action and pass identical names/IDs across both paths.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Normalization &amp; Hashing</td>
+              <td class="py-2.5 px-3.5">Leading/trailing spaces, mixed casing, or inconsistent formatting before hashing.</td>
+              <td class="py-2.5 px-3.5">Normalize values cleanly before hashing, and never double-hash already hashed strings.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Field Scope &amp; Consent</td>
+              <td class="py-2.5 px-3.5">Sending blank/placeholder strings or firing when consent/eligibility is missing.</td>
+              <td class="py-2.5 px-3.5">Omit empty fields cleanly and respect consent/state gates before server dispatch.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Verification Workflow</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Compare browser and server payloads on one test action:</strong> Verify event name, timestamp, value/currency, and deduplication ID align cleanly.</li>
+        <li><strong>Inspect formatting and hashing logic:</strong> Confirm no extra spaces, accidental double-hashing, or placeholder values slip into outgoing fields.</li>
+        <li><strong>Check platform diagnostics &amp; deduplication health:</strong> Confirm events are received without duplicate inflation or schema warnings.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Double-hashing an already hashed value:</strong> Hashing a SHA-256 string a second time breaks matching completely.</li>
+        <li><strong>Generating two separate IDs for client and server:</strong> If client and server create different IDs for the same event, deduplication cannot pair them reliably.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Should page-view events include heavy user fields if they are not conversion events?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Keep payloads proportional to the event—lead, signup, or purchase events naturally carry richer conversion context than routine navigation hits.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "post-32-ga4-custom-dimensions-scope-mistakes",
+    kind: "Tips",
+    title: "#TrackingTips: Custom Dimension Scopes & Cardinality Traps in GA4",
+    date: "May 11, 2025",
+    category: "GA4 & Reporting",
+    tags: ["GA4", "Looker Studio", "BigQuery"],
+    comments: 9,
+    thumbBg: "from-emerald-900 via-teal-950 to-slate-950",
+    thumbBadge: "CUSTOM DIMENSIONS",
+    thumbTitle: "Event vs. User Scope & High Cardinality",
+    visual: {
+      mode: "tip",
+      header: "#TrackingTips &bull; GA4 DIMENSION DESIGN",
+      mainBox: "Event Scope vs. User Scope + Cardinality",
+      subCode: "Prevent (other) rows &amp; mismatched breakdowns",
+      statusText: "SCOPED CLEAN",
+      footerNote: "Predictable Dimensions in Reports &amp; BI"
+    },
+    summary: "Choose the right custom dimension scope in GA4 and avoid high-cardinality traps that create (other) rows or muddy report breakdowns.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">#TrackingTips: Custom Dimension Scopes &amp; Cardinality Traps in GA4</h1>
+
+      <p>Registering a custom dimension in GA4 takes only a few clicks, yet picking the wrong scope—or passing an unbounded, high-uniqueness value like a raw transaction ID, timestamp, or full URL query string into a custom dimension—can quickly make reports harder to read or trigger high-cardinality rollups.</p>
+
+      <p>Thoughtful dimension design keeps reporting clean across GA4 explorations, Looker Studio dashboards, and BigQuery queries by matching each dimension's scope to how the attribute behaves and keeping distinct values reasonably bounded.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/70 dark:bg-emerald-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Core Dimension Design Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Match custom dimensions to <strong>event-level context vs. user-level traits</strong> intentionally, and <strong>avoid high-cardinality unique IDs or raw timestamps</strong> as standard report dimensions when they belong in event parameters, IDs, or BigQuery queries instead.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Scope &amp; Cardinality Guardrails</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Design Choice</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Best Fit</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What to Watch Out For</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Event-Scoped Dimension</td>
+              <td class="py-2.5 px-3.5">Attributes specific to an individual event (e.g., form name, CTA placement, plan tier at click).</td>
+              <td class="py-2.5 px-3.5">Only populates on events that actually send that parameter.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">User-Scoped Dimension</td>
+              <td class="py-2.5 px-3.5">Attributes describing the user profile/segment across sessions (e.g., account type or membership tier).</td>
+              <td class="py-2.5 px-3.5">Updates when set; avoid using user scope for single-event details that change per action.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">High-Cardinality Values</td>
+              <td class="py-2.5 px-3.5">Unique order/session/user keys when needed for lookup or SQL analysis.</td>
+              <td class="py-2.5 px-3.5">Huge numbers of distinct values can cause high-cardinality grouping/<code>(other)</code> effects in reports.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Dimension Rollout</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Confirm the exact event parameter name:</strong> Ensure the registered custom dimension maps to the exact parameter name sent on the event.</li>
+        <li><strong>Check value variety before registering:</strong> Verify the dimension will hold clean, grouped categories rather than thousands of unique random strings.</li>
+        <li><strong>Test in an exploration or report view:</strong> Confirm values populate cleanly without unexpected blanks or typos.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Parameter name typo vs. custom dimension:</strong> A mismatch between the sent parameter name and registered dimension leaves the dimension empty.</li>
+        <li><strong>Historical data before registration:</strong> Registering a custom dimension applies going forward rather than backfilling past unindexed dimensions in reports.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How do I avoid high-cardinality issues in daily reporting?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Keep report dimensions focused on meaningful categories/segments, avoid putting unique IDs or raw dynamic strings into report dimensions unnecessarily, and use BigQuery when you need granular row-level or ID-level analysis.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "post-33-multi-touch-vs-first-lead-attribution-crm",
+    kind: "Guide",
+    title: "First-Touch, Lead-Creation & Multi-Touch Attribution for CRM Teams",
+    date: "April 20, 2025",
+    category: "CRM & Offline OCT",
+    tags: ["HubSpot", "GoHighLevel", "Looker Studio"],
+    comments: 12,
+    thumbBg: "from-violet-900 via-purple-950 to-slate-950",
+    thumbBadge: "CRM ATTRIBUTION",
+    thumbTitle: "Align Marketing & Sales Views",
+    visual: {
+      mode: "flow",
+      header: "ATTRIBUTION MODELS &rarr; CRM PIPELINE",
+      mainBox: "First Touch &bull; Lead Creation &bull; Pipeline / Won",
+      subCode: "Clarify which touchpoint owns what question",
+      statusText: "ALIGNED",
+      footerNote: "Clearer Funnel &amp; ROI Decisions"
+    },
+    summary: "Compare first-touch, lead-creation, and multi-touch perspectives in CRM and analytics reporting so marketing and sales align on pipeline credit.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">First-Touch, Lead-Creation &amp; Multi-Touch Attribution for CRM Teams</h1>
+
+      <p>Ask two people on the same revenue team which campaign "won" a deal, and you will often hear two completely different answers. One looks at the very first ad or organic visit that introduced the prospect; another looks at the campaign active when the prospect submitted a demo or quote request; a third looks at touchpoints across the sales cycle.</p>
+
+      <p>None of these perspectives is automatically "wrong"—each answers a different business question. Trouble starts when a team mixes them up without saying which one a report uses, or lets later direct/internal visits overwrite the campaign context that brought the lead in.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-violet-200 dark:border-violet-800/70 bg-violet-50/70 dark:bg-violet-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-violet-800 dark:text-violet-300">Core CRM Attribution Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          State <strong>which attribution lens a report uses</strong> up front, preserve <strong>lead-creation/acquisition context</strong> cleanly on CRM records without accidental blank overwrites, and evaluate channels across both lead volume and downstream pipeline/closed-won quality.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Comparing Attribution Lenses in Practice</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Attribution Lens</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Question It Answers Best</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Watchout</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">First-Touch / Original</td>
+              <td class="py-2.5 px-3.5">Which source/campaign originally discovered the prospect?</td>
+              <td class="py-2.5 px-3.5">Can under-represent campaigns that captured high intent later when ready to buy.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Lead-Creation Touch</td>
+              <td class="py-2.5 px-3.5">Which campaign/channel drove the specific inquiry or form conversion?</td>
+              <td class="py-2.5 px-3.5">Needs careful capture at form submit so it is not overwritten or lost later.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Multi-Touch / Journey</td>
+              <td class="py-2.5 px-3.5">How did multiple touchpoints contribute along longer consideration cycles?</td>
+              <td class="py-2.5 px-3.5">Requires clean touchpoint logging and clear rules so credit does not feel arbitrary.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Alignment for Marketing &amp; Sales</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Capture and lock lead attribution at submission:</strong> Save source, medium, campaign, and click IDs cleanly when the lead is captured.</li>
+        <li><strong>Connect leads to qualified &amp; won stages:</strong> Track not just how many leads a campaign creates, but how many become qualified pipeline and revenue.</li>
+        <li><strong>Label every dashboard clearly:</strong> Make sure stakeholders know whether a table shows first touch, lead-creation touch, or closed-won outcomes.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Returning leads filling out another form later:</strong> Decide how repeat submissions on an existing contact/lead are handled in your CRM and reporting.</li>
+        <li><strong>Chasing cheap leads with poor close rates:</strong> Always review cost per qualified/won deal alongside cost per raw lead.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Which attribution view should a small or growing team start with?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Start with clean lead-creation attribution captured reliably on forms/CRM paired with qualified and closed-won stage tracking—it is practical, transparent, and directly tied to revenue decisions.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "post-34-sgtm-custom-loader-first-party-domain",
+    kind: "Guide",
+    title: "First-Party Endpoints & Hosting Trade-Offs for Server-Side GTM",
+    date: "April 3, 2025",
+    category: "sGTM & Ad Tracking",
+    tags: ["Cloudflare", "GA4", "CAPI"],
+    comments: 12,
+    thumbBg: "from-slate-900 via-cyan-950 to-slate-950",
+    thumbBadge: "sGTM INFRASTRUCTURE",
+    thumbTitle: "Endpoints, Routing & Hosting",
+    visual: {
+      mode: "flow",
+      header: "sGTM ENDPOINT &rarr; HOSTING TRADE-OFFS",
+      mainBox: "Subdomain / Edge Routing &rarr; Server Container",
+      subCode: "Balance control, latency, cost &amp; maintenance",
+      statusText: "BALANCED",
+      footerNote: "Practical Server-Side Architecture"
+    },
+    summary: "Compare practical server-side endpoint and hosting trade-offs so you choose a setup that fits your traffic volume, team skills, and budget.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">First-Party Endpoints &amp; Hosting Trade-Offs for Server-Side GTM</h1>
+
+      <p>Setting up server-side tracking involves more than picking a tag template—you also decide how browser hits reach your server endpoint, where the server container runs, and how much operational overhead your team is ready to maintain. An over-engineered setup can create unnecessary maintenance or cost on a small site, while an under-tested setup can drop hits or introduce routing surprises under real traffic.</p>
+
+      <p>Choosing the right architecture comes down to matching endpoint routing, container hosting, and monitoring habits to your actual workload rather than chasing complexity for its own sake.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-cyan-200 dark:border-cyan-800/70 bg-cyan-50/70 dark:bg-cyan-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-800 dark:text-cyan-300">Core Infrastructure Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Match your server-side endpoint and hosting model to <strong>traffic volume, latency/reliability needs, and maintenance capacity</strong>—and validate DNS, SSL/TLS, and event delivery thoroughly before routing live conversion traffic through it.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Key Trade-Offs When Planning Server-Side Endpoints</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Trade-Off Factor</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What to Weigh</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Practical Guidance</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Cost &amp; Scaling</td>
+              <td class="py-2.5 px-3.5">Predictable vs. usage-based scaling as request volume or multiple containers grow.</td>
+              <td class="py-2.5 px-3.5">Estimate request volume and active instances so costs stay predictable.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Setup &amp; Maintenance</td>
+              <td class="py-2.5 px-3.5">Managed convenience vs. hands-on DNS, edge, and container configuration.</td>
+              <td class="py-2.5 px-3.5">Pick an approach your team can monitor, update, and troubleshoot reliably.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Routing &amp; Health</td>
+              <td class="py-2.5 px-3.5">DNS records, SSL certificates, redirects, and error responses on incoming hits.</td>
+              <td class="py-2.5 px-3.5">Test endpoint responses and debug/server logs after every DNS or config change.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Endpoint &amp; Container Rollout</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Configure DNS &amp; endpoint routing carefully:</strong> Point your chosen subdomain/route cleanly without conflicting redirects or broken SSL/TLS.</li>
+        <li><strong>Connect the client tag/container to the server endpoint:</strong> Verify incoming requests reach the server container and return healthy status codes.</li>
+        <li><strong>Test downstream tags &amp; debug views:</strong> Confirm GA4 and conversion destinations receive clean events with expected parameters.</li>
+        <li><strong>Monitor early traffic &amp; error rates:</strong> Watch logs and event counts after launch to catch misrouted or dropped hits early.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>DNS propagation or proxy/redirect loops:</strong> Misconfigured records or overlapping rules can cause intermittent failures or timeouts.</li>
+        <li><strong>Forgetting to update endpoints after domain or hosting changes:</strong> Always re-verify server URLs when migrating domains or hosting providers.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How do I verify a server-side endpoint is working properly after setup?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Run a live test session with preview/debug tools open, inspect network/server responses to confirm clean delivery, and verify the resulting events appear in your target analytics and ad diagnostics.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "post-35-posthog-mixpanel-ga4-product-analytics-stack",
+    kind: "Guide",
+    title: "Aligning Acquisition Analytics with Product & Funnel Telemetry",
+    date: "March 12, 2025",
+    category: "GA4 & Reporting",
+    tags: ["GA4", "Mixpanel", "BigQuery"],
+    comments: 11,
+    thumbBg: "from-emerald-900 via-slate-900 to-slate-950",
+    thumbBadge: "ANALYTICS STACK",
+    thumbTitle: "Acquisition + Product Funnels",
+    visual: {
+      mode: "flow",
+      header: "ACQUISITION &rarr; PRODUCT &amp; RETENTION",
+      mainBox: "Campaign &amp; Landing &rarr; Activation &rarr; Conversion",
+      subCode: "Connect top-of-funnel context with product actions",
+      statusText: "UNIFIED",
+      footerNote: "Bridge Marketing &amp; Product Insights"
+    },
+    summary: "Connect campaign and web attribution context with product funnels, user journeys, and warehouse tables so growth and product teams work from aligned definitions.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Aligning Acquisition Analytics with Product &amp; Funnel Telemetry</h1>
+
+      <p>Marketing teams often focus on traffic sources, landing pages, and lead or checkout conversions, while product and growth teams focus on onboarding steps, feature adoption, repeat usage, and retention. When those two worlds track different event names, inconsistent IDs, or conflicting conversion definitions, answering simple questions—like which channels bring users who actually activate or stick around—becomes slow and painful.</p>
+
+      <p>Aligning your acquisition analytics with product and funnel telemetry does not require duplicating every event everywhere. It requires shared event definitions where journeys overlap, clean user/session identifiers, and clear expectations about what each tool or table is best used to answer.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/70 dark:bg-emerald-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Core Stack Alignment Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Use <strong>shared event naming, consistent user/session identifiers, and clear funnel definitions</strong> so marketing acquisition context connects cleanly with product onboarding, retention, and warehouse analysis.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">How Acquisition &amp; Product Views Complement Each Other</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Analytical Focus</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Key Questions</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What Keeps It Honest</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Acquisition &amp; Attribution</td>
+              <td class="py-2.5 px-3.5">Which sources, campaigns, and landing pages bring visitors, leads, and orders?</td>
+              <td class="py-2.5 px-3.5">Clean UTMs/click IDs, accurate conversion triggers, and no duplicate counts.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Product Funnels &amp; Retention</td>
+              <td class="py-2.5 px-3.5">Where do users drop off in onboarding or repeat key actions over time?</td>
+              <td class="py-2.5 px-3.5">Consistent milestone events, clean timestamps, and thoughtful user identity rules.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Cross-Source / Warehouse</td>
+              <td class="py-2.5 px-3.5">How do marketing touchpoints, product behavior, and CRM/order outcomes connect?</td>
+              <td class="py-2.5 px-3.5">Verified join keys, clear grain/time windows, and reconciliation against source totals.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Alignment Workflow</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Define shared core milestones first:</strong> Agree on exact names and trigger rules for key actions like signup, lead submission, activation, and purchase.</li>
+        <li><strong>Verify user &amp; event continuity across steps:</strong> Test a full journey from landing page to key product/conversion action so drop-offs and completions are tracked cleanly.</li>
+        <li><strong>Keep a single tracking reference up to date:</strong> Document events, key properties, and ownership so new features do not introduce conflicting names.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Redefining a milestone event without noting the date:</strong> Changing what triggers a signup or activation event creates sudden steps in funnel and retention charts.</li>
+        <li><strong>Anonymous-to-identified user transitions:</strong> Test how pre-login activity connects once a user signs up or logs in so funnels do not split unexpectedly.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How do I start aligning messy tracking across tools without rewriting everything at once?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Start with your highest-value funnel—landing to lead/signup to key conversion or revenue—standardize those core events and identifiers first, and expand cleanly from there.</p>
+        </div>
+      </div>
+    `
   }
 ];
+];
+  
+
 
   
 
