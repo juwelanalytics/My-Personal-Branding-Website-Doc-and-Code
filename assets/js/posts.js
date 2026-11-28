@@ -21,178 +21,134 @@ window.POSTS = [
     summary: "Route first-party tracking requests through Cloudflare Workers to server-side GTM, forward clean GA4 events, and dispatch deduplicated Meta CAPI conversions with normalized SHA-256 matching.",
     body: `
      body: `
-   body: `
+   body: body: `
       <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Single-Container sGTM on Cloudflare Workers with GA4 &amp; Meta CAPI</h1>
 
-      <p>In real-world analytics audits, tracking problems rarely look like a blank screen or a missing tag. Most of the time, the website form works, the checkout completes, and marketing campaigns still struggle because conversion signals get lost in transit, identifiers are formatted inconsistently, or client-side and server-side events disagree on what actually happened.</p>
+      <p>In real-world tracking audits, conversion loss rarely happens because a marketing team forgot to place a tag on the website. More often, the tag exists, the form or checkout works, and campaigns still look under-attributed because browser restrictions intercept hits, identifiers are not normalized properly, or client-side and server-side events drift out of sync.</p>
 
-      <p>When you run a single server-side Google Tag Manager (sGTM) container fronted by a first-party endpoint on Cloudflare Workers, you replace scattered browser-only guesses with a structured server-side measurement pipeline. Instead of letting every script fend for itself inside the visitor's browser, incoming telemetry passes through a controlled first-party path where GA4 and Meta Conversions API (CAPI) can be handled cleanly and consistently.</p>
-
-      <p>This guide walks through why a single-container sGTM setup works well in practice, how data flows across each layer, which parameters and edge cases cause silent failures, and how to test the entire chain before trusting the numbers in reporting or ad optimization.</p>
+      <p>When you route first-party telemetry through a custom endpoint or Cloudflare Worker into a single server-side Google Tag Manager (sGTM) container, you gain a much cleaner control layer. Instead of letting every third-party script negotiate its own path and payload directly in the browser, incoming hits pass through a structured server-side pipeline where GA4 and Meta Conversions API (CAPI) can be handled consistently.</p>
 
       <div class="my-6 p-4 rounded-xl border border-sky-200 dark:border-sky-800/70 bg-sky-50/70 dark:bg-sky-950/25 space-y-2">
         <div class="text-xs font-mono font-bold uppercase tracking-wider text-sky-800 dark:text-sky-300">Core Architectural Takeaway</div>
         <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-          A <strong>single sGTM container</strong> fronted by a <strong>first-party Cloudflare Worker / edge endpoint</strong> gives you centralized payload control, stronger signal durability against browser restrictions, and a clean way to pair <strong>GA4</strong> measurement with <strong>deduplicated Meta CAPI</strong> conversions without multiplying separate server containers for every channel.
+          Using <strong>one sGTM container</strong> fronted by a <strong>first-party edge endpoint</strong> reduces client-side signal loss, centralizes event validation, and allows you to pair <strong>GA4</strong> measurement with <strong>deduplicated Meta CAPI</strong> events without maintaining separate server containers for every channel.
         </p>
       </div>
 
       <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Why Consolidate into a Single sGTM Container?</h2>
-      <p>When teams build tracking piece by piece over time, setups often become fragmented: one GTM web container handles general events, a custom script pushes form actions, and ad tags are added or edited in different places with slightly different field names. Once an account has multiple funnels or campaigns, even small inconsistencies create big headaches.</p>
-      <p>Consolidating into one server-side container behind a first-party endpoint helps keep the architecture disciplined and maintainable:</p>
+      <p>Teams that scale tracking across multiple ad platforms and funnels often end up with fragmented setups: one GTM container for web events, ad-hoc scripts for forms, and inconsistent parameter names across tags. Over time, small naming or formatting differences turn reporting into guesswork.</p>
+      <p>A single-container server-side architecture solves this by acting as a clean traffic and data-hygiene hub before events reach downstream platforms:</p>
       <ul class="list-disc pl-6 space-y-2">
-        <li><strong>First-party request context:</strong> Routing browser tracking traffic through a first-party path or subdomain keeps requests aligned with your own domain context instead of relying solely on exposed third-party endpoints.</li>
-        <li><strong>One place for event rules:</strong> Event names, currency codes, lead or order values, and user parameters can be checked and standardized inside one container rather than across multiple disconnected setups.</li>
-        <li><strong>Cleaner browser + server deduplication:</strong> When Meta Pixel and Meta CAPI both report a conversion, keeping <code>event_name</code> and <code>event_id</code> aligned in one place makes deduplication much easier to control and audit.</li>
-        <li><strong>Faster root-cause debugging:</strong> When numbers look off, you can trace a single action from browser push to edge/server request to GA4 and Meta diagnostics without guessing where the payload changed.</li>
+        <li><strong>First-party request handling:</strong> Routing through a first-party subdomain or Cloudflare Worker path keeps tracking requests aligned with your own domain context instead of relying solely on exposed third-party endpoints.</li>
+        <li><strong>Unified schema control:</strong> Event names, currency codes, transaction or lead values, and custom parameters can be checked in one place so GA4 and Meta CAPI reflect the same business action.</li>
+        <li><strong>Cleaner deduplication:</strong> Passing a consistent <code>event_name</code> and <code>event_id</code> across browser Pixel and server CAPI helps Meta recognize that both hits belong to the same user action.</li>
+        <li><strong>Simpler troubleshooting:</strong> When an event looks off, you can trace the flow from browser dataLayer to edge/server request to platform diagnostics without jumping across disconnected setups.</li>
       </ul>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">How Data Flows Across Each Layer</h2>
-      <p>A reliable server-side setup is not magic—it is a chain of clear responsibilities. If any link in the chain drops a parameter, alters a timestamp, or fires out of order, downstream tools feel the impact immediately.</p>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Client-Side vs. Single-Container sGTM Flow</h2>
+      <p>Understanding where responsibilities sit between the browser, the edge/server layer, and destination platforms prevents duplicate fires and missing fields:</p>
 
       <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
         <table class="w-full text-left border-collapse text-xs sm:text-sm">
           <thead>
             <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
-              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Pipeline Layer</th>
-              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What Happens Here</th>
-              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What to Watch Closely</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Layer</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Primary Responsibility</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Key Watchout</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
             <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">1. Website &amp; DataLayer</td>
-              <td class="py-2.5 px-3.5">Captures user interactions, conversion values, currency, and a unique <code>event_id</code>; fires browser Pixel when permitted.</td>
-              <td class="py-2.5 px-3.5">Script blockers, late event pushes, or firing again on thank-you page reloads.</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Browser / DataLayer</td>
+              <td class="py-2.5 px-3.5">Captures user action, event payload, and a shared <code>event_id</code>; runs browser Pixel when allowed.</td>
+              <td class="py-2.5 px-3.5">Script blockers, late triggers, or firing on thank-you page reloads.</td>
             </tr>
             <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">2. Cloudflare Worker / Edge</td>
-              <td class="py-2.5 px-3.5">Receives first-party requests and forwards them to the sGTM server container endpoint.</td>
-              <td class="py-2.5 px-3.5">Unintended caching, broken redirect rules, or dropped request headers/paths.</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Cloudflare Worker / Edge</td>
+              <td class="py-2.5 px-3.5">Routes first-party tracking requests cleanly to the sGTM server endpoint.</td>
+              <td class="py-2.5 px-3.5">Stripped headers, redirect loops, or unintended caching of dynamic requests.</td>
             </tr>
             <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">3. sGTM Server Container</td>
-              <td class="py-2.5 px-3.5">Parses incoming events, validates fields, normalizes/hashes customer data, and triggers GA4 &amp; Meta CAPI tags.</td>
-              <td class="py-2.5 px-3.5">Mismatched <code>event_id</code>, missing currency, or loose trigger conditions.</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">sGTM Container</td>
+              <td class="py-2.5 px-3.5">Parses incoming events, validates fields, normalizes/hashes user data, and dispatches GA4 &amp; CAPI tags.</td>
+              <td class="py-2.5 px-3.5">Mismatched <code>event_id</code>, missing currency, or unguarded trigger conditions.</td>
             </tr>
             <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">4. GA4 &amp; Meta CAPI</td>
-              <td class="py-2.5 px-3.5">Stores analytics events/key events in GA4 and uses matched CAPI conversions to optimize Meta delivery.</td>
-              <td class="py-2.5 px-3.5">Duplicate counts, unnormalized match fields, or inconsistent conversion values.</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">GA4 &amp; Meta CAPI</td>
+              <td class="py-2.5 px-3.5">Records analytics events/key events and optimizes ad delivery using matched conversions.</td>
+              <td class="py-2.5 px-3.5">Over-counting duplicates or under-matching due to raw unnormalized fields.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Key Parameters to Align Between GA4 and Meta CAPI</h2>
-      <p>One of the most common reasons teams struggle with cross-platform reporting is treating GA4 and Meta CAPI as completely separate languages without mapping core fields intentionally. While each platform has its own naming conventions, your conversion events should share consistent business meaning:</p>
-
-      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
-        <table class="w-full text-left border-collapse text-xs sm:text-sm">
-          <thead>
-            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
-              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Signal / Field</th>
-              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Role in Measurement</th>
-              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Practical Standard</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
-            <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">event_name</td>
-              <td class="py-2.5 px-3.5">Identifies the action (lead, checkout, purchase, etc.) across client and server.</td>
-              <td class="py-2.5 px-3.5">Keep naming consistent and documented so reports and triggers never drift.</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">event_id</td>
-              <td class="py-2.5 px-3.5">Connects browser Pixel and server CAPI hits for the same action so they deduplicate.</td>
-              <td class="py-2.5 px-3.5">Generate once per action in the browser and pass the exact same ID to both tags.</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">value &amp; currency</td>
-              <td class="py-2.5 px-3.5">Quantifies lead or order value for reporting and value-based bidding.</td>
-              <td class="py-2.5 px-3.5">Send clean numeric values with a standard currency code whenever value applies.</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Normalized user fields</td>
-              <td class="py-2.5 px-3.5">Improves customer matching on server events (such as email or phone when available).</td>
-              <td class="py-2.5 px-3.5">Normalize first (trim, lowercase, consistent phone format) before SHA-256 hashing.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Implementation Blueprint</h2>
-      <p>When setting up this pipeline from scratch—or untangling an existing setup that has grown messy—follow a deliberate order so you can isolate any issue quickly:</p>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Setup &amp; Configuration Guide</h2>
+      <p>Building this pipeline cleanly is all about sequence. Set up your event contract first, connect the edge/server transport second, and validate deduplication and parameters third:</p>
 
       <ol class="list-decimal pl-6 space-y-3">
         <li>
-          <strong>Lock down your event contract first:</strong>
-          Decide which conversion events actually matter for your business (for example, form submission, booked call, or completed purchase), what parameters each event carries, and how a unique <code>event_id</code> is created for each single occurrence.
+          <strong>Standardize your browser event &amp; <code>event_id</code>:</strong>
+          Whenever a key conversion occurs (such as a qualified lead submission, checkout start, or completed purchase), generate one unique <code>event_id</code> for that specific action and push it alongside clean parameters like <code>value</code>, <code>currency</code>, and relevant item or lead attributes.
         </li>
         <li>
-          <strong>Configure the Cloudflare Worker first-party route:</strong>
-          Set up your worker or first-party routing rule so tracking requests hit your domain/edge path and forward cleanly to your sGTM server container URL. Make sure dynamic requests are not cached and error responses are easy to spot during testing.
+          <strong>Route traffic through Cloudflare Workers to sGTM:</strong>
+          Configure your first-party endpoint on Cloudflare Workers so incoming tracking requests are forwarded to your server-side GTM container URL while preserving essential request context. Keep routing rules focused and avoid caching dynamic tracking endpoints.
         </li>
         <li>
-          <strong>Verify incoming hits in sGTM Preview:</strong>
-          Before worrying about ad platform dashboards, confirm that your server container receives the expected requests with intact event names, parameters, and identifiers.
+          <strong>Configure the GA4 server tag:</strong>
+          In sGTM, ensure your GA4 client receives the incoming event stream and triggers the GA4 tag with consistent event names, parameters, and conversion/key event alignment so analytics reports stay clean.
         </li>
         <li>
-          <strong>Wire up GA4 and Meta CAPI server tags:</strong>
-          Configure your GA4 server tag to record clean analytics/key events, and configure your Meta CAPI tag with the matching <code>event_name</code>, matching <code>event_id</code>, and properly normalized/hashed user parameters where applicable.
+          <strong>Configure Meta CAPI with matching &amp; deduplication:</strong>
+          Send the server event to Meta Conversions API using the exact same <code>event_name</code> and <code>event_id</code> used by the browser Pixel. Normalize customer match fields (such as trimming and lowercasing email addresses or formatting phone numbers consistently) before SHA-256 hashing.
         </li>
         <li>
-          <strong>Add deduplication and reload guards:</strong>
-          Confirm that a single conversion produces one browser Pixel hit and one server CAPI hit with the same <code>event_id</code>—and does not fire again if the visitor refreshes the thank-you page or navigates back and forth.
+          <strong>Guard against repeat fires:</strong>
+          Add safeguards so a visitor refreshing a confirmation page or clicking a submit button multiple times does not trigger duplicate conversion events in your pipeline.
         </li>
       </ol>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Break Tracking Quietly</h2>
-      <p>In real client work, broken setups rarely fail loudly with a big red error banner on the screen. Instead, they fail quietly—reporting slightly too many conversions, missing match data, or losing signals on specific browsers or pages:</p>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; Audit Traps</h2>
+      <p>In day-to-day troubleshooting, setups rarely break because of a single dramatic error. Instead, subtle edge cases quietly erode accuracy over time:</p>
       <ul class="list-disc pl-6 space-y-2">
-        <li><strong>Separate <code>event_id</code> generation on client and server:</strong> If your browser tag creates one random ID and your server tag creates another—or forgets to send <code>event_id</code>—Meta treats them as separate occurrences instead of deduplicating them.</li>
-        <li><strong>Hashing unnormalized text or double-hashing:</strong> Uppercase letters, extra spaces, or inconsistent phone formatting reduce matching accuracy, while hashing a value that was already hashed produces an invalid result.</li>
-        <li><strong>Thank-you page reloads and browser history:</strong> If a conversion fires on page load of a confirmation URL without checking whether that transaction/submission was already tracked, refreshing the page can inflate counts.</li>
-        <li><strong>Redirects stripping query strings or context:</strong> A redirect from <code>http</code> to <code>https</code>, non-<code>www</code> to <code>www</code>, or a landing path to a confirmation path can drop context if URLs or storage are not handled carefully.</li>
-        <li><strong>Consent timing mismatches:</strong> If tags fire before consent states are initialized or updated properly, signals can either be sent prematurely or held back unexpectedly.</li>
+        <li><strong>Different <code>event_id</code> values on client vs. server:</strong> If the browser Pixel tag and server CAPI tag generate separate IDs—or if <code>event_id</code> is missing on one side—Meta cannot deduplicate them properly, leading to inflated conversion counts or noisy optimization signals.</li>
+        <li><strong>Improper normalization or double-hashing before SHA-256:</strong> Hashing raw strings with leading/trailing spaces or capital letters reduces match accuracy, and hashing an already-hashed string breaks matching completely.</li>
+        <li><strong>Missing <code>currency</code> or inconsistent value types:</strong> Sending a conversion value without a valid ISO currency code (like <code>USD</code>) or passing formatted currency strings instead of clean numeric values can cause reporting or ad-platform warnings.</li>
+        <li><strong>Redirects dropping query parameters or context:</strong> If a landing page or thank-you flow redirects across URLs or subdomains carelessly, attribution context or event triggers can be skipped.</li>
+        <li><strong>Unverified consent states:</strong> If consent signals are delayed or misconfigured, tags may either fire too early or hold back signals longer than intended.</li>
       </ul>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">End-to-End QA &amp; Troubleshooting Workflow</h2>
-      <p>Never assume a pipeline is healthy just because a tag looks "published" in GTM. Run a structured verification pass every time you deploy changes to your site, Cloudflare Worker, or sGTM container:</p>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">End-to-End QA &amp; Verification Checklist</h2>
+      <p>Before marking any sGTM + GA4 + Meta CAPI setup complete, walk through a full live test from start to finish:</p>
       <ol class="list-decimal pl-6 space-y-2">
-        <li><strong>Trigger a real test action:</strong> Submit a test form or complete a test order in a clean browser session with your tag debugging tools and sGTM Preview open.</li>
-        <li><strong>Trace the edge/server request:</strong> Confirm the request hits your Cloudflare Worker / first-party endpoint and appears inside sGTM Preview with the expected payload.</li>
-        <li><strong>Check GA4 DebugView:</strong> Verify that the event arrives with the right name, parameters, currency/value, and key-event behavior.</li>
-        <li><strong>Check Meta Events Manager diagnostics:</strong> Confirm that browser and server events both arrive, share the same <code>event_id</code>, and show healthy match and deduplication behavior.</li>
-        <li><strong>Test the reload edge case:</strong> Refresh the confirmation page once and verify that duplicate conversion events do not fire.</li>
+        <li>Open your website, browser developer tools / tag debugger, and sGTM Preview mode.</li>
+        <li>Complete a real test action (such as a test lead form or checkout step) and verify that the request reaches your Cloudflare Worker / first-party endpoint and shows up in sGTM Preview.</li>
+        <li>Inspect the event payload inside sGTM Preview to confirm <code>event_name</code>, <code>event_id</code>, <code>currency</code>, <code>value</code>, and user match fields are populated as expected.</li>
+        <li>Verify that GA4 DebugView receives the event cleanly and that Meta Events Manager test events show both browser and server signals with proper deduplication.</li>
+        <li>Re-test a page reload on the confirmation screen to confirm duplicate conversion tags do not fire unintentionally.</li>
       </ol>
 
       <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
 
       <div class="space-y-4 pt-1">
         <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
-          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Should I use one sGTM container for both GA4 and Meta CAPI, or split them?</h3>
-          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">For most websites, funnels, and agency setups, a single sGTM container is easier to manage. You receive events once, keep shared validation and deduplication logic in one place, and route tags to GA4 and Meta CAPI from the same container.</p>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Do I need separate sGTM containers for GA4 and Meta CAPI?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Not necessarily. A single sGTM container can receive incoming events, validate shared parameters, and dispatch both GA4 and Meta CAPI tags cleanly, which usually keeps maintenance and debugging much simpler for most setups.</p>
         </div>
 
         <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
-          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. What happens if event_id is missing or different between Pixel and CAPI?</h3>
-          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Without a matching <code>event_id</code> and <code>event_name</code> across both browser and server events, Meta cannot reliably deduplicate overlapping hits—which can lead to over-reported conversions and noisier campaign signals.</p>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Why is event_id so important when using both Meta Pixel and CAPI?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">When the same conversion is sent from both the browser and the server, a shared <code>event_id</code> (paired with the same <code>event_name</code>) allows Meta to recognize duplicate submissions of the same event and keep reporting accurate.</p>
         </div>
 
         <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
-          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. Why normalize data before SHA-256 hashing?</h3>
-          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">SHA-256 outputs a completely different hash for even minor formatting differences like leading spaces or capital letters. Normalizing first—and avoiding double-hashing—keeps matching clean and reliable.</p>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Should I hash user data before or after normalizing it?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Always normalize first—trim whitespace, convert emails to lowercase, and standardize phone formatting—before running SHA-256 hashing, and make sure you do not hash a value twice.</p>
         </div>
 
         <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
-          <h3 class="font-bold text-slate-900 dark:text-white text-base">4. Why use Cloudflare Workers in front of sGTM?</h3>
-          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Cloudflare Workers give you lightweight, first-party edge routing and request control without heavy overhead, helping keep tracking endpoints clean and predictable alongside your server container.</p>
-        </div>
-
-        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
-          <h3 class="font-bold text-slate-900 dark:text-white text-base">5. How often should I audit an sGTM + GA4 + Meta CAPI setup?</h3>
-          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Always test immediately after site, form, checkout, consent, or GTM changes, and do a periodic check whenever you notice sudden shifts in event counts, match quality, or campaign performance.</p>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Does server-side tracking replace proper QA and consent checks?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">No. Server-side tracking improves signal reliability and control, but accurate measurement still depends on clean event triggers, proper consent handling, and regular testing in Preview mode, GA4 DebugView, and platform event logs.</p>
         </div>
       </div>
     `
