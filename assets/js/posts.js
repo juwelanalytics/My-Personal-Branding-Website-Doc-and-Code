@@ -824,17 +824,122 @@ window.POSTS = [
     summary: "Structure GA4 custom dimensions, calculated metrics, and BigQuery tables into clear Looker Studio views focused on lead quality, CAC, and revenue.",
     body: `
       <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Building Decision-Ready GA4 &amp; Looker Studio Performance Reports</h1>
-      <p>A report is only useful if it helps someone decide what to do next. Packing dozens of charts onto one screen often hides the real story—whether acquisition is bringing qualified pipeline, profitable orders, or wasted spend.</p>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-2">Designing Clear Reporting Layers</h2>
-      <ul class="list-disc pl-6 space-y-1.5">
-        <li><strong>Lead with outcome metrics:</strong> Show qualified leads, pipeline value, revenue, and acquisition cost near the top.</li>
-        <li><strong>Keep dimensions clean:</strong> Standardize channel, campaign, and event parameters before building charts so <code>(not set)</code> does not surprise stakeholders.</li>
-        <li><strong>Separate summary and diagnostics:</strong> Give executives a clean overview while keeping event/channel troubleshooting in a dedicated view.</li>
+      <p>Many analytics dashboards look impressive at a glance yet fail when a founder, client, or media buyer needs to answer a simple question: which channel or campaign is actually driving qualified pipeline, profitable orders, and healthy unit economics?</p>
+
+      <p>When GA4 custom reporting and Looker Studio views are built as a dumping ground of every available chart, people get lost in vanity metrics—page views, raw sessions, or unverified event counts—while missing real bottlenecks in lead quality, conversion rate by source, or customer acquisition cost (CAC).</p>
+
+      <p>A decision-ready reporting setup connects clean GA4 custom dimensions and key events—and where needed, modeled BigQuery tables—into focused Looker Studio views that separate executive clarity from diagnostic detail.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-amber-200 dark:border-amber-800/70 bg-amber-50/70 dark:bg-amber-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">Core Reporting Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Design reports around <strong>decisions and business outcomes</strong>, not raw chart volume. Keep <strong>GA4 custom dimensions and key events</strong> consistent, model clean tables in <strong>BigQuery</strong> when joining CRM or revenue data, and structure <strong>Looker Studio</strong> so summary KPIs sit cleanly above diagnostic breakdowns.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Why Default Dashboards Often Slow Teams Down</h2>
+      <p>Raw tool interfaces are built for broad exploration, not for weekly budget reviews or client check-ins. Common reporting friction usually comes from a few predictable habits:</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Too many charts, too little hierarchy:</strong> Placing a dozen competing widgets on one page dilutes attention and makes it hard to spot what changed this week.</li>
+        <li><strong>Unstandardized dimensions and naming:</strong> Inconsistent UTM casing, missing event parameters, or unmapped custom dimensions lead to <code>(not set)</code> or fragmented rows.</li>
+        <li><strong>Disconnect between acquisition and downstream value:</strong> Showing traffic or raw leads without qualified pipeline, revenue, or cost context can reward campaigns that look cheap but do not convert.</li>
+        <li><strong>Mixing summary and debugging views:</strong> Executives need clear, stable KPIs, while analysts need event-level and channel-level tables to troubleshoot anomalies.</li>
       </ul>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-2">Maintenance Habit</h2>
-      <p>Whenever you add a new campaign parameter, form event, or CRM stage, update your reporting documentation and check Looker Studio scorecards for unexpected drops or spikes.</p>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Structuring Your Reporting Layers (GA4, BigQuery &amp; Looker Studio)</h2>
+      <p>Each layer in a clean reporting stack has a distinct role so data stays trustworthy, readable, and reasonably fast:</p>
+
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Reporting Layer</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Best Role</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Key Guardrail</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">GA4 Property &amp; Custom Reporting</td>
+              <td class="py-2.5 px-3.5">Captures structured behavioral/conversion events, custom dimensions, and key event signals.</td>
+              <td class="py-2.5 px-3.5">Register custom dimensions cleanly and align event names/parameters with your tracking spec.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">BigQuery Modeled Tables</td>
+              <td class="py-2.5 px-3.5">Deduplicates events, joins CRM/order/cost data, and prepares clean analytical tables/views.</td>
+              <td class="py-2.5 px-3.5">Keep transformation logic documented and scope date partitions carefully.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Looker Studio Views</td>
+              <td class="py-2.5 px-3.5">Presents scorecards, trend lines, and channel/campaign tables for weekly action.</td>
+              <td class="py-2.5 px-3.5">Separate high-level KPI summaries from deeper diagnostic tabs and avoid slow blended charts where modeled views fit better.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Blueprint for a Clean Performance Report</h2>
+      <p>Build your report from the decision backward rather than starting with whatever metrics are easiest to pull:</p>
+
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Define the core questions first:</strong>
+          List the 4 to 6 questions the dashboard must answer every week—for example, total qualified leads or revenue, cost per qualified acquisition, top channels/campaigns, and conversion rate trends.
+        </li>
+        <li>
+          <strong>Verify GA4 events, custom dimensions, and key events:</strong>
+          Confirm that key conversion events and custom dimensions (such as lead type, form/funnel step, or content/campaign attributes) are firing with clean values before building charts around them.
+        </li>
+        <li>
+          <strong>Prepare clean source data (or modeled BigQuery views):</strong>
+          Ensure channel groupings, UTM hygiene, and any CRM/cost/revenue joins are consistent so numbers reconcile across charts.
+        </li>
+        <li>
+          <strong>Lay out Looker Studio with clear visual hierarchy:</strong>
+          Put top-level scorecards and period-over-period comparisons at the top, followed by structured breakdown tables (by channel, source/medium, campaign, or landing page) with clear filters and date controls.
+        </li>
+        <li>
+          <strong>Add context notes and metric definitions:</strong>
+          Include brief text notes explaining attribution windows, cost inclusions, or key event definitions so anyone reading the report interprets the numbers accurately.
+        </li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Break Reports</h2>
+      <p>Even well-designed Looker Studio pages can mislead readers when underlying data rules or chart configurations have subtle flaws:</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong><code>(not set)</code> or unmapped dimensions:</strong> Missing event parameters, unconfigured custom dimensions, or campaign tags lacking clean source/medium context can produce unexpected buckets in tables.</li>
+        <li><strong>Mixing incompatible granularities or metrics:</strong> Putting event-level counts, session-level ratios, and CRM/ad spend together without clear definitions can confuse comparisons across rows.</li>
+        <li><strong>Slow dashboards from heavy live queries or unmodeled joins:</strong> Overly complex live calculations or unoptimized sources can make pages lag during live reviews.</li>
+        <li><strong>Silent schema changes after site or GTM edits:</strong> Renaming a parameter or changing a form/checkout event without updating the report can quietly zero out a chart.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">QA &amp; Verification Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Cross-check key scorecards for a fixed recent date range against GA4 explorations/reports, BigQuery queries, or CRM/ad exports as applicable.</li>
+        <li>Test date range selectors, channel/campaign filters, and drill-downs to ensure no chart breaks or shows unexpected errors.</li>
+        <li>Confirm number formats (currency, percentages, whole counts vs. decimals) and timezones are consistent across every widget.</li>
+        <li>Review with a teammate or stakeholder to verify that the layout answers key questions quickly without clutter.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How many charts or pages should a Looker Studio report have?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Keep each page focused on one clear purpose—such as an Executive Overview, Acquisition &amp; Campaign Performance, and Funnel/Lead Quality—rather than cramming everything onto one crowded canvas.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. When should I move from direct GA4 reporting to BigQuery + Looker Studio?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Moving to BigQuery makes a big difference when you need row-level event control, custom deduplication, joining offline CRM/revenue outcomes with analytics data, or custom historical modeling beyond standard UI reports.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. What is the fastest way to keep a dashboard trustworthy over time?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Document your event and dimension conventions, avoid ad-hoc one-off metric hacks in charts, and spot-check core numbers whenever tracking tags, campaigns, or CRM stages change.</p>
+        </div>
+      </div>
     `
   },
   {
@@ -859,17 +964,119 @@ window.POSTS = [
     summary: "Trim whitespace, lowercase emails, format phone numbers consistently, and verify hash output length before sending customer match parameters.",
     body: `
       <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">#TrackingTips: Normalizing Email &amp; Phone Before SHA-256 Hashing</h1>
-      <p>SHA-256 is deterministic: even a single leading space or uppercase letter changes the resulting hash completely. If your data is not normalized before hashing, matching rates drop even when the underlying user is the same person.</p>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-2">Normalization Rules to Apply First</h2>
-      <ol class="list-decimal pl-6 space-y-2">
-        <li><strong>Email:</strong> Trim leading/trailing spaces and convert to lowercase before hashing.</li>
-        <li><strong>Phone numbers:</strong> Strip spaces, dashes, and formatting characters consistently according to the target platform's expected format.</li>
-        <li><strong>Hash format:</strong> Produce a lowercase 64-character hexadecimal SHA-256 digest—never hash an already-hashed string a second time.</li>
+      <p>When sending customer match parameters to ad platforms or offline conversion pipelines, hashing alone is not enough. SHA-256 is completely deterministic: even a single leading space, a capital letter, or an extra punctuation character changes the output digest into a totally different 64-character string.</p>
+
+      <p>In real audits, a common reason event match quality or offline conversion matching underperforms is inconsistent string preparation before hashing. If one form or server flow trims and lowercases an email while another hashes raw input—or hashes an already-hashed string a second time—platform matching loses accuracy even when the underlying person is identical.</p>
+
+      <p>This guide covers how to normalize email addresses and phone numbers cleanly before SHA-256 hashing, which edge cases break match consistency, and how to test hash outputs before sending live traffic.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-rose-200 dark:border-rose-800/70 bg-rose-50/70 dark:bg-rose-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-rose-800 dark:text-rose-300">Core Hashing Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Always <strong>normalize first, hash once, and verify format</strong>. Trim whitespace and lowercase emails, standardize phone digits consistently according to target platform rules, generate a lowercase <strong>64-character SHA-256 hex digest</strong>, and never hash an already-hashed value again.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Why Normalization Matters Before SHA-256</h2>
+      <p>A cryptographic hash function does not "understand" that <code>" Lead@Example.com "</code> and <code>"lead@example.com"</code> represent the same email address. To the hashing algorithm, they are two unrelated byte sequences.</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Deterministic output:</strong> Any tiny difference in whitespace, casing, or punctuation produces a completely different hash.</li>
+        <li><strong>Cross-source consistency:</strong> Browser events, server-side tags, CRM webhooks, and offline uploads should follow the same normalization rules so match signals stay aligned.</li>
+        <li><strong>No double-hashing:</strong> Passing a 64-character hash into SHA-256 a second time hashes the hex string itself, breaking matching completely.</li>
+        <li><strong>Clean handling of empty values:</strong> Hashing empty strings, <code>"undefined"</code>, <code>"null"</code>, or placeholder text sends invalid noise instead of omitting missing fields.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Email &amp; Phone Normalization Reference</h2>
+      <p>Use consistent formatting rules across your capture, server-side, and offline conversion workflows so inputs are clean before hashing:</p>
+
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Field Type</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Raw Input Example</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Normalization Rule</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Normalized Output</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Email</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs">" Alex.Morgan@Domain.COM "</td>
+              <td class="py-2.5 px-3.5">Trim leading/trailing spaces and convert to lowercase.</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs">"alex.morgan@domain.com"</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Phone (US/Intl)</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs">"+1 (555) 234-5678"</td>
+              <td class="py-2.5 px-3.5">Strip formatting characters and keep clean digits/country code as expected by platform spec.</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs">"15552345678" (or platform E.164/digit format)</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Missing / Blank</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs">"" or undefined</td>
+              <td class="py-2.5 px-3.5">Do not hash empty or placeholder values; omit the field cleanly.</td>
+              <td class="py-2.5 px-3.5 font-mono text-xs">Omitted</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Hashing Workflow</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Validate presence first:</strong>
+          Confirm the field actually contains a real email or phone value (not blank, <code>null</code>, or dummy text) before running string transforms.
+        </li>
+        <li>
+          <strong>Normalize the string consistently:</strong>
+          For emails, trim whitespace and lowercase; for phone numbers, remove spaces, parentheses, dashes, and non-digit symbols according to your target platform's expected format.
+        </li>
+        <li>
+          <strong>Check whether the value is already a SHA-256 hex string:</strong>
+          Guard against double-hashing when data passes through multiple scripts, CRM fields, or server-side tags.
+        </li>
+        <li>
+          <strong>Generate a lowercase 64-character SHA-256 hex digest:</strong>
+          Hash the normalized UTF-8 string and confirm the output is a 64-character lowercase hexadecimal string.
+        </li>
       </ol>
 
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-2">Quick Sanity Check</h2>
-      <p>Test sample inputs before going live and confirm that empty or missing fields are omitted cleanly rather than hashed as empty strings or placeholder text.</p>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Hurt Match Quality</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Double-hashing across client and server:</strong> If a value is hashed once upstream and hashed again in a tag or script, it becomes a hash of a hash and cannot match raw user records.</li>
+        <li><strong>Missing country codes on international phone numbers:</strong> A local number without country context can create ambiguity when matching across regions—always check the target platform's phone formatting rules.</li>
+        <li><strong>Mobile keyboard auto-capitalization &amp; trailing spaces:</strong> Mobile form inputs frequently add a trailing space or capitalize the first letter of an email address automatically.</li>
+        <li><strong>Sending unhashed PII where hashed values are expected (or vice versa):</strong> Always check each destination's field specification so hashed and plain fields are never swapped.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">QA &amp; Verification Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Test sample emails with uppercase letters and leading/trailing spaces and confirm they normalize and hash identically to clean lowercase versions.</li>
+        <li>Test formatted phone inputs (with spaces, dashes, or parentheses) and verify the cleaned value matches your expected format before hashing.</li>
+        <li>Confirm that blank or missing fields are skipped cleanly rather than producing a hash of an empty string.</li>
+        <li>Inspect outgoing payloads or platform event diagnostics to verify expected 64-character hex formatting and match behavior.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Should SHA-256 hex output be lowercase or uppercase?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Lowercase 64-character hexadecimal is the standard expected across most ad and analytics platforms, so keep your hex output consistently lowercase.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. What happens if I hash an empty email field?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Hashing an empty string produces a fixed SHA-256 hash of nothing, which adds zero match value and pollutes payloads. Always guard and omit empty fields instead.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. Can I test normalization and SHA-256 outputs quickly during QA?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Yes—you can use the SHA-256 Normalizer on the <strong>Tools</strong> view of this site or run quick test cases in your tag debugger/console to verify normalized strings and 64-character hex digests before going live.</p>
+        </div>
+      </div>
     `
   }
   
