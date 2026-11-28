@@ -1768,6 +1768,7 @@ window.POSTS = [
           <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How do I catch a bad SQL join before sharing a dashboard?</h3>
           <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Compare row counts and sums before and after the join on a small date window, and spot-check a few specific lead or order IDs end-to-end.</p>
         </div>
-      </div>
-    `
-  }
+   </div>
+ `
+}
+];
