@@ -1078,6 +1078,696 @@ window.POSTS = [
         </div>
       </div>
     `
+  },
+
+  {
+    id: "meta-capi-event-match-quality-guide",
+    kind: "Guide",
+    title: "Improving Meta CAPI Event Match Quality (EMQ)",
+    date: "October 14, 2026",
+    category: "sGTM & Ad Tracking",
+    tags: ["CAPI", "GA4", "Cloudflare"],
+    comments: 21,
+    thumbBg: "from-sky-900 via-blue-950 to-slate-950",
+    thumbBadge: "META CAPI EMQ",
+    thumbTitle: "Match Keys & Deduplication",
+    visual: {
+      mode: "flow",
+      header: "PIXEL + CAPI &bull; DEDUP &amp; EMQ",
+      mainBox: "event_name + event_id + hashed user_data",
+      subCode: "Normalized SHA-256 &bull; Clean value &amp; currency",
+      statusText: "EMQ OPTIMIZED",
+      footerNote: "Browser &amp; Server Signal Alignment"
+    },
+    summary: "Align browser Pixel and server CAPI payloads with matching event IDs, normalized SHA-256 customer fields, and clean edge/server routing.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Improving Meta CAPI Event Match Quality (EMQ)</h1>
+
+      <p>Setting up Meta Conversions API (CAPI) is only half of the job. In day-to-day campaigns, a server conversion tag can show a green status in debugging tools while still delivering weak Event Match Quality (EMQ) or inconsistent deduplication if customer parameters are missing, improperly formatted, or out of sync with the browser Pixel.</p>
+
+      <p>Meta uses match parameters—alongside consistent event names, event IDs, and click/browser context—to connect server-side conversion events with real user accounts and optimize ad delivery. When match signals are clean and deduplicated properly, campaigns gain stronger feedback without inflating reported conversion counts.</p>
+
+      <p>This guide breaks down what shapes Event Match Quality in practice, how to align browser Pixel and server CAPI payloads, which formatting mistakes lower match rates, and how to audit your setup step by step.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-sky-200 dark:border-sky-800/70 bg-sky-50/70 dark:bg-sky-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-sky-800 dark:text-sky-300">Core EMQ &amp; Deduplication Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          High-performing CAPI setups pair <strong>consistent <code>event_name</code> and <code>event_id</code> values</strong> between browser and server with <strong>cleanly normalized, properly hashed customer parameters</strong>—while guarding against empty strings, double-hashing, and duplicate fires on reloads.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">What Drives Event Match Quality and Signal Reliability?</h2>
+      <p>Event Match Quality is not a single magic switch; it reflects how reliably Meta can associate your incoming conversion events with user identities and session context across browser and server paths.</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Customer match fields (when available):</strong> Normalized and SHA-256 hashed contact attributes—such as email and phone—help connect form, checkout, or CRM conversions when captured legitimately.</li>
+        <li><strong>Click &amp; browser attribution context:</strong> Preserving click identifiers and browser identifiers where available helps tie conversions back to ad interactions.</li>
+        <li><strong>Matching <code>event_name</code> and <code>event_id</code>:</strong> Deduplication depends on browser Pixel and server CAPI sending the same event name and unique event ID for the same conversion action.</li>
+        <li><strong>Parameter hygiene &amp; currency/value accuracy:</strong> Clean values, valid currency codes, and non-empty fields prevent noisy or incomplete event payloads.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Browser Pixel vs. Server CAPI Alignment Table</h2>
+      <p>Whenever a setup runs both browser Pixel and server CAPI for the same action, keep these core fields aligned across both paths:</p>
+
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Field / Aspect</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Browser Pixel Role</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Server CAPI Role</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">event_name</td>
+              <td class="py-2.5 px-3.5">Emits standard or custom event name from the browser.</td>
+              <td class="py-2.5 px-3.5">Sends the exact matching event name from server/sGTM.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">event_id</td>
+              <td class="py-2.5 px-3.5">Carries the unique ID generated for that single conversion occurrence.</td>
+              <td class="py-2.5 px-3.5">Carries the identical <code>event_id</code> so Meta deduplicates overlapping hits.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">User Match Data</td>
+              <td class="py-2.5 px-3.5">May pass available browser/user signals when allowed.</td>
+              <td class="py-2.5 px-3.5">Sends normalized, SHA-256 hashed fields (such as email/phone) cleanly.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Value &amp; Currency</td>
+              <td class="py-2.5 px-3.5">Sends order or lead value and currency code on conversion events.</td>
+              <td class="py-2.5 px-3.5">Sends matching numeric value and currency code to avoid value drift.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Guide to Improving EMQ Safely</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Audit what user data is actually captured on the action:</strong>
+          Check forms, checkouts, and thank-you/server flows to see which match fields exist at the moment the conversion happens—do not expect email or phone on top-of-funnel views where no form was submitted.
+        </li>
+        <li>
+          <strong>Normalize strings before SHA-256 hashing:</strong>
+          Trim leading and trailing spaces, lowercase email addresses, format phone numbers consistently according to target expectations, and confirm you never hash an already-hashed string.
+        </li>
+        <li>
+          <strong>Omit blank or placeholder values:</strong>
+          Ensure empty strings, <code>null</code>, <code>undefined</code>, or dummy placeholders are never sent or hashed as real user fields.
+        </li>
+        <li>
+          <strong>Verify shared <code>event_name</code> and <code>event_id</code>:</strong>
+          Confirm that for every deduplicated event, the browser Pixel and server CAPI tag share the exact same event name and unique event ID.
+        </li>
+        <li>
+          <strong>Monitor Events Manager diagnostics after changes:</strong>
+          Review event match quality, deduplication status, and parameter warnings in Events Manager after deploying updates.
+        </li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Lower EMQ or Cause Duplicates</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Hashing before trimming or lowercasing:</strong> Uppercase characters or accidental spaces on mobile inputs change the SHA-256 hash and reduce match hits.</li>
+        <li><strong>Double-hashing across scripts or templates:</strong> Hashing a hex digest a second time produces an invalid string that cannot match user records.</li>
+        <li><strong>Mismatched or missing <code>event_id</code>:</strong> If client and server tags generate different IDs—or one side omits <code>event_id</code>—deduplication fails and conversions can look inflated.</li>
+        <li><strong>Firing CAPI without a real user action or on page reload:</strong> Reloading a confirmation page without deduplication/reload protection can send repeat conversion hits.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">QA &amp; Verification Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Run a live test conversion in your browser and server preview/debug tools.</li>
+        <li>Confirm both browser and server payloads carry the same <code>event_name</code> and <code>event_id</code>.</li>
+        <li>Verify that customer match fields are properly normalized and formatted as lowercase 64-character SHA-256 hashes when present, and omitted when blank.</li>
+        <li>Check Meta Events Manager test events and diagnostics to verify deduplication and clean parameter reception.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Should every event have the exact same EMQ score?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Not necessarily. Events that happen after a user submits contact details (such as a lead or purchase) naturally have richer customer match parameters available than an early page view or button click.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. What happens if I send the same event from Pixel and CAPI without event_id?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Without a shared <code>event_id</code> and <code>event_name</code>, Meta cannot reliably deduplicate overlapping browser and server events, which can overstate conversion counts.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. Can I hash customer fields in the browser or on the server?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Both are possible depending on your architecture, provided the data is normalized consistently first, hashed once into a lowercase 64-character SHA-256 hex digest, and handled in alignment with your privacy and consent setup.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "google-ads-enhanced-conversions-oct",
+    kind: "Guide",
+    title: "Google Ads Enhanced Conversions & Offline Conversion Tracking",
+    date: "September 26, 2026",
+    category: "CRM & Offline OCT",
+    tags: ["gclid", "HubSpot", "GoHighLevel"],
+    comments: 18,
+    thumbBg: "from-indigo-900 via-slate-900 to-slate-950",
+    thumbBadge: "GOOGLE ADS OCT",
+    thumbTitle: "Enhanced + CRM Conversions",
+    visual: {
+      mode: "flow",
+      header: "GOOGLE ADS &bull; ENHANCED + OCT",
+      mainBox: "gclid + CRM Stage &rarr; Conversion Sync",
+      subCode: "Qualified / Closed-Won + Value + Timestamp",
+      statusText: "BID READY",
+      footerNote: "Lead to Revenue Feedback Loop"
+    },
+    summary: "Combine Enhanced Conversions with CRM Offline Conversion Tracking so Google Ads bidding optimizes around qualified leads and closed revenue.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Google Ads Enhanced Conversions &amp; Offline Conversion Tracking</h1>
+
+      <p>Google Ads bidding strategies rely heavily on accurate conversion signals—both right at the moment a user converts on your site and later when a lead qualifies or closes in your CRM. When browser cookies are restricted, users switch devices, or sales cycles take days or weeks, relying solely on basic client-side tags leaves blind spots in your optimization loop.</p>
+
+      <p>Pairing clean conversion tracking with <strong>Enhanced Conversions</strong> (using properly normalized and hashed first-party customer data where available) and <strong>Offline Conversion Tracking (OCT)</strong> helps Google Ads connect real conversions and downstream pipeline outcomes back to ad clicks more reliably.</p>
+
+      <p>This guide outlines how Enhanced Conversions and Offline Conversion Tracking complement each other, what identifiers and fields matter most, how to avoid common upload and hashing mistakes, and how to test before trusting bidding changes.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800/70 bg-indigo-50/70 dark:bg-indigo-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300">Core Google Ads Attribution Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Treat <strong>Enhanced Conversions</strong> and <strong>CRM Offline Conversion Tracking</strong> as complementary layers: capture <code>gclid</code> and clean customer fields at conversion/lead entry, normalize consistently before SHA-256 hashing, and upload downstream milestones with accurate timestamps and values.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Enhanced Conversions vs. Offline Conversion Tracking</h2>
+      <p>While both help improve conversion measurement in Google Ads, they solve slightly different parts of the customer journey:</p>
+
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Approach</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">When It Applies</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Key Advantage</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Enhanced Conversions</td>
+              <td class="py-2.5 px-3.5">At the time of an on-site conversion when customer data (such as email or phone) is available.</td>
+              <td class="py-2.5 px-3.5">Supplements existing conversion tags with normalized, hashed first-party user data.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Offline Conversion Tracking (OCT)</td>
+              <td class="py-2.5 px-3.5">After lead capture, when a CRM stage changes (qualified lead, booked call, closed-won deal).</td>
+              <td class="py-2.5 px-3.5">Aligns Google Ads optimization with real sales qualification and closed revenue rather than raw leads.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Setup &amp; Alignment Guide</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Verify base conversion tracking first:</strong>
+          Make sure your primary conversion actions in Google Ads fire cleanly on real submissions or checkouts with accurate conversion values, currency codes, and trigger rules before adding enhancements.
+        </li>
+        <li>
+          <strong>Capture <code>gclid</code> and lead context at entry:</strong>
+          Persist <code>gclid</code> and campaign/UTM parameters when a visitor lands and submit them into hidden form fields or CRM custom fields so downstream conversions retain click context.
+        </li>
+        <li>
+          <strong>Normalize user fields before SHA-256 hashing:</strong>
+          Trim whitespace, lowercase emails, standardize phone formatting, and verify that values are not double-hashed or populated with empty/placeholder strings.
+        </li>
+        <li>
+          <strong>Connect CRM milestones for OCT:</strong>
+          Trigger offline conversion updates when leads reach qualified or won stages, including accurate timestamps and deal/conversion values.
+        </li>
+        <li>
+          <strong>Guard against duplicate conversion uploads:</strong>
+          Ensure each qualifying milestone for a given lead/order is sent once rather than re-sent on routine record edits.
+        </li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; Audit Traps</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Losing <code>gclid</code> across redirects or CRM lead conversion:</strong> If redirects strip query parameters or CRM lead conversion does not map custom fields to the deal/contact record, offline uploads miss key click data.</li>
+        <li><strong>Inconsistent normalization before hashing:</strong> Un-trimmed spaces, uppercase letters, or double-hashing reduce matching reliability.</li>
+        <li><strong>Uploading low-quality or test leads as conversions:</strong> Sending spam, unverified inquiries, or internal test deals teaches bidding algorithms to chase the wrong volume.</li>
+        <li><strong>Timestamp or attribution window mismatches:</strong> Ensure timestamps reflect actual conversion timing accurately and stay within valid lookback windows.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">QA &amp; Verification Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Test a live conversion in your browser and server preview/debug tools and confirm base conversion firing, parameters, and user-data formatting when present.</li>
+        <li>Submit a test lead with a sample <code>gclid</code> and confirm the value persists into your CRM record.</li>
+        <li>Advance the test lead to your target CRM milestone and verify the offline conversion payload, timestamp, and response status in your logs/diagnostics.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Do I need both Enhanced Conversions and Offline Conversion Tracking?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">They serve different stages: Enhanced Conversions strengthens on-site conversion measurement when user data is captured, while OCT feeds downstream CRM qualification and closed revenue back into Google Ads.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. What happens if a CRM lead does not have a stored gclid?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Not every lead will have a captured <code>gclid</code> on every record. Keep clean normalized customer match fields and follow platform upload rules so matching works wherever supported.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. Why avoid uploading every minor CRM status change?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Uploading noisy or premature stage changes can dilute conversion quality and create duplicate signals; focus on milestones that genuinely represent qualified intent or revenue.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "consent-mode-v2-cookiebot-cookieyes-onetrust",
+    kind: "Guide",
+    title: "Consent Mode v2 with Cookiebot, CookieYes & OneTrust",
+    date: "August 29, 2026",
+    category: "Data Discrepancy",
+    tags: ["GA4", "CAPI", "gclid"],
+    comments: 15,
+    thumbBg: "from-teal-900 via-emerald-950 to-slate-950",
+    thumbBadge: "CONSENT MODE V2",
+    thumbTitle: "ad_user_data & ad_personalization",
+    visual: {
+      mode: "flow",
+      header: "CMP &rarr; CONSENT MODE V2",
+      mainBox: "ad_storage &bull; analytics_storage",
+      subCode: "ad_user_data + ad_personalization signals",
+      statusText: "V2 READY",
+      footerNote: "Cookiebot &bull; CookieYes &bull; OneTrust"
+    },
+    summary: "Verify default and update consent states across Cookiebot, CookieYes, and OneTrust so Consent Mode v2 signals fire cleanly without breaking conversion measurement.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Consent Mode v2 with Cookiebot, CookieYes &amp; OneTrust</h1>
+
+      <p>Consent Management Platforms (CMPs) like Cookiebot, CookieYes, and OneTrust play a central role in modern analytics and advertising setups. Yet in real audits, consent configurations frequently fail not because the banner is missing, but because default consent states initialize too late, update signals fire out of order, or tags ignore consent flags.</p>
+
+      <p>With Consent Mode v2, advertising and analytics signals rely on explicit storage and user-data consent states—including <code>ad_storage</code>, <code>analytics_storage</code>, <code>ad_user_data</code>, and <code>ad_personalization</code>. Getting the timing and mapping right across your CMP and GTM setup keeps compliance and measurement aligned without unnecessary surprises.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-teal-200 dark:border-teal-800/70 bg-teal-50/70 dark:bg-teal-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-teal-800 dark:text-teal-300">Core Consent Mode v2 Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Always set <strong>default consent states before dependent tags evaluate</strong>, map <strong>all four core Consent Mode v2 signals</strong> (<code>ad_storage</code>, <code>analytics_storage</code>, <code>ad_user_data</code>, <code>ad_personalization</code>) cleanly from your CMP, and test both initial load and banner updates in Tag Assistant.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Core Consent Signals &amp; What They Control</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Consent Parameter</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Primary Scope</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Audit Check</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">ad_storage</td>
+              <td class="py-2.5 px-3.5">Controls advertising-related storage behavior.</td>
+              <td class="py-2.5 px-3.5">Verify default state on load and update when user saves preferences.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">analytics_storage</td>
+              <td class="py-2.5 px-3.5">Controls analytics storage behavior.</td>
+              <td class="py-2.5 px-3.5">Confirm analytics hits and consent transitions behave as intended.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">ad_user_data</td>
+              <td class="py-2.5 px-3.5">Controls sending user data for advertising purposes.</td>
+              <td class="py-2.5 px-3.5">Ensure CMP category mapping updates this parameter cleanly.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">ad_personalization</td>
+              <td class="py-2.5 px-3.5">Controls personalized advertising usage.</td>
+              <td class="py-2.5 px-3.5">Check behavior on accept, reject, and granular category choices.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step CMP + GTM Setup &amp; Verification</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Initialize default consent early:</strong> Ensure default consent states run before tags that read consent so initial page hits have clear state context.</li>
+        <li><strong>Connect CMP category mappings (Cookiebot, CookieYes, OneTrust):</strong> Map your CMP's analytics, marketing/advertising, and personalization categories accurately to Consent Mode v2 parameters.</li>
+        <li><strong>Verify update triggers on user action:</strong> Test accepting all, rejecting all, and toggling individual categories to confirm consent updates propagate immediately.</li>
+        <li><strong>Check server-side / downstream consistency:</strong> If you forward events to sGTM, GA4, or ad APIs, confirm consent parameters and tag triggers stay aligned.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Race conditions on initial load:</strong> Tags firing before default consent is set can cause inconsistent initial states.</li>
+        <li><strong>Stale consent across page navigation:</strong> Verify how returning visitors or multi-page flows retain or update consent choices.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How should I test Consent Mode v2 after updating CMP settings?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Open an incognito/fresh session in Tag Assistant, inspect the Consent tab before and after interacting with the banner, and verify both default and update states across events.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "sgtm-hosting-cloudflare-vs-stape-gcp",
+    kind: "Guide",
+    title: "Server-Side GTM Hosting Trade-Offs",
+    date: "July 19, 2026",
+    category: "sGTM & Ad Tracking",
+    tags: ["Cloudflare", "GA4", "CAPI"],
+    comments: 17,
+    thumbBg: "from-slate-800 via-blue-950 to-slate-950",
+    thumbBadge: "HOSTING TRADE-OFFS",
+    thumbTitle: "Edge vs. Dedicated Server",
+    visual: {
+      mode: "flow",
+      header: "sGTM HOSTING ARCHITECTURE",
+      mainBox: "Cloudflare Edge &bull; Stape &bull; Cloud Server",
+      subCode: "Cost &bull; Latency &bull; Preview &amp; Scaling Trade-Offs",
+      statusText: "BALANCED",
+      footerNote: "Choose Hosting by Workload Needs"
+    },
+    summary: "Choose edge routing or dedicated server instances based on throughput needs, debugging requirements, and predictable monthly cost.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Server-Side GTM Hosting Trade-Offs</h1>
+
+      <p>Choosing how to host and route server-side Google Tag Manager (sGTM) is an architectural decision with real implications for monthly cost, request latency, debugging workflows, and maintenance effort. There is no single setup that fits every business equally well.</p>
+
+      <p>Some teams need ultra-low overhead and first-party edge routing via Cloudflare Workers; others prefer managed server-side hosting like Stape or dedicated cloud server instances depending on traffic volume, preview/logging needs, and operational comfort.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-blue-200 dark:border-blue-800/70 bg-blue-50/70 dark:bg-blue-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-blue-800 dark:text-blue-300">Core Hosting Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Match your sGTM hosting and edge routing to <strong>actual traffic volume, debugging needs, and budget predictability</strong>—and validate end-to-end event delivery and status codes under realistic load before scaling.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Comparing Hosting &amp; Edge Approaches</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Option</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Strengths</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What to Plan For</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Cloudflare Workers / Edge</td>
+              <td class="py-2.5 px-3.5">Lightweight first-party edge routing, fast global edge execution, and cost-friendly scaling.</td>
+              <td class="py-2.5 px-3.5">Keep worker routing logic clean and ensure dynamic tracking endpoints are not cached.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Managed sGTM (e.g., Stape)</td>
+              <td class="py-2.5 px-3.5">Streamlined container setup, custom domain helpers, and built-in operational conveniences.</td>
+              <td class="py-2.5 px-3.5">Monitor request volume tiers and plan upgrades ahead of traffic spikes.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Cloud Server Instances</td>
+              <td class="py-2.5 px-3.5">Direct infrastructure control and custom instance sizing for specific workloads.</td>
+              <td class="py-2.5 px-3.5">Requires ongoing instance/scaling monitoring and predictable capacity planning.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Selection &amp; Rollout Guide</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Estimate monthly event &amp; request volume:</strong> Factor in page views, interactive events, server fan-out tags, and seasonal campaign spikes.</li>
+        <li><strong>Define debugging and uptime expectations:</strong> Decide how easily your team needs to inspect Preview streams, logs, and error responses.</li>
+        <li><strong>Test custom domain / edge routing thoroughly:</strong> Confirm SSL, headers, status codes, and tag execution before moving production traffic.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Underestimating fan-out volume:</strong> One incoming hit can trigger multiple outbound tags, multiplying server requests.</li>
+        <li><strong>Unintended edge caching:</strong> Never cache dynamic tracking or collector endpoints at the edge.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Can you combine first-party edge routing with sGTM server hosting?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Yes—using a first-party edge/worker path in front of your sGTM server container is a common way to keep request entry clean while running server tags downstream.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "ga4-custom-dimensions-ecommerce-schema",
+    kind: "Guide",
+    title: "GA4 Custom Dimensions & Ecommerce Event Schema",
+    date: "June 24, 2026",
+    category: "SQL, BI & AI Agents",
+    tags: ["GA4", "BigQuery", "Looker Studio"],
+    comments: 10,
+    thumbBg: "from-amber-900 via-yellow-950 to-slate-950",
+    thumbBadge: "GA4 SCHEMA",
+    thumbTitle: "Event & Item Parameters",
+    visual: {
+      mode: "dashboard",
+      header: "GA4 EVENT &amp; ITEM SCHEMA",
+      mainBox: "view_item &bull; add_to_cart &bull; purchase",
+      subCode: "transaction_id + currency + value + items[]",
+      statusText: "SCHEMA OK",
+      footerNote: "Consistent Parameters &amp; Dimensions"
+    },
+    summary: "Standardize GA4 event parameters, item arrays, and custom dimensions so ecommerce funnels and BigQuery exports stay clean and reliable.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">GA4 Custom Dimensions &amp; Ecommerce Event Schema</h1>
+
+      <p>Clean ecommerce and funnel reporting in GA4 starts long before you open a report or write a SQL query. When event names change mid-campaign, currency codes are omitted, or <code>items</code> arrays have inconsistent shapes, funnel steps break and BigQuery schemas become harder to maintain.</p>
+
+      <p>A disciplined GA4 schema defines clear event names, required parameters, item-level attributes, and registered custom dimensions so every funnel stage—from viewing a product or service to completing a purchase or lead—records consistent data.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-amber-200 dark:border-amber-800/70 bg-amber-50/70 dark:bg-amber-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">Core Schema Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Treat your <strong>GA4 event and item schema as a contract</strong>: keep event names and parameter types consistent, send valid <code>currency</code> and numeric <code>value</code> on monetary events, and document every custom dimension before registering it.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Core Funnel &amp; Transaction Fields</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Field</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Purpose</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Schema Rule</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">transaction_id</td>
+              <td class="py-2.5 px-3.5">Uniquely identifies a completed order/transaction.</td>
+              <td class="py-2.5 px-3.5">Send a non-empty unique order ID on purchase events to help prevent duplicate orders.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">currency &amp; value</td>
+              <td class="py-2.5 px-3.5">Captures monetary amount and currency unit.</td>
+              <td class="py-2.5 px-3.5">Provide clean numeric values alongside a valid currency code whenever value is sent.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">items[]</td>
+              <td class="py-2.5 px-3.5">Describes products or line items across funnel steps.</td>
+              <td class="py-2.5 px-3.5">Keep consistent item IDs/names and numeric quantities/prices across view, cart, and purchase.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Schema Design &amp; QA</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Map funnel events and parameters:</strong> Document each event's exact name, event-level parameters, and item-level parameters before tagging.</li>
+        <li><strong>Register needed custom dimensions cleanly:</strong> Match parameter names and scopes (event vs. item/user) carefully so reporting and exports stay predictable.</li>
+        <li><strong>Validate in DebugView and BigQuery:</strong> Check real test journeys to confirm parameters arrive with expected data types and no missing keys.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Value sent without currency:</strong> Monetary values without a matching currency code can cause reporting inconsistencies.</li>
+        <li><strong>Type drift (strings vs. numbers):</strong> Passing formatted price strings instead of numbers complicates aggregations and SQL queries.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Why document event parameters before creating tags?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">A written schema prevents accidental renaming, duplicate custom dimensions, and inconsistent payloads when multiple pages, forms, or developers touch the site.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "cross-domain-iframe-tracking-fixes",
+    kind: "Tips",
+    title: "#TrackingTips: Fixing Cross-Domain & Embedded Form Tracking",
+    date: "May 30, 2026",
+    category: "CRM & Offline OCT",
+    tags: ["HubSpot", "GoHighLevel", "gclid"],
+    comments: 13,
+    thumbBg: "from-purple-900 via-fuchsia-950 to-slate-950",
+    thumbBadge: "CROSS-DOMAIN & IFRAMES",
+    thumbTitle: "Attribution Across Domains & Embeds",
+    visual: {
+      mode: "tip",
+      header: "#TrackingTips &bull; Domains &amp; Iframes",
+      mainBox: "Landing Domain &rarr; Embedded / Checkout Flow",
+      subCode: "Preserve UTMs, gclid/fbclid &amp; conversion events",
+      statusText: "CONNECTED",
+      footerNote: "No Broken Funnel Attribution"
+    },
+    summary: "Keep attribution parameters and conversion events intact when users move across domains or submit embedded forms and scheduling widgets.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">#TrackingTips: Fixing Cross-Domain &amp; Embedded Form Tracking</h1>
+
+      <p>Many conversion funnels do not live on a single page or a single domain. A visitor might click an ad to land on your marketing site, browse a service page, and then submit an embedded form, booking widget, or separate checkout/portal domain.</p>
+
+      <p>Whenever a journey crosses a domain boundary or runs inside an embedded frame, attribution parameters like <code>gclid</code>, <code>fbclid</code>, and UTM tags—or conversion completion signals—can easily get separated if the handoff is not planned carefully.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-purple-200 dark:border-purple-800/70 bg-purple-50/70 dark:bg-purple-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-purple-800 dark:text-purple-300">Core Funnel Continuity Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Treat <strong>cross-domain links and embedded forms/widgets</strong> as high-risk handoff points: capture attribution context on arrival, carry key identifiers/parameters across domains and embeds cleanly, and verify where the actual conversion event is emitted.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Common Breakpoints Across Domains &amp; Embeds</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Handoff Scenario</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What Often Goes Wrong</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Practical Fix</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Domain A &rarr; Domain B</td>
+              <td class="py-2.5 px-3.5">Session/attribution context splits or referral path looks like a new source.</td>
+              <td class="py-2.5 px-3.5">Configure cross-domain measurement properly and preserve landing attribution fields.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Embedded Form / Widget</td>
+              <td class="py-2.5 px-3.5">Parent page does not see submission event or embedded fields miss UTMs/click IDs.</td>
+              <td class="py-2.5 px-3.5">Pass attribution context into fields/parameters and verify where submission events fire.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Redirects &amp; Thank-You Pages</td>
+              <td class="py-2.5 px-3.5">Query parameters drop during redirects or thank-you tags fire prematurely.</td>
+              <td class="py-2.5 px-3.5">Store attribution at entry and guard thank-you conversion triggers cleanly.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Testing Guide</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Start with tagged landing parameters:</strong> Visit a landing page with test UTM and click ID parameters.</li>
+        <li><strong>Walk through the real user journey:</strong> Move across domains or complete an embedded form/booking flow just as a real prospect would.</li>
+        <li><strong>Inspect attribution and conversion signals:</strong> Confirm campaign/click fields reach the form/CRM and conversion events fire once with expected context.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Testing only on the same domain:</strong> A form that works on <code>site.com</code> can behave differently inside an embedded widget or second domain.</li>
+        <li><strong>Duplicate events on parent + embed:</strong> Make sure submission tracking does not double-count across parent listeners and embedded events.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Why do embedded forms often miss UTM parameters?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">If UTMs are only read from the current URL at form render time without persisting landing values or passing them into the form/CRM fields, multi-step or embedded flows can lose them.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "bigquery-sql-ga4-attribution-joins",
+    kind: "Guide",
+    title: "BigQuery SQL for GA4 Attribution & Backend Joins",
+    date: "May 12, 2026",
+    category: "SQL, BI & AI Agents",
+    tags: ["GA4", "BigQuery", "Looker Studio"],
+    comments: 16,
+    thumbBg: "from-cyan-900 via-slate-900 to-slate-950",
+    thumbBadge: "BIGQUERY SQL",
+    thumbTitle: "Event & Backend SQL Joins",
+    visual: {
+      mode: "dashboard",
+      header: "BIGQUERY SQL &bull; ATTRIBUTION JOINS",
+      mainBox: "events_* JOIN crm_or_orders",
+      subCode: "Partitioned dates &bull; Deduplicated keys &bull; Clean joins",
+      statusText: "SQL READY",
+      footerNote: "Reconcile Events with Revenue"
+    },
+    summary: "Query partitioned GA4 export tables cleanly in BigQuery, deduplicate conversion keys, and join backend CRM or order records for reliable BI.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">BigQuery SQL for GA4 Attribution &amp; Backend Joins</h1>
+
+      <p>Once your tracking sends data to BigQuery, you gain row-level visibility that standard reporting interfaces cannot match. You can inspect exact timestamps, extract nested event parameters, deduplicate repeated keys, and join analytics events with CRM leads, invoices, or order tables.</p>
+
+      <p>At the same time, writing careless SQL against large event tables can make queries slow, expensive, or inaccurate—especially if date partitions are ignored, repeated fields are mishandled, or join keys are not unique.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-cyan-200 dark:border-cyan-800/70 bg-cyan-50/70 dark:bg-cyan-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-800 dark:text-cyan-300">Core BigQuery SQL Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Always <strong>filter date partitions intentionally</strong>, <strong>deduplicate keys before aggregating or joining</strong>, and <strong>test join grain carefully</strong> so one-to-many matches never inflate revenue or lead counts in your BI tables.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Essential SQL Habits for GA4 &amp; Backend Joins</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">SQL Practice</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Why It Matters</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Practical Check</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Date Partition Filtering</td>
+              <td class="py-2.5 px-3.5">Limits scanned bytes and keeps query execution fast and predictable.</td>
+              <td class="py-2.5 px-3.5">Always restrict date ranges explicitly rather than scanning wide history by default.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Deduplication First</td>
+              <td class="py-2.5 px-3.5">Prevents duplicate event or transaction IDs from inflating counts/revenue.</td>
+              <td class="py-2.5 px-3.5">Inspect row counts before vs. after deduplicating on your chosen key.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Join Grain Verification</td>
+              <td class="py-2.5 px-3.5">Avoids accidental row multiplication when joining events to CRM/orders.</td>
+              <td class="py-2.5 px-3.5">Check uniqueness of join keys on both sides before rolling up metrics.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Query &amp; Modeling Workflow</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Start with a narrow date window:</strong> Filter a small date range first while exploring event names, parameters, and sample rows.</li>
+        <li><strong>Extract needed parameters cleanly:</strong> Pull only the event fields and parameters required for your attribution or funnel question.</li>
+        <li><strong>Deduplicate and join with backend data:</strong> Clean keys first, join with CRM/order tables, and verify totals against known sample records.</li>
+        <li><strong>Materialize clean tables/views for BI:</strong> Feed clean modeled outputs into Looker Studio so charts stay fast and consistent.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Fan-out during joins:</strong> If one event matches multiple CRM/order rows (or vice versa), revenue and counts can multiply unexpectedly.</li>
+        <li><strong>Intraday vs. daily table differences:</strong> Keep in mind how intraday and completed daily export tables behave when running checks.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. How do I catch a bad SQL join before sharing a dashboard?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Compare row counts and sums before and after the join on a small date window, and spot-check a few specific lead or order IDs end-to-end.</p>
+        </div>
+      </div>
+    `
   }
-  
-];
