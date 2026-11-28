@@ -1770,5 +1770,733 @@ window.POSTS = [
         </div>
    </div>
  `
-}
+},
+  {
+    id: "ga4-debugview-gtm-preview-troubleshooting",
+    kind: "Guide",
+    title: "GA4 DebugView & GTM Preview Troubleshooting Playbook",
+    date: "April 28, 2026",
+    category: "Data Discrepancy",
+    tags: ["GA4", "Cloudflare", "CAPI"],
+    comments: 14,
+    thumbBg: "from-slate-900 via-indigo-950 to-slate-950",
+    thumbBadge: "DEBUG PLAYBOOK",
+    thumbTitle: "Trace Events End-to-End",
+    visual: {
+      mode: "flow",
+      header: "GTM PREVIEW &rarr; GA4 DEBUGVIEW",
+      mainBox: "Trigger &bull; Payload &bull; Transport &bull; Report",
+      subCode: "Isolate where a conversion event drops",
+      statusText: "TRACEABLE",
+      footerNote: "Systematic Root-Cause Debugging"
+    },
+    summary: "Diagnose missing events, wrong parameters, and broken conversion triggers systematically across GTM Preview, network requests, and GA4 DebugView.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">GA4 DebugView &amp; GTM Preview Troubleshooting Playbook</h1>
+
+      <p>When a conversion tag fails to fire or an event shows up in GA4 with missing parameters, random guessing wastes hours. A form might submit cleanly on the front end while the dataLayer event never pushes; or the tag fires in GTM Preview, yet the event never reaches GA4 DebugView or lands with an empty value.</p>
+
+      <p>Effective debugging treats tracking like a deterministic pipeline with clear checkpoints. Instead of changing five settings at once and hoping something fixes it, you trace a single test action step by step—from the browser interaction and dataLayer push to tag firing, network/server transport, and DebugView arrival.</p>
+
+      <p>This playbook gives you a structured way to isolate where events break, verify parameters and key-event behavior, and resolve common client-side and server-side tracking snags without collateral damage.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800/70 bg-indigo-50/70 dark:bg-indigo-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300">Core Debugging Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Debug <strong>one checkpoint at a time</strong> from source to destination: confirm the <strong>dataLayer / interaction</strong> first, verify <strong>tag firing and variables</strong> in Preview/Tag Assistant second, check <strong>network/server delivery</strong> third, and validate <strong>GA4 DebugView parameters</strong> fourth.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Four-Stage Troubleshooting Matrix</h2>
+      <p>Whenever an event is missing or misconfigured, locate which stage in the chain failed before editing tags:</p>
+
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Checkpoint</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Symptom When Broken</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">First Thing to Inspect</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">1. Page &amp; DataLayer</td>
+              <td class="py-2.5 px-3.5">Expected custom event or ecommerce/form payload never appears in Preview event stream.</td>
+              <td class="py-2.5 px-3.5">Check form/checkout submit handler, thank-you page trigger, or script push timing.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">2. GTM Trigger &amp; Variables</td>
+              <td class="py-2.5 px-3.5">Event appears in Preview, but the GA4/ad tag does not fire or variables resolve to <code>undefined</code>.</td>
+              <td class="py-2.5 px-3.5">Inspect trigger conditions, exception blockers, and dataLayer/JS variable paths.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">3. Network / sGTM Transport</td>
+              <td class="py-2.5 px-3.5">Tag fires in client Preview, but server/endpoint does not receive it or returns non-OK status.</td>
+              <td class="py-2.5 px-3.5">Check endpoint URL, edge/worker routing, CORS/headers, or blockers in the test browser.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">4. GA4 DebugView</td>
+              <td class="py-2.5 px-3.5">Hit is sent, but event name, parameters, or <code>debug_mode</code> are missing or unexpected in DebugView.</td>
+              <td class="py-2.5 px-3.5">Verify Measurement ID, <code>debug_mode</code> / Tag Assistant session, and parameter names/types.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Root-Cause Workflow</h2>
+      <p>Follow this repeatable sequence on every live audit or post-deployment check:</p>
+
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Start in a clean, controlled test session:</strong>
+          Open a fresh window (or clear conflicting state), launch GTM Preview / Tag Assistant, and keep browser developer tools handy so you can see both tag execution and outgoing requests.
+        </li>
+        <li>
+          <strong>Verify the incoming event and variable values:</strong>
+          Perform one clear test action—such as submitting a test lead or adding an item to cart—and check the event payload and resolved variable values inside Preview.
+        </li>
+        <li>
+          <strong>Confirm tag firing and firing order:</strong>
+          Check whether the expected tag fired once, whether consent or blocking triggers held it back, and whether dependent variables or consent states were ready in time.
+        </li>
+        <li>
+          <strong>Trace delivery to sGTM and GA4 DebugView:</strong>
+          Confirm the request reached your collector/server endpoint cleanly and inspect the event and its parameters inside GA4 DebugView.
+        </li>
+        <li>
+          <strong>Re-test edge cases before publishing or closing the ticket:</strong>
+          Test page reloads, back/forward navigation, and mobile or non-default views to make sure the fix holds under real user behavior.
+        </li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Fool Teams</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Viewing the wrong GA4 property or measurement stream:</strong> A classic mistake during audits is checking DebugView on Property A while the tag sends hits to Property B or a different measurement stream.</li>
+        <li><strong>Firing before dataLayer or consent is ready:</strong> Race conditions on page load or form submit can cause a tag to fire with stale or empty values.</li>
+        <li><strong>Browser extensions interfering during QA:</strong> Ad blockers, privacy extensions, or aggressive script shields in your personal browser can block hits that work for normal visitors—or vice versa.</li>
+        <li><strong>Testing only on desktop happy-path flows:</strong> Form validation errors, AJAX submissions, iframe widgets, or thank-you page reloads often behave differently from a simple desktop form test.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">QA &amp; Verification Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Confirm the test event appears in GTM Preview with non-empty expected parameters.</li>
+        <li>Confirm the target tag fires once per genuine action and does not fire on unintended page reloads.</li>
+        <li>Confirm the event arrives in GA4 DebugView under the exact Measurement ID and event name expected.</li>
+        <li>Verify that key parameters (such as currency, value, IDs, or custom dimensions) match your tracking specification.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Why does a tag show as fired in GTM Preview but not appear in GA4 DebugView?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Common reasons include a mismatched Measurement ID, a blocked or failed network/server request, consent or transport settings preventing the hit, or checking DebugView in a different GA4 property.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. How should I handle parameters that show up blank in DebugView?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Trace the parameter backward in GTM Preview to see whether the variable resolved to empty/undefined at trigger time or whether the tag/client dropped the field before sending.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. Should I rely only on DebugView to verify long-term data quality?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">DebugView is great for real-time functional verification, but you should also check standard/exploration reports, BigQuery exports (when enabled), and CRM/order reconciliation over time to catch issues that only appear in production traffic.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "utm-governance-campaign-naming-standards",
+    kind: "Tips",
+    title: "#TrackingTips: UTM Governance & Campaign Naming Standards",
+    date: "April 11, 2026",
+    category: "GA4 & Reporting",
+    tags: ["GA4", "Looker Studio", "BigQuery"],
+    comments: 11,
+    thumbBg: "from-emerald-900 via-teal-950 to-slate-950",
+    thumbBadge: "UTM GOVERNANCE",
+    thumbTitle: "Clean Source, Medium & Campaign",
+    visual: {
+      mode: "tip",
+      header: "#TrackingTips &bull; UTM TAXONOMY",
+      mainBox: "utm_source &bull; utm_medium &bull; utm_campaign",
+      subCode: "Lowercase conventions &bull; No messy splits",
+      statusText: "STANDARDIZED",
+      footerNote: "Consistent Channel &amp; BI Rollups"
+    },
+    summary: "Stop fragmented channel reporting caused by mixed casing, inconsistent utm_medium values, and ad-hoc campaign tags across teams.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">#TrackingTips: UTM Governance &amp; Campaign Naming Standards</h1>
+
+      <p>Few analytics problems look as harmless at first—and cause as much reporting friction later—as sloppy UTM tagging. When one campaign uses <code>utm_medium=cpc</code>, another uses <code>CPC</code> or <code>paid_search</code>, and a social post uses <code>fb</code> while another uses <code>facebook.com</code>, your channel groupings, GA4 reports, and Looker Studio tables split into fragments that nobody can read at a glance.</p>
+
+      <p>UTM governance does not require complicated software. It requires a clear, documented naming standard that marketers, media buyers, and partners actually follow—paired with clean parameter capture so campaign context is not lost or overwritten mid-journey.</p>
+
+      <p>This guide covers how to standardize core UTM parameters, prevent common naming and tracking mistakes, and keep acquisition reporting reliable across GA4 and BI dashboards.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/70 dark:bg-emerald-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Core UTM Governance Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Standardize <strong><code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code></strong> with consistent lowercase conventions and clear values—and avoid putting UTMs on internal links within your own site where they can overwrite original traffic sources.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Core UTM Parameters &amp; Naming Rules</h2>
+      <p>Keep your core parameters predictable so automated channel rules and manual breakdowns group traffic cleanly:</p>
+
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">UTM Parameter</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">What It Represents</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Naming Standard</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">utm_source</td>
+              <td class="py-2.5 px-3.5">The specific platform, tool, or referrer sending the traffic (e.g., <code>google</code>, <code>meta</code>, <code>newsletter</code>).</td>
+              <td class="py-2.5 px-3.5">Use consistent lowercase source names; avoid mixing abbreviations and full names without a rule.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">utm_medium</td>
+              <td class="py-2.5 px-3.5">The marketing medium or channel mechanism (e.g., <code>cpc</code>, <code>paid_social</code>, <code>email</code>, <code>referral</code>).</td>
+              <td class="py-2.5 px-3.5">Stick to a controlled list of medium values so channel groupings stay clean and predictable.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">utm_campaign</td>
+              <td class="py-2.5 px-3.5">The specific campaign, offer, or initiative name.</td>
+              <td class="py-2.5 px-3.5">Use readable, structured names (such as lowercase with hyphens/underscores) rather than messy spaces or random strings.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">utm_content / utm_term</td>
+              <td class="py-2.5 px-3.5">Optional creative/placement variant or keyword/audience detail.</td>
+              <td class="py-2.5 px-3.5">Use intentionally for creative or segment comparison without overloading <code>utm_campaign</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Rollout for Teams &amp; Agencies</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Publish a short, practical UTM cheat sheet:</strong>
+          Document allowed <code>utm_source</code> and <code>utm_medium</code> values and a clear <code>utm_campaign</code> naming pattern with real examples so everyone follows the same rules.
+        </li>
+        <li>
+          <strong>Use a consistent link-building template or builder:</strong>
+          Avoid hand-typing campaign URLs every time; use a shared sheet or builder with clear fields so required parameters are never forgotten.
+        </li>
+        <li>
+          <strong>Capture and persist campaign context on arrival:</strong>
+          If you also pass campaign parameters into forms, hidden fields, or CRM records, make sure they are captured cleanly on landing and do not get wiped out accidentally.
+        </li>
+        <li>
+          <strong>Audit reports periodically for rogue values:</strong>
+          Check top sources, mediums, and campaigns regularly to spot typos, mixed casing, or unmapped campaign tags early.
+        </li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Corrupt Campaign Data</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Tagging internal navigation links with UTMs:</strong> Adding UTM parameters to internal buttons or banners on your own domain can start new sessions or overwrite external acquisition attribution.</li>
+        <li><strong>Mixed uppercase and lowercase strings:</strong> Casing variations split rows in tables and SQL aggregations unless normalized consistently.</li>
+        <li><strong>Spaces and special characters in URLs:</strong> Unencoded spaces or inconsistent separators make campaign names harder to read and filter cleanly in BI tools.</li>
+        <li><strong>Overwriting first/lead attribution with later direct visits:</strong> When storing campaign fields for CRM or BI, decide clearly whether you want first-touch, lead-creation, or latest-touch behavior and guard against blank overwrites.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">QA &amp; Verification Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Build a sample campaign URL using your standard naming rules and verify it opens cleanly without broken redirects or stripped parameters.</li>
+        <li>Confirm no UTM parameters are attached to internal links within your own website.</li>
+        <li>Check GA4 / reporting views to verify source, medium, and campaign values populate cleanly without unexpected splits.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Should I tag every single link with UTMs?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">No. Focus UTMs on external campaigns, emails, social posts, affiliates, or partner links where you want explicit campaign attribution—and never use UTMs on internal site links.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. What is the biggest mistake teams make with utm_medium?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Inventing slightly different medium labels for the same channel type—which fragments channel performance and makes cross-campaign comparisons harder.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. How do clean UTMs help CRM and BigQuery reporting?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">When campaign fields are standardized from the start, joining web sessions or form leads with CRM pipeline stages and BigQuery tables requires far less messy string cleanup later.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "server-side-ga4-measurement-protocol-validation",
+    kind: "Guide",
+    title: "Validating Server-Side & Backend GA4 Events Safely",
+    date: "March 24, 2026",
+    category: "sGTM & Ad Tracking",
+    tags: ["GA4", "Cloudflare", "BigQuery"],
+    comments: 12,
+    thumbBg: "from-sky-900 via-cyan-950 to-slate-950",
+    thumbBadge: "BACKEND & sGTM QA",
+    thumbTitle: "Payload & Key Validation",
+    visual: {
+      mode: "flow",
+      header: "SERVER / BACKEND &rarr; GA4 VALIDATION",
+      mainBox: "Payload Schema &bull; IDs &bull; Deduplication",
+      subCode: "Prevent synthetic or orphan server events",
+      statusText: "VALIDATED",
+      footerNote: "Clean Backend &amp; Server Telemetry"
+    },
+    summary: "Validate server-side and backend-triggered GA4 events so order confirmations, CRM milestones, and server tags stay accurate without duplicate or synthetic noise.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Validating Server-Side &amp; Backend GA4 Events Safely</h1>
+
+      <p>Sending events from a server-side GTM container or backend webhook—such as completed orders, subscription renewals, or qualified CRM stages—can dramatically improve reliability when browser events are missed or delayed. Yet backend and server-side events carry their own risks when sent without strict validation.</p>
+
+      <p>If a webhook fires twice, sends a test/refund payload as a live conversion, or omits key identifiers, downstream GA4 reports and BigQuery tables can pick up phantom conversions or messy attribution context. Treating backend/server events with clear schema and deduplication guardrails keeps data trustworthy.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-sky-200 dark:border-sky-800/70 bg-sky-50/70 dark:bg-sky-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-sky-800 dark:text-sky-300">Core Backend &amp; Server Event Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Gate server and backend events on <strong>explicit business state changes</strong>, include <strong>consistent identifiers and currency/value fields</strong>, deduplicate retries safely, and verify payloads in test/debug streams before enabling production rollups.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Key Validation Checks Before Going Live</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Check Area</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Risk If Skipped</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Practical Guardrail</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Event Trigger Condition</td>
+              <td class="py-2.5 px-3.5">Pending, failed, or test orders/leads counted as completed conversions.</td>
+              <td class="py-2.5 px-3.5">Fire only on confirmed/paid/qualified states and exclude test/internal records.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Deduplication Keys</td>
+              <td class="py-2.5 px-3.5">Webhook retries or status updates inflate event or transaction counts.</td>
+              <td class="py-2.5 px-3.5">Include unique order/event IDs and enforce idempotency/deduplication rules.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Value &amp; Currency</td>
+              <td class="py-2.5 px-3.5">Missing currency or malformed numbers distort revenue summaries.</td>
+              <td class="py-2.5 px-3.5">Validate numeric amounts and valid currency codes prior to dispatch.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Verification Workflow</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Confirm exact trigger conditions:</strong> Verify what backend status or CRM transition is allowed to emit the event.</li>
+        <li><strong>Inspect sample payloads end-to-end:</strong> Check event name, parameters, currency, value, and identifiers on a controlled test record.</li>
+        <li><strong>Test retry &amp; duplicate scenarios:</strong> Simulate a duplicate webhook or status re-save and confirm it does not double-count.</li>
+        <li><strong>Monitor early production volume:</strong> Compare backend/server event counts against order/CRM logs during the first days after launch.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Webhook retries after timeouts:</strong> Downstream systems often retry timed-out requests—deduplication keeps counts clean.</li>
+        <li><strong>Mixing staging and production endpoints:</strong> Keep test events out of production streams and properties.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Why reconcile backend/server events with CRM or order logs?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Reconciling against actual orders or CRM records catches silent drops, duplicate retries, and status mismatches that are easy to miss from event counts alone.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "crm-lead-scoring-offline-conversions-pipeline",
+    kind: "Guide",
+    title: "CRM Lead Scoring & Offline Conversion Pipelines",
+    date: "March 7, 2026",
+    category: "CRM & Offline OCT",
+    tags: ["HubSpot", "GoHighLevel", "gclid"],
+    comments: 19,
+    thumbBg: "from-violet-900 via-purple-950 to-slate-950",
+    thumbBadge: "CRM & OCT PIPELINE",
+    thumbTitle: "Lead Quality to Ad Bidding",
+    visual: {
+      mode: "flow",
+      header: "CRM STAGE &rarr; OFFLINE CONVERSION",
+      mainBox: "Captured Lead &rarr; Qualified / Won &rarr; Sync",
+      subCode: "Click ID + Normalized Match Fields + Value",
+      statusText: "QUALITY SYNCED",
+      footerNote: "Train Bidding on Real Pipeline Value"
+    },
+    summary: "Connect CRM qualification stages and closed-won milestones to offline conversion workflows so ad optimization reflects real revenue quality.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">CRM Lead Scoring &amp; Offline Conversion Pipelines</h1>
+
+      <p>Generating cheap form fills is rarely enough when sales teams spend hours chasing unqualified inquiries, spam submissions, or prospects outside your service area. If ad platforms only see raw form submissions, bidding algorithms optimize for form volume rather than real pipeline value or closed revenue.</p>
+
+      <p>A stronger approach connects your CRM stages and lead qualification milestones back to offline conversion tracking. When a lead is verified, qualified by sales, or moved to a booked/won stage, that signal—along with accurate timing and value—can feed back into your acquisition loop.</p>
+
+      <p>This guide explains how to structure CRM conversion milestones, preserve attribution identifiers from landing to CRM, avoid noisy stage triggers, and test offline conversion syncs reliably.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-violet-200 dark:border-violet-800/70 bg-violet-50/70 dark:bg-violet-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-violet-800 dark:text-violet-300">Core Pipeline Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Map offline conversions to <strong>meaningful CRM milestones</strong> (such as sales-qualified lead, booked appointment, or closed-won deal), retain <strong>click/campaign identifiers and normalized user attributes</strong> across record updates, and prevent duplicate uploads on repeated CRM edits.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Choosing Meaningful CRM Conversion Milestones</h2>
+      <p>Not every CRM status change deserves to be treated as an offline conversion. Pick stages that balance signal volume with genuine commercial intent:</p>
+
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Pipeline Stage</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Signal Strength</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">When to Use</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Raw Lead Created</td>
+              <td class="py-2.5 px-3.5">High volume, mixed quality (may include spam or poor-fit leads).</td>
+              <td class="py-2.5 px-3.5">Best for initial capture; pair with downstream milestones rather than relying on raw volume alone.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Qualified / Discovery Booked</td>
+              <td class="py-2.5 px-3.5">Stronger intent signal with faster feedback than waiting months to close.</td>
+              <td class="py-2.5 px-3.5">Helpful when sales cycles are long and early qualification is clearly defined.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Closed-Won / Paid</td>
+              <td class="py-2.5 px-3.5">Highest commercial signal with real deal/order value.</td>
+              <td class="py-2.5 px-3.5">Ideal when volume is sufficient and actual revenue/value is recorded cleanly.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step CRM Offline Conversion Blueprint</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Capture click IDs &amp; campaign context at lead entry:</strong>
+          Store <code>gclid</code>, <code>fbclid</code> (when applicable), and UTM/source fields when the visitor first converts or submits a form.
+        </li>
+        <li>
+          <strong>Persist attribution fields across CRM conversions:</strong>
+          If your CRM converts a lead into a contact, deal, or opportunity, confirm attribution fields carry forward automatically rather than staying stranded on an earlier object.
+        </li>
+        <li>
+          <strong>Define clear qualification &amp; deduplication rules:</strong>
+          Trigger offline conversion syncs only when a record enters the target stage and ensure each milestone per record fires once cleanly.
+        </li>
+        <li>
+          <strong>Normalize user match fields &amp; include accurate values/timestamps:</strong>
+          Ensure email/phone normalization before SHA-256 hashing is consistent, and send clean conversion values, currency codes, and timestamps.
+        </li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases That Break CRM Attribution</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Re-saving or moving backward/forward in CRM stages:</strong> Without idempotency or milestone tracking, a deal moved back and forth across stages can trigger duplicate offline conversions.</li>
+        <li><strong>Missing attribution on manually entered or phone leads:</strong> Plan how offline records without captured click IDs are handled so expectations stay realistic.</li>
+        <li><strong>Inconsistent deal values or missing currency:</strong> Leaving deal value blank or mismatched on closed-won milestones weakens value-based optimization.</li>
+        <li><strong>Delayed syncs past lookback windows:</strong> Ensure automated workflows or batch jobs run regularly so conversions are not uploaded too late.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">QA &amp; Verification Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Submit a test lead with sample click/UTM parameters and verify those fields appear on the CRM record.</li>
+        <li>Move the test record into your target qualified or closed-won stage and confirm the offline conversion sync runs once with expected fields.</li>
+        <li>Check error logs and platform conversion diagnostics to verify acceptance without duplicates or formatting errors.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Frequently Asked Questions (FAQ)</h2>
+
+      <div class="space-y-4 pt-1">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Should I send both a qualified lead milestone and a closed-won milestone?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Yes, when structured intentionally—just make sure each conversion action has a clear purpose and avoid double-counting the same milestone or confusing primary vs. secondary conversion goals.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">2. Why not sync every single pipeline stage change?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Minor internal status updates add noise and risk accidental duplicate uploads; focus on milestones that represent real progress toward revenue.</p>
+        </div>
+
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">3. What happens if a CRM lead is updated in bulk?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Bulk imports or CRM updates can accidentally trigger stage webhooks if workflows are not guarded—always test bulk/edge scenarios and enforce deduplication keys.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "client-vs-server-side-tracking-audit",
+    kind: "Guide",
+    title: "Client-Side vs. Server-Side Tracking: Practical Audit",
+    date: "February 18, 2026",
+    category: "sGTM & Ad Tracking",
+    tags: ["GA4", "CAPI", "Cloudflare"],
+    comments: 14,
+    thumbBg: "from-slate-900 via-teal-950 to-slate-950",
+    thumbBadge: "TRACKING AUDIT",
+    thumbTitle: "Client vs. Server Responsibility",
+    visual: {
+      mode: "flow",
+      header: "CLIENT BROWSER vs. SERVER sGTM",
+      mainBox: "Browser Context &rarr; Server Enrichment &amp; Routing",
+      subCode: "Audit where tags run and why discrepancies happen",
+      statusText: "AUDITED",
+      footerNote: "Clear Architectural Boundaries"
+    },
+    summary: "Audit where browser tags and server-side containers should carry responsibility so you reduce signal loss without overcomplicating simple setups.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Client-Side vs. Server-Side Tracking: Practical Audit</h1>
+
+      <p>Moving to server-side tracking is often pitched as a cure-all for every analytics and advertising problem. In practice, a server-side GTM container does not magically invent missing browser interactions or fix broken dataLayer events—it changes where requests are processed, routed, and enriched.</p>
+
+      <p>A practical tracking audit looks closely at what happens in the browser versus what happens on the server or backend, helping you keep lightweight interactions simple while strengthening conversion delivery, parameter hygiene, and multi-destination routing where it counts most.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-teal-200 dark:border-teal-800/70 bg-teal-50/70 dark:bg-teal-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-teal-800 dark:text-teal-300">Core Audit Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Do not treat client-side and server-side tracking as rivals—treat them as <strong>complementary layers with clear boundaries</strong>. Fix browser event capture and dataLayer accuracy first, then use server-side routing/enrichment where it improves reliability and control.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Client-Side vs. Server-Side Responsibilities</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Dimension</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Client-Side (Browser)</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Server-Side (sGTM / Edge)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Primary Visibility</td>
+              <td class="py-2.5 px-3.5">DOM state, UI clicks/form submits, browser URL/query params, and consent UI.</td>
+              <td class="py-2.5 px-3.5">Incoming HTTP event payloads, server/edge request headers, and outgoing API/tag dispatches.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Key Strengths</td>
+              <td class="py-2.5 px-3.5">Immediate interaction capture and direct visibility into page behavior.</td>
+              <td class="py-2.5 px-3.5">Centralized routing, cleaner outgoing tag control, and server-side enrichment/dedup alignment.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Typical Failure Mode</td>
+              <td class="py-2.5 px-3.5">Blocked/dropped browser requests, fragile DOM selectors, or race conditions.</td>
+              <td class="py-2.5 px-3.5">Hosting/routing misconfiguration, missing incoming fields, or duplicate/unfiltered events.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Practical Audit Checklist</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Verify source event capture in the browser:</strong> Confirm key actions (leads, checkouts, signups) emit reliable events with clean parameters before blaming server transport.</li>
+        <li><strong>Check payload transfer to your server endpoint:</strong> Verify that required IDs, parameters, and user/order values actually arrive at sGTM or your server handler.</li>
+        <li><strong>Audit outgoing tags &amp; deduplication:</strong> Confirm server tags fire cleanly, match expected status codes, and deduplicate properly alongside any browser tags.</li>
+        <li><strong>Evaluate maintenance &amp; hosting overhead:</strong> Make sure the complexity of your server setup matches the real business value of the signals you are protecting.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Expecting sGTM to fix broken front-end triggers:</strong> If a form event never fires on the page, forwarding a non-existent event to a server container will not create it.</li>
+        <li><strong>Running redundant tags without deduplication:</strong> Firing both client and server conversion tags without shared event IDs or clear boundaries can inflate counts.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. When is a purely client-side setup enough vs. adding sGTM?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Small sites with basic analytics needs may start simply, while businesses relying heavily on conversion signals, multi-destination routing, or server/CRM enrichment benefit significantly from well-maintained server-side tracking.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "ga4-monetization-refunds-revenue-accuracy",
+    kind: "Tips",
+    title: "#TrackingTips: Keeping GA4 Purchase & Revenue Numbers Accurate",
+    date: "January 29, 2026",
+    category: "Data Discrepancy",
+    tags: ["GA4", "BigQuery", "Looker Studio"],
+    comments: 9,
+    thumbBg: "from-amber-900 via-orange-950 to-slate-950",
+    thumbBadge: "REVENUE ACCURACY",
+    thumbTitle: "Orders, Currency & Deduplication",
+    visual: {
+      mode: "tip",
+      header: "#TrackingTips &bull; REVENUE INTEGRITY",
+      mainBox: "transaction_id + currency + value",
+      subCode: "Prevent duplicate orders &amp; currency mismatches",
+      statusText: "RECONCILED",
+      footerNote: "Align Analytics with Order Logs"
+    },
+    summary: "Prevent inflated order counts, missing currency codes, and thank-you page reload duplicates in GA4 ecommerce and revenue reporting.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">#TrackingTips: Keeping GA4 Purchase &amp; Revenue Numbers Accurate</h1>
+
+      <p>Nothing erodes trust in analytics faster than reporting revenue or order counts that look wildly different from your actual payment gateway or order database. A single thank-you page that fires a purchase event on every refresh—or sends numeric amounts without a currency code—can distort daily revenue and ROAS numbers in a hurry.</p>
+
+      <p>Accurate purchase and revenue measurement depends on clear trigger timing, consistent <code>transaction_id</code> values, clean numeric amounts with valid currency codes, and regular reconciliation against real order records.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-amber-200 dark:border-amber-800/70 bg-amber-50/70 dark:bg-amber-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">Core Revenue Accuracy Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Fire purchase events <strong>only on confirmed orders</strong>, always include a <strong>unique <code>transaction_id</code>, valid <code>currency</code>, and clean numeric <code>value</code></strong>, and protect thank-you flows against accidental reloads or duplicate dispatches.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">High-Impact Revenue Checks</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Revenue Pitfall</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">How It Shows Up</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Practical Fix</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Thank-You Page Reloads</td>
+              <td class="py-2.5 px-3.5">Same order ID appears repeatedly when a buyer refreshes or revisits confirmation.</td>
+              <td class="py-2.5 px-3.5">Send a unique <code>transaction_id</code> and guard against repeat firing on reload.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Missing / Bad Currency</td>
+              <td class="py-2.5 px-3.5">Monetary values appear inconsistent or unexpectedly converted/omitted.</td>
+              <td class="py-2.5 px-3.5">Always pass a valid ISO currency code alongside numeric order/item values.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Unconfirmed Checkouts</td>
+              <td class="py-2.5 px-3.5">Abandoned or failed payments look like completed purchases.</td>
+              <td class="py-2.5 px-3.5">Trigger purchase conversion only after order confirmation/payment success.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Revenue QA Workflow</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Complete a controlled test order:</strong> Walk through checkout and inspect the purchase payload in Preview/DebugView.</li>
+        <li><strong>Verify IDs, value, and currency:</strong> Confirm <code>transaction_id</code>, <code>currency</code>, numeric <code>value</code>, and <code>items</code> match the order summary.</li>
+        <li><strong>Test reload behavior:</strong> Refresh or re-open the confirmation view during testing to verify duplicate purchases are prevented.</li>
+        <li><strong>Reconcile weekly against order logs:</strong> Compare order counts and totals against your storefront or backend records.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Pending bank/manual orders vs. paid orders:</strong> Decide clearly when an order counts as a purchase so analytics and finance expectations stay aligned.</li>
+        <li><strong>Formatted currency strings:</strong> Strip currency symbols or commas so numeric values stay clean in reports and SQL queries.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. Why will analytics revenue and backend revenue still differ slightly sometimes?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Small differences can come from timing/timezone boundaries, blocked browsers, refunds/cancellations, or orders completed outside standard web checkout flows.</p>
+        </div>
+      </div>
+    `
+  },
+
+  {
+    id: "event-naming-taxonomy-scalable-tracking",
+    kind: "Guide",
+    title: "Designing a Scalable Event Naming Taxonomy",
+    date: "January 10, 2026",
+    category: "GA4 & Reporting",
+    tags: ["GA4", "Looker Studio", "BigQuery"],
+    comments: 12,
+    thumbBg: "from-emerald-900 via-slate-900 to-slate-950",
+    thumbBadge: "EVENT TAXONOMY",
+    thumbTitle: "Clean Names & Reusable Params",
+    visual: {
+      mode: "tip",
+      header: "SCALABLE EVENT TAXONOMY",
+      mainBox: "Consistent Events + Reusable Parameters",
+      subCode: "Avoid one-off event sprawl &amp; naming drift",
+      statusText: "SCALABLE",
+      footerNote: "Built for Long-Term Maintenance"
+    },
+    summary: "Avoid event sprawl and conflicting parameter names by designing a clear, reusable event naming taxonomy across web, server, and BI layers.",
+    body: `
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">Designing a Scalable Event Naming Taxonomy</h1>
+
+      <p>When tracking grows organically over months of campaigns, landing pages, and feature releases, event lists tend to spiral out of control. One team creates <code>form_submit</code>, another adds <code>lead_form_sent</code> or <code>contactSubmit</code>, and parameters get reused with completely different meanings.</p>
+
+      <p>A scalable event taxonomy keeps your tracking model clean and understandable as your site, funnels, and reporting grow. Instead of inventing a brand-new event name for every minor variation, you standardize clear event names and pass context through well-defined parameters.</p>
+
+      <div class="my-6 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/70 dark:bg-emerald-950/25 space-y-2">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Core Taxonomy Takeaway</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          Keep <strong>event names consistent, descriptive, and restrained</strong>, put <strong>contextual variations (such as form name, placement, or step) into parameters</strong>, and maintain a single shared tracking spec across GTM, GA4, and BI.
+        </p>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Events vs. Parameters: Keeping Responsibility Clear</h2>
+      <div class="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono text-xs">
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Concept</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Best Used For</th>
+              <th class="py-2.5 px-3.5 border-b border-slate-200 dark:border-slate-700">Example Approach</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Event Name</td>
+              <td class="py-2.5 px-3.5">Distinct user or business actions/milestones worth tracking as separate events.</td>
+              <td class="py-2.5 px-3.5">Use a consistent case/format (e.g., lowercase snake_case) and clear action meaning.</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3.5 font-mono text-xs font-semibold">Event Parameters</td>
+              <td class="py-2.5 px-3.5">Context about <em>where</em>, <em>how</em>, or <em>what</em> happened during that event.</td>
+              <td class="py-2.5 px-3.5">Attach form ID/name, CTA location, plan/item details, or funnel step as parameters.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Step-by-Step Taxonomy Rollout</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li><strong>Audit existing events and active conversions:</strong> List what is currently firing and identify duplicate, obsolete, or conflicting names.</li>
+        <li><strong>Define naming &amp; parameter conventions:</strong> Agree on casing, clear event names, and standard parameter names before adding new tracking.</li>
+        <li><strong>Keep a living tracking plan:</strong> Document every event, trigger condition, parameter, and destination in one simple reference.</li>
+        <li><strong>Review new requests against the spec:</strong> Check every new campaign or feature tag against existing events before creating a new one.</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-3">Real-World Edge Cases &amp; FAQ</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Creating separate events for every button/form:</strong> Ten separate form event names make cross-site lead reporting harder than one clean lead event with a form parameter.</li>
+        <li><strong>Changing parameter types mid-stream:</strong> Switching a parameter from text to number or changing its meaning breaks historical comparisons.</li>
+      </ul>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#161B22]">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">1. When should I create a new event instead of using a parameter?</h3>
+          <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">Create a distinct event when the action represents a genuinely different user or business milestone (such as viewing a page vs. submitting a lead vs. completing a purchase), rather than a minor placement variation.</p>
+        </div>
+      </div>
+    `
+  },
+
+  
 ];
